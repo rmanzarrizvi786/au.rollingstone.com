@@ -1,0 +1,191 @@
+// Button
+//
+// markup:
+// <a href="#" class="c-btn">
+// 	Button
+// </a>
+//
+// sg-wrapper:
+// <div style="max-width:300px;padding:20px;background-color:#eee;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.6
+
+// Dark Button
+//
+// markup:
+// 	<a href="#" class="c-btn c-btn--dark" data-flyout="is-sidebar-open">
+// 	<div class="c-btn__inner t-semibold t-semibold--upper">
+// 		<span class="c-btn__icon-wrap">
+// 			<svg class="c-btn__icon"><use xlink:href="#svg-icon-comments"></use></svg>
+// 		</span>
+// 		<span class="screen-reader-text">Show</span>
+// 		<span class="c-btn__main">Comments</span>
+// 		<span class="c-btn__secondary">22</span>
+// 	</div>
+// </a>
+//
+// Styleguide 3.6.1
+
+// Twitter Block Button
+//
+// markup:
+// <a href="#" class="c-btn c-btn--block c-btn--twitter t-bold t-bold--upper" target="_blank" rel="noopener noreferrer">
+// 	Follow
+// </a>
+//
+// Styleguide 3.6.2
+
+// Outline Button
+//
+// markup:
+// <button class="c-list__separator-btn c-btn c-btn--outline t-semibold t-semibold--upper" data-list-load-previous>
+// 	Load Previous
+// </button>
+//
+// sg-wrapper:
+// <div style="padding:30px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.6.3
+
+// Pagination Button
+//
+// markup:
+// <a href="#" class="c-pagination__btn c-btn c-btn--pagination t-semibold t-semibold--upper">
+// 	Prev
+// </a>
+//
+// Styleguide 3.6.4
+
+// Red, Large Button
+//
+// markup:
+// <a href="#" class="c-btn c-btn--red c-btn--large">
+// 	Back to Rolling Stone
+// </button>
+//
+// Styleguide 3.6.5
+
+@include critical( single, country, section-front, archive, home, list, video-article, featured-article ) {
+
+	.c-btn {
+		display: inline-flex;
+		font-size: 11px;
+		color: $g-color-white;
+		letter-spacing: #{ 0.92px / 11px }em;
+		line-height: 11px;
+		border-radius: 0;
+		transition: background-color $g-transition-color, color $g-transition-color;
+		cursor: pointer;
+
+		%stretch-and-center {
+			display: inline-flex;
+			align-items: center;
+		}
+
+		&__inner {
+			display: inline-flex;
+			pointer-events: none;
+		}
+
+		&__icon-wrap {
+			padding: 10px 0 10px 10px;
+		}
+
+		&__icon {
+			@extend %stretch-and-center;
+			height: 14px;
+			width: 15px;
+			fill: currentColor;
+		}
+
+		&__main {
+			@extend %stretch-and-center;
+			padding: 10px;
+		}
+
+		&__secondary {
+			@extend %stretch-and-center;
+			padding: 10px;
+			border-left: 1px solid currentColor;
+		}
+
+		&--block {
+			padding: 7px;
+		}
+
+		&--outline {
+			padding: 11px 40px;
+			font-size: 15px;
+			letter-spacing: 0;
+			color: $g-color-red;
+			border: 2px solid $g-color-border;
+			background-color: $g-color-white;
+			transition: border-color $g-transition-color, color $g-transition-color;
+
+			&:hover,
+			&:focus {
+				color: $g-color-black;
+			}
+		}
+
+		&--dark {
+			border: 1px solid currentColor;
+			background: $g-color-black;
+
+			&:focus,
+			&:hover {
+				color: $g-color-black;
+				background: $g-color-white;
+			}
+		}
+
+		&--red {
+			border: 1px solid currentColor;
+			background: $g-color-red;
+			color: $g-color-white;
+
+			&:focus,
+			&:hover {
+				color: $g-color-red;
+				background: $g-color-white;
+			}
+		}
+
+		&--large {
+			font-size: 16px;
+			padding: 16px;
+		}
+
+		&--pagination {
+			padding: 1em;
+			font-size: 14px;
+			line-height: 14px;
+			letter-spacing: 0;
+			border-radius: 5px;
+			background-color: $g-color-red;
+			box-shadow: 0 2px 4px 0 rgba(0,0,0,0.30);
+
+			&:focus,
+			&:hover {
+				background: $g-color-red--lighten;
+			}
+		}
+
+		&--twitter {
+			border-radius: 4px;
+			background-color: $g-color-twitter;
+			transition: background-color $g-transition-color, color $g-transition-color;
+
+			&:focus,
+			&:hover {
+				background-color: $g-color-white;
+				color: $g-color-twitter;
+			}
+		}
+	}
+
+}

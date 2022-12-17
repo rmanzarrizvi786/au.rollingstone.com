@@ -1,0 +1,25 @@
+.search_form_widget.search_form {
+	margin-top: 0;
+	background: #fff;
+	box-shadow: none;
+	input[type='text'] {
+		width: 100%;
+		padding: 5px 0;
+		text-indent: 30px;
+		background-position: 8px 8px;
+	}
+	input[type='submit'] {
+		display: none;
+	}
+	.swiftype-widget {
+		.autocomplete {
+			max-width: 350px;
+			width: 300px;
+		}
+		@media only screen and (max-width: "768px") {
+			.autocomplete {
+				display: none;
+			}
+		}
+	}
+}

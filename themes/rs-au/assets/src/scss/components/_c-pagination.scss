@@ -1,0 +1,33 @@
+// Pagination
+//
+// markup:
+// <div class="c-pagination">
+// 	<a href="#" class="c-pagination__btn c-btn c-btn--pagination t-semibold t-semibold--upper">
+// 		Prev
+// 	</a>
+// 	<a href="#" class="c-pagination__btn c-pagination__btn--right c-btn c-btn--pagination t-semibold t-semibold--upper">
+// 		Next
+// 	</a>
+// </div>
+//
+// Styleguide 3.39
+
+@include critical( section-front, country, archive, list ) {
+
+	.c-pagination {
+		display: flex;
+		padding: 20px 0;
+
+		&__btn {
+			transition: opacity $g-transition-fade;
+
+			&--right {
+				margin-left: auto;
+			}
+
+			&.is-hidden {
+				opacity: 0;
+			}
+		}
+	}
+}

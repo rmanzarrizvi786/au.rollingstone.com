@@ -1,0 +1,26 @@
+//
+// AMP stylesheet.
+//
+
+@import 'helpers/variables';
+@import 'helpers/colors';
+@import 'helpers/critical-rendering-utils';
+@import 'helpers/functions';
+@import 'helpers/typography';
+@import 'helpers/mixins';
+@import 'helpers/placeholders';
+
+//
+// AMP partials.
+//
+
+@import 'amp/amp-wp-title-bar';
+@import 'amp/article-breadcrumbs';
+@import 'amp/amp-wp-content';
+@import 'amp/amp-fn-content';
+@import 'amp/amp-wp-tax-category';
+@import 'amp/amp-newsletter-comments';
+@import 'amp/amp-category-posts';
+@import 'amp/amp-footer';
+@import 'amp/amp-sidebar';
+@import 'amp/gallery';

@@ -1,0 +1,58 @@
+.swiftype-widget {
+	.autocomplete {
+		background-color: #fff;
+		display: block;
+		margin: 0 0 0 -1px;
+		padding: 0;
+		width: 90%;
+		max-width: 871px;
+		position: absolute;
+		text-align: left;
+		border: 1px solid #ccc;
+		z-index: 99999999;
+
+		&.inactive {
+			display: none;
+		}
+
+		.ac-section-title {
+			padding: 6px;
+			font-weight: bold;
+			background-color: #eee;
+			border-bottom: 1px solid #e1e1e1;
+		}
+
+		.ac-result {
+			padding: 6px;
+			border-bottom: 1px solid #e1e1e1;
+			overflow: hidden;
+			text-transform: none;
+
+			&:hover {
+				background-color: #fafafa;
+				cursor: pointer;
+			}
+
+			&.selected {
+				background-color: #EEE;
+			}
+
+			.ac_image {
+				width: 50px;
+				height: 50px;
+				float: left;
+				margin-right: 6px;
+			}
+
+			.ac_title {
+				//font-weight: bold;
+				//font-size: 14px;
+				//color: rgb(0, 85, 201);
+			}
+
+			.ac_sub {
+				font-size: 90%;
+			}
+		}
+	}
+}

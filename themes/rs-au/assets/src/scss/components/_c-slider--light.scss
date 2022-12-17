@@ -1,0 +1,63 @@
+// Light Slider
+//
+// markup:
+// <div class="c-video-gallery__slider c-slider c-slider--light" data-slider>
+// 	<a href="" class="c-slider__nav c-slider__nav--left" data-slider-nav="prev">
+// 		<svg class="c-slider__icon"><use xlink:href="#svg-icon-chevron"></use></svg>
+// 	</a>
+// 	<a href="" class="c-slider__nav c-slider__nav--right" data-slider-nav="next">
+// 		<svg class="c-slider__icon"><use xlink:href="#svg-icon-chevron"></use></svg>
+// 	</a>
+// 	<div class="c-slider__track" data-slider-track>
+// 		<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 			<sg-insert>3.8.12</sg-insert>
+// 		</div>
+// 		<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 			<sg-insert>3.8.12</sg-insert>
+// 		</div>
+// 		<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 			<sg-insert>3.8.12</sg-insert>
+// 		</div>
+// 		<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 			<sg-insert>3.8.12</sg-insert>
+// 		</div>
+// 		<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 			<sg-insert>3.8.12</sg-insert>
+// 		</div>
+// 		<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 			<sg-insert>3.8.12</sg-insert>
+// 		</div>
+// 		<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 			<sg-insert>3.8.12</sg-insert>
+// 		</div>
+// 	</div>
+// </div>
+//
+// sg-wrapper:
+// <div style="max-width:600px;padding:20px;background-color:#fff;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.49.1
+
+@include critical( video-landing ) {
+
+	.c-slider {
+
+		&--light &__nav {
+			padding: 20px 40px;
+
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 180px;
+				height: 100%;
+				z-index: z( depression );
+				pointer-events: none;
+				background-image: linear-gradient( -90deg, rgba( $g-color-white, 0 ) 0%, $g-color-white 100% );
+			}
+		}
+	}
+}

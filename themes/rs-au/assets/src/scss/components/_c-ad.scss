@@ -1,0 +1,333 @@
+// Ad
+//
+// markup:
+// <div class="c-ad">
+//   <img src="https://placehold.it/300x250" alt="Dummy Ad">
+// </div>
+//
+// sg-wrapper:
+// <div style="max-width:1000px;background-color:#eee;padding:20px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.1
+
+// Boxed Ad (320x250)
+//
+// markup:
+// <div class="c-ad c-ad--300x250 c-ad--boxed">
+//   <img src="https://placehold.it/300x250" alt="Dummy Ad">
+// </div>
+//
+// Styleguide 3.1.1
+
+// Ad with Wide Background (300x250)
+//
+// markup:
+// <div class="c-ad c-ad--300x250 c-ad--wide-bg">
+//   <img src="https://placehold.it/300x250" alt="Dummy Ad">
+// </div>
+//
+// Styleguide 3.1.2
+
+// Mobile Header Ad (300x50)
+//
+// markup:
+// <div class="c-ad c-ad--mobile-header c-ad--300x50">
+//   <img src="https://placehold.it/300x50" alt="Dummy Ad">
+// </div>
+//
+// Styleguide 3.1.3
+
+// Mobile Header Ad (728x90)
+//
+// markup:
+// <div class="c-ad c-ad--mobile-header c-ad--728x90">
+//   <img src="https://placehold.it/728x90" alt="Dummy Ad">
+// </div>
+//
+// Styleguide 3.1.4
+
+// Default Ad (300x50)
+//
+// markup:
+// <div class="c-ad c-ad--300x50">
+//   <img src="https://placehold.it/300x50" alt="Dummy Ad">
+// </div>
+//
+// Styleguide 3.1.5
+
+// Default Ad (300x600)
+//
+// markup:
+// <div class="c-ad c-ad--300x600">
+//   <img src="https://placehold.it/300x600" alt="Dummy Ad">
+// </div>
+//
+// Styleguide 3.1.6
+
+@include critical() {
+
+	.c-ad {
+		@extend %flex-center;
+
+		&--boxed {
+			$border: 1px solid $g-color-border;
+			padding: 12px 0;
+			border-top: $border;
+			border-bottom: $border;
+
+			.l-home-top & {
+				border-bottom: none;
+				border-top: none;
+				padding: 40px 0 0 0;
+			}
+		}
+
+		&--wide-bg {
+			position: relative;
+			padding: 25px;
+			margin: 20px 0;
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 50%;
+				z-index: z( depression );
+				width: 100vw;
+				height: 100%;
+				transform: translateX(-50%);
+				background: $g-color-bg--light;
+			}
+		}
+
+		&--320x50 {
+			min-width: 320px;
+			min-height: 50px;
+		}
+
+		&--728x90 {
+			min-width: 728px;
+			min-height: 90px;
+		}
+
+		&--mobile-header {
+			padding: 5px 0;
+			background-color: $g-color-red;
+
+			@media ( query( min, desktop ) ) {
+				display: none;
+			}
+
+			.is-mega-open & {
+				display: none;
+			}
+		}
+
+		&--desktop-header {
+			margin: 0 auto;
+			padding: 1px 0;
+			justify-content: flex-start;
+
+		}
+
+		&--admz {
+			text-align: center;
+			margin-bottom: 20px;
+		}
+	}
+
+	.super-marquee {
+		@media ( query( min, desktop ) ) {
+			min-width: 1001px;
+			margin-top: -25px;
+		}
+	}
+	.super-marquee a {
+		margin-left: auto;
+		margin-right: auto;
+
+	}
+	.super-marquee-container {
+		width: 100%;
+	}
+
+	.blockbuster-ad {
+		position: relative;
+		background-position: center;
+		background-size: cover;
+		@media ( query( min, desktop ) ) {
+			max-height: 250px;
+			min-width: 1001px;
+			margin-top: -1px;
+		}
+		@media ( query( min, tablet ) ) and ( query( max, tablet-xl ) ) {
+			margin-top: 60px;
+		}
+	}
+
+	.blockbuster-ad-body {
+		@media ( query( min, tablet ) ) {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-direction: normal;
+			-webkit-box-orient: horizontal;
+			-webkit-flex-direction: row;
+			-moz-flex-direction: row;
+			-ms-flex-direction: row;
+			flex-direction: row;
+			-webkit-flex-wrap: nowrap;
+			-moz-flex-wrap: nowrap;
+			-ms-flex-wrap: none;
+			flex-wrap: nowrap;
+			-webkit-box-pack: justify;
+		}
+	}
+
+	.blockbuster-ad-content {
+		@media ( query( min, tablet ) ) {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			-webkit-justify-content: center;
+			-moz-justify-content: center;
+			justify-content: center;
+			text-align: left;
+			display: flex;
+			flex-direction: column;
+			order: 1;
+			-webkit-box-ordinal-group: 2;
+			-webkit-order: 1;
+			-moz-order: 1;
+			-ms-flex-order: 1;
+		}
+	}
+
+	.blockbuster-ad-video-wrap {
+		overflow: hidden;
+		margin-left: 8px;
+		@media ( query( min, tablet ) ) {
+			max-width: 360px;
+			max-height: 220px;
+			margin: 20px;
+			order: 2;
+			-webkit-box-ordinal-group: 3;
+			-webkit-order: 2;
+			-moz-order: 2;
+			-ms-flex-order: 2;
+		}
+	}
+
+	.has-side-skins div[id^='attachment'] {
+		max-width: 470px; // override inline image width when skin ads are on page
+	}
+
+	.pmc-crown-leaderboard {
+		display: flex;
+		max-width: 1900px;
+		margin-left: auto;
+		margin-right: auto;
+		@media ( max-width: 480px ) {
+			position: relative;
+		}
+	}
+
+	.pmc-crown-leaderboard__item {
+		width: 50%;
+		position: relative;
+		overflow: hidden;
+		@media ( max-width: 480px ) {
+			width: 100%;
+		}
+	}
+
+	.pmc-crown-leaderboard-picture {
+		width: 100%;
+		@media ( max-width: 700px ) {
+			position: absolute;
+		}
+	}
+	.pmc-crown-leaderboard__item--mobile-hide {
+		@media ( max-width: 480px ) {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			padding-bottom: 56.25%; // 16:9 aspect ratio
+		}
+	}
+
+	.adw-300 {
+		width: 300px;
+	}
+
+	div.adma {
+		display: flex;
+		justify-content: center;
+	}
+
+	[id^=adm-inline-article-ad] {
+		div.adma {
+			padding: 5px 0 20px;
+			border-top: 1px solid $g-color-border;
+			border-bottom: 1px solid $g-color-border;
+		}
+	}
+
+	.c-content {
+		[id^=adm-inline-article-ad] + p {
+			padding: 0 0;
+		}
+	}
+
+	.pmc-adm-goog-pub-div {
+		&.ad-flex-left {
+			margin-right: auto;
+		}
+		&.ad-flex-right {
+			margin-left: auto;
+		}
+	}
+
+	@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+		.l-page__header, .c-list--artists article.c-ad {
+			display: block;
+
+			& .admz {
+				display: flex;
+				justify-content: center;
+			}
+		}
+	}
+
+	@media only screen and (min-width: 768px) and (max-width: 970px) and (orientation: portrait) {
+		.l-page__header, .c-list--artists article.c-ad {
+			& .admz {
+				transform: scale(0.76);
+			}
+			& iframe {
+				max-width: unset;
+			}
+		}
+	}
+
+	@media only screen and (min-width: 970px) and (max-width: 1024px) and (orientation: portrait) {
+		.c-list--artists article.c-ad {
+			& .admz {
+				transform: scale(0.7);
+			}
+			& iframe {
+				max-width: unset;
+			}
+		}
+	}
+
+}

@@ -1,0 +1,138 @@
+.rs__btn {
+	height: (46em/16);
+	width: (104em/16);
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+	letter-spacing: 1.1px;
+	border: none;
+	transition: box-shadow 0.5s ease;
+	padding: 2px 6px 3px;
+	align-items: flex-start;
+	text-align: center;
+	display: inline-block;
+
+	&-skew {
+		transform: skew(-10deg);
+		background-color: #d32531;
+
+		span {
+			display: block;
+			text-transform: uppercase;
+			transform: skew(10deg);
+			padding: (10em/16);
+		}
+	}
+
+	a {
+		color: white;
+		&:hover {
+			color: white;
+		}
+	}
+
+	&:hover {
+		box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.5);
+	}
+
+	&.spy {
+		background-color: black;
+		a {
+			color: white;
+		}
+	}
+
+	&.buy {
+		background-color: #d32531;
+	}
+}
+
+.rs__buy-now-wrapper {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 0 (20em/16);
+	padding: 0 0 48px 0;
+
+	.rs__btn {
+		width:auto;
+		height: auto;
+
+		.rs__link {
+			display: inline-block;
+			line-height: 35px;
+			padding: 5px 10px;
+		}
+
+		.buy-now-price {
+			margin-left: 10px;
+			font-style: italic;
+		}
+
+		&.spy {
+		    font-weight: 700;
+		    font-size: 1.25rem;
+		    font-family: sans-serif;
+		    
+			flex: 1 0 auto;
+			text-align: left;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			padding: 0 16px;
+
+			span {
+				display: inline-block;
+				text-transform: none;
+				font-size: 17px;
+
+				@media( query(max, desktop) ) {
+					line-height: 19px;
+				}
+			}
+
+			@media( query(max, desktop) ) {
+				text-align: center;
+				flex-basis: 100%;
+			}
+		}
+
+		&.buy {
+			position: relative;
+			top: (5em/16);
+			margin-left: (3em/16);
+			line-height: (28em/16);
+
+			font-weight: 700;
+		    font-size: 1rem;
+		    font-family: sans-serif;
+			
+			@media( query(max, desktop) ) {
+				top: -4px;
+				line-height: inherit;
+			}
+		}
+
+		.rs__link {
+
+			@media( query(max, desktop) ) {
+				padding: 5px 10px;
+			}
+		}
+
+		span {
+			padding: 0;
+			font-size: 17px;
+		}
+	}
+}
+
+.rs__btn-wrapper {
+	.rs__btn {
+		width: auto;
+		height: auto;
+
+		a {
+			span {
+				color: #fff;
+			}
+		}
+	}
+}

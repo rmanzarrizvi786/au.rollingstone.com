@@ -1,0 +1,91 @@
+// Social Bar for Featured Article
+//
+// markup:
+// <ul class="c-social-bar c-social-bar--featured-article">
+// 	<li class="c-social-bar__item">
+// 		<a href="https://www.facebook.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Share on Facebook">
+// 			<span class="c-social-bar__icon">
+// 				<sg-insert>3.30</sg-insert>
+// 			</span>
+// 			<span class="screen-reader-text">Share on Facebook</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item">
+// 		<a href="https://twitter.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Tweet">
+// 			<span class="c-social-bar__icon">
+// 				<sg-insert>3.30</sg-insert>
+// 			</span>
+// 			<span class="screen-reader-text">Tweet</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item">
+// 		<a href="http://www.tumblr.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Share on Tumblr">
+// 			<span class="c-social-bar__icon">
+// 				<sg-insert>3.30</sg-insert>
+// 			</span>
+// 			<span class="screen-reader-text">Share on Tumblr</span>
+// 		</a>
+// 	</li>
+// </ul>
+//
+// sg-wrapper:
+// <div style="max-width:150px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.50.3
+
+@include critical(featured-article ) {
+
+	.c-social-bar {
+
+		&--featured-article {
+			@extend %flex-center;
+			width: 100%;
+			margin-top: 10px;
+
+			@media ( query( min, desktop-featured-article ) ) {
+				flex-flow: column nowrap;
+			}
+		}
+
+		&--featured-article &__item {
+			flex: 0 0 auto;
+		}
+
+		&--featured-article &__link {
+			width: 40px;
+			height: 40px;
+			margin-left: -1px;
+			transition: background $g-transition-fade;
+			color: $g-color-white;
+			
+			&:not(:hover) {
+				background-color: $g-color-white;
+				border: 1px solid #8A8A8A;
+				color: $g-color-black;
+			}
+			
+			@media ( query( min, desktop-featured-article ) ) {
+				margin-bottom: -1px;
+				margin-left: 0;
+			}
+		}
+
+		&__icon svg {
+			fill: currentColor;
+		}
+	}
+}

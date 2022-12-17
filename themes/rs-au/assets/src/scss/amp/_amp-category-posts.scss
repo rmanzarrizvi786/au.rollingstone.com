@@ -1,0 +1,91 @@
+// AMP category posts block (More News).
+//
+// Since we're using non-BEM templates and `[amp]` namespacing,
+// the `selector-max-specificity` stylelint check is disabled.
+//
+// No styleguide
+
+/* stylelint-disable selector-max-specificity */
+[amp] {
+	.amp-category-posts-container {
+		margin: 25px auto;
+		padding: 0 15px;
+
+		.title h3,
+		.post-title {
+			@include g-font-family-sans;
+			font-weight: $bold;
+			color: $g-color-black;
+			margin: 0;
+			padding: 0;
+		}
+
+		.title {
+			margin: 0;
+			padding: 6px 0;
+			border-top: 4px solid $g-color-red;
+
+			h3 {
+				font-size: 22px;
+				line-height: #{ 26px / 22px };
+				letter-spacing: -1px;
+				text-transform: uppercase;
+			}
+		}
+
+		.post-title {
+			font-size: 13px;
+			line-height: #{ 15px / 13px };
+		}
+
+		.post-image {
+			position: relative;
+			width: 100%;
+			padding-bottom: percentage( 170 / 300 );
+
+			amp-img {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+
+				img {
+					object-fit: cover;
+				}
+			}
+		}
+
+		.content {
+			border-bottom: 2px solid $g-color-black;
+		}
+
+		.content .list {
+			display: flex;
+			flex-flow: row wrap;
+			list-style: none;
+			margin: 10px -7px 0;
+
+			li {
+				flex: 0 0 auto;
+				width: 50%;
+				padding: 0 7px 25px;
+			}
+		}
+
+		//
+		// List without the images.
+		//
+
+		&.without-image .content .list {
+			margin: 0;
+
+			li {
+				width: 100%;
+				padding: 10px 0;
+				border-top: 1px solid $g-color-border;
+			}
+		}
+	}
+}
+/* stylelint-enable selector-max-specificity */

@@ -1,0 +1,178 @@
+// Page
+//
+// markup:
+// <div class="l-page">
+// 	<div class="l-page__header">
+// 		<sg-insert>4.10</sg-insert>
+// 	</div>
+// 	<div class="l-page__content" data-flyout="is-sidebar-open" data-flyout-trigger="close">
+// 		<sg-insert>4.6</sg-insert>
+// 		<sg-insert>4.9</sg-insert>
+// 	</div>
+// 	<div class="l-page__sidebar">
+// 		<sg-insert>3.15</sg-insert>
+// 	</div>
+// 	<div class="l-page__mega">
+// 		<sg-insert>4.12</sg-insert>
+// 	</div>
+// </div>
+//
+// Styleguide 4.13
+
+@include critical() {
+
+	.l-page {
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		background-color: #fff;
+
+		&__content {
+			position: relative;
+			transition: transform 0.5s $ease-in-out-quint;
+
+			.is-sidebar-open & {
+				@media ( min-width: 1360px ) {
+					transform: translateX(-40px);
+				}
+
+				@media ( min-width: 1680px ) {
+					transform: translateX(-200px);
+				}
+
+				@media ( min-width: 1780px ) {
+					transform: translateX(-250px);
+				}
+			}
+			
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 50%;
+				width: 100vw;
+				height: 100%;
+				background: $g-color-black;
+				opacity: 0;
+				pointer-events: none;
+				transform: translateX( -50% );
+				transition: opacity 0.5s $ease-in-out-quint;
+
+				.is-sidebar-open & {
+					opacity: 0.1;
+				}
+
+				.is-mega-open & {
+					opacity: 1;
+				}
+			}
+		}
+
+		&__sidebar {
+			position: fixed;
+			top: 0;
+			right: 0;
+			z-index: z( 'mountain' );
+			height: 100vh;
+			width: 500px;
+			max-width: 100vw;
+			transform: translateX(100%);
+			background-color: $g-color-white;
+			overflow-y: scroll;
+			transition: transform 0.5s $ease-in-out-quint;
+			opacity: 0;
+			-webkit-overflow-scrolling: touch;
+
+			@media ( min-width: 1360px ) {
+				width: 400px;
+			}
+
+			@media ( min-width: 1780px ) {
+				width: 500px;
+			}
+
+			.is-sidebar-open & {
+				opacity: 1;
+				box-shadow: $g-shadow-card--big;
+				transform: translateX(0);
+			}
+
+			.is-header-sticky & {
+				position: fixed;
+				top: $g-sticky-header-height;
+				height: calc( 100vh - #{ $g-sticky-header-height } );
+				z-index: z( 'default' );
+			}
+		}
+
+		&__secondary {
+			transition: opacity 0.5s $ease-in-out-quint;
+
+			.is-sidebar-open & {
+				@media ( min-width: 1360px ) {
+					opacity: 0;
+				}
+
+				@media ( min-width: 1680px ) {
+					opacity: 1;
+				}
+			}
+		}
+
+		//
+		// Mega menu container.
+		//
+
+		&__mega {
+			position: fixed;
+			z-index: z( 'orbit' );
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			overflow: hidden;
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY( -20% );
+			transition: transform 250ms $ease-deceleration-curve 250ms, opacity 160ms $ease-deceleration-curve, visibility 160ms $ease-deceleration-curve;
+			-webkit-overflow-scrolling: touch;
+
+			.admin-bar & {
+				top: 46px;
+
+				@media( min-width: 783px ) {
+					top: 31px;
+				}
+			}
+
+			@media( query( min, desktop ) ) {
+				z-index: z( 'orbit' ) * 2;
+				transition: transform 350ms $ease-deceleration-curve 350ms, opacity 350ms $ease-deceleration-curve, visibility 350ms $ease-deceleration-curve;
+			}
+
+			.is-mega-open & {
+				transform: none;
+				opacity: 1;
+				visibility: visible;
+				transition-delay: 0ms, 0ms, 0ms;
+			}
+		}
+
+		//
+		// Page layout with side skins.
+		//
+
+		.has-side-skins & {
+			margin: 0 auto;
+			max-width: #{ $g-breakpoint-desktop + 40px }; // Add padding.
+		}
+
+		//
+		// Page layout with branding.
+		//
+
+		.has-branding:not(.single-pmc_top_video) & {
+			background: $g-color-country--bg;
+		}
+	}
+}

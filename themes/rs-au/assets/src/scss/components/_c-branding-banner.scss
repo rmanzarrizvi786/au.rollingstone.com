@@ -1,0 +1,23 @@
+
+// Branding Banner
+//
+// markup:
+// <div class="c-branding-banner">
+// 	<h1 class="screen-reader-text">Country</h1>
+// </div>
+//
+// Styleguide 3.4
+
+@include critical( country ) {
+
+	.c-branding-banner {
+		width: 100%;
+		height: 70px;
+		background: $g-color-black url( '../images/_dev/banner-country--mobile.png' ) no-repeat center;
+
+		@media ( query( min, tablet ) ) {
+			height: 110px;
+			background-image: url( '../images/_dev/banner-country.png' );
+		}
+	}
+}

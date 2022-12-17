@@ -1,0 +1,63 @@
+// Category Header
+//
+// markup:
+// <div class="l-category-header">
+// 	<sg-insert>3.11</sg-insert>
+// 	<div class="l-category-header__video">
+// 		<sg-insert>3.40</sg-insert>
+// 	</div>
+// </div>
+//
+// sg-wrapper:
+// <div style="padding:40px;box-shadow:inset 0 200px 0 0 #d32531">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 4.7
+
+@include critical( video-article ) {
+
+	.l-category-header {
+		@include h-container;
+		position: relative;
+		padding-top: 0;
+
+		@media ( query( min, tablet ) ) {
+			padding-top: 20px;
+		}
+
+		// Account for Z-index issues when background color is set
+		> * {
+			position: relative;
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 50%;
+			z-index: 0;
+			height: 200px;
+			width: 100vw;
+			min-width: 100%;
+			transform: translateX(-50%);
+			background: $g-color-red;
+		}
+
+		&__video {
+			margin-top: 5px;
+
+			@media ( query( min, tablet ) ) {
+				margin-top: 20px;
+			}
+
+			@media ( query( min, desktop ) ) {
+				margin-top: 30px;
+			}
+
+			@media ( query( min, tablet ) ) {
+				margin-top: 30px;
+			}
+		}
+	}
+}

@@ -1,0 +1,14 @@
+[data-line-menu] {
+	.line-menu-indicator {
+		position: absolute;
+		z-index: z( 'mountain' );
+		left: -30px;
+		bottom: 0;
+		width: 60px;
+		height: 2px;
+		pointer-events: none;
+		background-color: currentColor;
+		transform-origin: 50% 50%;
+		transition: transform 195ms $ease-standard-curve;
+	}
+}

@@ -1,0 +1,8 @@
+//
+// Critical CSS for the video tag template.
+//
+
+$IS_CRITICAL: true;
+$CRITICAL_TYPE: video-tag;
+
+@import 'style';

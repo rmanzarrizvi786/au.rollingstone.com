@@ -1,0 +1,20 @@
+// Color Utility
+//
+// u-color--black - $g-color-black
+//
+// markup:
+// <p class="{$modifiers}">This text is a color.</p>
+//
+// Styleguide 2.6
+
+/* stylelint-disable declaration-no-important */
+.u-color {
+
+	// Add more colors here.
+
+	&--black {
+		// Utilities are law, so it's okay to use an important.
+		color: $g-color-black !important;
+	}
+
+}

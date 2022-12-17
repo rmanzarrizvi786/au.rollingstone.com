@@ -1,0 +1,82 @@
+// Video Grid Card
+//
+// markup:
+// <article class="c-card c-card--video-grid">
+// 	<a href="#" class="c-card__wrap">
+// 		<figure class="c-card__image">
+// 			<div class="c-crop c-crop--landscape c-crop--size-brand">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					data-src="https://placehold.it/300x170"
+// 					data-srcset="
+// 						https://placehold.it/300x170 300w,
+// 						https://placehold.it/250x142 250w"
+// 					sizes="(max-width: 767px) 250px, 300px"
+// 					alt="Daily Show's Michelle Wolf to Host White House Correspondents' Dinner"
+// 					class="c-crop__img">
+// 			</div>
+// 		</figure>
+// 		<header class="c-card__header">
+// 			<h3 class="c-card__heading t-bold">
+// 				Daily Show's Michelle Wolf to Host White House Correspondents' Dinner
+// 			</h3>
+// 		</header>
+// 	</a>
+// </article>
+//
+// sg-wrapper:
+// <div style="max-width:300px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.8.11
+
+@include critical( video-article, video-landing, video-tag ) {
+
+	.c-card {
+
+		&--video-grid {
+			height: 100%;
+		}
+		
+		&--video-grid &__image {
+			@extend %card-hover-shadow;
+			
+			&::before {
+				transition: opacity 0.3s $ease-out;
+			}
+		}
+
+		&--video-grid:focus &__image,
+		&--video-grid:hover &__image {
+
+			&::before {
+				opacity: 1;
+			}
+		}
+
+		&--video-grid &__wrap {
+			position: relative;
+			height: 100%;
+			transition: transform 0.3s $ease-out;
+			will-change: transform;
+		}
+
+		&--video-grid:focus &__wrap,
+		&--video-grid:hover &__wrap {
+			transform: translateY(-3px);
+		}
+
+		&--video-grid &__heading {
+			padding: 10px 0;
+			font-size: 14px;
+			line-height: 1;
+			letter-spacing: 0.41px;
+		}
+
+		&--video-grid--big &__heading {
+			@media ( query( min, tablet ) ) {
+				font-size: 20px;
+			}
+		}
+	}
+}

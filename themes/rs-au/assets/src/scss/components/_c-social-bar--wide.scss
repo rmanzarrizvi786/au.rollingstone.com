@@ -1,0 +1,161 @@
+// Social Bar Wide
+//
+// markup:
+// <ul class="c-social-bar c-social-bar--wide" data-collapsible="collapsed">
+// 	<li class="c-social-bar__item">
+// 		<a href="https://www.facebook.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Share on Facebook">
+// 			<span class="c-icon c-icon--white">
+// 				<svg><use xlink:href="#svg-icon-facebook"></use></svg>
+// 			</span>
+// 			<span class="screen-reader-text">Share on Facebook</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item">
+// 		<a href="https://twitter.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Tweet">
+// 			<span class="c-icon c-icon--white">
+// 				<svg><use xlink:href="#svg-icon-twitter"></use></svg>
+// 			</span>
+// 			<span class="screen-reader-text">Tweet</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item">
+// 		<a href="http://www.tumblr.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Share on Tumblr">
+// 			<span class="c-icon c-icon--white">
+// 				<svg><use xlink:href="#svg-icon-tumblr"></use></svg>
+// 			</span>
+// 			<span class="screen-reader-text">Share on Tumblr</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item">
+// 		<a href="https://pinterest.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Pin it!">
+// 			<span class="c-icon c-icon--white">
+// 				<svg><use xlink:href="#svg-icon-pin-it"></use></svg>
+// 			</span>
+// 			<span class="screen-reader-text">Pin it!</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item" data-collapsible-toggle>
+// 		<a href="#"
+// 		   class="c-social-bar__link c-social-bar__link--show-more"
+// 		   title="Show more sharing options">
+// 			<span class="c-icon c-icon--white">
+// 				<svg><use xlink:href="#svg-icon-plus"></use></svg>
+// 			</span>
+// 			<span class="screen-reader-text">Show more sharing options</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item" data-collapsible-panel>
+// 		<a href="https://reddit.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Share on Reddit">
+// 			<span class="c-icon c-icon--white">
+// 				<svg><use xlink:href="#svg-icon-reddit"></use></svg>
+// 			</span>
+// 			<span class="screen-reader-text">Share on Reddit</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item" data-collapsible-panel>
+// 		<a href="https://linkedin.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Share on LinkedIn">
+// 			<span class="c-icon c-icon--white">
+// 				<svg><use xlink:href="#svg-icon-linkedin"></use></svg>
+// 			</span>
+// 			<span class="screen-reader-text">Share on LinkedIn</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item" data-collapsible-panel>
+// 		<a href="#"
+// 		   class="c-social-bar__link"
+// 		   data-action="share/whatsapp/share"
+// 		   title="Share on Whatsapp">
+// 			<span class="c-icon c-icon--white">
+// 				<svg><use xlink:href="#svg-icon-whatsapp"></use></svg>
+// 			</span>
+// 			<span class="screen-reader-text">Share on Whatsapp</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item" data-collapsible-panel>
+// 		<a href="mailto:"
+// 		   class="c-social-bar__link"
+// 		   title="Share via email">
+// 			<span class="c-icon c-icon--white">
+// 				<svg><use xlink:href="#svg-icon-email"></use></svg>
+// 			</span>
+// 			<span class="screen-reader-text">Share via email</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item" data-collapsible-panel>
+// 		<a href="#"
+// 		   class="c-social-bar__link"
+// 		   title="Print">
+// 			<span class="c-icon c-icon--white">
+// 				<svg><use xlink:href="#svg-icon-print"></use></svg>
+// 			</span>
+// 			<span class="screen-reader-text">Print</span>
+// 		</a>
+// 	</li>
+// </ul>
+//
+// sg-wrapper:
+// <div style="max-width:300px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.50.4
+
+@include critical( single, country, list, video-article, video-landing, video-tag ) {
+
+	.c-social-bar {
+
+		//
+		// Social bar with wide links.
+		//
+
+		&--wide {
+			margin-right: -8px;
+			margin-bottom: -8px;
+		}
+
+		&--wide &__link {
+			margin-right: 8px;
+			margin-bottom: 8px;
+
+			@media ( query( min, mobile ) ) {
+				width: 60px;
+			}
+
+			@media ( query( min, desktop ) ) {
+				width: 70px;
+			}
+		}
+
+		&--wide[data-collapsible='expanded'] {
+			flex-wrap: wrap;
+		}
+
+		&--wide[data-collapsible='expanded'] &__item {
+			flex-grow: 0;
+		}
+	}
+}

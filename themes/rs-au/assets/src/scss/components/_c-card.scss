@@ -1,0 +1,65 @@
+// Article Card
+//
+// Styleguide 3.8
+
+@include critical( single, country, section-front, archive, home, list, video-article, video-landing, video-tag, featured-article, standard-template ) {
+
+	.c-card {
+		width: 100%;
+
+		&__wrap,
+		&__header {
+			display: flex;
+			flex-flow: column nowrap;
+		}
+
+		&__wrap {
+			height: 100%;
+			color: $g-color-black;
+		}
+
+		&__image {
+			position: relative;
+			width: 100%;
+		}
+
+		&__badge {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			z-index: z( default );
+			transform: translate( -50%, -50% );
+
+			@media ( query( max, tablet ) ) {
+				pointer-events: none;
+			}
+		}
+
+		&__tag,
+		&__byline {
+			font-size: 11px;
+			line-height: 13px;
+		}
+
+		&__tag {
+			@extend %dotted-tag;
+		}
+
+		&__byline {
+			order: 1;
+		}
+
+		&__paywall-icon {
+			display: inline;
+			fill: black;
+			width: 31px;
+			height: 15px;
+			margin-right: 3px;
+		}
+
+		&__featured-tag {
+			border-bottom: 1px solid $g-color-red;
+			text-decoration: none;
+		}
+	}
+}

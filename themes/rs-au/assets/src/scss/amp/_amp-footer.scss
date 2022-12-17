@@ -1,0 +1,31 @@
+// AMP footer.
+//
+// No styleguide
+
+[amp] {
+	.amp-footer-logo {
+		max-width: 568px;
+		margin: 15px auto 0;
+		padding: 25px 15px 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: $g-color-black;
+
+		svg {
+			width: 203px;
+			height: 37px;
+			fill: $g-color-red;
+		}
+	}
+
+	.copyright {
+		@include g-font-family-sans;
+		font-size: 14px;
+		line-height: #{ 16px / 14px };
+		font-weight: $semibold;
+		max-width: 568px;
+		margin: 0 auto;
+		padding-bottom: 25px;
+	}
+}

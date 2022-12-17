@@ -1,0 +1,106 @@
+// Footer Page Navigation Menu
+//
+// markup:
+// <div class="c-page-nav c-page-nav--footer c-page-nav--1-column" data-dropdown>
+// 	<ul class="c-page-nav__list">
+// 		<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+// 			<span class="c-page-nav__link t-bold">Legal</span>
+// 		</li>
+// 		<li class="c-page-nav__item" data-ripple="inverted">
+// 			<a href="#" class="c-page-nav__link t-semibold">Privacy Policy</a>
+// 		</li>
+// 		<li class="c-page-nav__item" data-ripple="inverted">
+// 			<a href="#" class="c-page-nav__link t-semibold">Your Privacy Rights</a>
+// 		</li>
+// 		<li class="c-page-nav__item" data-ripple="inverted">
+// 			<a href="#" class="c-page-nav__link t-semibold">Terms Of Use</a>
+// 		</li>
+// 		<li class="c-page-nav__item" data-ripple="inverted">
+// 			<a href="#" class="c-page-nav__link t-semibold">Contact Us</a>
+// 		</li>
+// 	</ul>
+// </div>
+//
+// sg-wrapper:
+// <div style="max-width:300px; background-color:#000; padding:20px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.38.1
+
+@include critical() {
+
+	.c-page-nav {
+
+		&--footer {
+			overflow: hidden;
+			border: 1px solid $g-color-muted;
+			transition: height 375ms $ease-standard-curve;
+
+			@media ( query( min, tablet ) ) {
+				border: none;
+			}
+		}
+
+		&--footer &__list {
+			position: relative;
+			justify-content: flex-start;
+			
+			&::after {
+				right: 25px;
+			}
+		}
+
+		&--footer &__item {
+			@media ( query( min, tablet ) ) {
+				font-size: 14px;
+
+				&--heading {
+					width: 100%;
+					padding-bottom: 8px;
+					font-size: 19px;
+				}
+			}
+		}
+
+		&--footer &__link {
+			@media ( query( max, tablet ) ) {
+				min-height: 46px;
+				padding-left: 25px;
+			}
+
+			@media ( query( min, tablet ) ) {
+				padding: 3px 0;
+			}
+		}
+		
+		// styleguide:ignore:start
+		@media ( query( min, tablet ) ) {
+			&--footer#{ & }--cta &__item:not( &__item--heading ) &__link { // stylelint-disable-line selector-max-specificity
+				margin-bottom: 20px;
+				padding: 14px 20px;
+				border: 1px solid;
+				font-size: 11px;
+				line-height: 13px;
+				font-weight: $bold;
+				text-align: center;
+			}
+		}
+		// styleguide:ignore:end
+
+		&--footer a#{ & }__link {
+			&:hover,
+			&:focus {
+				color: $g-color-link;
+			}
+		}
+
+		&--footer &__icon {
+			margin-right: 12px;
+		}
+
+		&--footer &__link:hover &__icon { // stylelint-disable-line selector-max-specificity
+			background-color: $g-color-link;
+		}
+	}
+}

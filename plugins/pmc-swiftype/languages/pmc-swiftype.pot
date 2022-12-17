@@ -1,0 +1,185 @@
+# Copyright (C) 2018 pmc-swiftype
+# This file is distributed under the same license as the pmc-swiftype package.
+msgid ""
+msgstr ""
+"Project-Id-Version: pmc-swiftype\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../classes/plugin.php:109
+msgid "Swiftype"
+msgstr ""
+
+#: ../classes/plugin.php:110
+msgid "Turn on swiftype"
+msgstr ""
+
+#: ../classes/plugin.php:114, ../classes/plugin.php:123
+msgid "No"
+msgstr ""
+
+#: ../classes/plugin.php:114, ../classes/plugin.php:123
+msgid "Yes"
+msgstr ""
+
+#: ../classes/plugin.php:118
+msgid "Swiftype Date Range Search"
+msgstr ""
+
+#: ../classes/plugin.php:119
+msgid "Turn on swiftype date range calendar"
+msgstr ""
+
+#: ../classes/plugin.php:127
+msgid "Swiftype Default Sort Field"
+msgstr ""
+
+#: ../classes/plugin.php:128
+msgid "Default Sort Field"
+msgstr ""
+
+#: ../classes/plugin.php:132, ../classes/plugin.php:261
+msgid "Published Date (newest first)"
+msgstr ""
+
+#: ../classes/plugin.php:132, ../classes/plugin.php:260
+msgid "Relevance"
+msgstr ""
+
+#: ../classes/plugin.php:132, ../classes/plugin.php:262
+msgid "Published Date (oldest first)"
+msgstr ""
+
+#: ../classes/plugin.php:132, ../classes/plugin.php:263
+msgid "Most Commented"
+msgstr ""
+
+#: ../classes/plugin.php:182
+msgid "Date Filter"
+msgstr ""
+
+#: ../classes/plugin.php:258, ../classes/plugin.php:259
+msgid "Search"
+msgstr ""
+
+#: ../classes/plugin.php:264
+msgid "Clear"
+msgstr ""
+
+#: ../classes/plugin.php:265
+msgid "Content Type"
+msgstr ""
+
+#: ../classes/plugin.php:266
+msgid "Topics"
+msgstr ""
+
+#: ../classes/plugin.php:267
+msgid "Tags"
+msgstr ""
+
+#: ../classes/plugin.php:268
+msgid "All"
+msgstr ""
+
+#: ../classes/plugin.php:269
+msgid "Past 24 Hours"
+msgstr ""
+
+#: ../classes/plugin.php:270
+msgid "Past 7 Days"
+msgstr ""
+
+#: ../classes/plugin.php:271
+msgid "Past 30 Days"
+msgstr ""
+
+#: ../classes/plugin.php:272
+msgid "Past 12 Months"
+msgstr ""
+
+#: ../classes/plugin.php:273
+msgid "Specific Dates"
+msgstr ""
+
+#: ../classes/plugin.php:322
+msgstr ""
+
+#: ../classes/plugin.php:429
+msgid "From:"
+msgstr ""
+
+#: ../classes/plugin.php:430
+msgid "To:"
+msgstr ""
+
+#: ../classes/plugin.php:431
+msgid "Refine Search"
+msgstr ""
+
+#: ../classes/plugin.php:432
+msgid "Author"
+msgstr ""
+
+#: ../classes/plugin.php:433
+msgid "Appeared in Print?"
+msgstr ""
+
+#: ../classes/widget.php:21
+msgid "Swiftype Site Search"
+msgstr ""
+
+#: ../classes/widget.php:22
+msgid "Render Swiftype Search Form"
+msgstr ""
+
+#: ../templates/page-results.php:32
+msgid "We found"
+msgstr ""
+
+#: ../templates/page-results.php:32
+msgid "results for"
+msgstr ""
+
+#: ../templates/page-results.php:35
+msgid "Showing results"
+msgstr ""
+
+#: ../templates/page-results.php:37
+msgid "of"
+msgstr ""
+
+#: ../templates/page-results.php:39
+msgid "for"
+msgstr ""
+
+#: ../templates/page-results.php:43
+msgid "loading"
+msgstr ""
+
+#: ../templates/page-results.php:44
+msgid "there was a problem with the search"
+msgstr ""
+
+#: ../templates/page-results.php:45
+msgid "no results found"
+msgstr ""
+
+#: ../templates/page-results.php:52
+msgid "Sort By"
+msgstr ""
+
+#: ../templates/page-results.php:162
+msgid "Previous"
+msgstr ""
+
+#: ../templates/page-results.php:164
+msgid "Next"
+msgstr ""

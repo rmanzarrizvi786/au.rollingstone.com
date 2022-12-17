@@ -1,0 +1,35 @@
+// Articles River
+//
+// markup:
+// <ul class="l-river">
+// 	<li class="l-river__item">
+// 		<sg-insert>3.8.3</sg-insert>
+// 	</li>
+// 	<li class="l-river__item">
+// 		<sg-insert>3.8.3</sg-insert>
+// 	</li>
+// 	<li class="l-river__item">
+// 		<sg-insert>3.8.3</sg-insert>
+// 	</li>
+// </ul>
+//
+// Styleguide 4.14
+
+@include critical( section-front, country, archive ) {
+	.l-river {
+		display: flex;
+		flex-flow: column nowrap;
+		list-style: none;
+
+		&__item {
+
+			& + & {
+				padding-top: 15px;
+
+				@media ( query( min, tablet ) ) {
+					padding-top: 20px;
+				}
+			}
+		}
+	}
+}

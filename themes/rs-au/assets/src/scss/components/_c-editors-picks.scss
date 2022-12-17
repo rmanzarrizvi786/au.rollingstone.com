@@ -1,0 +1,52 @@
+// Editors Picks
+//
+// markup:
+// <div class="c-editors-picks">
+// 	<h4 class="c-editors-picks__heading t-bold t-bold--upper t-bold--loose">
+// 		Editors Picks
+// 	</h4>
+// 	<ul class="c-editors-picks__list">
+// 		<li class="c-editors-picks__item">
+// 			<sg-insert>3.8.9</sg-insert>
+// 		</li>
+// 		<li class="c-editors-picks__item">
+// 			<sg-insert>3.8.9</sg-insert>
+// 		</li>
+// 		<li class="c-editors-picks__item">
+// 			<sg-insert>3.8.9</sg-insert>
+// 		</li>
+// 	</ul>
+// </div>
+//
+// sg-wrapper:
+// <div style="max-width:300px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.19
+
+@include critical( single, country, section-front, archive, list ) {
+
+	.c-editors-picks {
+		background-color: $g-color-bg--light;
+
+		&__heading {
+			@extend %flex-center;
+			padding: 8px 0;
+			font-size: 18px;
+			line-height: 1;
+			color: $g-color-white;
+			background-color: $g-color-black;
+			border-top: 4px solid $g-color-red;
+		}
+
+		&__list {
+			list-style: none;
+		}
+
+		&__item + &__item {
+			border-top: 1px solid $g-color-border;
+		}
+	}
+
+}

@@ -1,0 +1,100 @@
+// Category Article
+//
+// markup:
+// <article class="c-category-article c-category-article--category">
+// 	<div class="c-category-article__tagline">
+// 		<a href="#" class="c-category-article__tag t-semibold t-semibold--upper t-semibold--loose"> TV </a>
+// 		<time class="c-category-article__time t-semibold" datetime="2018-02-26 10:33">February 26, 2018 10:33AM PT</time>
+// 	</div>
+// 	<h3 class="c-category-article__heading t-bold">
+// 		See the Wombats' Cutting, Acoustic Rendition of 'Lemon to a Knife Fight'
+// 	</h3>
+// 	<p class="c-category-article__lead t-copy">
+// 		Two years ago, Chadwick Boseman was in a movie called Gods of Egypt. It was not a very good movie. But in addition to its not-goodness, it also became infamous for whitewashing – casting, as ancient African deities, a white guy from Scotland, a white guy from Denmark and at least seven white people from Australia. 
+// 	</p>
+// 	<footer class="c-category-article__footer">
+// 		<div class="c-category-article__social">
+// 			<sg-insert>3.50.4</sg-insert>
+// 		</div>
+// 		<div class="c-category-article__comments">
+// 			<a href="#" class="c-btn c-btn--dark" data-flyout="is-sidebar-open">
+// 				<div class="c-btn__inner t-semibold t-semibold--upper">
+// 					<span class="c-btn__icon-wrap">
+// 						<svg class="c-btn__icon"><use xlink:href="#svg-icon-comments"></use></svg>
+// 					</span>
+// 					<span class="screen-reader-text">Show</span>
+// 					<span class="c-btn__main">Comments</span>
+// 					<span class="c-btn__secondary">22</span>
+// 				</div>
+// 			</a>
+// 		</div>
+// 	</footer>
+// </article>
+//
+// Styleguide 3.10
+
+@include critical( video-article ) {
+
+	.c-category-article {
+		max-width: 830px;
+
+		&__tagline {
+			display: flex;
+			margin-bottom: 10px;
+		}
+
+		&__tag {
+			@extend %dotted-tag;
+			font-size: 10px;
+			line-height: 12px;
+			margin-right: auto;
+		}
+
+		&__time {
+			margin-bottom: 10px;
+			font-size: 11px;
+			line-height: 1;
+			color: #6F6F6F;
+		}
+
+		&__heading {
+			margin-bottom: 25px;
+			font-size: 24px;
+			letter-spacing: -0.53px;
+			line-height: 1;
+			color: $g-color-black;
+
+			@media ( query( min, tablet ) ) {
+				font-size: 35px;
+				letter-spacing: -0.78px;
+			}
+		}
+
+		&__lead {
+			margin-bottom: 40px;
+			font-size: 18px;
+			line-height: 27px;
+			color: $g-color-copy;
+
+			@media ( query( min, tablet ) ) {
+				margin-bottom: 60px;
+			}
+		}
+
+		&__footer {
+			@extend %flex-center;;
+			flex-wrap: wrap;
+		}
+
+		&__social {
+			width: 100%;
+			max-width: 330px;
+			margin: 0 auto 30px auto;
+
+			@media ( query( min, tablet ) ) {
+				flex-grow: 1;
+				margin: 0;
+			}
+		}
+	}
+}

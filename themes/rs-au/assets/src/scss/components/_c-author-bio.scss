@@ -1,0 +1,108 @@
+// Author Bio
+//
+// markup:
+// <section class="c-author-bio">
+//  <div class="c-author-bio__thumb">
+//      <img class="c-author-bio__headshot" src="https://via.placeholder.com/96x96" srcset="https://via.placeholder.com/96x96 1x, https://via.placeholder.com/192x192 2x">
+//  </div>
+//  <div class="c-author-bio__meta">
+//      <h1 class="c-author-bio__heading t-bold">
+//          John Doe
+//      </h1>
+//      <sg-insert>3.50.5</sg-insert>
+//      <div class="c-author-bio__dek-wrap">
+//          <p class="c-author-bio__dek">
+//              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At quis risus sed vulputate odio ut enim blandit. Aliquam sem et tortor consequat id. Convallis aenean et tortor at risus viverra. Sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae. Id aliquet lectus proin nibh nisl. Id diam maecenas ultricies mi. Luctus venenatis lectus magna fringilla urna porttitor rhoncus.
+//          </p>
+//      </div>
+//  </div>
+// </section>
+//
+// Styleguide 3.60
+
+@include critical( archive ) {
+	.c-author-bio {
+		display: grid;
+		grid-template-columns: 159px 15px 1fr;
+		grid-template-rows: auto 15px auto;
+
+		@media ( query( min, desktop ) ) {
+			grid-template-columns: 143px 20px 1fr   ;
+			grid-template-rows: 1fr;
+		}
+
+		@media ( query( min, desktop-xl ) ) {
+			grid-template-columns: 193px 20px 1fr   ;
+		}
+
+		&__meta {
+			grid-row: 1;
+			grid-column: 3;
+
+			@media ( query( min, desktop ) ) {
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+
+			@media ( query( min, desktop-xl ) ) {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+
+		&--without-thumb &__meta {
+			grid-column: 1 / 4;
+		}
+
+		&__thumb {
+			align-self: center;
+			grid-row: 1;
+			grid-column: 1;
+
+			@media ( query( min, desktop ) ) {
+				margin-bottom: 35px;
+				align-self: inherit;
+			}
+		}
+
+		&__heading {
+			color: $g-color-black--heading;
+			font-size: 28px;
+			letter-spacing: -0.62px;
+			line-height: 1.2;
+			margin-bottom: 10px;
+
+			@media ( query( min, desktop ) ) {
+				font-size: 48px;
+				letter-spacing: -1px;
+				line-height: 1;
+			}
+		}
+
+		&__dek-wrap {
+			grid-column: 1 / 4;
+			grid-row: 3;
+			margin-bottom: 30px;
+
+			@media ( query( min, desktop ) ) {
+				grid-column: inherit;
+				grid-row: inherit;
+				margin-bottom: 35px;
+			}
+		}
+
+		&__headshot {
+			display: block;
+			height: auto;
+			width: 100%;
+		}
+
+		&__dek {
+			@include g-font-family-serif;
+			font-size: 14px;
+			line-height: 1.4;
+			letter-spacing: 0.47px;
+			margin-bottom: 0;
+		}
+	}
+}

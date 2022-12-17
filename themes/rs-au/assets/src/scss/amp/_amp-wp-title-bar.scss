@@ -1,0 +1,40 @@
+// AMP WP title bar.
+//
+// No styleguide
+
+[amp] {
+	body {
+		@include g-font-family-serif;
+		padding-top: 47px;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	.amp-wp-title-bar {
+		position: fixed;
+		top: 0;
+		left: 50%;
+		transform: translateX( -50% );
+		height: 47px;
+		padding: 0;
+		color: $g-color-white;
+		background-color: $g-color-red;
+		box-shadow: 0 2px 4px rgba( $g-color-black, 0.24 ), 0 1px 1px rgba( $g-color-black, 0.12 );
+
+		a {
+			display: block;
+			margin: 0 auto;
+			outline: none;
+			text-align:center;
+			text-indent: -9999px;
+			white-space: nowrap;
+			line-height: 47px;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: auto 30px;
+		}
+	}
+
+	.hamburger .icon-bar {
+		background-color: $g-color-white;
+	}
+}

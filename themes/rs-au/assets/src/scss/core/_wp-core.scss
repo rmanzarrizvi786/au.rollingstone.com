@@ -1,0 +1,125 @@
+// WordPress Core styles
+
+@include critical() {
+
+	embed,
+	iframe,
+	object {
+		margin: 0;
+		max-width: 100%;
+	}
+
+	//
+	// Text meant only for screen readers.
+	//
+
+	.screen-reader-text {
+		/* stylelint-disable plugin/no-unsupported-browser-features */
+		clip: rect( 1px, 1px, 1px, 1px );
+		clip-path: polygon( 0 0, 0 0, 0 0, 0 0 );
+		/* stylelint-enable plugin/no-unsupported-browser-features */
+		position: absolute !important; // stylelint-disable-line declaration-no-important
+		white-space: nowrap;
+		height: 1px;
+		width: 1px;
+		overflow: hidden;
+	}
+
+	.screen-reader-text:focus {
+		background-color: #f1f1f1;
+		border-radius: 3px;
+		box-shadow: 0 0 2px 2px rgba( 0, 0, 0, 0.6 );
+		clip: auto !important; // stylelint-disable-line declaration-no-important
+		color: #21759b;
+		display: block;
+		font-size: 14px;
+		font-weight: $bold;
+		height: auto;
+		left: 5px;
+		line-height: normal;
+		padding: 15px 23px 14px;
+		text-decoration: none;
+		top: 5px;
+		width: auto;
+		z-index: 100000; // Above WP toolbar.
+	}
+
+	.alignleft {
+		display: inline;
+		float: left;
+		margin-right: 20px;
+	}
+
+	.alignright {
+		display: inline;
+		float: right;
+		margin-left: 20px;
+	}
+
+	.aligncenter {
+		clear: both;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	img.aligncenter {
+		float: none;
+		margin: 15px auto;
+	}
+
+	img.alignleft {
+		float: left;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		margin-right: 20px;
+		max-width: calc(50% - 40px);
+
+		@media ( query( min, tablet ) ) {
+			max-width: 66%;
+		}
+	}
+
+	img.alignright {
+		float: right;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		margin-left: 20px;
+		max-width: calc(50% - 40px);
+
+		@media ( query( min, tablet ) ) {
+			max-width: 66%;
+		}
+	}
+
+	.wp-caption,
+	.gallery-caption {
+		margin-bottom: 20px;
+		padding-top: 20px;
+		max-width: 100%;
+		border-bottom: 1px solid $g-color-border;
+	}
+
+	.wp-caption {
+
+		img[class*='wp-image-'] {
+			display: block;
+		}
+
+		.wp-caption-text {
+			@extend %g-font-family-sans;
+			padding: 10px 0;
+			font-weight: $semibold;
+			font-size: 14px;
+			line-height: 20px;
+			color: $g-color-black;
+		}
+	}
+
+	#wpstats { // stylelint-disable-line selector-max-specificity
+		width: 0;
+		height: 0;
+		overflow: hidden;
+		display: block;
+	}
+}

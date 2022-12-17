@@ -1,0 +1,43 @@
+// Sticky Element
+//
+// markup:
+// <div class="c-sticky c-sticky--size-screen-height">
+// 	<div class="c-sticky__item">
+// 		<sg-insert>3.1.5</sg-insert>
+// 	</div>
+// </div>
+//
+// Styleguide 3.51
+
+@include critical( section-front, country, archive, home, video-article ) {
+
+	.c-sticky {
+
+		// We need to target ID selector to make 3rd party code play along
+		/* stylelint-disable selector-max-specificity */
+		&__item,
+		#adm-right-rail-sticky-ad {
+			position: sticky;
+			top: 20px;
+			transition: top $g-transition-transform;
+			will-change: top;
+
+			.is-header-sticky & {
+				top: 65px;
+			}
+		}
+		/* stylelint-enable selector-max-specificity */
+
+		&--size-screen-height {
+			@supports ( position: sticky ) {
+				@media ( query( min, desktop ) ) {
+					height: 100vh;
+				}
+			}
+		}
+
+		&--size-grow {
+			flex-grow: 1;
+		}
+	}
+}

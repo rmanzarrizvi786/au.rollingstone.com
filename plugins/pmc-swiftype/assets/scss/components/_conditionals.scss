@@ -1,0 +1,15 @@
+.st-no-results,
+.st-no-query,
+.st-not-loading,
+.st-not-failed-loading,
+.st-no-misspelling {
+	display: none;
+}
+
+.st-no-results.inverse {
+	display: inline;
+}
+
+.st-has-results.inverse {
+	display: none;
+}

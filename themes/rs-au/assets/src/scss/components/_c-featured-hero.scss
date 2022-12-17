@@ -1,0 +1,123 @@
+// Featured Hero
+//
+// BE Dev note:
+// Please note that the `text-layer` is centered by default (both horizontally and vertically).
+// If you want to reposition it, use the following modifiers:
+// - c-featured-hero__text-layer--left
+// - c-featured-hero__text-layer--right
+// - c-featured-hero__text-layer--top
+// - c-featured-hero__text-layer--bottom
+//
+// markup:
+// <div class="c-featured-hero">
+// 	<div class="c-featured-hero__mask-wrapper">
+// 		<div class="c-featured-hero__mask-crop">
+// 			<svg class="c-featured-hero__mask" viewBox="0 0 1400 82" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+// 				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+// 					<g transform="translate(0.000000, -847.000000)" fill="#fff">
+// 						<g transform="translate(-1.000000, 218.000000)">
+// 							<path d="M1.0749947,629.265625 C1.02505547,629.642576 1,630.020187 1,630.398438 C1,672.702155 314.400675,706.996094 701,706.996094 C1087.59932,706.996094 1401,672.702155 1401,630.398438 C1401,630.020187 1400.97494,629.642576 1400.92501,629.265625 L1401,629.265625 L1401,710.132812 L1,710.132812 L1,629.265625 L1.0749947,629.265625 Z"></path>
+// 						</g>
+// 					</g>
+// 				</g>
+// 			</svg>
+// 		</div>
+// 	</div>
+// 	<div class="c-featured-hero__text-layer c-featured-hero__text-layer--right">
+// 		<h1 class="c-featured-hero__headline" style="color: #FFFFFF; text-align: center; text-transform: uppercase; padding: 15px 25px 30px 25px;">
+// 			<span class="t-semibold" style="font-size: 24px; letter-spacing: -0.53px;">The</span><br>
+// 			<span class="t-bold" style="font-size: 42px; letter-spacing: -0.93px;">Black Panther</span><br>
+// 			<span class="t-bold" style="font-size: 54px; letter-spacing: -1.2px;">Revolution</span>
+// 		</h1>
+// 	</div>
+// 	<div class="c-featured-hero__crop c-crop c-crop--landscape c-crop--size-1400x710">
+// 		<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 			data-src="https://placehold.it/1400x710"
+// 			data-srcset="
+// 					https://placehold.it/480x275 480w,
+// 					https://placehold.it/959x486 959w,
+// 					https://placehold.it/1400x710 1400w"
+// 			sizes="(max-width: 480px) 480px, (max-width: 959px) 958px, 1400px"
+// 			alt="Danai Gurira on Going From Zombie-Slayer to 'Black Panther' MVP"
+// 			class="c-crop__img">
+// 	</div>
+// </div>
+//
+// Styleguide 3.21
+
+@include critical( featured-article ) {
+
+	.c-featured-hero {
+		position: relative;
+		z-index: 0;
+		display: flex;
+
+		&__text-layer {
+			@extend %flex-center;
+			position: relative;
+			z-index: 2;
+			flex-shrink: 0;
+			width: 100vw;
+			padding: 20px 20px 80px;
+			visibility: hidden;
+
+			@include if-side-skins {
+				position: absolute;
+				max-width: 100%;
+				height: 100%;
+			}
+
+			// Set default line height, overridden by inline styles if applicable.
+			h1 span {
+				line-height: 1;
+			}
+
+			@media ( query( min, desktop-featured-article ) ) {
+				padding: 75px;
+				visibility: visible;
+			}
+		}
+
+		&__crop {
+			flex-shrink: 0;
+			width: 100vw;
+			margin-left: -100vw;
+
+			@include if-side-skins {
+				max-width: 100%;
+				margin-left: 0;
+			}
+		}
+
+		&__mask-wrapper {
+			position: absolute;
+			bottom: -2px;
+			left: 0;
+			z-index: 1;
+			width: 100vw;
+		}
+
+		&__mask-crop {
+			position: relative;
+			width: 100%;
+
+			&::after {
+				content: '';
+				display: block;
+				width: 100%;
+				padding-bottom: 100% / ( 1400 / 82 );
+			}
+		}
+
+		&__mask {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+
+		&__headline {
+			border: 1px solid currentColor;
+			line-height: 1;
+		}
+	}
+}

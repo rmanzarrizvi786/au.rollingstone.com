@@ -1,0 +1,44 @@
+.header {
+	margin-top: $padding * 2;
+	padding: $padding;
+}
+
+.right-header {
+	font-size: 16px;
+	div {
+		float: right;
+	}
+	.st-has-query {
+		span {
+			font-style: italic;
+		}
+	}
+}
+
+// Main
+.main-container {
+	border-radius: $border-radius;
+}
+
+.left-main {
+	padding: ($padding);
+
+	.st-section-title {
+		font-size: .75rem;
+		font-weight: bold;
+		padding: 15px 0 5px;
+	}
+
+	select {
+		-webkit-appearance: menulist;
+		width: 100%;
+	}
+}
+
+.main {
+}
+
+.footer {
+	padding: $padding * 2;
+	text-align: center;
+}

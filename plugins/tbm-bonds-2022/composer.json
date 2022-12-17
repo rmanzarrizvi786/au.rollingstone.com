@@ -1,0 +1,13 @@
+{
+  "require": {
+    "stripe/stripe-php": "^9.0",
+    "guzzlehttp/guzzle": "^7.4",
+    "auth0/auth0-php": "^8.2",
+    "vlucas/phpdotenv": "^5.4"
+  },
+  "config": {
+    "platform": {
+      "php": "7.4.0"
+    }
+  }
+}

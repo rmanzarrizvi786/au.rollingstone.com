@@ -1,0 +1,27 @@
+// Critical rendering utilities.
+//
+// No styleguide
+
+@function contains( $list, $item ) {
+	@return index( $list, $item ) != null;
+}
+
+@mixin critical( $types... ) {
+	@if variable-exists( IS_CRITICAL ) == false or ( variable-exists( IS_CRITICAL ) and $IS_CRITICAL == true ) {
+		@if 0 == length( $types ) or ( variable-exists( CRITICAL_TYPE ) and contains( $types, $CRITICAL_TYPE ) ) {
+			@content;
+		}
+	}
+
+	@if variable-exists( IS_CRITICAL ) == false or ( variable-exists( IS_CRITICAL ) and $IS_CRITICAL == false ) {
+		@if 0 != length( $types ) {
+			@content;
+		}
+	}
+}
+
+@mixin non-critical() {
+	@if variable-exists( IS_CRITICAL ) == false or ( variable-exists( IS_CRITICAL ) and $IS_CRITICAL != true ) {
+		@content;
+	}
+}

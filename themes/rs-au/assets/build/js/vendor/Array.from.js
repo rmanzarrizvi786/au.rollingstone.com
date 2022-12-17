@@ -1,0 +1,1 @@
+Array.from||(Array.from=function(r){return[].slice.call(r)});

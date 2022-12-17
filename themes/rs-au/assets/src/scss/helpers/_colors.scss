@@ -1,0 +1,86 @@
+// Site Colors
+//
+// Colors used throughout the site
+//
+// $g-color-black - black
+// $g-color-black-opaque - black opaque
+// $g-color-black--heading - author bio heading
+// $g-color-white - white
+// $g-color-red - branding red
+// $g-color-red--lighten - branding red lighten
+// $g-color-red--darken - branding red darken
+// $g-color-yellow - yellow color
+// $g-color-yellow--muted - yellow muted
+// $g-color-border - default border color
+// $g-color-border--dark - dark border color
+// $g-color-border--dark-muted - dark muted border color
+// $g-color-border--mega - mega border color
+// $g-color-border--mega-dark - mega dark border color
+// $g-color-bg--light - light background color
+// $g-color-bg--dark - dark background color
+// $g-color-copy - default article body color
+// $g-color-muted - muted text color
+// $g-color-muted--dark - dark muted text color
+// $g-color-muted--light - light muted text color
+// $g-color-link - default link color
+// $g-color-green - green
+// $g-color-star - star color
+// $g-color-hide - hide color
+// $g-color-country--accent - country accent color
+// $g-color-country--bg - country background color
+// $g-color-facebook - facebook
+// $g-color-twitter - twitter
+// $g-color-instagram - instagram
+// $g-color-youtube - youtube
+// $g-color-linkedin - linkedin
+// $g-color-reddit - reddit
+// $g-color-pinterest - pinterest
+// $g-color-tumblr - tumblr
+// $g-color-whatsapp - whatsapp
+//
+// markup:
+// <div proto-ignore style="background-color:{$modifiers}; height:50px;">
+//   <span style="font-family:monospace ;padding:10px; background-color:#fff;">
+//     {$modifiers}
+//   </span>
+// </div>
+//
+// Styleguide 0.1
+
+$g-color-black: #000;
+$g-color-black-opaque: rgba($g-color-black, 0.7);
+$g-color-black--heading: #000A12;
+$g-color-white: #fff;
+$g-color-red: #d32531;
+$g-color-red--lighten: lighten($g-color-red, 10%);
+$g-color-red--darken: #b41923;
+$g-color-yellow: #FACD42;
+$g-color-yellow--muted: #D5AB2B;
+$g-color-border: #dddee4;
+$g-color-border--dark: #606060;
+$g-color-border--dark-muted: #282828;
+$g-color-border--mega: #303030;
+$g-color-border--mega-dark: #181818;
+$g-color-bg--light: #f4f4f7;
+$g-color-bg--dark: #0F161E;
+$g-color-copy: #333;
+$g-color-muted: #6f6f6f;
+$g-color-muted--dark: #696969;
+$g-color-muted--light: #a7a6a6;
+$g-color-link: #D32531;
+$g-color-green: #3c8314;
+$g-color-star: #808BAA;
+$g-color-hide: #7B7C84;
+$g-color-country--accent: #7A592D;
+$g-color-country--bg: #F4F3F1;
+$g-color-dark-gray: #737373;
+
+$g-color-facebook: #3e5b96;
+$g-color-twitter: #1dadeb;
+$g-color-instagram: #d54269;
+$g-color-youtube: #cd201f;
+$g-color-linkedin: #0077b5;
+$g-color-reddit: #ff4500;
+$g-color-pinterest: #ed5755;
+$g-color-tumblr: #284053;
+$g-color-whatsapp: #23c100;

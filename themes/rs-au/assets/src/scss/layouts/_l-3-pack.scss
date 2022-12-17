@@ -1,0 +1,73 @@
+// Articles 3-Pack
+//
+// markup:
+// <section class="l-3-pack">
+// 	<div class="l-3-pack__item l-3-pack__item--primary">
+// 		<sg-insert>3.8.8</sg-insert>
+// 	</div>
+// 	<div class="l-3-pack__item l-3-pack__item--secondary">
+// 		<sg-insert>3.8.5</sg-insert>
+// 	</div>
+// 	<div class="l-3-pack__item l-3-pack__item--tertiary">
+// 		<sg-insert>3.8.5</sg-insert>
+// 	</div>
+// </section>
+//
+// Styleguide 4.1
+
+@include critical( section-front, country ) {
+	.l-3-pack {
+
+		// Stacked Layout
+		@media ( query( max, mobile ) ) {
+			// styleguide:ignore:start
+			&__item:not( &__item--primary ) {
+				padding-top: 25px;
+			}
+			// styleguide:ignore:end
+		}
+
+		// Bottom Siblings Layout
+		@media ( query( min, mobile ) ) {
+			display: grid;
+			grid-template-columns: 1fr 20px 1fr;
+			grid-template-rows: 1fr 20px auto;
+
+			&__item--primary {
+				grid-column: 1 / 4;
+				grid-row: 1 / 2;
+			}
+
+			&__item--secondary {
+				grid-column: 1 / 2;
+				grid-row: 3 / 4;
+			}
+
+			&__item--tertiary {
+				grid-column: 3 / 4;
+				grid-row: 3 / 4;
+			}
+		}
+
+		// Right Siblings Layout
+		@media ( min-width: 1024px ) {
+			grid-template-columns: 1fr 20px 2fr;
+			grid-template-rows: 1fr 20px 1fr;
+
+			&__item--primary {
+				grid-column: 3 / 4;
+				grid-row: 1 / 4;
+			}
+
+			&__item--secondary {
+				grid-column: 1 / 2;
+				grid-row: 1 / 2;
+			}
+
+			&__item--tertiary {
+				grid-column: 1 / 2;
+				grid-row: 3 / 4;
+			}
+		}
+	}
+}

@@ -1,0 +1,19 @@
+/* stylelint-disable selector-max-specificity */
+[data-collapsible].is-expanded [data-collapsible-toggle]:not([data-collapsible-toggle='always-show']) {
+	display: none;
+}
+
+[data-collapsible]:not(.is-expanded) [data-collapsible-panel] {
+	display: none;
+
+	&[data-collapsible-breakpoint='mobile-only'] {
+		@media ( query( min, desktop ) ) {
+			display: block;
+		}
+	}
+}
+
+[data-collapsible-toggle]:focus {
+	outline: none;
+}
+/* stylelint-enable selector-max-specificity */

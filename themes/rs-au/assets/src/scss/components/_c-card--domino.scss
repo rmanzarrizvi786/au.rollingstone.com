@@ -1,0 +1,131 @@
+// Article Domino card
+//
+// markup:
+// <article class="c-card c-card--domino">
+// 	<a href="#" class="c-card__wrap">
+// 		<figure class="c-card__image">
+// 			<div class="c-crop c-crop--landscape c-crop--size-domino">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					 data-src="https://placehold.it/404x303"
+// 					 data-srcset="
+// 						https://placehold.it/172x129 172w,
+// 						https://placehold.it/404x303 404w,
+// 						https://placehold.it/808x606 808w"
+// 					 sizes="(max-width: 767px) 86px, 404px"
+// 					 alt="Daily Show's Michelle Wolf to Host White House Correspondents' Dinner"
+// 					 class="c-crop__img">
+// 			</div>
+// 		</figure>
+// 		<header class="c-card__header">
+// 			<h3 class="c-card__heading t-bold">
+// 				Daily Show's Michelle Wolf to Host White House Correspondents' Dinner
+// 			</h3>
+// 			<div class="c-card__byline t-semibold t-semibold--upper t-semibold--loose">
+// 				By Hattie Paul
+// 			</div>
+// 			<p class="c-card__lead">
+// 				President Trump has not announced whether he will attend annual event on April 28th
+// 			</p>
+// 		</header>
+// 	</a>
+// </article>
+//
+// Styleguide 3.8.3
+
+@include critical( section-front, country, archive ) {
+
+	.c-card {
+
+		&--domino &__wrap {
+			@extend %card-hover;
+			flex-flow: row nowrap;
+			background: $g-color-white;
+			box-shadow: $g-shadow-card;
+
+			@media ( query( max, tablet ) ) {
+				border-radius: 5px;
+				overflow: hidden;
+			}
+
+			&:focus,
+			&:hover {
+				transform: none;
+			}
+		}
+
+		&--domino &__image {
+			flex: 0 0 auto;
+			width: 86px;
+			@extend %card-hover-fade;
+
+			@media ( query( min, tablet ) ) {
+				width: 43%;
+			}
+		}
+
+		&--domino &__badge {
+			@media ( query( min, tablet ) ) {
+				top: auto;
+				left: 0;
+				bottom: 0;
+				transform: none;
+				padding: 15px;
+
+				&--play {
+					padding: 10px;
+				}
+			}
+		}
+
+		&--domino &__header {
+			justify-content: center;
+			flex: 1 0;
+			padding: 10px;
+
+			@media ( query( min, tablet ) ) {
+				padding: 30px;
+			}
+
+			@media ( query( min, desktop-xl ) ) {
+				padding-left: 60px;
+			}
+		}
+
+		&--domino &__heading {
+			margin-bottom: 15px;
+			font-size: 12px;
+			line-height: 12px;
+			@extend %text-fade;
+
+			@media ( query( min, tablet ) ) {
+				font-size: 24px;
+				line-height: 24px;
+			}
+		}
+
+		&--domino &__lead {
+			margin-bottom: 15px;
+			min-height: 46px;
+			font-size: 18px;
+			line-height: 23px;
+
+			@media ( query( max, desktop-xl ) ) {
+				display: none;
+			}
+		}
+
+		&--domino &__tag {
+			margin-bottom: 6px;
+
+			@media ( query( min, tablet ) ) {
+				margin-bottom: 15px;
+			}
+		}
+
+		&--domino &__byline {
+			@media ( query( max, tablet ) ) {
+				display: none;
+			}
+		}
+	}
+}

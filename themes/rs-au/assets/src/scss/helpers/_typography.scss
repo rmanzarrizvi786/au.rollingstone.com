@@ -1,0 +1,74 @@
+// Typography
+//
+// Font families and typography styles used site-wide
+//
+// No Styleguide
+
+//
+// Font weights
+//
+
+$normal: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
+$super: 800;
+
+//
+// Font families
+// Fallback generated with: https://shtrihstr.github.io/font-fallback/
+//
+// Prefer to include @mixin over extending the class %placeholder.
+
+$g-font-family-sans: Graphik, sans-serif;
+$g-font-family-sans-subset: 'Graphik Bold Subset', Graphik, Tahoma, Verdana, Segoe, sans-serif;
+$g-font-family-sans-super: 'Graphik Super', Graphik,  sans-serif;
+$g-font-family-sans-super-subset: 'Graphik Bold Subset', 'Graphik Super', Graphik, Tahoma, Verdana, Segoe, sans-serif;
+
+$g-font-family-country: Publico, serif;
+$g-font-family-country-subset: 'Publico Bold Subset', Publico, Times, 'Times New Roman', serif;
+
+$g-font-family-serif: Georgia, Times, 'Times New Roman', serif;
+
+$g-font-family-sans-simple: Helvetica, Arial, sans-serif;
+
+// Use $px if it's not possible to wrap text with parent to define font-size (as wysiwyg content).
+// It will generate static px value over relative em.
+// Whenever possible avoid this mixin and use typography classes to avoid .fonts-loading duplication.
+@mixin g-font-family-sans($px: false) {
+	font-family: $g-font-family-sans;
+
+	.fonts-loading & {
+		font-family: $g-font-family-sans-subset;
+		font-weight: $bold;
+		font-style: normal;
+		font-display: swap;
+	}
+}
+
+%g-font-family-sans {
+	@include g-font-family-sans;
+}
+
+@mixin g-font-family-country($px: false) {
+	font-family: $g-font-family-country;
+
+	.fonts-loading & {
+		font-family: $g-font-family-country-subset;
+		font-weight: $bold;
+		font-style: normal;
+		font-display: swap;
+	}
+}
+
+%g-font-family-country {
+	@include g-font-family-country;
+}
+
+@mixin g-font-family-serif {
+	font-family: $g-font-family-serif;
+}
+
+@mixin g-font-family-sans-simple {
+	font-family: $g-font-family-sans-simple;
+}

@@ -1,0 +1,60 @@
+// Article Content
+//
+// markup:
+// <div class="l-article-content">
+// 	<sg-insert>3.14</sg-insert>
+// 	<footer>
+// 		<sg-insert>3.53</sg-insert>
+// 		<sg-insert>3.42</sg-insert>
+// 	</footer>
+// </div>
+//
+// Styleguide 4.4
+
+@include critical( single, country, list ) {
+	.l-article-content {
+		.t-copy{
+			font-size: 18px;
+			line-height: 28px;
+		}
+
+		@media ( query( min, desktop-xl ) ) {
+			@include if-no-side-skins {
+				padding: 0 calc( #{ percentage( 1 / 9 ) } + 11px ); // Add 1 column wide side padding + half gutter width.
+			}
+
+			body.single-pmc-gallery & {
+				padding: 0;
+			}
+		}
+		
+		@media ( query( min, tablet ) ) {
+			.player-container {
+				overflow: hidden;
+			}
+		}
+
+		&__pull {
+			margin: 15px 0;
+
+			@media ( query( min, tablet ) ) {
+				max-width: 190px;
+			}
+
+			&--left {
+				$column-width: percentage( 1 / 7 );
+
+				@media ( query( min, tablet ) ) {
+					float: left;
+					margin: 35px 35px 0 0;
+				}
+
+				@media ( query( min, desktop-xl ) ) {
+					@include if-no-side-skins {
+						margin-left: calc( -#{ $column-width } - 11px );
+					}
+				}
+			}
+		}
+	}
+}

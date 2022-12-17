@@ -1,0 +1,173 @@
+//
+// PMC Footer
+//
+// markup:
+// <div class="c-pmc-footer">
+// 	 <div class="c-pmc-footer__wrap">
+// 		<div class="c-pmc-footer__logo">
+// 			<a href="https://www.pmc.com">
+// 				<svg><use xlink:href="#svg-pmc-logo-black"></use></svg>
+// 			</a>
+// 		</div>
+// 		<div class="c-pmc-footer__legal">
+// 			&copy; Copyright 2018 Rolling Stone, LLC, a subsidiary of Penske Business Media, LLC. <br/>Powered by WordPress.com VIP
+// 		</div>
+// 		<div class="c-pmc-footer__dropdown c-pmc-footer--desktop" tabindex="0">
+// 			<h4 class="c-pmc-footer__dropdown-trigger t-bold--upper">Our Brands</h4>
+// 			<ul class="c-pmc-footer__dropdown-contents" tabindex="0">
+// 				<li><a class="c-pmc-footer__brand t-bold--upper" href="https://variety.com/">Variety</a></li>
+// 				<li><a class="c-pmc-footer__brand t-bold--upper" href="https://deadline.com/">Deadline</a></li>
+// 				<li><a class="c-pmc-footer__brand t-bold--upper" href="https://rollingstone.com/">Rolling Stone</a></li>
+// 			</ul>
+// 		</div>
+//    </div> <!-- .c-pmc-footer__wrap -->
+//    <!-- ** Followed by pattern for l-footer__menu, hidden after tablet ** -->
+// 	</div> <!-- .c-pmc-footer -->
+
+@include critical() {
+
+	.c-pmc-footer {
+		@include g-font-family-sans;
+		width: 100%;
+		background: $g-color-white;
+		padding-top: 10px;
+		padding-bottom: 10px;
+
+		// Override currentColor for mobile .c-page-nav
+		.c-page-nav__item,
+		.c-page-nav__link,
+		.c-page-nav__list::after {
+			color: $g-color-black;
+		}
+
+		&__wrap {
+			@include h-container;
+			display: flex;
+			align-items: center;
+
+			@media ( query( max, tablet ) ) {
+				padding: 15px;
+				flex-direction: column;
+			}
+		}
+
+		&__logo {
+			display: flex;
+			a {
+				display: flex;
+				svg {
+					width: 131px;
+					height: 25px;
+				}
+			}
+		}
+
+		&__legal {
+			color: #7B7B7B;
+			font-weight: $medium;
+			font-size: 11px;
+			line-height: 13px;
+			margin-left: 30px;
+
+			@media ( query( max, tablet ) ) {
+				margin: 15px 0 0 0;
+				text-align: center;
+			}
+		}
+
+		&__dropdown {
+			margin-left: auto;
+			margin-top: 5px;
+			margin-bottom: 5px;
+			position: relative;
+			width: 200px;
+			color: $g-color-black;
+			font-size: 11px;
+			text-align: left;
+			font-weight: $bold;
+
+			@media ( query( max, tablet ) ) {
+				margin-right: auto;
+				margin-top: 15px;
+				text-align: center;
+				display: none; // Hide on mobile
+			}
+
+			ul {
+				list-style: none;
+				border: none;
+				box-shadow: 0 -5px 5px rgba(0,0,0,0.15);
+			}
+
+			&:hover,
+			&:focus-within {
+				.c-pmc-footer__dropdown-contents {
+					visibility: visible;
+					opacity: 1;
+					transition: opacity 225ms $ease-standard-curve;
+				}
+
+				.c-pmc-footer__dropdown-trigger::after {
+					transform: scaleY( -0.85 ) translate( -50%, 25% ) rotateZ( 45deg );
+				}
+			}
+		}
+
+		&__dropdown-trigger {
+			height: 30px;
+			display: flex;
+			align-items: center;
+			padding-left: 10px; // Matches __brand
+			cursor: pointer;
+			border: 1px solid $g-color-border;
+
+			@media ( query( min, tablet ) ) {
+				&::after {
+					content: '';
+					position: absolute;
+					width: 12px;
+					height: 12px;
+					top: 41%;
+					right: 15px;
+					transform: scaleY( 0.85 ) translate( -50%, -75% ) rotateZ( 45deg );
+					border: 2px solid;
+					border-left: none;
+					border-top: none;
+					transition: transform 225ms $ease-standard-curve;
+				}
+			}
+		}
+
+		&__dropdown-contents {
+			visibility: hidden;
+			opacity: 0;
+			position: absolute;
+			bottom: 30px; // Matches height of __dropdown-trigger
+			width: 100%;
+			z-index: z( mountain );
+			background-color: $g-color-white;
+			max-height: 150px;
+			overflow-y: scroll;
+		}
+
+		&__brand {
+			display: flex; // Fill available space
+			padding-left: 10px;
+			color: $g-color-black;
+			transition: background-color 225ms $ease-standard-curve,
+						color 225ms $ease-standard-curve;
+
+			&:hover {
+				background: $g-color-link;
+				color: $g-color-white;
+			}
+
+		}
+
+		&--mobile {
+			@media( query(min, tablet) ) {
+				display: none; // Show on mobile
+			}
+		}
+	}
+}

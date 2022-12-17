@@ -1,0 +1,93 @@
+// NewsWire
+//
+// markup:
+// <ul class="c-newswire">
+// 	<li class="c-newswire__item">
+// 		<sg-insert>3.8.1</sg-insert>
+// 	</li>
+// 	<li class="c-newswire__item">
+// 		<sg-insert>3.8.1</sg-insert>
+// 	</li>
+// 	<li class="c-newswire__item">
+// 		<sg-insert>3.8.1</sg-insert>
+// 	</li>
+// 	<li class="c-newswire__item">
+// 		<sg-insert>3.8.1</sg-insert>
+// 	</li>
+// </ul>
+//
+// Styleguide 3.37
+
+@include critical( single, country, section-front, archive, home, list, video-article, video-landing, video-tag, featured-article, standard-template ) {
+
+	.c-newswire {
+		$gutter: 10px;
+		$half-gutter : $gutter / 2;
+
+		display: flex;
+		flex-wrap: wrap;
+		// compensate inner paddings of margin elements:
+		width: calc(100% + #{$gutter * 2});
+		margin: 10px ($gutter * -1) -40px ($gutter * -1);
+		list-style: none;
+
+		@media ( query( max, tablet ) ) {
+			padding: 0 $half-gutter;
+		}
+
+		&__item {
+			display: flex;
+			width: (100% / 2);
+			padding: 0 $gutter 10px $gutter;
+
+			@media ( query( max, tablet ) ) {
+				margin-bottom: 15px;
+			}
+
+			&:first-child {
+				@media ( query( max, tablet ) ) {
+					width: 100%;
+				}
+			}
+
+			@media ( query( min, desktop ) ) {
+				width: (100% / 5);
+				padding: 0 $gutter 40px $gutter;
+			}
+		}
+
+		//
+		// Dark
+		//
+
+		&--dark {
+			margin-bottom: 0;
+		}
+
+		&--dark &__item{
+			padding: 5px 15px 20px 15px;
+		}
+
+		//
+		// Tablet Scroller
+		//
+
+		@media ( query( max, desktop ) ) {
+			&--tablet-scroller {
+				// compensate inner paddings of margin elements:
+				width: calc(100% + 50px);
+				margin: 10px -20px -40px -20px;
+				padding: 0 10px;
+				flex-wrap: nowrap;
+				overflow-y: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+
+			&--tablet-scroller &__item {
+				width: (100% / 4);
+				padding: 0 $gutter 40px $gutter;
+				min-width: 220px;
+			}
+		}
+	}
+}

@@ -1,0 +1,103 @@
+// Placeholders
+//
+// No styleguide
+
+%h-container {
+	@include h-container;
+}
+
+%card-hover-shadow {
+	position: relative;
+	transition: transform 0.1s $ease-in;
+	will-change: transform;
+
+	// Avoid declaring these hidden elements promoted to GPU on mobile
+	@media ( query( min, desktop ) ) {
+		&::before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 20px;
+			z-index: z(depression);
+			width: calc(100% - 40px);
+			height: 30px;
+			box-shadow: $g-shadow-card--big;
+			opacity: 0;
+			transition: opacity 0.1s $ease-in;
+			// Prefer tZ hack over will-change in this case to avoid firefox limits
+			transform: translateZ(0);
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: z(depression);
+			width: 100%;
+			height: 100%;
+			background: $g-color-white;
+		}
+	}
+}
+
+%card-hover {
+	@extend %card-hover-shadow;
+
+	&:focus::before,
+	&:hover::before {
+		opacity: 1;
+		transition: opacity 0.3s $ease-out;
+	}
+}
+
+%card-hover-fade {
+	transition: opacity $g-transition-fade;
+
+	&:focus,
+	&:hover {
+		opacity: $g-fade-opacity;
+	}
+}
+
+%dotted-tag {
+	order: -1;
+	display: flex;
+	align-items: flex-start;
+	margin-bottom: 5px;
+	font-size: 11px;
+	letter-spacing: 1px;
+	line-height: 1.2;
+	color: $g-color-black;
+}
+
+%clearfix {
+	&::after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
+
+%flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+%amp-meta {
+	@include g-font-family-sans;
+	font-size: 11px;
+	line-height: #{ 13px / 11px };
+	font-weight: $semibold;
+	letter-spacing: 0;
+}
+
+%text-fade {
+	transition: color $g-transition-fade;
+
+	&:focus,
+	&:hover {
+		color: $g-color-muted--dark;
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "name": "pmc-swiftype",
+  "version": "1.0.0",
+  "description": "Swiftype integration for searching PMC WordPress sites.",
+  "dependencies": {
+    "grunt": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-sass": "latest",
+    "grunt-contrib-compass": "latest",
+    "grunt-contrib-clean": "latest"
+  }
+}

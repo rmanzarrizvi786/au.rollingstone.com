@@ -1,0 +1,48 @@
+// Photo Galleries
+//
+// markup:
+// <div class="c-galleries">
+// 	<div class="c-galleries__slider c-slider" data-slider>
+// 		<a href="" class="c-slider__nav c-slider__nav--left" data-slider-nav="prev">
+// 			<svg class="c-slider__icon"><use xlink:href="#svg-icon-chevron"></use></svg>
+// 		</a>
+// 		<a href="" class="c-slider__nav c-slider__nav--right" data-slider-nav="next">
+// 			<svg class="c-slider__icon"><use xlink:href="#svg-icon-chevron"></use></svg>
+// 		</a>
+// 		<div class="c-slider__track" data-slider-track>
+// 			<div class="c-galleries__item c-slider__item" data-slider-item>
+// 				<sg-insert>3.26</sg-insert>
+// 			</div>
+// 			<div class="c-galleries__item c-slider__item" data-slider-item>
+// 				<sg-insert>3.26</sg-insert>
+// 			</div>
+// 			<div class="c-galleries__item c-slider__item" data-slider-item>
+// 				<sg-insert>3.26</sg-insert>
+// 			</div>
+// 		</div>
+// 	</div>
+// </div>
+//
+// Styleguide 3.25
+
+@include critical( home ) {
+
+	.c-galleries {
+		width: 100%;
+
+		&__slider {
+			@media ( query( max, tablet ) ) {
+				padding-bottom: 30px;
+				margin-bottom: -10px;
+			}
+		}
+
+		&__item:not(:last-of-type) {
+			padding-right: 20px;
+
+			@media ( query( min, desktop-xl ) ) {
+				padding-right: 60px;
+			}
+		}
+	}
+}

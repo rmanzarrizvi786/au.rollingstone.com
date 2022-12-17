@@ -1,0 +1,165 @@
+// Article Overlay Card
+//
+// markup:
+// <article class="c-card c-card--overlay">
+// 	<a href="#" class="c-card__wrap">
+// 		<svg class="c-card__lines" xmlns="http://www.w3.org/2000/svg" stroke-dashoffset="400%" stroke-dasharray="400%" data-line-frame>
+// 			<rect x="0" y="0" width="100%" height="100%"></rect>
+// 		</svg>
+// 		<figure class="c-card__image">
+// 			<div class="c-crop c-crop--landscape c-crop--size-1x1">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					 data-src="https://placehold.it/820x615"
+// 					 data-srcset="
+// 						https://placehold.it/400x400 400w,
+// 						https://placehold.it/768x768 768w,
+// 						https://placehold.it/1000x1000 1000w,
+// 						https://placehold.it/1240x1240 1240w"
+// 					 sizes="(max-width: 767px) 100vw, (max-width: 959px) 66vw, 620px"
+// 					 alt="Post headline"
+// 					 class="c-crop__img">
+// 			</div>
+// 		</figure>
+// 		<header class="c-card__header">
+// 			<h3 class="c-card__heading t-super">
+// 				Daily Show's Michelle Wolf to Host White House Correspondents' Dinner
+// 			</h3>
+// 			<div class="c-card__tag t-bold t-bold--upper">
+// 				<span class="screen-reader-text">Posted in:</span>
+// 				<span class="featured-tag">Features</span>
+// 			</div>
+// 			<p class="c-card__lead">
+// 				President Trump has not announced whether he will attend annual event on April 28th
+// 			</p>
+// 		</header>
+// 	</a>
+// </article>
+//
+// sg-wrapper:
+// <div style="max-width:500px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.8.8
+
+@include critical( section-front, country, home ) {
+
+	.c-card {
+
+		&--overlay {
+			@media ( query( max, mobile ) ) {
+				border-radius: 5px;
+				overflow: hidden;
+
+				&--home {
+					border-radius: 0;
+				}
+			}
+		}
+
+		&--overlay &__wrap {
+			position: relative;
+			z-index: 0; // create new stacking context
+			color: $g-color-white;
+			background: $g-color-white;
+			box-shadow: $g-shadow-card--small;
+			transition: box-shadow 0.3s $ease-in-quad;
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: z('default');
+				width: 100%;
+				height: 100%;
+				background-image: $g-gradient-card;
+			}
+
+			&:hover{
+				box-shadow: $g-shadow-card--big;
+			}
+		}
+
+		&--overlay &__header {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			z-index: z('default');
+			width: 100%;
+			padding: 20px;
+
+			@media ( query( min, mobile ) ) {
+				padding: 30px;
+			}
+		}
+
+		&--overlay &__heading {
+			font-size: 18px;
+			line-height: 1.1;
+			margin-bottom: 5px;
+
+			@media ( query( min, mobile ) ) {
+				font-size: 30px;
+			}
+
+			@media ( query( min, tablet ) ) and ( max-width: 1200px ) {
+				font-size: 25px;
+			}
+		}
+
+		&--overlay &__lead {
+			font-size: 14px;
+			line-height: 1.16;
+			font-family: $g-font-family-sans;
+
+			@media ( query( min, tablet ) ) {
+				font-size: 16px;
+			}
+		}
+
+		&--overlay &__tag {
+			margin-bottom: 10px;
+			font-size: 12px;
+			line-height: 12px;
+			color: $g-color-yellow;
+
+			&::before {
+				display: none;
+			}
+
+			@media ( query( min, mobile ) ) {
+				font-size: 12px;
+				line-height: 12px;
+			}
+		}
+
+		// Stretch Card on desktop to take the same size as "featured" column
+		@media ( query( min, desktop-xl ) ) {
+			&--overlay,
+			&--overlay &__wrap,
+			&--overlay &__image {
+				display: flex;
+				height: 100%;
+				width: 100%;
+			}
+		}
+
+		@media ( query( min, desktop ) ) {
+			&--overlay--home,
+			&--overlay--home &__wrap,
+			&--overlay--home &__image {
+				display: flex;
+				height: 100%;
+				width: 100%;
+			}
+		}
+
+		&--overlay &__featured-tag {
+			color: $g-color-black;
+			background: $g-color-yellow;
+			padding: 4px;
+			border-bottom: none;
+		}
+	}
+}

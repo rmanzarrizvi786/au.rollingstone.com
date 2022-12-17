@@ -1,0 +1,197 @@
+// Section
+//
+// markup:
+// <div class="l-section">
+// 	<div class="l-section__header">
+// 		<sg-insert>3.48</sg-insert>
+// 	</div>
+// 	<div class="l-section__content">
+// 		<div class="l-section__grid">
+// 			<sg-insert>3.9</sg-insert>
+// 		</div>
+// 		<div class="l-section__sidebar">
+// 			<div class="l-section__sticky c-sticky c-sticky--size-grow">
+// 				<div class="c-sticky__item">
+// 					<sg-insert>3.1</sg-insert>
+// 				</div>
+// 			</div>
+// 			<div class="l-section__sidebar-footer">
+// 				<sg-insert>3.55</sg-insert>
+// 			</div>
+// 		</div>
+// 		<div class="l-section__block">
+// 			<sg-insert>3.46</sg-insert>
+// 		</div>
+// 	</div>
+// </div>
+//
+// Styleguide 4.15
+
+@include critical( single, country, section-front, archive, home, list, video-article, video-landing, video-tag, featured-article, standard-template ) {
+
+	.l-section {
+		$gutter: 20px;
+
+		@include h-container;
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		&:hover {
+			// Handle proper display of overflowing testimonial author cards
+			z-index: z(hill);
+		}
+
+		&::after {
+			content: '';
+			display: block;
+			width: 100%;
+			height: 0;
+			margin-top: 30px;
+
+			@media ( query( min, tablet ) ) {
+				margin-top: 30px;
+				padding-bottom: 30px;
+			}
+		}
+
+		&--no-separator::after {
+			display: none;
+		}
+
+		&--with-bottom-margin {
+			margin-bottom: 40px;
+		}
+
+		&--pagination {
+			margin-bottom: 25px;
+
+			@media ( query( min, tablet ) ) {
+				margin-top: 60px;
+				margin-bottom: 60px;
+			}
+		}
+
+		&--dark {
+			@media ( query( max, tablet ) ) {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+
+		@media ( query( min, tablet ) ) {
+			&.is-closed {
+				height: 90px;
+				margin-bottom: 10px;
+				overflow: hidden;
+			}
+		}
+
+		&__header {
+			position: relative;
+			width: 100%;
+
+			&--spaced {
+				margin-bottom: 20px;
+			}
+		}
+
+		@media ( query( min, tablet ) ) {
+			&.is-closed &__header {
+				&::after {
+					content: '';
+					display: block;
+					width: 100%;
+					height: 0;
+					border-top: 1px solid $g-color-border;
+				}
+			}
+		}
+
+		&__content {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			width: 100%;
+			padding-top: 10px;
+			transition: transform 0.5s $ease-in-out-quint,
+									opacity 0.5s $ease-in-out-quint;
+		}
+
+		&--dark &__content {
+			background: $g-color-bg--dark;
+			color: $g-color-white;
+		}
+
+		@media ( query( min, tablet ) ) {
+			&.is-closing &__content {
+				transform: scale(0.99);
+				opacity: 0;
+			}
+		}
+
+		&__grid {
+			width: 100%;
+
+			@media ( query( min, tablet ) ) {
+				width: calc(100% - 300px - #{$gutter});
+				margin-bottom: 30px;
+			}
+		}
+
+		&__sidebar {
+			width: 100%;
+			margin: 20px 0 55px 0;
+
+			@media ( query( min, tablet ) ) {
+				display: flex;
+				flex-direction: column;
+				width: 300px;
+				margin: 0 0 70px 0;
+			}
+		}
+
+		&__sticky {
+			@media ( query( max, tablet ) ) {
+				display: none;
+			}
+		}
+
+		&__sidebar-footer:not(:first-child) {
+			@media ( query( min, tablet ) ) {
+			  padding-top: 60px;
+			}
+		}
+
+		&__block {
+			width: 100%;
+		}
+
+		&--newswire {
+			position: relative;
+			padding-bottom: 25px;
+			margin-bottom: -25px;
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 50%;
+				height: 100%;
+				width: 100vw;
+				transform: translateX(-50%);
+				background-color: $g-color-white;
+			}
+		}
+
+		&--standard-template {
+			margin-top: 60px;
+			margin-bottom: 60px;
+
+			@media ( query( min, tablet ) ) {
+				margin-bottom: 100px;
+			}
+		}
+	}
+}

@@ -1,0 +1,162 @@
+// Featured Table
+//
+// markup:
+// <div class="c-featured-table">
+// 	<div class="c-featured-table__track">
+// 		<h3 class="c-featured-table__heading t-bold t-bold--upper">Ryan Cooglers Rising Stars</h3>
+// 		<table class="c-featured-table__table">
+// 			<tr class="c-featured-table__row">
+// 				<th class="c-featured-table__head">
+// 					<h4 class="c-featured-table__title t-bold">Fruitvale Station</h4>
+// 					<span class="c-featured-table__meta t-semibold">2013</span>
+// 				</th>
+// 				<th class="c-featured-table__head">
+// 					<h4 class="c-featured-table__title t-bold">Creed</h4>
+// 					<span class="c-featured-table__meta t-semibold">2015</span>
+// 				</th>
+// 				<th class="c-featured-table__head">
+// 					<h4 class="c-featured-table__title t-bold">Black Panther</h4>
+// 					<span class="c-featured-table__meta t-semibold">2018</span>
+// 				</th>
+// 			</tr>
+// 			<tr class="c-featured-table__row">
+// 				<td class="c-featured-table__cell t-semibold">
+// 					Budget <br>
+// 					$900,000
+// 				</td>
+// 				<td class="c-featured-table__cell t-semibold">
+// 					Budget <br>
+// 					$40,000,000</td>
+// 				<td class="c-featured-table__cell t-semibold">
+// 					Budget <br>
+// 					$200,000,000</td>
+// 			</tr>
+// 			<tr class="c-featured-table__row">
+// 				<td class="c-featured-table__cell t-semibold">
+// 					Domestic Box Office <br>
+// 					$16,098,998
+// 				</td>
+// 				<td class="c-featured-table__cell t-semibold">
+// 					Domestic Box Office <br>
+// 					$109,767,581
+// 				</td>
+// 				<td class="c-featured-table__cell t-semibold">
+// 					Domestic Box Office <br>
+// 					$550,000,000
+// 				</td>
+// 			</tr>
+// 		</table>
+// 	</div>
+// </div>
+//
+// Styleguide 3.22
+
+@include critical( featured-article ) {
+
+	.c-featured-table {
+		margin: 20px 0 40px 0;
+		color: $g-color-black;
+
+		&__track {
+			width: 100%;
+			max-width: 100vw;
+
+			@media (  query( max, tablet ) ) {
+				overflow-x: scroll;
+				-webkit-overflow-scrolling: touch;
+			}
+		}
+
+		&__heading {
+			display: inline-block;
+			padding: 10px 20px 10px 10px;
+			background: $g-color-white;
+			font-size: 16px;
+		}
+
+		&__table {
+			position: relative;
+			border: none;
+			
+			@media (  query( max, tablet ) ) {
+				min-width: 960px;
+			}
+
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				left: 10px;
+				z-index: z( depression );
+				height: 1px;
+				background: $g-color-border;
+				width: calc(100% - 20px);
+			}
+
+			&::before {
+				bottom: -20px;
+			}
+
+			&::after {
+				top: -25px;
+			}
+		}
+
+		&__row {
+			text-align: center;
+			border: none;
+		}
+
+		&__head {
+			position: relative;
+			padding-top: 20px;
+			margin: 0 10px;
+			text-align: center;
+			background: $g-color-bg--light;
+
+			// Move border definitions to pseudoelement to allow for semantic markup. 
+			// Firefox has probles with border on <th>
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+				border-left: 10px solid $g-color-white;
+				border-right: 10px solid $g-color-white;
+			}
+
+			&::after {
+				content: '';
+				position: absolute;
+				left: 20px;
+				bottom: 0;
+				height: 1px;
+				background: $g-color-border;
+				width: calc(100% - 40px);
+			}
+		}
+
+		&__title {
+			font-size: 20px;
+		}
+
+		&__meta {
+			font-size: 13px;
+		}
+
+		&__cell {
+			padding-bottom: 0;
+			font-size: 15px;
+			background: $g-color-bg--light;
+			border-left: 20px solid $g-color-white;
+			border-right: 20px solid $g-color-white;
+		}
+
+		&__row:last-of-type &__cell {
+			padding-bottom: 20px;
+		}
+	}
+}

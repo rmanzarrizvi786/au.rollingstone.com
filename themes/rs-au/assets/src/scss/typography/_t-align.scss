@@ -1,0 +1,30 @@
+// Text Alignment
+//
+// t-align--center - Center
+// t-align--right - Right
+// t-align--left - left
+//
+// markup:
+// <div class="t-align--center">
+//      <p class="{$modifiers}">This is a center aligned text.</p>
+// </div>
+//
+// Styleguide 2.6
+
+.t-align {
+    
+    // Uncomment when implemented.
+    // &--left {
+    //     text-align: left;
+    // }
+
+    &--center {
+        text-align: center;
+    }
+
+    // Uncomment when implemented.
+    // &--right {
+    //     text-align: right;
+    // }
+}
+

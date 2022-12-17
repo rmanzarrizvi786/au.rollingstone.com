@@ -1,0 +1,21 @@
+// Featured Article
+//
+// markup:
+// <div class="l-featured-article">
+// 	<sg-insert>3.21</sg-insert>
+// 	<sg-insert>3.20</sg-insert>
+// </div>
+//
+// Styleguide 4.8
+
+@include critical( featured-article ) {
+
+	.l-featured-article {
+		width: 100vw;
+		overflow: hidden;
+
+		@include if-side-skins{
+			max-width: 100%;
+		}
+	}
+}

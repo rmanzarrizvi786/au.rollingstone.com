@@ -1,0 +1,15 @@
+.footer {
+	a {
+		text-decoration: none;
+		display: inline-block;
+		padding: 3px 7px;
+		margin: 5px 3px;
+	}
+	.current_page {
+		font-weight: bold;
+	}
+	.invalid {
+		pointer-events: none;
+		color: #ccc;
+	}
+}

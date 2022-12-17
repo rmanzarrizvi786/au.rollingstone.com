@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e\n"
+
+msgid "We found"
+msgstr "Encontramos"
+
+msgid "results for"
+msgstr "resultados de"
+
+msgid "Showing results"
+msgstr "Mostrando"
+
+msgid "of"
+msgstr "de"
+
+msgid "for"
+msgstr "para"
+
+msgid "loading"
+msgstr "Cargando"
+
+msgid "there was a problem with the search"
+msgstr "Hubo un problema con la búsqueda"
+
+msgid "no results found"
+msgstr "No encontramos resultados de"
+
+msgid "Sort By"
+msgstr "Ordenar por"
+
+msgid "Date Filter"
+msgstr "Refinar por fecha"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Siguiente"
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "Relevance"
+msgstr "Relevancia"
+
+msgid "Published Date (newest first)"
+msgstr "Fecha de publicación (más reciente)"
+
+msgid "Published Date (oldest first)"
+msgstr "Fecha de publicación (más antigua)"
+
+msgid "Most Commented"
+msgstr "Más comentados"
+
+msgid "Clear"
+msgstr "Reiniciar"
+
+msgid "Content Type"
+msgstr "Tipo de contenido"
+
+msgid "Topics"
+msgstr "Categorías"
+
+msgid "Tags"
+msgstr "Etiquetas"
+
+msgid "Content"
+msgstr "Contenido"
+
+msgid "All"
+msgstr "Todos los resultados"
+
+msgid "Past 24 Hours"
+msgstr "En las últimas 24 horas"
+
+msgid "Past 7 Days"
+msgstr "En los últimos 7 días"
+
+msgid "Past 30 Days"
+msgstr "En los últimos 30 días"
+
+msgid "Past 12 Months"
+msgstr "En el último año"

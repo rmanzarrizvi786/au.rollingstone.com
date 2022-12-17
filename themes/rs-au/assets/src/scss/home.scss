@@ -1,0 +1,8 @@
+//
+// Critical CSS for the home template.
+//
+
+$IS_CRITICAL: true;
+$CRITICAL_TYPE: home;
+
+@import 'style';

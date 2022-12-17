@@ -1,0 +1,59 @@
+// Coverage Article Card
+//
+// markup:
+// <article class="c-card c-card--coverage">
+// 	<a href="#" class="c-card__wrap">
+// 		<figure class="c-card__image">
+// 			<div class="c-crop c-crop--landscape c-crop--size-grid">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					data-src="https://placehold.it/285x190"
+// 					data-srcset="https://placehold.it/160x105 160w, https://placehold.it/285x190 285w, https://placehold.it/335x225 335w"
+// 					sizes="(max-width: 480px) 210px, (max-width: 767px) 345px, 285px"
+// 					alt="Daily Show's Michelle Wolf to Host White House Correspondents' Dinner"
+// 					class="c-crop__img">
+// 			</div>
+// 		</figure>
+// 		<header class="c-card__header">
+// 			<h3 class="c-card__heading t-bold">
+// 				Daily Show's Michelle Wolf to Host White House Correspondents' Dinner
+// 			</h3>
+// 		</header>
+// 	</a>
+// </article>
+//
+// sg-wrapper:
+// <div style="padding:20px; max-width:400px; background-color:#000">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.8.2
+
+@include critical( home ) {
+
+	.c-card {
+
+		&--coverage &__heading {
+			padding-top: 10px;
+			font-size: 15px;
+			line-height: 20px;
+			color: $g-color-white;
+			transition: color $g-transition-color;
+		}
+
+		&--coverage:focus &__heading,
+		&--coverage:hover &__heading {
+			color: $g-color-muted--light;
+		}
+
+		&--coverage &__badge {
+			left: 10px;
+			bottom: 10px;
+			top: auto;
+			transform: none;
+		}
+
+		&--coverage &__image{
+			@extend %card-hover-fade
+		}
+	}
+}

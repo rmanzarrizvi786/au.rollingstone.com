@@ -1,0 +1,35 @@
+// Variables
+$colors: (
+	'primary': #333,
+	'accent': #0055C9,
+	'secondary': #969696,
+	'foreground': #efefef,
+	'border': #CCC,
+	'background': #FFF
+);
+
+$font: "Helvetica Neue", Helvetica, sans-serif;
+$border-radius: 2px;
+$width: 960px;
+$padding: 10px;
+$font-size: 13px;
+$search-icon: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6%2BR8AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAM1JREFUeNpi%2BP%2F%2FPwMIA4E9EO8C4ldAfAOI5wCxKEweGcM0FAExiPEEqngdEP%2BEGqCLoQkkCMR%2FgHgjEHMiSRgA8QcgPo9NUwvUVFEskjAXaCGLMwEFVID4BZDzmgETXIPSisiCIE2PgFiakZFRFIsmYyj9FF1CF%2BoEkOd50Pz0FqufoAqqoRqfA%2FF8IN4CDZz%2FUP%2F6YWhCiqcD0BC7B8SLoJphGgMxNGGNRAYGNqizYRpDCGpC0rga2akENWHROIEoTVCNzGBbgAYABBgAuBMPKvUg1p8AAAAASUVORK5CYII%3D) no-repeat 13px 13px;
+
+@import 'base/functions';
+.swiftype {
+
+	@import 'base/grid';
+	@import 'base/defaults';
+	@import 'base/sections';
+
+	@import 'components/conditionals';
+	@import 'components/search_form';
+	@import 'components/tabs';
+	@import 'components/search_results';
+	@import 'components/autocomplete';
+	@import 'components/pagination';
+	@import 'components/sort_selector';
+	@import 'components/checkbox-facet';
+	@import 'components/widget';
+	@import 'base/media_queries';
+}

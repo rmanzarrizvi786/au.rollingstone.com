@@ -1,0 +1,162 @@
+# Copyright (C) 2018 pmc-carousel
+# This file is distributed under the same license as the pmc-carousel package.
+msgid ""
+msgstr ""
+"Project-Id-Version: pmc-carousel\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../featured-articles.php:29
+msgid "Featured Carousel"
+msgstr ""
+
+#: ../featured-articles.php:30
+msgid "Featured Article"
+msgstr ""
+
+#: ../featured-articles.php:31, ../pmc-carousel.php:1016
+msgid "Add New"
+msgstr ""
+
+#: ../featured-articles.php:32
+msgid "Add New Featured Article"
+msgstr ""
+
+#: ../featured-articles.php:33
+msgid "Edit Featured Article"
+msgstr ""
+
+#: ../featured-articles.php:34
+msgid "New Featured Article"
+msgstr ""
+
+#: ../featured-articles.php:35
+msgid "View Featured Article"
+msgstr ""
+
+#: ../featured-articles.php:36
+msgid "Search Carousel"
+msgstr ""
+
+#: ../featured-articles.php:37
+msgid "Not found in carousel."
+msgstr ""
+
+#: ../featured-articles.php:38
+msgid "No featured articles found in trash."
+msgstr ""
+
+#: ../featured-articles.php:39
+msgid "Parent Article:"
+msgstr ""
+
+#: ../featured-articles.php:40
+msgid "Carousel"
+msgstr ""
+
+#: ../featured-articles.php:52
+msgid "Select an Article/Section Front"
+msgstr ""
+
+#: ../featured-articles.php:167
+msgid "Image"
+msgstr ""
+
+#: ../featured-articles.php:168
+msgid "Title"
+msgstr ""
+
+#: ../featured-articles.php:169
+msgid "Author"
+msgstr ""
+
+#: ../featured-articles.php:170
+msgid "Date"
+msgstr ""
+
+#: ../featured-articles.php:292
+msgid "preview mode"
+msgstr ""
+
+#: ../featured-articles.php:298
+msgid "single preview mode"
+msgstr ""
+
+#: ../pmc-carousel.php:76, ../pmc-carousel.php:76, ../pmc-carousel.php:255
+msgid "Carousel Taxonomies"
+msgstr ""
+
+#: ../pmc-carousel.php:83, ../pmc-carousel.php:1014, ../pmc-carousel.php:1024
+msgid "Carousel Modules"
+msgstr ""
+
+#: ../pmc-carousel.php:175, ../pmc-carousel.php:202
+msgid "carousel cache group counter value: %1$s"
+msgstr ""
+
+#: ../pmc-carousel.php:258
+msgid "Settings saved."
+msgstr ""
+
+#: ../pmc-carousel.php:263
+msgid "Check the taxonomies that you want to be available to the carousel."
+msgstr ""
+
+#: ../pmc-carousel.php:421
+msgid "Carousel Taxonomy"
+msgstr ""
+
+#: ../pmc-carousel.php:873
+msgid " All Terms"
+msgstr ""
+
+#: ../pmc-carousel.php:996
+msgid "Clear Cache"
+msgstr ""
+
+#: ../pmc-carousel.php:1015
+msgid "Carousel Module"
+msgstr ""
+
+#: ../pmc-carousel.php:1017
+msgid "Add New Carousel Module"
+msgstr ""
+
+#: ../pmc-carousel.php:1018
+msgid "Edit Carousel Module"
+msgstr ""
+
+#: ../pmc-carousel.php:1019
+msgid "New Carousel Module"
+msgstr ""
+
+#: ../pmc-carousel.php:1020
+msgid "View Carousel Module"
+msgstr ""
+
+#: ../pmc-carousel.php:1021
+msgid "Search Carousel Modules"
+msgstr ""
+
+#: ../pmc-carousel.php:1022
+msgid "No Carousel Modules found."
+msgstr ""
+
+#: ../pmc-carousel.php:1023
+msgid "No Carousel Modules found in Trash."
+msgstr ""
+
+#: ../pmc-carousel.php:1064
+msgid "Use Manual URL - %sIf checked, the %sURL%s field below will be used to determine what post to link to.%s"
+msgstr ""
+
+#: ../pmc-carousel.php:1067
+msgid "URL"
+msgstr ""

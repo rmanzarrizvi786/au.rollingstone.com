@@ -1,0 +1,124 @@
+// Grid Article Card
+//
+// markup:
+// <article class="c-card c-card--grid c-card--grid--secondary">
+// 	<a href="#" class="c-card__wrap">
+// 		<figure class="c-card__image">
+// 			<div class="c-crop c-crop--landscape c-crop--size-grid">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					data-src="https://placehold.it/285x190"
+// 					data-srcset="https://placehold.it/160x105 160w,
+// 						https://placehold.it/285x190 285w,
+// 						https://placehold.it/335x225 335w"
+// 					sizes="(max-width: 480px) 210px, (max-width: 767px) 345px, 285px"
+// 					alt="Daily Show's Michelle Wolf to Host White House Correspondents' Dinner"
+// 					class="c-crop__img">
+// 			</div>
+// 		</figure>
+// 		<header class="c-card__header">
+// 			<h3 class="c-card__heading t-bold">
+// 				Daily Show's Michelle Wolf to Host White House Correspondents' Dinner
+// 			</h3>
+// 			<div class="c-card__tag t-semibold t-semibold--upper t-semibold--loose">
+// 				<span class="screen-reader-text">Posted in:</span> Features
+// 			</div>
+// 			<div class="c-card__byline t-copy">
+// 				By Hattie Paul
+// 			</div>
+// 			<p class="c-card__lead">
+// 				President Trump has not announced whether he will attend annual event on April 28th
+// 			</p>
+// 		</header>
+// 	</a>
+// </article>
+//
+// sg-wrapper:
+// <div style="max-width:500px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.8.7
+
+@include critical( home ) {
+
+	.c-card {
+
+		&--grid {
+			height: 100%;
+		}
+
+		&--grid &__image {
+			@extend %card-hover-fade;
+		}
+
+		&--grid &__wrap {
+			position: relative;
+			height: 100%;
+			padding-bottom: 30px;
+		}
+
+		&--grid &__badge {
+			top: auto;
+			bottom: 10px;
+			left: 10px;
+			transform: none;
+
+			@media ( query( max, tablet ) ) {
+				display: none;
+			}
+		}
+
+		&--grid &__tag {
+			margin-top: 15px;
+			margin-bottom: 0;
+		}
+
+		&--grid &__heading {
+			margin-top: 10px;
+			font-size: 17px;
+			line-height: 23px;
+			@extend %text-fade;
+		}
+
+		&--grid &__lead {
+			margin-top: 10px;
+			font-size: 14px;
+			letter-spacing: 0.47px;
+			line-height: 23px;
+		}
+
+		&--grid &__byline {
+			position: absolute;
+			bottom: 5px;
+			font-size: 12px;
+			font-style: italic;
+		}
+
+		&--grid-sponsored &__byline {
+			position: static;
+			order: -1;
+			margin-top: 15px;
+		}
+
+		@media ( query( max, tablet ) ) {
+			&--grid--secondary &__wrap {
+				padding: 0;
+			}
+
+			&--grid--secondary &__heading {
+				margin-top: 5px;
+				font-size: 13px;
+				line-height: 19px;
+			}
+
+			&--grid--secondary &__tag {
+				margin-top: 10px;
+			}
+
+			&--grid--secondary &__lead,
+			&--grid--secondary &__byline {
+				display: none;
+			}
+		}
+	}
+}

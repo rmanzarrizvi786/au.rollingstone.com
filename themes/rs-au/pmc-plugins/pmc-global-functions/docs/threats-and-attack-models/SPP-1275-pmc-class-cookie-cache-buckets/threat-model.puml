@@ -1,0 +1,27 @@
+@startuml
+/'
+    This file contains PlantUML (http://plantuml.com) syntax which is used to generate diagrams about the project.
+
+    Read more here: https://confluence.pmcdev.io/x/YAFUAw
+'/
+
+skinparam monochrome true
+
+title Threat Model
+
+partition "Wordpress Web" {
+  (*) --> wwd
+}
+
+partition "PMC Plugins" {
+
+    wwd --> "pmc-global-functions:class-pmc-cookie:init"
+    note on link
+        TRIGGER INIT HOOK
+    endnote
+
+    "pmc-global-functions:class-pmc-cookie:init" --> "get_value_of_all_pmc_cookies_the_user_has"
+    "get_value_of_all_pmc_cookies_the_user_has" --> "Create Cookie Cache Buckets"
+}
+
+@enduml

@@ -1,0 +1,65 @@
+@keyframes ripple {
+	0% {
+		opacity: 0;
+		visibility: visible;
+		transform: scale( 1 );
+	}
+
+	5% {
+		opacity: 1;
+		transform: scale( 2 );
+	}
+
+	50% {
+		opacity: 0.6;
+		visibility: visible;
+		transform: scale( 20 );
+	}
+
+	100% {
+		opacity: 0;
+		visibility: hidden;
+		transform: scale( 40 );
+	}
+}
+
+[data-ripple] {
+	position: relative;
+	overflow: hidden;
+	-webkit-tap-highlight-color: rgba( $g-color-white, 0 );
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: calc( 50% - 5px );
+		left: calc( 50% - 5px );
+		width: 10px;
+		height: 10px;
+		background-color: rgba( $g-color-black, 0.2 );
+		border-radius: 99%;
+		opacity: 0;
+		visibility: hidden;
+
+		@media ( query( min, tablet ) ) {
+			content: none;
+		}
+	}
+
+	&[data-ripple='inverted']::after {
+		background-color: rgba( $g-color-white, 0.2 );
+	}
+
+	&[data-ripple-location='left']::after {
+		left: calc( 25% - 5px );
+	}
+
+	&[data-ripple-location='right']::after {
+		left: auto;
+		right: calc( 25% - 5px );
+	}
+
+	&[data-ripple-trigger]::after {
+		animation-duration: 600ms;
+		animation-name: ripple;
+	}
+}

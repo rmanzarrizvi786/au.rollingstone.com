@@ -1,0 +1,68 @@
+@include critical( single, country, section-front, archive, list, video-article ) {
+
+	.l-livemedia {
+		@include g-font-family-sans;
+
+		&__header {
+			background-image: url( '../images/_dev/banner-rs-live-media-v1.jpg' );
+			background-size: cover;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 40px;
+			height: 209px;
+			margin-bottom: 40px;
+
+			@media ( query( min, desktop ) ) {
+				height: 413px;
+			}
+		}
+
+		&__content {
+			@include h-container($g-breakpoint-tablet);
+		}
+
+		&__form {
+
+			input[type="text"],
+			input[type="email"] {
+				width: 100%;
+				padding: 15px;
+				border: 1px solid $g-color-border;
+
+				&:focus {
+					border-color: $g-color-red--darken;
+				}
+			}
+
+			input[type="checkbox"] {
+				margin: 15px;
+			}
+
+			input[type="submit"] {
+				width: 100%;
+			}
+
+			label {
+				display: block;
+				font-size: 19px;
+				padding-bottom: 10px;
+			}
+
+		}
+
+		&__form-row {
+			padding-top: 20px;
+			padding-bottom: 20px;
+
+			&--2col {
+				display: grid;
+				grid-gap: 40px;
+
+				@media( query( min, tablet ) ) {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+		}
+	}
+}

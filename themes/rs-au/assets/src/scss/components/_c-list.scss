@@ -1,0 +1,351 @@
+// List
+//
+// Dev note:
+// In case we're dealing with a direct link, all items preceding the current item should be hidden,
+// i.e. contained within `<div data-list-hidden hidden></div>` element.
+// Then, just before the current item the autofocus element has to be placed so that the browser
+// sets the correct scroll value by default.
+// Lastly we show buttons above and below the current item and all remaining items on the page that
+// are always visible.
+//
+// In case we're on the listing page, we just show all items one after another.
+//
+// markup:
+// <div class="c-list c-list--album">
+// 	<article class="c-list__item">
+// 		<figure class="c-list__picture">
+// 			<div class="c-list__share">
+// 				<div class="c-list__social-bar">
+// 					<sg-insert>3.50.1</sg-insert>
+// 				</div>
+// 				<svg class="c-list__icon"><use xlink:href="#svg-icon-share"></use></svg>
+// 			</div>
+// 			<div class="c-crop c-crop--landscape c-crop--size-1x1">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					data-src="https://placehold.it/385x385"
+// 					data-srcset="
+// 							https://placehold.it/300x300 300w,
+// 							https://placehold.it/385x385 385w"
+// 					sizes="(max-width: 959px) 300px, 385px"
+// 					alt="OutKast, 'Aquemini'"
+// 					class="c-crop__img">
+// 			</div>
+// 		</figure>
+// 		<header class="c-list__header">
+// 			<span class="c-list__number t-bold">1</span>
+// 			<h3 class="c-list__title t-bold">
+// 				OutKast, 'Aquemini'
+// 			</h3>
+// 		</header>
+// 		<main class="c-list__main">
+// 			<div class="c-list__lead c-content">
+// 				<p>LaFace, 1998</p>
+// 				<p>At a time when formulaic albums by Master P and Puff Daddy topped the charts, OutKast unleashed an explosive hip-hop that deployed live musicians, social commentary and a heavy dose of deep funk. Hits like "Rosa Parks" put the duo's hometown "Hotlanta" on the rap map.</p>
+// 			</div>
+// 		</main>
+// 	</article>
+// 	<article class="c-list__item">
+// 		<figure class="c-list__picture">
+// 			<div class="c-list__share">
+// 				<div class="c-list__social-bar">
+// 					<sg-insert>3.50.1</sg-insert>
+// 				</div>
+// 				<svg class="c-list__icon"><use xlink:href="#svg-icon-share"></use></svg>
+// 			</div>
+// 			<div class="c-crop c-crop--landscape c-crop--size-1x1">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					data-src="https://placehold.it/385x385"
+// 					data-srcset="
+// 							https://placehold.it/300x300 300w,
+// 							https://placehold.it/385x385 385w"
+// 					sizes="(max-width: 959px) 300px, 385px"
+// 					alt="OutKast, 'Aquemini'"
+// 					class="c-crop__img">
+// 			</div>
+// 		</figure>
+// 		<header class="c-list__header">
+// 			<span class="c-list__number t-bold">2</span>
+// 			<h3 class="c-list__title t-bold">
+// 				OutKast, 'Aquemini'
+// 			</h3>
+// 		</header>
+// 		<main class="c-list__main">
+// 			<div class="c-list__lead c-content">
+// 				<p>LaFace, 1998</p>
+// 				<p>At a time when formulaic albums by Master P and Puff Daddy topped the charts, OutKast unleashed an explosive hip-hop that deployed live musicians, social commentary and a heavy dose of deep funk. Hits like "Rosa Parks" put the duo's hometown "Hotlanta" on the rap map.</p>
+// 			</div>
+// 		</main>
+// 	</article>
+// 	<article class="c-list__item">
+// 		<figure class="c-list__picture">
+// 			<div class="c-list__share">
+// 				<div class="c-list__social-bar">
+// 					<sg-insert>3.50.1</sg-insert>
+// 				</div>
+// 				<svg class="c-list__icon"><use xlink:href="#svg-icon-share"></use></svg>
+// 			</div>
+// 			<div class="c-crop c-crop--landscape c-crop--size-1x1">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					data-src="https://placehold.it/385x385"
+// 					data-srcset="
+// 							https://placehold.it/300x300 300w,
+// 							https://placehold.it/385x385 385w"
+// 					sizes="(max-width: 959px) 300px, 385px"
+// 					alt="OutKast, 'Aquemini'"
+// 					class="c-crop__img">
+// 			</div>
+// 		</figure>
+// 		<header class="c-list__header">
+// 			<span class="c-list__number t-bold">3</span>
+// 			<h3 class="c-list__title t-bold">
+// 				OutKast, 'Aquemini'
+// 			</h3>
+// 		</header>
+// 		<main class="c-list__main">
+// 			<div class="c-list__lead c-content">
+// 				<p>LaFace, 1998</p>
+// 				<p>At a time when formulaic albums by Master P and Puff Daddy topped the charts, OutKast unleashed an explosive hip-hop that deployed live musicians, social commentary and a heavy dose of deep funk. Hits like "Rosa Parks" put the duo's hometown "Hotlanta" on the rap map.</p>
+// 			</div>
+// 		</main>
+// 	</article>
+// 	<div class="c-list__separator c-list__separator--with-border">
+// 		<a href="#" class="c-list__separator-btn c-btn c-btn--outline t-semibold t-semibold--upper">
+// 			Load More
+// 		</a>
+// 	</div>
+// </div>
+//
+// sg-wrapper:
+// <div class="t-copy" style="padding:20px;max-width:600px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.33
+
+@include critical( list ) {
+
+	.c-list {
+
+		@media ( query( min, tablet ) ) {
+			padding-bottom: 40px;
+		}
+
+		&__item {
+			@include clearfix;
+			padding-top: 45px;
+			margin-top: 45px;
+			border-top: 2px solid $g-color-border;
+		}
+
+		&__number {
+			padding: 10px 17.5px;
+			font-size: 26px;
+			line-height: 32px;
+			color: $g-color-white;
+			background-color: $g-color-red;
+		}
+
+		&__title {
+			font-size: 31px;
+			line-height: 32px;
+			color: $g-color-black;
+
+			@media ( query( max, mobile ) ) {
+				width: 100%;
+				margin-top: 10px;
+			}
+		}
+
+		&__picture {
+			position: relative;
+			z-index: 0; // new stacking context
+		}
+
+		&__share {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			z-index: z(hill);
+			cursor: pointer;
+		}
+		
+		&__icon {
+			display: block;
+			width: 20px;
+			height: 20px;
+			fill: $g-color-white;
+		}
+
+		&__social-bar {
+			position: absolute;
+			top: 3px;
+			right: 50px;
+		}
+
+		&__tag {
+			font-size: 18px;
+			line-height: 31px;
+			color: $g-color-black;
+		}
+
+		&__separator {
+			@extend %flex-center;
+			position: relative;
+
+			&--with-border {
+				margin-top: 20px;
+				margin-bottom: 40px;
+
+				&::before,
+				&::after {
+					position: absolute;
+					width: 100%;
+					height: 2px;
+					left: 0;
+					background-color: $g-color-border;
+				}
+
+				&::after {
+					content: '';
+					top: 17px;
+				}
+			}
+
+			& + &--with-border {
+				margin-top: 80px;
+				margin-bottom: 0;
+
+				&::before {
+					content: '';
+					top: -35px;
+				}
+			}
+		}
+
+		&__separator-btn {
+			position: absolute;
+			top: 27px;
+			z-index: z( hill );
+		}
+
+		&__separator--with-border &__separator-btn {
+			position: static;
+		}
+
+		//
+		// Artists
+		//
+
+		&--artists &__item {
+			display: flex;
+			flex-direction: column;
+		}
+
+		&--artists &__header {
+			order: -1;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+
+		&--artists &__number {
+			margin-right: 15px;
+		}
+
+		&--artists &__main,
+		&--artists &__lead {
+			margin-top: 10px;
+		}
+
+		&--artists &__share {
+			@media ( query( min, desktop ) ) {
+				bottom: 20px;
+				right: 20px;
+			}
+		}
+
+		&--artists &__social-bar {
+			@media ( query( max, desktop ) ) {
+				top: -3px;
+			}
+		}
+
+		&--artists &__icon {
+			filter: drop-shadow( 0 5px 5px rgba( $g-color-black, 0.5 ) );
+			cursor: pointer;
+
+			@media ( query( min, desktop ) ) {
+				width: 30px;
+				height: 30px;
+			}
+		}
+
+		//
+		// Albums
+		//
+
+		&--albums &__item {
+			position: relative;
+			padding-left: 20px;
+
+			@media ( query( max, tablet ) ) {
+				padding-right: 20px;
+			}
+		}
+
+		&--albums &__picture {
+			width: 300px;
+			
+			@media ( query( min, tablet ) ) {
+				float: left;
+				margin-right: 20px;
+			}
+
+			@media ( query( min, desktop-xl ) ) {
+				width: 385px;
+			}
+		}
+
+		&--albums &__header {
+			padding-top: 10px;
+
+			@media ( query( min, tablet ) ) {
+				padding-top: 10px;
+			}
+		}
+
+		&--albums &__number {
+			position: absolute;
+			top: 45px;
+			left: 0;
+		}
+
+		&--albums &__share {
+			padding: 5px;
+			background: rgba( $g-color-black, 0.80 );
+			border: 1px solid #444444;
+			border-radius: 5px;
+		}
+
+		&--albums &__main {
+			@extend %clearfix;
+		}
+
+		&--albums &__rating {
+			margin-bottom: 20px;
+		}
+
+		&--albums &__read-more {
+			margin-top: 30px;
+			font-size: 10px;
+			color: $g-color-red;
+			letter-spacing: 1.45px;
+		}
+
+		&--albums &__related {
+			@extend %clearfix;
+			margin-top: 10px;
+		}
+	}
+}

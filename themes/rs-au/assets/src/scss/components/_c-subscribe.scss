@@ -1,0 +1,178 @@
+// Subscribe Flyout
+//
+// markup:
+// <div class="c-subscribe">
+// 	<div class="c-subscribe__block c-subscribe__block--get-magazine">
+// 		<div class="c-subscribe__cover">
+// 			<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 				 data-src="https://placehold.it/184x229"
+// 				 data-srcset="https://placehold.it/184x229 1x, https://placehold.it/368x458 2x"
+// 				 alt="">
+// 		</div>
+// 		<div class="c-subscribe__description">
+// 			<p class="c-subscribe__heading t-bold">Get The Magazine</p>
+// 			<p class="c-subscribe__content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis velit a sem hendrerit finibus
+// 				eget vitae massa.</p>
+// 			<p class="c-subscribe__important t-semibold">Subscribe today and save up to 66%.<br>
+// 				Includes FREE digital access!</p>
+// 			<a href="#" class="c-subscribe__button c-subscribe__button--subscribe t-bold t-bold--upper">
+// 				Subscribe Now
+// 			</a>
+// 		</div>
+// 	</div>
+// 	<div class="c-subscribe__block">
+// 		<div class="c-subscribe__description">
+// 			<p class="c-subscribe__heading t-bold">Newsletter Signup</p>
+// 			<p class="c-subscribe__content">Sign up for our newsletter and go inside the world of music, culture and entertainment.</p>
+// 			<form action="#" class="c-subscribe__form">
+// 				<input type="email" class="c-subscribe__input" placeholder="Your email" required>
+// 				<button type="submit" class="c-subscribe__button c-subscribe__button--newsletter t-bold t-bold--upper">
+// 					Sign Up
+// 				</button>
+// 			</form>
+// 		</div>
+// 	</div>
+// </div>
+//
+// Styleguide 3.52
+
+@include critical() {
+
+	.c-subscribe {
+		justify-content: space-between;
+
+		&,
+		&__block--get-magazine,
+		&__description,
+		&__form {
+			display: flex;
+			position: relative;
+			z-index: 1;
+		}
+
+		&__block {
+			position: relative;
+			overflow: hidden;
+			width: calc( 50% - 10px );
+			padding: 27px 30px;
+			border-radius: 5px;
+			color: $g-color-white;
+			background-color: $g-color-bg--dark;
+			box-shadow: 0 2px 4px 0 rgba( $g-color-black, 0.2 );
+
+			&--get-magazine {
+				justify-content: center;
+				background: transparent no-repeat center;
+				background-size: cover;
+				background-color: #F0ECE7;
+				color: $g-color-black;
+			}
+		}
+
+		&__cover {
+			position: relative;
+			z-index: 1;
+			flex: 0 0 auto;
+			width: 184px;
+			margin-right: 30px;
+
+			img {
+				display: block;
+			}
+		}
+
+		&__description,
+		&__form {
+			flex-flow: column nowrap;
+			align-items: start;
+		}
+
+		&__description {
+			margin: 0 auto;
+			max-width: 400px;
+			font-size: 15px;
+			line-height: 1.45;
+		}
+
+		&__block--get-magazine &__description {
+			width: calc( 100% - 215px );
+		}
+
+		&__heading {
+			font-size: 28px;
+			line-height: 1.25;
+			margin-bottom: 10px;
+		}
+
+		&__important {
+			flex-grow: 1;
+			font-size: 16px;
+			line-height: 1.25;
+		}
+
+		&__content {
+			margin-bottom: 20px;
+		}
+
+		&__form {
+			width: 100%;
+			flex-grow: 1;
+			justify-content: flex-end;
+		}
+
+		&__input {
+			@include g-font-family-sans-simple;
+			width: 100%;
+			padding: 14px 22px;
+			box-shadow: inset 0 1px 3px 0 rgba( $g-color-black, 0.5 );
+			font-size: 16px;
+		}
+
+		&__button {
+			align-self: flex-start;
+			min-width: 191px;
+			margin-top: 30px;
+			padding: 10px;
+			font-size: 11px;
+			text-align: center;
+			color: $g-color-white;
+			transition: background-color $g-transition-color;
+
+			&--subscribe {
+				background-color: $g-color-red;
+
+				&:hover,
+				&:focus {
+					background-color: mix( $g-color-red, $g-color-black, 80% );
+				}
+			}
+
+			&--newsletter {
+				background-color: $g-color-link;
+
+				&:hover,
+				&:focus {
+					background-color: mix( $g-color-link, $g-color-black, 80% );
+				}
+			}
+		}
+
+		&__x {
+			position: absolute;
+			right: 26px;
+			font-size: 11px;
+			cursor: pointer;
+			padding: 0px;
+			top: 10px;
+			width: 20px;
+			height: 20px;
+
+			&:hover,
+			&:focus {
+				color: $g-color-link;
+			}
+
+		}
+
+	}
+}

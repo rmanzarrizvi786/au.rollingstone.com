@@ -1,0 +1,100 @@
+// Brand Article Card
+//
+// markup:
+// <article class="c-card c-card--brand">
+// 	<a href="#" class="c-card__wrap">
+// 		<figure class="c-card__image">
+// 			<div class="c-crop c-crop--landscape c-crop--size-brand">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					data-src="https://placehold.it/300x170"
+// 					alt="Daily Show's Michelle Wolf to Host White House Correspondents' Dinner"
+// 					class="c-crop__img">
+// 			</div>
+// 		</figure>
+// 		<header class="c-card__header">
+// 			<h3 class="c-card__heading t-bold">
+// 				Daily Show's Michelle Wolf to Host White House Correspondents' Dinner
+// 			</h3>
+// 			<div class="c-card__brand t-bold">
+// 				<span class="screen-reader-text">Posted on:</span> Variety
+// 			</div>
+// 			<div class="c-card__timestamp t-copy">
+// 				<span class="screen-reader-text">Posted</span>
+// 				1 hour ago
+// 			</div>
+// 		</header>
+// 	</a>
+// </article>
+//
+// sg-wrapper:
+// <div style="max-width:500px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.8.1
+
+@include critical( single, country, section-front, archive, home, list, video-article, video-landing, video-tag, featured-article, standard-template ) {
+
+	.c-card {
+
+		&--brand {
+			display: flex;
+		}
+
+		&--brand &__image {
+			@extend %card-hover-fade;
+		}
+
+		&--brand:focus &__image,
+		&--brand:hover &__image {
+
+			&::before {
+				opacity: 1;
+			}
+		}
+
+		&--brand &__wrap {
+			position: relative;
+			display: flex;
+			height: initial;
+			width: 100%;
+			padding-bottom: 25px;
+			transition: transform 0.3s $ease-out;
+
+			@media ( query( min, tablet ) ) {
+				padding-bottom: 40px;
+			}
+		}
+
+		&--brand &__heading {
+			margin-top: 2px;
+			font-size: 13px;
+			line-height: 15px;
+			@extend %text-fade;
+
+			@media ( query( min, tablet ) ) {
+				margin-top: 10px;
+				font-size: 17px;
+				line-height: 23px;
+			}
+		}
+
+		&--brand &__timestamp {
+			position: absolute;
+			bottom: 0;
+			font-size: 13px;
+			color: $g-color-muted--dark;
+		}
+
+		&--brand &__brand {
+			order: -1;
+			margin-top: 5px;
+			font-size: 13px;
+			color: $g-color-red;
+
+			@media ( query( min, tablet ) ) {
+				margin-top: 10px;
+			}
+		}
+	}
+}

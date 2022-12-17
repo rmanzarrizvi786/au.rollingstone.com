@@ -1,0 +1,84 @@
+// Video Gallery
+//
+// markup:
+// <div class="c-video-gallery" data-video-gallery>
+// 	<div class="c-video-gallery__main">
+// 		<sg-insert>3.8.10</sg-insert>
+// 	</div>
+// 	<div class="c-video-gallery__slider c-slider" data-slider>
+// 		<a href="" class="c-slider__nav c-slider__nav--left" data-slider-nav="prev">
+// 			<svg class="c-slider__icon"><use xlink:href="#svg-icon-chevron"></use></svg>
+// 		</a>
+// 		<a href="" class="c-slider__nav c-slider__nav--right" data-slider-nav="next">
+// 			<svg class="c-slider__icon"><use xlink:href="#svg-icon-chevron"></use></svg>
+// 		</a>
+// 		<div class="c-slider__track" data-slider-track>
+// 			<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 				<sg-insert>3.8.12</sg-insert>
+// 			</div>
+// 			<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 				<sg-insert>3.8.12</sg-insert>
+// 			</div>
+// 			<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 				<sg-insert>3.8.12</sg-insert>
+// 			</div>
+// 			<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 				<sg-insert>3.8.12</sg-insert>
+// 			</div>
+// 			<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 				<sg-insert>3.8.12</sg-insert>
+// 			</div>
+// 			<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 				<sg-insert>3.8.12</sg-insert>
+// 			</div>
+// 			<div class="c-video-gallery__item c-slider__item" data-slider-item>
+// 				<sg-insert>3.8.12</sg-insert>
+// 			</div>
+// 		</div>
+// 	</div>
+// </div>
+//
+// sg-wrapper:
+// <div style="max-width:1200px;padding:20px;background-color:#000;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.57
+
+@include critical( home, video-landing, video-tag ) {
+
+	.c-video-gallery {
+		width: 100%;
+		margin-top: -20px;
+
+		@media ( query( min, desktop ) ) {
+			margin-top: -65px;
+		}
+
+		&__slider {
+			padding-bottom: 10px;
+			border-top: 1px solid #282F38;
+		}
+		
+		&__item {
+			flex-shrink: 0;
+			width: 200px;
+			padding: 20px 10px;
+
+			@media ( query( min, tablet ) ) {
+				width: 295px;
+				padding: 20px;
+			}
+		}
+
+		&__slider-heading {
+			padding-top: 15px;
+			font-size: 16px;
+			color: $g-color-red;
+
+			@media ( query( max, tablet ) ) {
+				display: none;
+			}
+		}
+	}
+}

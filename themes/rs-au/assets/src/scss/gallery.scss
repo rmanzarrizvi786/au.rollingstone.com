@@ -1,0 +1,18 @@
+// ----------------------------------------
+//
+// RollingStone Specific Gallery CSS.
+//
+// ----------------------------------------\
+@import 'helpers/typography';
+
+.c-gallery-thumbnail-counter {
+	font-family: $g-font-family-sans;
+}
+
+.c-gallery-social-icons__icon {
+	max-width: 100%;
+}
+
+.c-gallery-social-icons__icon.c-gallery-header__back-to-linked-post {
+	display: none;
+}
