@@ -33,6 +33,9 @@ class Renewals
         // Get subscribers up for renewal
         $crm_subs = $crm->getSubscriptionsForRenewal(10);
 
+        // Set base price
+        $base_price = $config['magazine']['base_price'];
+
         // If there are any subscriptions up for renewal
         if ($crm_subs && is_array($crm_subs) && !empty($crm_subs)) {
 
@@ -70,6 +73,10 @@ class Renewals
                 }
 
                 $payment = new Payment();
+
+                if($sub->id < 2383) {
+                    $base_price = $config['magazine']['base_price_legacy'];
+                }
 
                 // Cancel subscription in Stripe if stripe_subscription_id is NOT NULL
                 if (!is_null($sub->stripe_subscription_id)) {
@@ -131,7 +138,7 @@ class Renewals
                 } else { // No unpaid invoice, create new one and finalise payment
                     // Create Stripe Invoice and Process payment
                     $invoice = $payment->createInvoice(
-                        (int) ($config['magazine']['base_price'] * 100),
+                        (int) ($base_price * 100),
                         (int) ($config['magazine']['shipping_cost'] * 100),
                         $config['magazine']['number_of_issues'],
                         '',
@@ -147,14 +154,14 @@ class Renewals
                     // Insert in to Renewals database
                     $insert_values = [
                         'subscription_id' => $sub->id,
-                        'amount' => (int) ($config['magazine']['base_price'] * 100) +  (int) ($config['magazine']['shipping_cost'] * 100),
+                        'amount' => (int) ($base_price * 100) +  (int) ($config['magazine']['shipping_cost'] * 100),
                         'stripe_invoice_id' => $invoice['invoice']->id,
                         'payment_status' => 'unpaid',
                         'payment_error' => isset($invoice['stripe_error']) ? $invoice['stripe_error'] : NULL,
                         'last_payment_attempt' => current_time('mysql'),
                     ];
                     if (isset($invoice['error'])) {
-                        $insert_values['amount'] = (int) ($config['magazine']['base_price'] * 100) +  (int) ($config['magazine']['shipping_cost'] * 100);
+                        $insert_values['amount'] = (int) ($base_price * 100) +  (int) ($config['magazine']['shipping_cost'] * 100);
                         $insert_values['payment_status'] = 'unpaid';
                         $error = $sub->email . ' => ' . $invoice['stripe_error'];
                         $success = false;
@@ -349,7 +356,7 @@ class Renewals
 
                 $payment = new Payment();
                 $invoice = $payment->createInvoice(
-                    (int) ($config['magazine']['base_price'] * 100),
+                    (int) ($base_price * 100),
                     (int) ($config['magazine']['shipping_cost'] * 100),
                     $config['magazine']['number_of_issues'],
                     '',
@@ -373,7 +380,7 @@ class Renewals
                 // Insert in to Renewals database
                 $insert_values = [
                     'subscription_id' => $sub->id,
-                    'amount' => (int) ($config['magazine']['base_price'] * 100) +  (int) ($config['magazine']['shipping_cost'] * 100),
+                    'amount' => (int) ($base_price * 100) +  (int) ($config['magazine']['shipping_cost'] * 100),
                     'stripe_invoice_id' => $invoice['invoice']->id,
                     'payment_status' => 'unpaid',
                     'payment_error' => isset($invoice['stripe_error']) ? $invoice['stripe_error'] : NULL,

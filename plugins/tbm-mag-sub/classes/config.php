@@ -5,7 +5,7 @@ $is_sandbox = isset($_ENV) && isset($_ENV['ENVIRONMENT']) && 'sandbox' == $_ENV[
 //in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']); //false;
 $magazine = [
     'number_of_issues' => 4,
-    'base_price' => 59.95, // for new
+    'base_price' => 69.95, // for new
     'base_price_legacy' => 59.95, // for past subs
     'shipping_cost' => 0.00,
 ];
