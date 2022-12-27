@@ -319,6 +319,8 @@ class Renewals
         // Get subscribers up for renewal
         $crm_subs = $crm->getSubscriptionsForRenewalOverdue(1);
 
+        $base_price = $config['magazine']['base_price'];
+
         // If there are any subscriptions up for renewal
         if ($crm_subs && is_array($crm_subs) && !empty($crm_subs)) {
 
@@ -340,6 +342,11 @@ class Renewals
                 }
 
                 $unpaid_invoice = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}mag_renewals WHERE `subscription_id` = '{$sub->id}' AND payment_status = 'unpaid' LIMIT 1");
+
+                if($sub->id < 2383) {
+                    $base_price = $config['magazine']['base_price_legacy'];
+                }
+
                 if ($unpaid_invoice) {
                     // Update renewal record
                     $wpdb->update(

@@ -56,7 +56,7 @@ class TBMMagSub
     $this->plugin_name = 'tbm_mag_sub';
     $this->plugin_slug = 'tbm-mag-sub';
 
-    $this->base_price = 59.95; // change
+    $this->base_price = 69.95; // change
     $this->base_price_no_bundle = 49.95;
 
     $this->shipping_cost = 0.00;
