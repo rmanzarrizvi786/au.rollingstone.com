@@ -61,7 +61,7 @@ if (have_posts()) :
 					<section class="gigs d-flex">
 						<div class="gigs-wrap d-flex flex-column flex-md-row align-items-stretch">
 							<div class="gigs-menu d-none d-md-block mx-2">
-<!-- 								<ul>
+								<!-- 								<ul>
 									<li><a href="#">Events</a></li>
 									<li><a href="#">Map</a></li>
 									<li><a href="#">News</a></li>
@@ -120,42 +120,43 @@ if (have_posts()) :
 										<!-- <a href="#" target="_blank" class="btn soldout mt-3">SOLD OUT</a> -->
 										<div class="btn mt-3" style="cursor: auto; opacity: 0.3;">GET TICKETS</div>
 									</div>
-								</div>
 
-								<div class="thin-line"></div>
-								<h3 class="subhead mb-2 mt-2 d-flex justify-content-start flex-nowrap">
-									<span>COMING SOON</span>
-									<span class="ml-2"><img src="<?php echo get_template_directory_uri(); ?>/images/jd-live-at-last-2/arrow-right.png"></span>
-								</h3>
-								<div class=" d-flex align-items-stretch justify-content-start flex-column flex-md-row">
 									<div class="gig-item d-flex flex-column justify-content-between">
 										<div class="state">NSW</div>
 										<div>
 											<div class="img-wrap">
-												<img src="<?php echo get_template_directory_uri(); ?>/images/jd-live-at-last-2/jd-stacked-dark.png" style="width: 80%;">
+												<img src="<?php echo get_template_directory_uri(); ?>/images/jd-live-at-last-2/rolling2.jpg">
 											</div>
 											<div class="gig-info">
-												<h3>Artist TBC</h3>
-												<p>with special guests<br>TBC</p>
+												<h3>ROLLING BLACKOUTS COASTAL FEVER</h3>
+												<p>with special guests<br>Hatchie</p>
 											</div>
 											<div class="time-location">
-												Thursday 9th March<br>
+												Thursday 16th March<br>
 												The Cambridge Hotel,<br />
 												Newcastle West, NSW
 											</div>
 										</div>
-										<a href="#" target="_blank" class="btn mt-3">DETAILS SOON</a>
+										<!-- <a href="https://tickets.oztix.com.au/outlet/event/6aca5f66-4b74-48f6-ab4c-55f02c7ad8a3" target="_blank" class="btn mt-3">GET TICKETS</a> -->
+										<div class="btn mt-3" style="cursor: auto; opacity: 0.3;">GET TICKETS</div>
 									</div>
+								</div>
 
+								<div class="thin-line mb-2"></div>
+								<!-- 								<h3 class="subhead mb-2 mt-2 d-flex justify-content-start flex-nowrap">
+									<span>COMING SOON</span>
+									<span class="ml-2"><img src="<?php echo get_template_directory_uri(); ?>/images/jd-live-at-last-2/arrow-right.png"></span>
+								</h3> -->
+								<div class=" d-flex align-items-stretch justify-content-start flex-column flex-md-row">
 									<div class="gig-item d-flex flex-column justify-content-between">
 										<div class="state">VIC</div>
 										<div>
 											<div class="img-wrap">
-												<img src="<?php echo get_template_directory_uri(); ?>/images/jd-live-at-last-2/jd-stacked-dark.png" style="width: 80%;">
+												<img src="<?php echo get_template_directory_uri(); ?>/images/jd-live-at-last-2/touch.jpg">
 											</div>
 											<div class="gig-info">
-												<h3>Artist TBC</h3>
-												<p>with special guests<br>TBC</p>
+												<h3>TOUCH SENSITIVE</h3>
+												<p>with special guests<br>Nyxen, Juno Mamba & Foura (DJ Set)</p>
 											</div>
 											<div class="time-location">
 												Wednesday 29th March<br>
@@ -163,26 +164,27 @@ if (have_posts()) :
 												Melbourne, VIC
 											</div>
 										</div>
-										<a href="#" target="_blank" class="btn mt-3">DETAILS SOON</a>
+										<!-- <a href="https://moshtix.com.au/v2/event/jack-daniel-s-make-it-count-ft-touch-sensitive-nyxen/149141?skin=747" target="_blank" class="btn mt-3">GET TICKETS</a> -->
+										<div class="btn mt-3" style="cursor: auto; opacity: 0.3;">GET TICKETS</div>
 									</div>
 
 									<div class="gig-item d-flex flex-column justify-content-between">
 										<div class="state">WA</div>
 										<div>
 											<div class="img-wrap">
-												<img src="<?php echo get_template_directory_uri(); ?>/images/jd-live-at-last-2/jd-stacked-dark.png" style="width: 80%;">
+												<img src="<?php echo get_template_directory_uri(); ?>/images/jd-live-at-last-2/sly-withers.jpg">
 											</div>
 											<div class="gig-info">
-												<h3>Artist TBC</h3>
-												<p>with special guests<br>TBC</p>
+												<h3>SLY WITHERS</h3>
+												<p>with special guests<br>Mal De Mar</p>
 											</div>
 											<div class="time-location">
-												Tuesday 4th April<br>
+												Tuesday 24th April<br>
 												Magnet House,<br />
 												Perth, WA
 											</div>
 										</div>
-										<a href="#" target="_blank" class="btn mt-3">DETAILS SOON</a>
+										<a href="https://tickets.393murray.com.au/outlet/event/8278adaa-b060-4396-bcd3-3351efd9c252" target="_blank" class="btn mt-3">GET TICKETS</a>
 									</div>
 								</div>
 							</div>
@@ -190,7 +192,7 @@ if (have_posts()) :
 						<div class="gigs-bottom">KEEP YOUR EYES PEELED FOR FURTHER JACK DANIEL'S MAKE IT COUNT TOUR ANNOUNCEMENTS</div>
 					</section><!-- .gigs -->
 
-<!-- 					<section class="video d-flex p-2">
+					<!-- 					<section class="video d-flex p-2">
 						<div class="overlay"></div>
 						<div class="btn-play"></div>
 						<video controlslist="nodownload" width="250" id="jd-video">
@@ -204,12 +206,12 @@ if (have_posts()) :
 
 					<section class="intro-wrap">
 						<div class="content-wrap" style="background: transparent;">
-							<div class="latest-news"  style="background: transparent;">
+							<div class="latest-news" style="background: transparent;">
 								<h2 style="color: #fff; text-align:center; border-top: none;">Make It Count Tour 2022</h2>
 							</div>
 						</div>
 						<div class="d-flex flex-wrap flex-column flex-md-row">
-							<div class="col-12 col-md-6">
+							<div class="col-12 col-md-4">
 								<div class="my-3 mx-3 previous-events">
 									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://au.rollingstone.com/wp-content/uploads/2022/12/StandAtlantic_ChrisFrape-264.jpg&#038;nologo=1"></div>
 									<div style="color: #fff; margin-top: 15px; text-align: center;">
@@ -225,7 +227,8 @@ if (have_posts()) :
 									</div>
 								</div>
 							</div>
-							<div class="col-12 col-md-6">
+
+							<div class="col-12 col-md-4">
 								<div class="my-3 mx-3 previous-events">
 									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://au.rollingstone.com/wp-content/uploads/2022/11/ktunbridge-140.jpg&#038;nologo=1"></div>
 									<div style="color: #fff; margin-top: 15px; text-align: center;">
@@ -237,6 +240,40 @@ if (have_posts()) :
 										</p>
 										<div class="mt-2">
 											<a href="https://au.rollingstone.com/music/music-pictures/gallery-jack-daniels-make-it-count-with-dune-rats-43895/" target="_blank" class="btn btn-tickets">VIEW GALLERY</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-12 col-md-4">
+								<div class="my-3 mx-3 previous-events">
+									<div class="mx-0 mx-md-2 img-wrap"><img src="<?php echo get_template_directory_uri(); ?>/page-templates/jd-make-it-count-tour/JACK-DANIELS-MAKE-IT-COUNT-TOUR_ROLLING-STONE-WEB-social.jpg"></div>
+									<div style="color: #fff; margin-top: 15px; text-align: center;">
+										<h3 style="font-weight: bold;">ROLLING BLACKOUTS COASTAL FEVER with special guests Hatchie</h3>
+										<p>
+											Thursday, 16th March
+											<br>
+											The Cambridge Hotel, Newcastle West, NSW
+										</p>
+										<div class="mt-2">
+											<a href="https://au.rollingstone.com/music/music-pictures/gallery-jack-daniels-make-it-count-with-rolling-blackouts-coastal-fever-and-hatchie-46320/" target="_blank" class="btn btn-tickets">VIEW GALLERY</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-12 col-md-4">
+								<div class="my-3 mx-3 previous-events">
+									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://au.rollingstone.com/wp-content/uploads/2023/04/rollingstoneXJackDaniel-146.jpg&nologo=1"></div>
+									<div style="color: #fff; margin-top: 15px; text-align: center;">
+										<h3 style="font-weight: bold;">TOUCH SENSITIVE with special guests Nyxen, Juno Mamba & Foura (DJ Set)</h3>
+										<p>
+											Wednesday 29th March
+											<br>
+											170 Russell, Melbourne, VIC
+										</p>
+										<div class="mt-2">
+											<a href="https://au.rollingstone.com/music/music-pictures/gallery-jack-daniels-make-it-count-with-touch-sensitive-46551/" target="_blank" class="btn btn-tickets">VIEW GALLERY</a>
 										</div>
 									</div>
 								</div>
@@ -258,7 +295,26 @@ if (have_posts()) :
 										</a>
 									</div>
 								</div>
-<!-- 								<div class="d-flex flex-column col-12 col-md-4">
+								<div class="d-flex flex-column col-12 col-md-4">
+									<div class="d-flex align-items-stretch">
+										<div class="d-flex flex-column justify-content-between">
+											<a href="https://au.rollingstone.com/music/music-live-reviews/stand-atlantic-and-redhook-jack-daniels-make-it-count-tour-44394/" target="_blank" class="news mb-2 ml-0 ml-md-2">
+												<img src="https://au.rollingstone.com/wp-content/uploads/2022/12/jack-daniels.jpg?resize=900,600&w=1200">
+												<h4 class="side">Stand Atlantic and RedHook Tear It Up At Sydney’s Crowbar for Jack Daniel’s Make It Count Tour</h4>
+											</a>
+										</div>
+									</div>
+									<div class="d-flex align-items-stretch">
+										<div class="d-flex flex-column justify-content-between">
+											<a href="https://au.rollingstone.com/music/music-live-reviews/jack-daniels-make-it-count-rolling-blackouts-coastal-fevel-hatchie-46095/" target="_blank" class="news mb-2 ml-0 ml-md-2">
+												<img src="https://au.rollingstone.com/wp-content/uploads/2023/03/jack-daniels.jpg?resize=1400,700&w=1400">
+												<h4 class="side">Rolling Blackouts Coastal Fever and Hatchie ‘Make It Count’ at One of The Cambridge Hotel’s Final Shows</h4>
+											</a>
+										</div>
+									</div>
+
+								</div>
+								<!-- 								<div class="d-flex flex-column col-12 col-md-4">
 									<div class="d-flex align-items-stretch">
 										<div class="d-flex flex-column justify-content-between">
 											<a href="https://au.rollingstone.com/music/music-features/the-great-australian-songs-written-by-musicians-who-trusted-their-spirit-44188/" target="_blank" class="news mb-2 ml-0 ml-md-2">

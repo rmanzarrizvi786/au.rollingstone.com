@@ -11,7 +11,8 @@ if ( empty( $author ) ) {
 
 $dek = $author->description;
 
-$has_thumbnail = has_post_thumbnail( $author->ID );
+// $has_thumbnail = has_post_thumbnail( $author->ID );
+$has_thumbnail = false;
 $class         = empty( $has_thumbnail ) ? 'c-author-bio--without-thumb' : '';
 ?>
 <section class="c-author-bio <?php echo esc_attr( $class ); ?>" itemscope itemtype="https://schema.org/Person">

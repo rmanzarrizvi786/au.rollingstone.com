@@ -23,6 +23,7 @@ use Rolling_Stone\Inc\Featured_Article;
 
 	<div class="c-featured-hero__text-layer">
 		<?php if (class_exists('\PMC\Styled_Heading\Styled_Heading')) : ?>
+			<!-- Y -->
 			<?php
 			// echo \PMC\Styled_Heading\Styled_Heading::get_styled_heading( Featured_Article::STYLED_HEADING_ID ); // WPCS: XSS ok.
 			echo \PMC\Styled_Heading\Styled_Heading::get_styled_heading('rollingstone_featured_article_styled_heading');

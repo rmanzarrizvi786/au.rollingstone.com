@@ -19,6 +19,17 @@ if (!empty($post->custom_thumbnail_id)) {
 	$post_image_credit = pmc_get_photo_credit(get_post_thumbnail_id());
 }
 
+$heading = "";
+
+if (class_exists('\PMC\Styled_Heading\Styled_Heading')) {
+	// echo \PMC\Styled_Heading\Styled_Heading::get_styled_heading( Featured_Article::STYLED_HEADING_ID ); // WPCS: XSS ok.
+	// echo \PMC\Styled_Heading\Styled_Heading::get_styled_heading('rollingstone_featured_article_styled_heading');
+
+	$heading = \PMC\Styled_Heading\Styled_Heading::get_styled_heading('rollingstone_featured_article_styled_heading');
+
+	// var_dump($heading);
+}
+
 ?>
 <div class="l-featured-article">
 
@@ -36,18 +47,21 @@ if (!empty($post->custom_thumbnail_id)) {
 			<div class="c-featured-article__breadcrumbs t-semibold t-semibold--upper">
 				<?php get_template_part('template-parts/article/card-breadcrumbs'); ?>
 			</div>
-			<div class="c-featured-article__title">
-				<?php if (class_exists('\PMC\Styled_Heading\Styled_Heading')) : ?>
-					<?php
-					// echo \PMC\Styled_Heading\Styled_Heading::get_styled_heading( Featured_Article::STYLED_HEADING_ID ); // WPCS: XSS ok.
-					echo \PMC\Styled_Heading\Styled_Heading::get_styled_heading('rollingstone_featured_article_styled_heading');
-					?>
-				<?php endif; ?>
-			</div><!-- /.c-featured-article__title -->
-			<h2 class="c-featured-article__subtitle t-bold">
+			<div style="max-width: 39.6875rem; margin-left: auto; margin-right: auto;">
+			<?php if( empty($heading) ) { ?>
+			<!-- <div class="c-featured-article__title">
+				<?php //echo $heading; ?>
+			</div> -->
+			<h1 class="l-article-header__row l-article-header__row--title t-bold t-bold--condensed" data-href="<?php the_permalink(); ?>" data-title="<?php echo htmlentities($title); ?>" data-share-title="<?php echo urlencode($title); ?>" data-share-url="<?php echo urlencode(get_permalink()); ?>" data-article-number="<?php echo $count_articles; ?>">
+				<?php the_title(); ?>
+			</h1><!-- .l-article-header__row--title -->
+			<!-- /.c-featured-article__title -->
+			<?php } ?>
+			<h2 class="l-article-header__row l-article-header__row--lead t-semibold t-semibold--condensed">
 				<?php rollingstone_the_excerpt(); // Get the Excerpt here for Featured, instead of repurposing rollingstone_the_title() 
 				?>
 			</h2><!-- /.c-featured-article__title -->
+			</div>
 			<div class="c-featured-article__meta">
 				<?php
 				if (get_field('author')) :

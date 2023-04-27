@@ -91,7 +91,7 @@
 	}
 	add_filter( 'show_admin_bar' , 'tbm_hide_admin_bar' );
 
-	$submissions_active = time() < strtotime('2022-12-19');
+	$submissions_active = time() < strtotime('2023-03-01');
 	// $submissions_active = false;
 
 	wp_enqueue_script('ttnq-competition-2022', get_template_directory_uri() . '/page-templates/ttnq-competition-2022/js/scripts.js', ['jquery'], time(), true);
@@ -136,10 +136,10 @@
 							</h1>
 
 							<p class="my-3" style="font-size: 0.8125rem; font-weight: 600;">
-								All entrants will be eligible for exclusive My Queensland offers and discounts up to the value of $1000
+								All entrants will be eligible to receive exclusive My Queensland holiday vouchers, valued up to $1000* off for the first 10 bookings*.
 	     					</p>
 	     					<p class="my-2" style="font-size: 0.8125rem; font-weight: 600;">
-								Visit <a href="https://www.myqldholiday.com.au/" target="_blank">MyQueensland.com.au</a> to learn more.
+								Visit <a href="https://www.myqldholiday.com.au/tropical-northern-queensland-hot-deals/?utm_source=ttnq&utm_medium=affiliate&utm_campaign=mhc_qld_ttnq_activation&utm_content=hot_deals" target="_blank">MyQueensland.com.au</a> to learn more.
 	     					</p>
 	     				</div>
 	     				<div class="py-4 px-5 text-center text-uppercase border shadow" style="font-size: 1.125rem; font-weight: 400;">
@@ -180,8 +180,8 @@
 
 						<div class="py-4 px-5 text-center">
 	     					<p class="my-2" style="font-size: 0.8125rem; font-weight: 600;">
-	     						Competition runs December 18th 2022 12am AEDT until 11:59pm AEDT. Only Australian residents are eligible.<br />
-	     						The winner will be drawn on Wednesday December 21st 2022.
+	     						Competition runs January 27th 2023 12am AEDT until February 28th 11:59pm AEDT. Only Australian residents are eligible.<br />
+	     						The winner will be drawn on Wednesday 1st March 2023.
 	     					</p>
 	     					<p class="my-2" style="font-size: 0.8125rem; font-weight: 600;">
 								<a href="https://thebrag.com/media/terms-and-conditions/" target="_blank" style="color: #000;">
@@ -203,10 +203,10 @@
 						</h1>
 
 						<p class="my-3" style="font-size: 0.8125rem; font-weight: 600;">
-							All entrants will be eligible for exclusive My Queensland offers and discounts up to the value of $1,000
+							All entrants will be eligible to receive exclusive My Queensland holiday vouchers, valued up to $1000* off for the first 10 bookings*.
      					</p>
      					<p class="my-2" style="font-size: 0.8125rem; font-weight: 600;">
-							Visit <a href="https://www.myqldholiday.com.au/" target="_blank">MyQueensland.com.au</a> to learn more.
+							Visit <a href="https://www.myqldholiday.com.au/tropical-northern-queensland-hot-deals/?utm_source=ttnq&utm_medium=affiliate&utm_campaign=mhc_qld_ttnq_activation&utm_content=hot_deals" target="_blank">MyQueensland.com.au</a> to learn more.
      					</p>
      				</div>
 	     			<div class="competition-prize-bg">
@@ -251,8 +251,8 @@
 
 						<div class="py-3 px-0 text-center">
 	     					<p class="my-2" style="font-size: 0.8125rem; font-weight: 600;">
-	     						Competition runs December 18th 2022 12am AEDT until 11:59pm AEDT. Only Australian residents are eligible.<br />
-	     						The winner will be drawn on Wednesday December 21st 2022.
+	     						Competition runs January 27th 2023 12am AEDT until February 28th 11:59pm AEDT. Only Australian residents are eligible.<br />
+	     						The winner will be drawn on Wednesday 1st March 2023.
 	     					</p>
 	     					<p class="my-2" style="font-size: 0.8125rem; font-weight: 600;">
 								<a href="https://thebrag.com/media/terms-and-conditions/" target="_blank" style="color: #000;">
@@ -273,8 +273,55 @@
 		</div>
 		<?php else : ?>
 		<div class="mt-5 mb-4 text-center">
+			<img src="https://cdn.thebrag.com/pages/ttnq-competition-2022/mqld2.png" style="max-width: 280px;" />
 			<h1 class="competition-heading">
-				<u>Enter Now</u>
+				<u>Explore Exclusive My Queensland Holidays</u>
+			</h1>
+		</div>
+		<div class="mb-4 mx-3 text-center">
+			<div class="container">
+				<div class="row">
+					<a href="https://www.myqldholiday.com.au/package/crystalbrook-flynn-5-nights-urban-room-flights-today/?utm_source=ttnq&utm_medium=affiliate&utm_campaign=mhc_qld&utm_content=crystalbrook_flynn" target="_blank"  class="col m-3 d-flex align-items-center justify-content-center px-0" style="box-shadow: 0 0 10px rgb(0 0 0 / 25%); height: 18rem; background: url(https://www.myqldholiday.com.au/wp-content/uploads/sites/21/2022/04/CrystalBrook-Flynn-Pool-Area-800x600.jpg) no-repeat center center; background-size: cover; text-decoration: none;">
+						<div class="p-3 d-flex align-items-center justify-content-center" style="background: rgba(0, 0, 0, 0.6); width: 70%; height: 70%;">
+							<span class="text-uppercase" style="font-size: 1.375rem; line-height: 2rem; font-weight: bold; color: #fff;">Crystalbrook Flynn, A Cairns Luxury Hotel</span>
+							<span style="color: #fff; font-size: 0.75rem; line-height: 1rem;" class="px-3">Flights, 5 Nights, Reef Cruises, $250 Crystalbrook Credit, $2200 Bonus Value &amp; More</span>
+							<span style="color: #fff; font-size: 2rem; font-weight: bold;">$1299pp*</span>
+						</div>
+					</a>
+					<a href="https://www.myqldholiday.com.au/package/alamanda-palm-cove-by-lancemore-5-nights-one-bedroom-pool-view-room-land-only/?utm_source=ttnq&utm_medium=affiliate&utm_campaign=mhc_qld&utm_content=alamanda_palm_cove" target="_blank"  class="col m-3 d-flex align-items-center justify-content-center px-0" style="box-shadow: 0 0 10px rgb(0 0 0 / 25%); height: 18rem; background: url(https://www.myqldholiday.com.au/wp-content/uploads/sites/21/2020/03/71RhiannonTaylor_LM_PalmCove.jpg) no-repeat center center; background-size: cover; text-decoration: none;">
+						<div class="p-3 d-flex align-items-center justify-content-center" style="background: rgba(0, 0, 0, 0.6); width: 70%; height: 70%;">
+							<span class="text-uppercase" style="font-size: 1.375rem; line-height: 2rem; font-weight: bold; color: #fff;">Alamanda Palm Cove by Lancemore</span>
+							<span style="color: #fff; font-size: 0.75rem; line-height: 1rem;" class="px-3">5 Nights Accomodation, Full Day Reef Adventure, Beach Yoga, Cocktails, $1400 Bonus Value &amp; More</span>
+							<span style="color: #fff; font-size: 2rem; font-weight: bold;">$1299pp*</span>
+						</div>
+					</a>
+				</div>
+				<div class="row">
+					<a href="https://www.myqldholiday.com.au/package/rydges-esplanade-resort-cairns-7-night-mountain-view-queen-room/?utm_source=ttnq&utm_medium=affiliate&utm_campaign=mhc_qld&utm_content=rydes_esplanade" target="_blank"  class="col m-3 d-flex align-items-center justify-content-center px-0" style="box-shadow: 0 0 10px rgb(0 0 0 / 25%); height: 18rem; background: url(https://www.myqldholiday.com.au/wp-content/uploads/sites/21/2017/10/rydges-cairns-8.jpg) no-repeat center center; background-size: cover; text-decoration: none;">
+						<div class="p-3 d-flex align-items-center justify-content-center" style="background: rgba(0, 0, 0, 0.6); width: 70%; height: 70%;">
+							<span class="text-uppercase" style="font-size: 1.375rem; line-height: 2rem; font-weight: bold; color: #fff;">Rydges Esplanade Resort Cairns</span>
+							<span style="color: #fff; font-size: 0.75rem; line-height: 1rem;" class="px-3">7 Nights Accomodation, Reef Cruises, Cairns Aquarium, $2150 Bonus Value &amp; More</span>
+							<span style="color: #fff; font-size: 2rem; font-weight: bold;">$899pp*</span>
+						</div>
+					</a>
+					<a href="https://www.myqldholiday.com.au/package/paradise-links-resort-port-douglas-7-nights-links-room/?utm_source=ttnq&utm_medium=affiliate&utm_campaign=mhc_qld&utm_content=paradise_links_resort" target="_blank"  class="col m-3 d-flex align-items-center justify-content-center px-0" style="box-shadow: 0 0 10px rgb(0 0 0 / 25%); height: 18rem; background: url(https://www.myqldholiday.com.au/wp-content/uploads/sites/21/2019/03/resort-pool-paradise-links-resort-port-douglas.jpg) no-repeat center center; background-size: cover; text-decoration: none;">
+						<div class="p-3 d-flex align-items-center justify-content-center" style="background: rgba(0, 0, 0, 0.6); width: 70%; height: 70%;">
+							<span class="text-uppercase" style="font-size: 1.375rem; line-height: 2rem; font-weight: bold; color: #fff;">Paradise Links Resort Port Douglas</span>
+							<span style="color: #fff; font-size: 0.75rem; line-height: 1rem;" class="px-3">7 Nights Accomodation, Breakfast Hamper, Reef Cruise, Low Isles Cruise, & $2500 Bonus Value &amp; More</span>
+							<span style="color: #fff; font-size: 2rem; font-weight: bold;">$699pp*</span>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<a href="https://www.myqldholiday.com.au/tropical-northern-queensland-hot-deals/?utm_source=ttnq&utm_medium=affiliate&utm_campaign=mhc_qld_ttnq_activation&utm_content=hot_deals" target="_blank" class="mt-1 competition-submit" style="text-decoration: none; max-width: 280px; background: #00ACBE;">
+					<span id="button-text" style="height: auto;">Explore More Deals</span>
+				</a>
+			</div>
+		</div>
+		<div class="mt-5 mb-4 text-center">
+			<h1 class="competition-heading">
+				<u>Enter Below</u>
 			</h1>
 		</div>
 		<div class="mx-3 my-0 border competition-form px-sm-5">
@@ -422,7 +469,7 @@
 							<b>Entry Period:</b>
 						</td>
 						<td>
-							Competition runs December 18th 2022 12am AEDT until 11:59pm AEDT.
+							Competition runs January 27th 2023 12am AEDT until February 28th 11:59pm AEDT.
 						</td>
 					</tr>
 					<tr>
@@ -486,7 +533,13 @@
 							<b>Prize Conditions:</b>
 						</td>
 						<td>
-							Entrants must fill out form and opt in to these terms and conditions.
+							<p>
+								Entrants must fill out form and opt in to these terms and conditions.
+							</p>
+
+							<p>
+								* Prices are per person twin share unless otherwise stated. For full terms and conditions visit <a href="https://www.myqldholiday.com.au/tropical-northern-queensland-hot-deals/?utm_source=ttnq&utm_medium=affiliate&utm_campaign=mhc_qld_ttnq_activation&utm_content=hot_deals" target="_blank" style="color: #000;">MyQueensland.com.au</a>
+							</p>
 						</td>
 					</tr>
 				</tbody>
@@ -580,8 +633,8 @@
 
 					<div class="py-2 px-0 text-center">
      					<p class="my-2" style="font-size: 0.8125rem; font-weight: 600;">
-     						Competition runs December 18th 2022 12am AEDT until 11:59pm AEDT. Only Australian residents are eligible.
-     						The winner will be drawn on Wednesday December 21st 2022.
+     						Competition runs January 27th 2023 12am AEDT until February 28th 11:59pm AEDT. Only Australian residents are eligible.
+     						The winner will be drawn on Wednesday 1st March 2023.
      					</p>
      					<p class="my-2" style="font-size: 0.8125rem; font-weight: 600;">
 							<a href="https://thebrag.com/media/terms-and-conditions/" target="_blank" style="color: #000;">

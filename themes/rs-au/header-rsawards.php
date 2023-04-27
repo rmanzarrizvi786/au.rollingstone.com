@@ -628,19 +628,27 @@ use PMC\Lists\List_Post;
 
 		#content-wrap {
 			position: relative;
-			margin-top: .75rem;
 
 			width: 100%;
 			max-width: 1000px;
 			margin-left: auto;
 			margin-right: auto;
+
+			margin-top: 250px;
 		}
 
 		.l-footer__wrap {
 			max-width: 1000px;
 		}
 
-		#content-wrap:before,
+		.l-page {
+			background-image: url(https://cdn.thebrag.com/images/rsawards23/bg.jpg);
+			background-repeat: no-repeat;
+			background-position: center 140px;
+		}
+
+
+/*		#content-wrap:before,
 		#content-wrap:after {
 			content: "";
 			width: 340px;
@@ -651,9 +659,9 @@ use PMC\Lists\List_Post;
 			background-size: contain;
 			background-color: #000;
 			min-height: 1630px;
-		}
+		}*/
 
-		#content-wrap:before {
+/*		#content-wrap:before {
 			left: -340px;
 			background-image: url(<?php echo get_template_directory_uri(); ?>/images/rsa2022/left-red.jpg);
 		}
@@ -662,7 +670,7 @@ use PMC\Lists\List_Post;
 			right: -340px;
 			background-image: url(<?php echo get_template_directory_uri(); ?>/images/rsa2022/right-red.jpg);
 		}
-
+*/
 
 		body {
 			/* font-family: "Poppins", sans-serif !important; */
@@ -694,9 +702,6 @@ use PMC\Lists\List_Post;
 			color: #000;
 		}
 	</style>
-
-	<!-- Apester -->
-	<script type="text/javascript" src="https://static.apester.com/js/sdk/latest/apester-sdk.js" async></script>
 
 </head>
 

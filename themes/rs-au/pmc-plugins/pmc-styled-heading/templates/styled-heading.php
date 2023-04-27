@@ -9,6 +9,18 @@
 
 use PMC\Styled_Heading\Styled_Heading;
 
+$empty = true;
+
+foreach ($fields['text_lines']['text_line'] as $line) {
+	if (!empty($line['text'])) {
+		$empty = false;
+	}
+}
+
+if($empty) {
+	return true;
+}
+
 if (isset($fields)) {
 ?>
 

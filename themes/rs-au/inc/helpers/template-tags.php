@@ -647,6 +647,8 @@ function rollingstone_last_issue_cover($width = 120, $attr = [], $issue_id = nul
  */
 function rollingstone_the_author_avatar($author_id, $attr = [], $width = 92)
 {
+	return;
+
 	if (!$author_id) {
 		return;
 	}

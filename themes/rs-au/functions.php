@@ -10,7 +10,7 @@
 
 define('CHILD_THEME_PATH', get_stylesheet_directory());
 define('RS_THEME_URL', get_stylesheet_directory_uri());
-define('RS_THEME_VERSION', '1.62');
+define('RS_THEME_VERSION', '1.63');
 
 // July 2 2018, 6:00 AM
 define('PMC_LEGACY_DATE', mktime(6, 0, 0, 7, 2, 2018));
@@ -517,3 +517,17 @@ add_action( 'rest_api_init', function () {
         'permission_callback' => '__return_true',
     ) );
 } );
+
+add_action('wp_footer', 'inject_ga4', 99, 2);
+function inject_ga4()
+{
+?>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8V4HEDPRH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-L8V4HEDPRH');
+    </script>
+    <?php
+}

@@ -203,7 +203,9 @@ class BragObserver
       'border' => '#fff',
       'width' => NULL,
       'lc' => isset($_GET['lc']) ? sanitize_text_field($_GET['lc']) : NULL,
-      'cta' => 'Sign me up'
+      'cta' => 'Sign me up',
+      'q1opts' => '',
+      'q2opts' => ''
     ), $atts);
 
     if (is_null($lead_generator_atts['id']))
@@ -456,7 +458,7 @@ class BragObserver
       while ($posts->have_posts()) {
         $posts->the_post();
         $url = get_the_permalink();
-        $author = get_field('Author') ? get_field('Author') : get_the_author();
+        $author = get_field('author') ? get_field('author') : get_the_author();
 
         $category_names = $tag_names = array();
 

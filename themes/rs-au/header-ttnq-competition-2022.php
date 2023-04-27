@@ -102,6 +102,10 @@
 			text-align: left;
 		}
 
+		table, td, tr {
+			border: 1px solid #dee2e6;
+		}
+
 		html { margin-top: 0 !important; }
 		@media screen and ( max-width: 782px ) {
 			html { margin-top: 0 !important; }
@@ -273,7 +277,7 @@
 		/* Extra large devices (large desktops, 1200px and up) */
 		@media (min-width: 1200px) {
 			body {
-				background-image: url('https://cdn.thebrag.com/pages/ttnq-competition-2022/reskin2.jpg');
+				background-image: url('https://cdn.thebrag.com/pages/ttnq-competition-2022/reskin3.jpg');
 				background-position: center top;
 				background-repeat: no-repeat;
 				background-attachment: fixed;
