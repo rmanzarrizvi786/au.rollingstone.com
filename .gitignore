@@ -1,5 +1,7 @@
 .DS_Store
 
+wflogs/
+
 plugins/*
 !plugins/brag-observer
 !plugins/brag-observer-feed
