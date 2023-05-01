@@ -531,3 +531,12 @@ function inject_ga4()
     </script>
     <?php
 }
+
+// Exclude password protected posts from the main query
+
+add_action( 'pre_get_posts', 'prefix_exclude_password_protected_posts' );
+function prefix_exclude_password_protected_posts( $query ) {
+    if ( ! $query->is_singular() && ! is_admin() ) {
+        $query->set( 'has_password', false );
+    }
+}
