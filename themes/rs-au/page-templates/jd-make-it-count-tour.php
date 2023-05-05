@@ -164,7 +164,6 @@ if (have_posts()) :
 												Melbourne, VIC
 											</div>
 										</div>
-										<!-- <a href="https://moshtix.com.au/v2/event/jack-daniel-s-make-it-count-ft-touch-sensitive-nyxen/149141?skin=747" target="_blank" class="btn mt-3">GET TICKETS</a> -->
 										<div class="btn mt-3" style="cursor: auto; opacity: 0.3;">GET TICKETS</div>
 									</div>
 
@@ -184,7 +183,7 @@ if (have_posts()) :
 												Perth, WA
 											</div>
 										</div>
-										<a href="https://tickets.393murray.com.au/outlet/event/8278adaa-b060-4396-bcd3-3351efd9c252" target="_blank" class="btn mt-3">GET TICKETS</a>
+										<div class="btn mt-3" style="cursor: auto; opacity: 0.3;">GET TICKETS</div>
 									</div>
 								</div>
 							</div>
