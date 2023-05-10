@@ -277,6 +277,23 @@ if (have_posts()) :
 									</div>
 								</div>
 							</div>
+
+							<div class="col-12 col-md-4">
+								<div class="my-3 mx-3 previous-events">
+									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://au.rollingstone.com/wp-content/uploads/2023/05/RSMakeItCount_PERTH-62.jpg&nologo=1"></div>
+									<div style="color: #fff; margin-top: 15px; text-align: center;">
+										<h3 style="font-weight: bold;">SLY WITHERS with special guests Mal De Mar</h3>
+										<p>
+											Tuesday 24th April
+											<br>
+											Magnet House, Perth, WA
+										</p>
+										<div class="mt-2">
+											<a href="https://au.rollingstone.com/music/music-pictures/gallery-jack-daniels-make-it-count-with-sly-withers-47257/" target="_blank" class="btn btn-tickets">VIEW GALLERY</a>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</section><!-- .intro -->
 
