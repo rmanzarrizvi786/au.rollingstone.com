@@ -297,7 +297,7 @@ if (have_posts()) :
                                                     <div class="text-kuunari-bold" style="font-size: 200%; line-height: 200%;">THE JUNGLE GIANTS</div>
                                                     <p>Saturday, April 29th</p>
                                                     <p>The Osborne Rooftop, Melbourne</p>
-                                                    <a href="https://welcomesessionslive-23.jimbeampromotions.com.au/notify-melb.php" target="_blank" class="mt-3 btn btn-tickets">ENTER HERE</a>
+                                                    <a href="https://welcomesessionslive-23.jimbeampromotions.com.au/notify-melb.php" target="_blank" class="mt-3 btn btn-tickets">CLOSED</a>
                                                 </div>
                                             </div>
                                         </div>
