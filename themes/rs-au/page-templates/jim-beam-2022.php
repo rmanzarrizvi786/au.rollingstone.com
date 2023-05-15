@@ -462,6 +462,21 @@ if (have_posts()) :
                                     <div class="ol col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <div class="event-wrap event-01">
                                             <div class="event event-sydney">
+                                                <a href="https://au.rollingstone.com/music/music-pictures/gallery-jim-beam-welcome-sessions-with-the-jungle-giants-47397/" target="_blank" arget="_blank">
+                                                    <img src="https://app.thebrag.com/img-socl/?url=https://au.rollingstone.com/wp-content/uploads/2023/05/2.JungleGiants_Performance57.jpg?resize=1400,700&w=1400&nologo=1">
+                                                </a>
+                                            </div>
+                                            <div class="info">
+                                                <div class="text-kuunari-bold" style="font-size: 150%; line-height: 100%;">Jim Beam Welcome Sessions with<br /> Wafia</div>
+                                                <p>Saturday, April 29th</p>
+                                                <p>The Osborne Rooftop, Melbourne</p>
+                                                <a href="https://au.rollingstone.com/music/music-pictures/gallery-jim-beam-welcome-sessions-with-the-jungle-giants-47397/" target="_blank" class="mt-3 btn btn-tickets" target="_blank" class="mt-3 btn btn-tickets">View Gallery</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ol col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
+                                        <div class="event-wrap event-01">
+                                            <div class="event event-sydney">
                                                 <a href="https://au.rollingstone.com/music/music-pictures/gallery-jim-beam-welcome-sessions-with-wafia-46833/" target="_blank" arget="_blank">
                                                     <img src="https://app.thebrag.com/img-socl/?url=https://au.rollingstone.com/wp-content/uploads/2023/04/2.Wafia_Performance45.jpg?resize=1400,700&w=1400&nologo=1">
                                                 </a>
