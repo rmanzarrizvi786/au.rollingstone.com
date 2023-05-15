@@ -467,7 +467,7 @@ if (have_posts()) :
                                                 </a>
                                             </div>
                                             <div class="info">
-                                                <div class="text-kuunari-bold" style="font-size: 150%; line-height: 100%;">Jim Beam Welcome Sessions with<br /> Wafia</div>
+                                                <div class="text-kuunari-bold" style="font-size: 150%; line-height: 100%;">Jim Beam Welcome Sessions with<br /> The Jungle Giants</div>
                                                 <p>Saturday, April 29th</p>
                                                 <p>The Osborne Rooftop, Melbourne</p>
                                                 <a href="https://au.rollingstone.com/music/music-pictures/gallery-jim-beam-welcome-sessions-with-the-jungle-giants-47397/" target="_blank" class="mt-3 btn btn-tickets" target="_blank" class="mt-3 btn btn-tickets">View Gallery</a>
