@@ -29,7 +29,7 @@ class TBMScuScholarship2020 {
         add_action('wp_ajax_nopriv_save_scu_2023', [$this, 'save_scu_2023']);
 
         add_action('admin_menu', function () {
-            // add_menu_page('SCU Scholarship', 'SCU Scholarship', 'edit_pages', $this->plugin_slug, [$this, 'index'], 'dashicons-welcome-learn-more', 17);
+            add_menu_page('SCU Scholarship', 'SCU Scholarship', 'edit_pages', $this->plugin_slug, [$this, 'index'], 'dashicons-welcome-learn-more', 17);
             // add_submenu_page($this->plugin_slug, 'SCU Scholarship 2021', '2021 Submissions', 'edit_pages', $this->plugin_slug, [$this, 'index']);
             // add_submenu_page($this->plugin_slug, 'SCU Scholarship 2020', '2020 Submissions', 'edit_pages', $this->plugin_slug . '-2020', [$this, 'index_2020']);
             add_submenu_page($this->plugin_slug, 'SCU Scholarship 2023', '2023 Submissions', 'edit_pages', $this->plugin_slug . '-2023', [$this, 'index_2023']);
