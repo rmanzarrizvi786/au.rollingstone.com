@@ -87,7 +87,7 @@ if (have_posts()) : while (have_posts()) : the_post(); if (!post_password_requir
                 <div style="margin-top: 2rem; text-align: center;">
                     <h3>Check out the great moment last year's scholarship recipient found out:</h3>
                     <div style="display: inline-block; border: 4px solid #555; line-height: 1; padding: .5rem; background-color: #ccc;">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/qqHkYn0k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/DO7qqHkYn0k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
                 <?php if (!$submissions_active) : ?>
