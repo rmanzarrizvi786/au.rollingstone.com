@@ -42,7 +42,7 @@ class TBMScuScholarship2020 {
     }
 
     public function index() {
-        $year = 2021;
+        $year = 2023;
         
         if (isset($_GET['action']) && 'export' == trim($_GET['action'])) {
             include_once plugin_dir_path(__FILE__) . 'views/export.php';
