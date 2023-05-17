@@ -69,7 +69,7 @@ if (have_posts()) : while (have_posts()) : the_post(); if (!post_password_requir
                     </div>
                 </div>
                 <p>
-                    The Scholarship covers a total value of $15,000 over 3 years for Southern Cross University's Bachelor of Contemporary Music degree at either their Northern Rivers (Lismore) or Gold Coast (Coomera) campuses.<br/>
+                    The Scholarship covers a total value of $15,000 over 3 years for Southern Cross University's Bachelor of Contemporary Music degree at either their Northern Rivers (Lismore) or Gold Coast (Coomera) campuses.
                     Students will enjoy a real music degree taught by real musicians with direct connections across a range of artists from Amy Shark to King Gizzard and the Lizard Wizard to Thirsty Merc. Students can create a full portfolio for their career in music, tailoring their degree towards production, performance, song-writing, or other professional areas of the music industry.
                 </p>
                 <div style="float: right; margin-left: 1rem; margin-bottom: .5rem; width: 50%; padding: .65rem 0;">
