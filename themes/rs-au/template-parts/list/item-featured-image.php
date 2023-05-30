@@ -30,7 +30,7 @@ if (!empty($video)) {
 
 	// if ( ! empty( $legacy_id ) && ! has_post_thumbnail( get_the_ID() ) ) {
 	if (!has_post_thumbnail(get_the_ID())) {
-		$featured_image_override = TBM_CDN . '/assets/images/_dev/list-placeholder.jpg';
+		$featured_image_override = TBM_CDN . '/assets/images/list-placeholder.jpg';
 
 		if (get_post_meta(get_the_ID(), 'thumbnail_ext_url', TRUE)) {
 			$featured_image_override = get_post_meta(get_the_ID(), 'thumbnail_ext_url', TRUE);

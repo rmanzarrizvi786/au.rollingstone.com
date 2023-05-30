@@ -105,7 +105,7 @@ echo wp_kses_post( $args['before_widget'] );
 			<div class="c-ticketing__footer--powered-by">
 				<span><?php esc_html_e( 'Powered by', 'pmc-rollingstone' ); ?></span>
 				<a href="https://vividseats.com/" target="_blank" rel="noopener">
-					<img src="<?php echo esc_url(TBM_CDN . '/assets/images/_dev/vivid-seats.png' ); ?>" width="86" />
+					<img src="<?php echo esc_url(TBM_CDN . '/assets/images/vivid-seats.png' ); ?>" width="86" />
 				</a>
 			</div>
 		</div>

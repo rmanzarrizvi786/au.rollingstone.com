@@ -42,7 +42,7 @@ $show = isset($_GET['show']) ? trim(strtolower($_GET['show'])) : 'news';
 				<?php if (is_front_page()) : ?>
 					<h1 class="l-header__branding">
 						<a href="<?php echo esc_url(home_url('/')); ?>">
-							<img class="l-header__logo" src="<?php echo RS_THEME_URL . '/assets/src/images/_dev/RS-AU_LOGO-RED.png'; ?>">
+							<img class="l-header__logo" src="<?php echo TBM_CDN . '/assets/src/images/RS-AU_LOGO-RED.png'; ?>">
 							<!-- <svg class="l-header__logo"><use xlink:href="#svg-rs-logo"></use></svg>-->
 							<span class="screen-reader-text"><?php esc_html_e('Rolling Stone Australia', 'pmc-rollingstone'); ?></span>
 						</a>
@@ -51,7 +51,7 @@ $show = isset($_GET['show']) ? trim(strtolower($_GET['show'])) : 'news';
 					<div class="l-header__branding">
 						<a href="<?php echo esc_url(home_url('/')); ?>">
 							<!-- <svg class="l-header__logo"><use xlink:href="#svg-rs-logo"></use></svg> -->
-							<img class="l-header__logo" src="<?php echo RS_THEME_URL . '/assets/src/images/_dev/RS-AU_LOGO-RED.png'; ?>">
+							<img class="l-header__logo" src="<?php echo TBM_CDN . '/assets/src/images/RS-AU_LOGO-RED.png'; ?>">
 							<span class="screen-reader-text"><?php esc_html_e('Rolling Stone Australia', 'pmc-rollingstone'); ?></span>
 						</a>
 					</div>

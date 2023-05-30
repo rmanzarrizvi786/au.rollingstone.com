@@ -42,7 +42,7 @@ $show = isset($_GET['show']) ? trim(strtolower($_GET['show'])) : 'news';
 
 				<h1 class="l-header__branding">
 					<a href="<?php echo esc_url(home_url('/nz/')); ?>">
-						<img class="l-header__logo" src="<?php echo RS_THEME_URL . '/assets/src/images/_dev/RollingStoneNZ.png'; ?>">
+						<img class="l-header__logo" src="<?php echo TBM_CDN . '/assets/src/images/RollingStoneNZ.png'; ?>">
 						<span class="screen-reader-text"><?php esc_html_e('Rolling Stone New Zealand', 'pmc-rollingstone'); ?></span>
 					</a>
 				</h1>

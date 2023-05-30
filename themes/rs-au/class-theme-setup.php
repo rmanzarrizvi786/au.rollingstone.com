@@ -1621,7 +1621,7 @@ class ThemeSetup
 	?>
 		<div style="position: relative; width:100%; cursor:pointer; overflow:hidden;" title="Click to play video" class="yt-lazy-load home-featured-content" data-id="<?php echo $a['id']; ?>" id="<?php echo $a['id']; ?>">
 			<img src="https://i.ytimg.com/vi/<?php echo $a['id']; ?>/sddefault.jpg" style="position: absolute; width: 100%; z-index: 1;top:50%;left:50%;transform:translate(-50%, -50%)" class="video-thumb">
-			<img class="play-button-red" src="<?php echo get_template_directory_uri(); ?>/assets/src/images/_dev/play-button-60px.png" style="width: 40px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;transition: .25s all linear;" alt="Play" title="Play">
+			<img class="play-button-red" src="<?php echo TBM_CDN; ?>/assets/images//play-button-60px.png" style="width: 40px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;transition: .25s all linear;" alt="Play" title="Play">
 		</div>
 	<?php
 		$content = ob_get_clean();

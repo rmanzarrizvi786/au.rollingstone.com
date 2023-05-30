@@ -19,7 +19,7 @@ if (is_array($votw_response) && !is_wp_error($votw_response)) {
 
     <div id="featured-video-player" class="youtube-player" style="height: 140px">
       <img src="<?php echo $votw->image; ?>" style="position: absolute; width: 100%; z-index: 1;top:50%;left:50%;transform:translate(-50%, -50%)" class="video-thumb" alt="<?php esc_html($votw->artist) . ' - ' . esc_html($votw->song); ?>" title="<?php esc_html($votw->artist) . ' - ' . esc_html($votw->song); ?>">
-      <img class="play-button-red" src="<?php echo get_template_directory_uri(); ?>/assets/src/images/_dev/play-button-60px.png" style="width: 40px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;transition: .25s all linear;" alt="Play" title="Play">
+      <img class="play-button-red" src="<?php echo TBM_CDN; ?>/assets/images//play-button-60px.png" style="width: 40px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;transition: .25s all linear;" alt="Play" title="Play">
     </div>
     <div class="featured-video-meta d-flex justify-content-between align-items-center">
       <h3 style="font-size: 1rem;line-height: 1.25;">
@@ -59,7 +59,7 @@ if (is_array($votw_response) && !is_wp_error($votw_response)) {
         ?>
         <div id="featured-video-player" class="youtube-player" data-id="<?php echo $featured_yt_vid_id; ?>" style="height: 140px">
           <img src="<?php echo $featured_video_img; ?>" style="position: absolute; width: 100%; z-index: 1;top:50%;left:50%;transform:translate(-50%, -50%)" class="video-thumb" alt="<?php esc_html(get_option('tb_featured_video_artist_title')) . ' - ' . esc_html(get_option('tb_featured_video_song_title')); ?>" title="<?php esc_html(get_option('tb_featured_video_artist_title')) . ' - ' . esc_html(get_option('tb_featured_video_song_title')); ?>">
-          <img class="play-button-red" src="<?php echo get_template_directory_uri(); ?>/assets/src/images/_dev/play-button-60px.png" style="width: 40px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;transition: .25s all linear;" alt="Play" title="Play">
+          <img class="play-button-red" src="<?php echo TBM_CDN; ?>/assets/images//play-button-60px.png" style="width: 40px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;transition: .25s all linear;" alt="Play" title="Play">
         </div>
       <?php endif; // If Featured Video is set 
       ?>
