@@ -239,7 +239,7 @@ class Assets {
 		<script>
 			<?php
 			// Note that the non-minified resource is available for code review in assets/src/js/vendor/cssrelpreload.js
-			\PMC::render_template( TBM_CDN . '/assets/js/vendor/cssrelpreload.js', [], true );
+			\PMC::render_template( CHILD_THEME_PATH . '/assets/build/js/vendor/cssrelpreload.js', [], true );
 			?>
 		</script>
 		<?php
