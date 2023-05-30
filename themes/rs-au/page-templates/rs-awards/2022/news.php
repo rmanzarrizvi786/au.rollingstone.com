@@ -3,7 +3,7 @@
     <div class="col-12 col-md-6">
         <a href="https://au.rollingstone.com/music/music-news/rolling-stone-australia-awards-winners-2022-39086/" target="_blank">
             <div class="img-wrap">
-                <img src="https://au.rollingstone.com/wp-content/uploads/2022/03/RS-winners-2022.jpeg?resize=900,600&w=1200">
+                <img src="https://cdn-r2-1.thebrag.com/rs/uploads/2022/03/RS-winners-2022.jpeg?resize=900,600&w=1200">
             </div>
             <h3>
                 Genesis Owusu, Amy Shark, and The Kid LAROI Lead Rolling Stone Australia Awards Winners
@@ -14,7 +14,7 @@
     <div class="col-12 col-md-6">
         <a href="https://au.rollingstone.com/music/music-news/vote-in-rolling-stone-australia-readers-award-2022-36149/" target="_blank">
             <div class="img-wrap">
-                <img src="https://au.rollingstone.com/wp-content/uploads/2022/01/rs-readers-choice-voting.jpg?resize=900,600&w=1200">
+                <img src="https://cdn-r2-1.thebrag.com/rs/uploads/2022/01/rs-readers-choice-voting.jpg?resize=900,600&w=1200">
             </div>
             <h3>
                 Have Your Say in This Year’s Rolling Stone Australia Reader’s Choice Award
@@ -57,7 +57,7 @@
     <div class="col-12 col-md-6">
         <a href="https://au.rollingstone.com/music/music-news/nominations-rolling-stone-readers-award-34267/" target="_blank">
             <div class="img-wrap">
-                <img src="https://au.rollingstone.com/wp-content/uploads/2021/10/SJRS_awards_Heroimage_v1.jpg">
+                <img src="https://cdn-r2-1.thebrag.com/rs/uploads/2021/10/SJRS_awards_Heroimage_v1.jpg">
             </div>
             <h3>
                 Your Opportunity to Put Your Favourite Artist Forward for the Rolling Stone Australia Readers Award
@@ -81,7 +81,7 @@
 
 <div class="d-flex flex-wrap align-items-start mt-3">
     <div class="col-12 col-md-6">
-        <!-- <img src="https://au.rollingstone.com/wp-content/uploads/2021/10/SJRS_awards_Heroimage_v1.jpg"> -->
+        <!-- <img src="https://cdn-r2-1.thebrag.com/rs/uploads/2021/10/SJRS_awards_Heroimage_v1.jpg"> -->
         <iframe width="560" height="260" src="https://www.youtube.com/embed/VOYkxToVBZ0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <a href="https://au.rollingstone.com/music/music-news/sailor-jerry-rolling-stone-australia-awards-return-2022-31971/" target="_blank">
             <h3>

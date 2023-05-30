@@ -94,7 +94,7 @@ class DoubleClick_Provider extends PMC_Ad_Provider {
 	public function get_params() {
 		$params              = parent::get_params();
 		$params['mtfInline'] = 'TRUE';
-		$params['mtfIFPath'] = '/wp-content/themes/vip/pmc-plugins/partner/doubleclick/';
+		$params['mtfIFPath'] = '/assets/themes/vip/pmc-plugins/partner/doubleclick/';
 		$params['host']      = $this->_config['hostname'];
 		$params['tile']      = self::$tile;
 		$params['kw']        = $this->get_keywords( self::KEYWORDS_LIMIT );

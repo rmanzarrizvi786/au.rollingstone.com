@@ -595,7 +595,7 @@
                                                         <tr>
                                                             <td class="mcnImageContent" valign="top" style="padding-right: 0px; padding-left: 0px; padding-top: 0px; padding-bottom: 0px; text-align:center; background: #ffffff;">
 
-                                                                <img align="center" alt="Nomination confirmed for Sailor Jerry Rolling Stone Australia Awards" src="https://au.rollingstone.com/wp-content/uploads/2020/11/VOTED_600x1200px_200kb.jpg?cache=1" width="<?php echo $container_width; ?>" style="width: <?php echo $container_width; ?>px; height: auto; max-width: 100%; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+                                                                <img align="center" alt="Nomination confirmed for Sailor Jerry Rolling Stone Australia Awards" src="https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/VOTED_600x1200px_200kb.jpg?cache=1" width="<?php echo $container_width; ?>" style="width: <?php echo $container_width; ?>px; height: auto; max-width: 100%; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
                                                             </td>
                                                         </tr>
                                                     </tbody>

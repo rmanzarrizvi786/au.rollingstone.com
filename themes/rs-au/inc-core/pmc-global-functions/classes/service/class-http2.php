@@ -35,7 +35,7 @@
 	->register_pattern( '/pattern2/' )
 
 	// Add a new root relative URL path to the white list
-	->register_whitelist( '/wp-content/upload/asset3.css' );
+	->register_whitelist( '/assets/upload/asset3.css' );
 
  *
  *

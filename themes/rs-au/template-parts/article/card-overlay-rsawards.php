@@ -22,7 +22,7 @@ $srcset = (is_front_page()) ? [440, 560, 660, 725] : [400, 768, 1000, 1240];
 		<figure class="c-card__image">
 
 			<div class="c-crop c-crop--<?php echo (is_front_page()) ? 'ratio-5x6' : 'ratio-1x1'; ?>">
-				<img width="431" height="615" src="https://au.rollingstone.com/wp-content/uploads/2021/01/SJRSAwardsNominateHero-Vert.png"class="c-crop__img wp-post-image visible" alt="">
+				<img width="431" height="615" src="https://cdn-r2-1.thebrag.com/rs/uploads/2021/01/SJRSAwardsNominateHero-Vert.png"class="c-crop__img wp-post-image visible" alt="">
 			</div><!-- .c-crop -->
 
 		</figure><!-- .c-card__image -->

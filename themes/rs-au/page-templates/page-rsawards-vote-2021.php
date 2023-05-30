@@ -199,7 +199,7 @@ if (have_posts()) :
                 $subscriptions = $magSub->get_subscriptions();
                 if (1 || $subscriptions) : // If subscriptions
                 ?>
-                  <img src="https://au.rollingstone.com/wp-content/uploads/2020/11/SJRSAwardsNominateHero_1000pxwide.jpg" width="100%" />
+                  <img src="https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/SJRSAwardsNominateHero_1000pxwide.jpg" width="100%" />
                   <div class="d-flex flex-wrap">
                     <p>As a Rolling Stone subscriber, you are part of an elite club that pays for music journalism. This means music really matters to you, and it is for that reason you are a vital part of the 2021 Sailor Jerry Rolling Stone Australia Awards.</p>
                     <p>Because of your contribution to journalism, and as clear purveyors of music in all its forms, you have been entrusted with a responsibility to determine an award winner.</p>

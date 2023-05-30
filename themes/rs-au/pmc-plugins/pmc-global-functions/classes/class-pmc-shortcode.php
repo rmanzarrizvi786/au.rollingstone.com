@@ -145,7 +145,7 @@ class PMC_Shortcode {
 			window.fbAsyncInit = function() {
 				FB.init({
 				  appId      : '<?php echo esc_js($appid); ?>',
-				  channelUrl : window.location.protocol + '//' + window.location.hostname + '/wp-content/themes/vip/pmc-plugins/partner/facebook/channel.html',
+				  channelUrl : window.location.protocol + '//' + window.location.hostname + '/assets/themes/vip/pmc-plugins/partner/facebook/channel.html',
 				  status     : true,
 				  cookie     : true,
 				  xfbml      : true,

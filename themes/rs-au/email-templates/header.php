@@ -570,7 +570,7 @@
                             <tbody>
                               <tr>
                                 <td class="mcnImageContent" valign="top" style="padding-right: 0px; padding-left: 0px; padding-top: 0; padding-bottom: 0; text-align:center;">
-                                  <a href="https://au.rollingstone.com/" target="_blank"><img align="center" alt="<?php bloginfo(); ?>" src="<?php echo isset( $logo_url ) ? $logo_url : 'https://au.rollingstone.com/wp-content/themes/rs-au/images/edm/RS-AU_LOGO-RED.png'; ?>" width="<?php echo isset( $logo_width ) ? $logo_width : 200; ?>" style="max-width: 100%; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnRetinaImage"></a>
+                                  <a href="https://au.rollingstone.com/" target="_blank"><img align="center" alt="<?php bloginfo(); ?>" src="<?php echo isset( $logo_url ) ? $logo_url : 'https://cdn-r2-2.thebrag.com/logos/RS-AU_LOGO-RED.png'; ?>" width="<?php echo isset( $logo_width ) ? $logo_width : 200; ?>" style="max-width: 100%; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnRetinaImage"></a>
                                 </td>
                               </tr>
                             </tbody>

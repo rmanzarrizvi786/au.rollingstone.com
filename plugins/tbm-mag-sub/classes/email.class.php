@@ -9,7 +9,7 @@ class Email
     {
         $this->template = __DIR__ . '/../email-templates/template.php';
 
-        $this->comps_email_destination = 'sachin.patel@thebrag.media';
+        $this->comps_email_destination = 'dev@thebrag.media';
     }
 
     public function getHeader()

@@ -53,7 +53,7 @@ if (have_posts()) :
               <div class="c-picture__frame2">
 
                 <div class="c-crop2 c-crop--ratio-3x2-2 logo">
-                  <img src="https://au.rollingstone.com/wp-content/themes/rs-au/assets/src/images/_dev/RS-AU_LOGO-RED.png" style="width: 60%; max-width: 100%;">
+                  <img src="https://cdn-r2-2.thebrag.com/logos/RS-AU_LOGO-RED.png" style="width: 60%; max-width: 100%;">
                   <div style="font-family: Graphik,sans-serif; margin-top: 2rem; font-size: 175%; line-height: 130%; display: none;"></div>
                 </div><!-- .c-crop -->
               </div>

@@ -256,7 +256,7 @@ if (have_posts()) :
 							if ($subscriptions) : // If subscriptions
 							?>
 								<div style="font-family: 'Roboto', sans-serif;">
-									<img src="https://au.rollingstone.com/wp-content/uploads/2020/11/SJRSAwardsNominateHero_1000pxwide.jpg" width="100%" />
+									<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/SJRSAwardsNominateHero_1000pxwide.jpg" width="100%" />
 
 									<h2 style="text-align: center; margin-bottom: 2px; margin-top: 12px; color: #000; font-family: Poppins, sans-serif; font-size: 32px;">Vote For Your Favourite Artist</h2>
 

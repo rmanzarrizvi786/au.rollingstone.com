@@ -21,7 +21,7 @@ if ($is_sandbox) {
     $salesforce['client_id'] = '3MVG9N6eDmZRVJOnbnGA3SU5MvC6Cw3r1x8nRb81EfTzuINhI3oD4QaRJwjETtD3g4IyIGjxTqN7iS5h73rC.';
     $salesforce['client_secret'] = '2790C31BBCFE87FE01C14EE44A3DA272EE2DDFAFE0938D814EC97B827B0016AC';
     $salesforce['login_uri'] = 'https://thebragmedia--tbmsandbox.my.salesforce.com/';
-    $salesforce['username'] = 'sachin.patel@thebrag.media.tbmsandbox';
+    $salesforce['username'] = 'dev@thebrag.media.tbmsandbox';
     $salesforce['password'] = 'sAchin456';
 
     $api_brag_user['api_url'] = 'https://the-brag.com/wp-json/tbm_users/v1/';

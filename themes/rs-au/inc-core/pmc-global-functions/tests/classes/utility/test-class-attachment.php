@@ -493,7 +493,7 @@ class Test_Attachment extends Base {
 			$this->_instance,
 			'_get_postid_from_url_via_es',
 			[
-				home_url( 'wp-content/uploads/2019/08/some-image.jpg' ),
+				home_url( 'assets/uploads/2019/08/some-image.jpg' ),
 			]
 		);
 
@@ -522,7 +522,7 @@ class Test_Attachment extends Base {
 			$this->_instance,
 			'_get_postid_from_url_via_es',
 			[
-				home_url( 'wp-content/uploads/2019/08/some-image.jpg' ),
+				home_url( 'assets/uploads/2019/08/some-image.jpg' ),
 			]
 		);
 
@@ -550,7 +550,7 @@ class Test_Attachment extends Base {
 		 */
 		add_filter( 'pmc_is_production_mock_env', '__return_true' );
 
-		$json_url = home_url( 'wp-content/uploads/2019/08/some-image-new.jpg' );
+		$json_url = home_url( 'assets/uploads/2019/08/some-image-new.jpg' );
 		$json_url = set_url_scheme( $json_url, 'https' );
 		$json_url = wp_json_encode( substr( $json_url, 8 ) );
 
@@ -567,7 +567,7 @@ class Test_Attachment extends Base {
 			$this->_instance,
 			'_get_postid_from_url_via_es',
 			[
-				home_url( 'wp-content/uploads/2019/08/some-image.jpg' ),
+				home_url( 'assets/uploads/2019/08/some-image.jpg' ),
 			]
 		);
 
@@ -595,7 +595,7 @@ class Test_Attachment extends Base {
 		 */
 		add_filter( 'pmc_is_production_mock_env', '__return_true' );
 
-		$file_url = home_url( 'wp-content/uploads/2019/08/some-image.jpg' );
+		$file_url = home_url( 'assets/uploads/2019/08/some-image.jpg' );
 		$json_url = set_url_scheme( $file_url, 'https' );
 		$json_url = wp_json_encode( substr( $json_url, 8 ) );
 

@@ -81,7 +81,7 @@ class Tests_Class_PMC_Global extends Base {
 	 * @group pmc-phpunit-ignore-failed
 
 	 * @NOTE: test fails as a result of the path needing to be updated
-	 * + [path] => /wp-content/plugins/var/www/html/wp-content/themes/vip/pmc-plugins/pmc-global-functions
+	 * + [path] => /assets/plugins/var/www/html/assets/themes/vip/pmc-plugins/pmc-global-functions
 	 *
 	 */
 	public function test_pmc_global_functions_url() {
@@ -95,13 +95,13 @@ class Tests_Class_PMC_Global extends Base {
 		$urls = parse_url( pmc_global_functions_url() );
 		$this->assertArraySubset( [
 			'host' => WP_TESTS_DOMAIN,
-			'path' => '/wp-content/themes/vip/pmc-plugins/pmc-global-functions/',
+			'path' => '/assets/themes/vip/pmc-plugins/pmc-global-functions/',
 		], $urls );
 
 		$urls = parse_url( pmc_global_functions_url( '/unitest') );
 		$this->assertArraySubset( [
 			'host' => WP_TESTS_DOMAIN,
-			'path' => '/wp-content/themes/vip/pmc-plugins/pmc-global-functions/unitest',
+			'path' => '/assets/themes/vip/pmc-plugins/pmc-global-functions/unitest',
 		], $urls );
 
 		// validating related events call the pmc_global_functions_url function

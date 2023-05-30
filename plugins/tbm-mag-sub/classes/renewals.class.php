@@ -53,7 +53,7 @@ class Renewals
 
                 if (!$sub) {
                     wp_send_json_error([$crm_sub['Email__c'] . ' => Record not found for Salesforce ID; ' . $crm_sub['Id'] . '.']);
-                    wp_mail('toby.smith@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub['Id']);
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub['Id']);
                     wp_die();
                 }
 
@@ -83,7 +83,7 @@ class Renewals
                     $stripe_sub = $payment->cancelSubscription($sub->stripe_subscription_id);
                     if ($stripe_sub['error']) {
                         wp_send_json_error([$sub->email . ' => ' . $stripe_sub['stripe_error']]);
-                        wp_mail('toby.smith@thebrag.media', 'RS Mag Renewal Stripe Error', $sub->email . ' => ' . $stripe_sub['stripe_error']);
+                        wp_mail('dev@thebrag.media', 'RS Mag Renewal Stripe Error', $sub->email . ' => ' . $stripe_sub['stripe_error']);
                         wp_die();
                     } else {
                         $wpdb->update(
@@ -191,7 +191,7 @@ class Renewals
                     );
 
                     wp_send_json_error([$crm_sub['Email__c'] . ' => ' . $crm_response['error'] . ' | ' . $invoice_id]);
-                    wp_mail('toby.smith@thebrag.media', 'RS Mag Renewal CRM Error', $crm_sub['Email__c'] . ' => ' . $crm_response['error'] . ' | ' . $invoice_id);
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal CRM Error', $crm_sub['Email__c'] . ' => ' . $crm_response['error'] . ' | ' . $invoice_id);
                     wp_die();
                 } else {
                     $message .= ' + ' . $crm_response;
@@ -222,7 +222,7 @@ class Renewals
                     );
 
                     wp_send_json_error([$error]);
-                    wp_mail('toby.smith@thebrag.media', 'RS Mag Renewal Failed', $error);
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Failed', $error);
                     wp_die();
                 } else {
                     // $email->send('renewal-success', $crm_sub, $sub);
@@ -258,7 +258,7 @@ class Renewals
                         );
 
                         wp_send_json_error([$crm_sub['Email__c'] . ' => ' . $crm_response['error']]);
-                        wp_mail('toby.smith@thebrag.media', 'RS Mag CRM Update Error', $crm_sub['Email__c'] . ' => ' . $crm_response['error']);
+                        wp_mail('dev@thebrag.media', 'RS Mag CRM Update Error', $crm_sub['Email__c'] . ' => ' . $crm_response['error']);
                         wp_die();
                     } else {
                         $message .= ' + ' . $crm_response;

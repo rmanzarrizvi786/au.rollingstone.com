@@ -422,19 +422,19 @@ class TBMMagSubPaypal {
           <tbody>
             <tr>
               <td valign="top" align="center" style="border: 1px solid #555555;">
-                <a href="https://www.facebook.com/rollingstoneaustralia/" target="_blank" style="text-decoration:none;"><img src="https://au.rollingstone.com/wp-content/themes/rs-au/images/edm/footer_social_facebook.png" width="40" height="40" alt="facebook" style="font-family:Arial, sans-serif; font-size:12px; line-height:15px; color:#000000; display:block;" border="0" ></a>
+                <a href="https://www.facebook.com/rollingstoneaustralia/" target="_blank" style="text-decoration:none;"><img src="https://cdn-r2-2.thebrag.com/pages/edm/images/footer_social_facebook.png" width="40" height="40" alt="facebook" style="font-family:Arial, sans-serif; font-size:12px; line-height:15px; color:#000000; display:block;" border="0" ></a>
               </td>
               <td width="25" style="width:25px;">&nbsp;</td>
               <td valign="top" align="center" style="border: 1px solid #555555;">
-                <a href="https://twitter.com/rollingstoneaus" target="_blank" style="text-decoration:none;"><img src="https://au.rollingstone.com/wp-content/themes/rs-au/images/edm/footer_social_twitter.png" width="40" height="40" alt="twitter" style="font-family:Arial, sans-serif; font-size:12px; line-height:15px; color:#000000; display:block;" border="0" ></a>
+                <a href="https://twitter.com/rollingstoneaus" target="_blank" style="text-decoration:none;"><img src="https://cdn-r2-2.thebrag.com/pages/edm/images/footer_social_twitter.png" width="40" height="40" alt="twitter" style="font-family:Arial, sans-serif; font-size:12px; line-height:15px; color:#000000; display:block;" border="0" ></a>
               </td>
               <td width="25" style="width:25px;">&nbsp;</td>
               <td valign="top" align="center" style="border: 1px solid #555555;">
-                <a href="https://instagram.com/rollingstoneaus" target="_blank" style="text-decoration:none;"><img src="https://au.rollingstone.com/wp-content/themes/rs-au/images/edm/footer_social_instagram.png" width="40" height="40" alt="instagram" style="font-family:Arial, sans-serif; font-size:12px; line-height:15px; color:#000000; display:block;" border="0"></a>
+                <a href="https://instagram.com/rollingstoneaus" target="_blank" style="text-decoration:none;"><img src="https://cdn-r2-2.thebrag.com/pages/edm/images/footer_social_instagram.png" width="40" height="40" alt="instagram" style="font-family:Arial, sans-serif; font-size:12px; line-height:15px; color:#000000; display:block;" border="0"></a>
               </td>
               <td width="25" style="width:25px;">&nbsp;</td>
               <td valign="top" align="center" style="border: 1px solid #555555;">
-                <a href="https://www.youtube.com/channel/UC5ogXwEsy_q8_2DQHp1RU8A" target="_blank" style="text-decoration:none;"><img src="https://au.rollingstone.com/wp-content/themes/rs-au/images/edm/footer_social_youtube.png" width="40" height="40" alt="youtube" style="font-family:Arial, sans-serif; font-size:12px; line-height:15px; color:#000000; display:block;" border="0"></a>
+                <a href="https://www.youtube.com/channel/UC5ogXwEsy_q8_2DQHp1RU8A" target="_blank" style="text-decoration:none;"><img src="https://cdn-r2-2.thebrag.com/pages/edm/images/footer_social_youtube.png" width="40" height="40" alt="youtube" style="font-family:Arial, sans-serif; font-size:12px; line-height:15px; color:#000000; display:block;" border="0"></a>
               </td>
             </tr>
           </tbody>

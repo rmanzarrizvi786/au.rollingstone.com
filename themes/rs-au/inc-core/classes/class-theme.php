@@ -3,7 +3,7 @@
 namespace PMC\Core\Inc;
 
 /**
-* Theme | www/wp-content/themes/vip/pmc-core-v2/inc/classes/class-theme.php
+* Theme | www/assets/themes/vip/pmc-core-v2/inc/classes/class-theme.php
 *
 * @since 2017-12-08
 *
@@ -18,7 +18,7 @@ class Theme {
 	use \PMC\Global_Functions\Traits\Singleton;
 
 	/**
-	* __construct | www/wp-content/themes/vip/pmc-core-v2/inc/classes/class-theme.php
+	* __construct | www/assets/themes/vip/pmc-core-v2/inc/classes/class-theme.php
 	*
 	* @since 2017-12-07 - Class constructor
 	*
@@ -52,7 +52,7 @@ class Theme {
 	}
 
 	/**
-	* enqueue_assets | www/wp-content/themes/vip/pmc-core-v2/inc/classes/class-theme.php
+	* enqueue_assets | www/assets/themes/vip/pmc-core-v2/inc/classes/class-theme.php
 	*
 	* @since 2017-12-05 - Enqueues the main site assets for pmc-core-v2 theme.
 	* @uses wp_enqueue_script, wp_enqueue_style, get_template_directory_uri
@@ -832,7 +832,7 @@ class Theme {
 	}
 
 	/**
-	* async_scripts | www/wp-content/themes/vip/pmc-core-v2/inc/classes/class-theme.php
+	* async_scripts | www/assets/themes/vip/pmc-core-v2/inc/classes/class-theme.php
 	*
 	* @since 2017-12-07 - Async any scripts we want that we don't have control
 	* over in the code such as VIP plugins. Avoid adding pmc-scripts here as there

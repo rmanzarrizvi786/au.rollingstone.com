@@ -139,7 +139,7 @@ add_filter( 'attachment_fields_to_edit', '\PMC\Image\attachment_fields_to_edit',
 function get_intermediate_image_sizes() {
 	global $_wp_additional_image_sizes;
 
-	// @see /wp-content/mu-plugins/wpcom-media.php
+	// @see /assets/mu-plugins/wpcom-media.php
 	$had_filter = remove_filter( 'intermediate_image_sizes', 'wpcom_intermediate_sizes' );
 
 	$sizes = \get_intermediate_image_sizes();

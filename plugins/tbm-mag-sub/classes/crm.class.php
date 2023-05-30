@@ -25,14 +25,14 @@ class CRM
       $this->salesforce['client_id'] = '3MVG9N6eDmZRVJOnbnGA3SU5MvC6Cw3r1x8nRb81EfTzuINhI3oD4QaRJwjETtD3g4IyIGjxTqN7iS5h73rC.';
       $this->salesforce['client_secret'] = '2790C31BBCFE87FE01C14EE44A3DA272EE2DDFAFE0938D814EC97B827B0016AC';
       $this->salesforce['login_uri'] = 'https://thebragmedia--tbmsandbox.my.salesforce.com/';
-      $this->salesforce['username'] = 'sachin.patel@thebrag.media.tbmsandbox';
+      $this->salesforce['username'] = 'dev@thebrag.media.tbmsandbox';
       $this->salesforce['password'] = 'sAchin456';
     } else {
       // Salesforce
       $this->salesforce['client_id'] = '3MVG9G9pzCUSkzZskqIN3a4qW0R3A8M8wOR_tcBYKxXgBiCJXOVESBA399bvfHSMktJHlaHipQQhH.jwYJVt5';
       $this->salesforce['client_secret'] = '2D07B74620BC31B2A7CA3D14C7DD840F22189B3A9DF75B6BB9EFC59E8FD2F568';
       $this->salesforce['login_uri'] = 'https://thebragmedia.my.salesforce.com/';
-      $this->salesforce['username'] = 'sachin.patel@thebrag.media';
+      $this->salesforce['username'] = 'dev@thebrag.media';
       $this->salesforce['password'] = 'sAchin456';
     }
     */
@@ -103,7 +103,7 @@ class CRM
 
     if ($status != 201) {
       error_log('--Salesforce Error: ' . $json_response);
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce Create Sub', $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Create Sub', $json_response);
       return ['error' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.'];
       wp_die();
     } else {
@@ -143,7 +143,7 @@ class CRM
 
     if ($status != 200) {
       error_log('--Salesforce Error: ' . $json_response);
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce Get Sub', "Method: " . __METHOD__ . "\n Line: " . __LINE__ . "\n Id: {$id}\n" . $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Get Sub', "Method: " . __METHOD__ . "\n Line: " . __LINE__ . "\n Id: {$id}\n" . $json_response);
       return ['error' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.'];
       wp_die();
     } else {
@@ -199,7 +199,7 @@ class CRM
 
     if ($status != 204) {
       error_log('--Salesforce Error: ' . $json_response . ' | Status: ' . $status);
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce Update Sub', $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Update Sub', $json_response);
       wp_send_json_error(['error' => ['message' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.']]);
       wp_die();
     }
@@ -239,7 +239,7 @@ class CRM
 
     if ($status != 204) {
       error_log('--Salesforce resetRemainingIssues Error: ' . $json_response . ' | Status: ' . $status);
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce resetRemainingIssues', $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce resetRemainingIssues', $json_response);
       return ['error' => 'Salesforce resetRemainingIssues Error: ' . $json_response . ' | Status: ' . $status];
     }
     return 'Reset remaining issues in Salesforce';
@@ -284,7 +284,7 @@ class CRM
 
     if ($status != 204) {
       error_log('--Salesforce updatePaymentAttempts Error: ' . $json_response . ' | Status: ' . $status);
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce updatePaymentAttempts', $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce updatePaymentAttempts', $json_response);
       return ['error' => 'Salesforce updatePaymentAttempts Error: ' . $json_response . ' | Status: ' . $status];
     }
     return 'Updated Payment info in Salesforce';
@@ -318,7 +318,7 @@ class CRM
 
     if ($status != 204) {
       error_log('--Salesforce Error: ' . $json_response . ' | Status: ' . $status);
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce Cancel Sub', $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Cancel Sub', $json_response);
       wp_send_json_error(['error' => ['message' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.']]);
       wp_die();
     }
@@ -358,7 +358,7 @@ class CRM
 
     if ($status != 204) {
       error_log('--Salesforce Error: ' . $json_response . ' | Status: ' . $status);
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce Cancel Sub', $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Cancel Sub', $json_response);
       wp_send_json_error(['error' => ['message' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.']]);
       wp_die();
     }
@@ -374,7 +374,7 @@ class CRM
     $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);
     if ($status != 200) {
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce Get Sub', "Method: " . __METHOD__ . "\n Line: " . __LINE__ . "\n Id: {$subscriber->salesforce_id}\n" . $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Get Sub', "Method: " . __METHOD__ . "\n Line: " . __LINE__ . "\n Id: {$subscriber->salesforce_id}\n" . $json_response);
     } else {
       $response = json_decode($json_response);
       require __DIR__ . '/braze.class.php';
@@ -426,7 +426,7 @@ class CRM
 
     if ($status != 204) {
       error_log('--Salesforce Error: ' . $json_response . ' | Status: ' . $status);
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce Cancel Sub', $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Cancel Sub', $json_response);
       wp_send_json_error(['error' => ['message' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.']]);
       wp_die();
     }
@@ -465,7 +465,7 @@ class CRM
 
     if ($status != 204) {
       error_log('--Salesforce Error: ' . $json_response . ' | Status: ' . $status);
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce Enable Sub', $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Enable Sub', $json_response);
       wp_send_json_error(['error' => ['message' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.']]);
       wp_die();
     }
@@ -481,7 +481,7 @@ class CRM
     $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);
     if ($status != 200) {
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce Get Sub', "Method: " . __METHOD__ . "\n Line: " . __LINE__ . "\n Id: {$subscriber->salesforce_id}\n" . $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Get Sub', "Method: " . __METHOD__ . "\n Line: " . __LINE__ . "\n Id: {$subscriber->salesforce_id}\n" . $json_response);
     } else {
       $response = json_decode($json_response);
       require __DIR__ . '/braze.class.php';
@@ -647,7 +647,7 @@ class CRM
 
     if ($status != 200) {
       error_log('--Salesforce Error Get Renewals list: ' . $json_response);
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce Get Renewals list', $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Get Renewals list', $json_response);
       return ['error' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.'];
       wp_die();
     } else {
@@ -751,7 +751,7 @@ class CRM
 
     if ($status != 200) {
       error_log('--Salesforce Error Get Renewals list: ' . $json_response);
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce Get Renewals list', $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Get Renewals list', $json_response);
       return ['error' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.'];
       wp_die();
     } else {
@@ -801,7 +801,7 @@ class CRM
 
     if ($status != 200) {
       error_log('--Salesforce Error Get Renewals list: ' . $json_response);
-      wp_mail('sachin.patel@thebrag.media', 'RS Mag Error: Salesforce Get Renewals list', $json_response);
+      wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Get Renewals list', $json_response);
       return ['error' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.'];
       wp_die();
     } else {
