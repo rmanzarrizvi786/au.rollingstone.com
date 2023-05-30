@@ -50,6 +50,8 @@ class PMC_Google_Tagmanager { // extends PMC_Singleton{
 	 *
 	 */
 	public function add_datalayer_js_object() {
+		global $post;
+
 	?>
 	<script type="text/javascript">
 		// dataLayer = window.dataLayer || [];
