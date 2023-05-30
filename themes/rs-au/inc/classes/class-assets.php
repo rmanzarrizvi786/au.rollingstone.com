@@ -376,7 +376,7 @@ class Assets {
 	 * @since 2018.1.0
 	 */
 	public function inline_web_fonts() {
-		$fonts_url = TBM_CDN . '/assets/fonts';
+		$fonts_url = RS_THEME_URL . '/assets/build/fonts';
 		?>
 		<style type="text/css" id="web-fonts-css">
 				@font-face {
@@ -459,7 +459,7 @@ class Assets {
 	 * @since 2018.1.0
 	 */
 	public function hint_web_fonts() {
-		$fonts_url = TBM_CDN . '/assets/fonts';
+		$fonts_url = RS_THEME_URL . '/assets/build/fonts';
 
 		$fonts = [
 			'/Graphik/Graphik-Regular',
