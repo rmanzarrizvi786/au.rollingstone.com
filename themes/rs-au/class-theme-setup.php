@@ -800,12 +800,13 @@ class ThemeSetup
 
 			\PMC::render_template(CHILD_THEME_PATH . '/assets/src/images/_dev/rs-logo.svg', [], true);
 
+			// theses were commented out {
 			// \PMC::render_template( CHILD_THEME_PATH . '/assets/src/images/_dev/RS-AU_LOGO-RED_RS_LOGO-RED.svg', [], true );
-
 			// \PMC::render_template( CHILD_THEME_PATH . '/assets/src/images/_dev/RS-AU_LOGO-RED.png', [], true );
-
 			// \PMC::render_template( CHILD_THEME_PATH . '/assets/src/images/_dev/logo-rspro.svg', [], true );
 			// \PMC::render_template( CHILD_THEME_PATH . '/assets/src/images/_dev/logo-rs-live-media.svg', [], true );
+			// } theses were commented out
+
 			\PMC::render_template(CHILD_THEME_PATH . '/assets/src/images/_dev/icon-instagram.svg', [], true);
 			?>
 		</div>
