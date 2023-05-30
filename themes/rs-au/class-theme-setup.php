@@ -506,7 +506,7 @@ class ThemeSetup
 		wp_dequeue_script('wp-embed');
 		wp_dequeue_script('pmc-core-site-js');
 	}
-
+	
 	/**
 	 * Enqueue Child Theme Assets
 	 *
@@ -819,7 +819,7 @@ class ThemeSetup
 	 */
 	public function inline_web_fonts()
 	{
-		$fonts_url = TBM_CDN . '/assets/fonts';
+		$fonts_url = RS_THEME_URL . '/assets/build/fonts';
 	?>
 		<style type="text/css" id="web-fonts-css">
 			@font-face {
