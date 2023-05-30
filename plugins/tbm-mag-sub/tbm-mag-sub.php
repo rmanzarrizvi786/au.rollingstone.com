@@ -197,7 +197,7 @@ class TBMMagSub {
 
         $payment = new Payment();
 
-        $payment_intent = $payment->createIntent(1000, 'aud');
+        $payment_intent = $payment->createIntent(69.95, 'aud');
 
         wp_send_json_success(array(
             'client_secret' => $payment_intent->client_secret
