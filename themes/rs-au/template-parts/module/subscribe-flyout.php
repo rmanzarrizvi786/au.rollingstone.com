@@ -28,7 +28,7 @@
 	<div class="c-subscribe__block" style="/*width: 100%;*/width: calc(36% - .625rem); padding-left: 1rem; padding-right: 1rem; background-color: #f0ece7;">
 		<div class="c-subscribe__description">
 			<p class="c-subscribe__heading t-bold" style="color: #000;"><?php esc_html_e( 'Newsletter Signup', 'pmc-rollingstone' ); ?></p>
-			<a href="https://thebrag.com/observer/" target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/_dev/OBSmrec4.jpg"></a>
+			<a href="https://thebrag.com/observer/" target="_blank"><img src="<?php echo TBM_CDN; ?>/assets/images/OBSmrec4.jpg"></a>
 			<?php if( 0 ): ?>
 			<p class="c-subscribe__content"><?php esc_html_e( 'Sign up for our newsletter and go inside the world of music, culture and entertainment.', 'pmc-rollingstone' ); ?></p>
 			<form class="c-subscribe__form" action="https://media.us1.list-manage.com/subscribe/post?u=a9d74bfce08ba307bfa8b9c78&amp;id=435b42b91d" method="POST" target="_blank">

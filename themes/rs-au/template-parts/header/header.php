@@ -53,14 +53,14 @@ $total_items      = List_Post::get_instance()->get_list_items_count();
 				) : ?>
 					<h1 class="l-header__branding">
 						<a href="<?php echo esc_url(home_url('/nz/')); ?>">
-							<img class="l-header__logo" src="<?php echo RS_THEME_URL . '/assets/src/images/_dev/RSNZ_primary.png'; ?>">
+							<img class="l-header__logo" src="<?php echo TBM_CDN . '/assets/images/RSNZ_primary.png'; ?>">
 							<span class="screen-reader-text"><?php esc_html_e('Rolling Stone New Zealand', 'pmc-rollingstone'); ?></span>
 						</a>
 					</h1>
 				<?php else : ?>
 					<div class="l-header__branding">
 						<a href="<?php echo esc_url(home_url('/')); ?>">
-							<img class="l-header__logo" src="<?php echo RS_THEME_URL . '/assets/src/images/_dev/RSAU_Primary.png'; ?>">
+							<img class="l-header__logo" src="<?php echo TBM_CDN . '/src/images/RSAU_Primary.png'; ?>">
 							<span class="screen-reader-text"><?php esc_html_e('Rolling Stone Australia', 'pmc-rollingstone'); ?></span>
 						</a>
 					</div>
