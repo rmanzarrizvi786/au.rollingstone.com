@@ -16,6 +16,7 @@ class Payment {
 
     public function createIntent($amount, $currency) {
         $payment_intent = $this->stripe->paymentIntents->create([
+            'setup_future_usage' => 'off_session',
             'amount' => $amount,
             'currency' => $currency,
             'automatic_payment_methods' => ['enabled' => true]
