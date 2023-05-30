@@ -12,6 +12,7 @@
 namespace TBM;
 
 class FloatingPlayer {
+
     protected $playerId;
     protected $playlistId;
     protected $playerTitle;
@@ -26,6 +27,8 @@ class FloatingPlayer {
     }
 
     public function wp_footer() {
+        global $post;
+
         if (!is_single()) {
             return;
         }
