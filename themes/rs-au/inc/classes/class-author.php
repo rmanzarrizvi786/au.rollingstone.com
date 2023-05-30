@@ -35,6 +35,8 @@ class Author {
 	 * @return array|bool|mixed|string Cached Author posts.
 	 */
 	public function get_author_posts( $author_name ) {
+		return $this->author_posts_query( $author_name );
+
 		$cache_key = sanitize_key( 'rollingstone_author_posts_nicename_' . $author_name );
 		$pmc_cache = new \PMC_Cache( $cache_key );
 
