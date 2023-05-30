@@ -106,11 +106,11 @@ $total_items      = List_Post::get_instance()->get_list_items_count();
 						(is_singular('pmc-nz'))
 					) : ?>
 						<a href="<?php echo esc_url(home_url('/nz/')); ?>" class="l-header__branding l-header__branding--sticky">
-							<img class="l-header__logo" src="<?php echo RS_THEME_URL . '/assets/src/images/RSNZ_primary.png'; ?>">
+							<img class="l-header__logo" src="<?php echo TBM_CDN . '/assets/images/RSNZ_Primary.png'; ?>">
 						</a><!-- .l-header__branding--sticky -->
 					<?php else : ?>
 						<a href="<?php echo esc_url(home_url('/')); ?>" class="l-header__branding l-header__branding--sticky">
-							<img class="l-header__logo" src="<?php echo RS_THEME_URL . '/assets/src/images/RSAU_Primary.png'; ?>">
+							<img class="l-header__logo" src="<?php echo TBM_CDN . '/assets/images/RSAU_Primary.png'; ?>">
 						</a><!-- .l-header__branding--sticky -->
 					<?php endif; ?>
 
