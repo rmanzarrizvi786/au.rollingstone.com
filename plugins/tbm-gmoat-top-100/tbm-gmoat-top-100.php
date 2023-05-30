@@ -189,8 +189,8 @@ class TBMGmoatTop100
 
       // $black = imagecolorallocate($im, 0, 0, 0);
       // $white = imagecolorallocate($im, 255, 255, 255);
-      // $font = get_template_directory() . '/assets/build/fonts/RobotoCondensed-Light.ttf';
-      $font = get_template_directory() . '/assets/build/fonts/Roboto-Bold.ttf';
+      // $font = TBM_CDN . '/assets/fonts/RobotoCondensed-Light.ttf';
+      $font = TBM_CDN . '/assets/fonts/Roboto-Bold.ttf';
 
       $text = "";
 

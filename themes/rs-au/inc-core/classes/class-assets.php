@@ -242,7 +242,7 @@ class Assets {
 		<style type="text/css" id="<?php echo esc_attr( $css_slug ); ?>-css">
 			<?php
 			\PMC::render_template(
-				$path . '/assets/build/css/' . $css_slug . '.css',
+				TBM_CDN . '/assets/css/' . $css_slug . '.css',
 				[],
 				true
 			);

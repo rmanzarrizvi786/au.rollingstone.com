@@ -15,7 +15,7 @@ get_header();
 ?>
 	<div class="l-page__content">
 
-		<div class="c-404" style="background-image: url(<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/build/images/_dev/404-background.jpg' ); ?>);">
+		<div class="c-404" style="background-image: url(<?php echo esc_url(TBM_CDN . '/assets/images/_dev/404-background.jpg' ); ?>);">
 			<h1 class="c-404__title t-super"><?php esc_html_e( '404', 'pmc-rollingstone' ); ?></h1>
 			<h2 class="c-404__subtitle t-semibold"><?php esc_html_e( 'Page Not Found', 'pmc-rollingstone' ); ?></h2>
 			<p class="c-404__description t-country"><?php esc_html_e( 'OOPS! We can\'t find what you\'re looking for.', 'pmc-rollingstone' ); ?></p>

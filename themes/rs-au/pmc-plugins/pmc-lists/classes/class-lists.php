@@ -217,7 +217,7 @@ class Lists {
 	 */
 	public function admin_enqueue_scripts() {
 		if ( is_admin() && self::LIST_ITEM_POST_TYPE === get_post_type() ) {
-			wp_enqueue_script( 'pmc-lists', PMC_LISTS_URL . 'assets/build/js/list.js', [ 'jquery' ], '1.0', true );
+			wp_enqueue_script( 'pmc-lists', TBM_CDN . 'assets/js/list.js', [ 'jquery' ], '1.0', true );
 			wp_localize_script( 'pmc-lists', 'pmcList', [
 				'nonce' => wp_create_nonce( 'pmc-lists' ),
 			] );

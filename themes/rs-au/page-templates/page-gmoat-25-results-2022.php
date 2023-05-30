@@ -53,7 +53,7 @@ $img_url = RS_THEME_URL . '/images/vote-25-movies-2021/';
 ?>
 
 <?php
-wp_enqueue_style('list', RS_THEME_URL . '/assets/build/css/list.css', [], RS_THEME_VERSION, 'all');
+wp_enqueue_style('list', TBM_CDN . '/assets/css/list.css', [], RS_THEME_VERSION, 'all');
 wp_enqueue_script('vote-gmoat', get_template_directory_uri() . '/page-templates/gmoat-top-25-2021/js/scripts-results.js', ['jquery'], time(), true);
 ?>
 

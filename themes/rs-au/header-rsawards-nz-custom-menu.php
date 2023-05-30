@@ -688,7 +688,7 @@ use PMC\Lists\List_Post;
 
 		@font-face {
 			font-family: GraphikXCondensed-BoldItalic;
-			src: url("<?php echo get_template_directory_uri(); ?>/assets/build/fonts/Graphik/GraphikXCondensed-BoldItalic.otf") format("opentype");
+			src: url("<?php echo tbm_cdn; ?>/assets/fonts/Graphik/GraphikXCondensed-BoldItalic.otf") format("opentype");
 			font-display: block;
 		}
 

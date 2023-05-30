@@ -47,7 +47,7 @@ class Fields {
 	}
 
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'pmc_core_admin_fields', get_template_directory_uri() . '/assets/build/js/fields.bundle.js', false, null, true );
+		wp_enqueue_script( 'pmc_core_admin_fields', TBM_CDN . '/assets/js/fields.bundle.js', false, null, true );
 
 		$localize = [
 			'nonce' =>  wp_create_nonce( 'pmc-fm-nonce' ),

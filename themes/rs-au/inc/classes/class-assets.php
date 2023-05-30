@@ -127,18 +127,18 @@ class Assets {
 	public function enqueue_scripts() {
 
 		// Main script.
-		wp_register_script( 'rollingstone-main', RS_THEME_URL . '/assets/build/js/main.js', array( 'jquery', 'iolazy-js', 'polyfill-io-js' ), RS_THEME_VERSION, false );
+		wp_register_script( 'rollingstone-main', TBM_CDN . '/assets/js/main.js', array( 'jquery', 'iolazy-js', 'polyfill-io-js' ), RS_THEME_VERSION, false );
 
 		// Register IO Lazy used in images lazy loading.
 		wp_register_script( 'polyfill-io-js', 'https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver,Promise,Fetch,Array.from', array(), null, true );
-		wp_register_script( 'iolazy-js', RS_THEME_URL . '/assets/build/js/vendor/iolazy.js', array( 'polyfill-io-js' ), null, true );
+		wp_register_script( 'iolazy-js', TBM_CDN . '/assets/js/vendor/iolazy.js', array( 'polyfill-io-js' ), null, true );
 
 		// Gallery bundle.
-		wp_register_script( 'pmc-core-images-loaded', RS_THEME_URL . '/assets/build/js/vendor/imagesloaded.pkgd.js', array(), RS_THEME_VERSION, false );
+		wp_register_script( 'pmc-core-images-loaded', TBM_CDN . '/assets/js/vendor/imagesloaded.pkgd.js', array(), RS_THEME_VERSION, false );
 
 		wp_deregister_script( 'pmc-core-gallery-bundle' );
 
-		wp_register_style( 'gallery-styles', RS_THEME_URL . '/assets/build/css/gallery.css', [], RS_THEME_VERSION, 'all' );
+		wp_register_style( 'gallery-styles', TBM_CDN . '/assets/css/gallery.css', [], RS_THEME_VERSION, 'all' );
 
 		// Enqueue scripts and stylesheets.
 		wp_enqueue_script( 'jquery' );
@@ -222,7 +222,7 @@ class Assets {
 			$css_slug = 'main';
 		}
 
-		wp_enqueue_style( $css_slug , RS_THEME_URL . '/assets/build/css/' . $css_slug . '.css', [], RS_THEME_VERSION, 'all' );
+		wp_enqueue_style( $css_slug , TBM_CDN . '/assets/css/' . $css_slug . '.css', [], RS_THEME_VERSION, 'all' );
 	}
 
 	/**
@@ -239,7 +239,7 @@ class Assets {
 		<script>
 			<?php
 			// Note that the non-minified resource is available for code review in assets/src/js/vendor/cssrelpreload.js
-			\PMC::render_template( CHILD_THEME_PATH . '/assets/build/js/vendor/cssrelpreload.js', [], true );
+			\PMC::render_template( TBM_CDN . '/assets/js/vendor/cssrelpreload.js', [], true );
 			?>
 		</script>
 		<?php
@@ -376,7 +376,7 @@ class Assets {
 	 * @since 2018.1.0
 	 */
 	public function inline_web_fonts() {
-		$fonts_url = RS_THEME_URL . '/assets/build/fonts';
+		$fonts_url = TBM_CDN . '/assets/fonts';
 		?>
 		<style type="text/css" id="web-fonts-css">
 				@font-face {
@@ -459,7 +459,7 @@ class Assets {
 	 * @since 2018.1.0
 	 */
 	public function hint_web_fonts() {
-		$fonts_url = RS_THEME_URL . '/assets/build/fonts';
+		$fonts_url = TBM_CDN . '/assets/fonts';
 
 		$fonts = [
 			'/Graphik/Graphik-Regular',

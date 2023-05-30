@@ -38,7 +38,7 @@ get_header();
 		<div class="<?php echo esc_attr($l_blog_css); ?>">
 			<main class="l-blog__primary">
 				<?php if ($is_country) : ?>
-					<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/build/images/_dev/flag-country.png" alt="Country Flag" class="l-blog__flag" />
+					<img src="<?php TBM_CDN; ?>/assets/images/_dev/flag-country.png" alt="Country Flag" class="l-blog__flag" />
 				<?php endif; ?>
 
 				<div id="single-wrap">

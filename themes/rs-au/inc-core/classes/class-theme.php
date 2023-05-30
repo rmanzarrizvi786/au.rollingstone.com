@@ -63,7 +63,7 @@ class Theme {
 	*
 	**/
 	public function enqueue_assets() {
-		$url = get_template_directory_uri() . '/assets/build/';
+		$url = TBM_CDN . '/assets/';
 		wp_enqueue_script( 'pmc-core-site-js', $url . 'js/site.bundle.js', [ 'jquery' ], false, true );
 		wp_enqueue_style( 'pmc-core-site-css', $url . 'css/site.css' );
 	}

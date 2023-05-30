@@ -91,7 +91,7 @@ $list_page_active = 'l-header l-header--list';
   <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
-  <?php $fonts_url = get_stylesheet_directory_uri() . '/assets/build/fonts'; ?>
+  <?php $fonts_url = TBM_CDN . '/assets/fonts'; ?>
 
   <style>
     /* body {
