@@ -1055,14 +1055,5 @@ if (have_posts()) :
         })
     })
 </script>
-<script>
-    jQuery(document).ready(function($) {
-        iFrameResize({
-            log: true,
-            // autoResize: false,
-            minHeight: 1100
-        }, '#jb2023hub')
-    });
-</script>
 <?php
 get_footer();
