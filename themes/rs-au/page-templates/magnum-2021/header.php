@@ -693,7 +693,7 @@ use PMC\Lists\List_Post;
 
       <div class="l-header__branding" style="padding-top: 29px; background: #000;">
         <a href="<?php echo esc_url(home_url('/')); ?>" style="margin-right: .25rem;">
-          <img class="l-header__logo" src="<?php echo TBM_CDN . '/assets/src/images/RS-AU_LOGO-RED.png'; ?>">
+          <img class="l-header__logo" src="<?php echo TBM_CDN . '/assets/images/RS-AU_LOGO-RED.png'; ?>">
           <span class="screen-reader-text"><?php esc_html_e('Rolling Stone Australia', 'pmc-rollingstone'); ?></span>
         </a>
         <img src="<?php echo RS_THEME_URL; ?>/page-templates/magnum-2021/magnum.png" alt="Magnum" style="width: 141px; margin-left: .25rem; margin-top: .5rem;">

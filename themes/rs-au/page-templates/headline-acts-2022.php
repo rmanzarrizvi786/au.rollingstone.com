@@ -170,7 +170,7 @@ if (have_posts()) :
 									<div class="content-wrap header-rs-logo-wrap">
 										<div class="content d-flex flex-column" style="width: 100%; font-family: Graphik-Medium, sans-serif;">
 											<div class="my-2" style="font-size: .75rem;"><strong>BROUGHT TO YOU BY</strong></div>
-											<a href="/" target="_blank"><img class="l-header__logo" src="<?php echo TBM_CDN . '/assets/src/images/RS-AU_LOGO-RED.png'; ?>"></a>
+											<a href="/" target="_blank"><img class="l-header__logo" src="<?php echo TBM_CDN . '/assets/images/RS-AU_LOGO-RED.png'; ?>"></a>
 										</div>
 									</div>
 									<div class="header-drink-smart-wrap">
