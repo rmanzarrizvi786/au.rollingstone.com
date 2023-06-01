@@ -19,7 +19,7 @@
 
 		<div class="l-mega__row">
 			<a href="<?php echo esc_url(home_url('/')); ?>" class="l-mega__branding">
-				<img class="l-header__logo" src="<?php echo TBM_CDN . '/assets/images/RSAUwhitewhite_WEB.svg'; ?>">
+				<img class="l-header__logo" src="<?php echo TBM_CDN . '/assets/images/RSAUwhitewhite_WEB.png'; ?>">
 				<span class="screen-reader-text"><?php esc_html_e('Rolling Stone', 'pmc-rollingstone'); ?></span>
 			</a><!-- .l-mega__branding -->
 
