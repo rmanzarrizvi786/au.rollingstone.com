@@ -308,29 +308,31 @@ class TBMMagSub {
 
                 $discount = 0;
 
-                $post['coupon_id'] = null;
-                $coupon_code = isset($post['coupon_code']) && '' != trim($post['coupon_code']) ? trim($post['coupon_code']) : '';
+                //$post['coupon_id'] = null;
+//                 $coupon_code = isset($post['coupon_code']) && '' != trim($post['coupon_code']) ? trim($post['coupon_code']) : '';
 
-                if (isset($post['coupon_code']) && '' != trim($post['coupon_code'])) {
-                        $coupon_code = trim($post['coupon_code']);
-                        $coupon_obj = new Coupon();
-                        $coupon = $coupon_obj->validateCoupon($coupon_code, $post['sub_email']);
-                }
+//                 if (isset($post['coupon_code']) && '' != trim($post['coupon_code'])) {
+//                         $coupon_code = trim($post['coupon_code']);
+//                         $coupon_obj = new Coupon();
+//                         $coupon = $coupon_obj->validateCoupon($coupon_code, $post['sub_email']);
+//                 }
 
-                if (isset($coupon['error'])) {
-                        wp_send_json_error(['error' => ['message' => $coupon['error']]]);
-                        // 'Looks like that coupon code is invalid. If you are sure you are entering it correctly, send us an email at subscribe@thebrag.media to sort out the issue.']]);
-                        wp_die();
-                } elseif (is_null($coupon)) {
-                        wp_send_json_error(['error' => ['message' => 'Looks like that coupon code is invalid. If you are sure you are entering it correctly, send us an email at subscribe@thebrag.media to sort out the issue.']]);
-                        wp_die();
-                } elseif (isset($coupon['success'])) {
-                        $discount = $coupon['amount_off'];
-                        $post['coupon_id'] = $coupon['id'];
-                        $post['coupon_code'] = ''; // $coupon->stripe_coupon_code;
-                } else {
-                        $post['coupon_code'] = '';
-                }
+//                 if (isset($coupon['error'])) {
+//                         wp_send_json_error(['error' => ['message' => $coupon['error']]]);
+//                         // 'Looks like that coupon code is invalid. If you are sure you are entering it correctly, send us an email at subscribe@thebrag.media to sort out the issue.']]);
+//                         wp_die();
+//                 } elseif (is_null($coupon)) {
+//                         wp_send_json_error(['error' => ['message' => 'Looks like that coupon code is invalid. If you are sure you are entering it correctly, send us an email at subscribe@thebrag.media to sort out the issue.']]);
+//                         wp_die();
+//                 } elseif (isset($coupon['success'])) {
+//                         $discount = $coupon['amount_off'];
+//                         $post['coupon_id'] = $coupon['id'];
+//                         $post['coupon_code'] = ''; // $coupon->stripe_coupon_code;
+//                 } else {
+//                         $post['coupon_code'] = '';
+//                 }
+            
+                 $post['coupon_code'] = '';
 
                 $post['promo_response_prefix'] = $this->promo_response_prefix;
 
