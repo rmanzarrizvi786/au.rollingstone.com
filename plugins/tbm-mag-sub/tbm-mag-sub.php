@@ -308,7 +308,7 @@ class TBMMagSub {
 
                 $discount = 0;
 
-                $coupon = '';
+                $coupon = [];
                 $post['coupon_id'] = null;
                 $coupon_code = isset($post['coupon_code']) && '' != trim($post['coupon_code']) ? trim($post['coupon_code']) : '';
 
@@ -378,7 +378,7 @@ class TBMMagSub {
                         (int) ($this->shipping_cost * 100),
                         $this->number_of_issues,
                         $coupon_code,
-                        isset($coupon) ? (int) ($coupon['amount_off'] * 100) * -1 : 0,
+                        isset($coupon) && !empty($coupon) ? (int) ($coupon['amount_off'] * 100) * -1 : 0,
                         $post['payment_method'],
                         $post['sub_email'],
                         $post['sub_full_name'],
