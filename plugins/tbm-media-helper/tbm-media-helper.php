@@ -84,6 +84,7 @@ class MediaHelper
         $attachment_id = get_post_thumbnail_id($post_id);
         $image_attributes = wp_get_attachment_image_src($attachment_id, "full");
         $image_src = $image_attributes[0];
+        $image_src = $image_src[0] != false && !is_null($image_src[0]) ? $image_src[0] : '';
         if (!empty($image_src) && get_post_mime_type(get_post_thumbnail_id()) == 'image/webp') { ?>
             <meta property="og:image" content="<?php echo $image_src; ?>">
 <?php }
