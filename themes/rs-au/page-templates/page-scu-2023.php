@@ -1,16 +1,28 @@
 <?php
-    /**
-    * Template Name: SCU Scholarship (2023)
-    */
+/**
+* Template Name: SCU Scholarship (2023)
+*/
 
-    get_template_part('page-templates/scu-scholarship-2020/header');
+if (post_password_required($post)) {
+	if (is_user_logged_in()) {
+		do_action( 'wp_footer','wp_admin_bar_render' );
+	}
 
-    $submissions_active = time() < strtotime('2024-09-29');
-    // $submissions_active = false;
+	get_template_part('template-parts/protected/header');
+		echo get_the_password_form();
+	get_template_part('template-parts/protected/footer');
 
-    wp_enqueue_script('scu-scholarship-2023', get_template_directory_uri() . '/page-templates/scu-scholarship-2020/js/scripts-2023.js', ['jquery'], time(), true);
+	exit;
+}
 
-    add_action('wp_footer', function () {
+get_template_part('page-templates/scu-scholarship-2020/header');
+
+$submissions_active = time() < strtotime('2024-09-29');
+// $submissions_active = false;
+
+wp_enqueue_script('scu-scholarship-2023', get_template_directory_uri() . '/page-templates/scu-scholarship-2020/js/scripts-2023.js', ['jquery'], time(), true);
+
+add_action('wp_footer', function () {
 ?>
 <script>
     var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
