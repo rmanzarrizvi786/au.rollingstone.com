@@ -1964,6 +1964,7 @@ class TBMMagSub {
 
         require_once __DIR__ . '/classes/renewals.class.php';
         $renewals = new Renewals();
+        $renewals->process_upcoming();
         $renewals->process();
     } // tbm_mag_sub_renewals()
 
