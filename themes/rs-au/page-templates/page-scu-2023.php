@@ -175,7 +175,7 @@ if (have_posts()) : while (have_posts()) : the_post(); if (!post_password_requir
                         </div>
                         <!-- https://www.scu.edu.au/study-at-scu/music-and-creative-arts/contemporary-music/contemporary-music-application/ -->
                         <h3 style="margin-top: 2rem; text-align: center; font-size: .9rem;">
-                            <a href="<?php echo RS_THEME_URL ?>/images/scu-scholarship-2021/Terms-and-Conditions-V2.pdf" target="_blank" style="color: #777;">Terms &amp; Conditions</a>
+                            <a href="https://cdn-r2-2.thebrag.com/pages/scu-rolling-stone-scholarship-2023/Rolling-Stone-Scholarship-2024.pdf" target="_blank" style="color: #777;">Terms &amp; Conditions</a>
                             <span style="color: #bbb;">&nbsp;|&nbsp;</span>
                             <a href="<?php echo RS_THEME_URL ?>/images/scu-scholarship-2021/Privacy-Notice.pdf" target="_blank" style="color: #777;">Privacy Notice</a>
                         </h3>
