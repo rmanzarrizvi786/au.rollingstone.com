@@ -25,10 +25,10 @@ class Payment {
         return $payment_intent;
     }
 
-    public function createCustomer($payment_method, $sub_email, $sub_full_name, $buyer = [], $shipping = []) {
+    public function createCustomer($payment_method, $sub_email, $sub_full_name, $buy_option, $buyer = [], $shipping = []) {
         try {
             $customer = $this->stripe->customers->create([
-                'payment_method' => $payment_method,
+                'payment_method' => $payment_method || null,
                 'email' => $sub_email,
                 'name' => $buyer['full_name'],
                 'address' => [
@@ -41,17 +41,21 @@ class Payment {
                 ],
                 'shipping' => [
                     'address' => [
-                            'line1' => $shipping['address_1'],
-                            'line2' => $shipping['address_2'],
-                            'city' => $shipping['city'],
-                            'country' => $shipping['country'],
-                            'postal_code' => $shipping['postcode'],
-                            'state' => $shipping['state'],
+                        'line1' => $shipping['address_1'],
+                        'line2' => $shipping['address_2'],
+                        'city' => $shipping['city'],
+                        'country' => $shipping['country'],
+                        'postal_code' => $shipping['postcode'],
+                        'state' => $shipping['state'],
                     ],
-                    'name' => $sub_full_name,
+                    'name' => $sub_full_name
                 ],
                 'invoice_settings' => [
                     'default_payment_method' => $payment_method
+                ],
+                'metadata' => [
+                    'buy_option' => $buy_option,
+                    'email_reciever' => $shipping['sub_email_reciever']
                 ]
             ]);
 
@@ -240,11 +244,11 @@ class Payment {
         }
     }
 
-    public function createInvoice($subtotal, $shipping_cost, $number_of_issues, $coupon_code, $amount_off, $payment_method = NULL, $sub_email, $sub_full_name, $buyer = [], $shipping = [], $customer_id = NULL, $collection_method = 'charge_automatically', $description = '') {
+    public function createInvoice($buy_option, $product_description, $subtotal, $shipping_cost, $number_of_issues, $coupon_code, $amount_off, $payment_method, $sub_email, $sub_full_name, $buyer = [], $shipping = [], $customer_id = NULL, $collection_method = 'charge_automatically', $description = '') {
         try {
             $customer = null;
             if (is_null($customer_id)) {
-                $customer = $this->createCustomer($payment_method, $sub_email, $sub_full_name, $buyer, $shipping);
+                $customer = $this->createCustomer($payment_method, $sub_email, $sub_full_name, $buy_option, $buyer, $shipping);
 
                 if ($customer['error']) {
                     return ['error' => $customer['error']];
@@ -253,30 +257,6 @@ class Payment {
 
                 $customer_id = $customer->id;
             }
-
-            $this->stripe->invoiceItems->create([
-                'customer' => $customer_id,
-                'amount' => $subtotal,
-                'currency' => 'aud',
-                'description' => 'Rolling Stone Australia Subscription (4 issues)',
-            ]);
-
-            $this->stripe->invoiceItems->create([
-                'customer' => $customer_id,
-                'unit_amount' => $shipping_cost,
-                'currency' => 'aud',
-                'quantity' => $number_of_issues,
-                'description' => 'Shipping',
-            ]);
-
-            if ('' != $coupon_code && $amount_off < 0) :
-                $this->stripe->invoiceItems->create([
-                    'customer' => $customer_id,
-                    'amount' => $amount_off,
-                    'currency' => 'aud',
-                    'description' => 'Coupon code: ' . $coupon_code,
-                ]);
-            endif;
 
             $stripe_data = [
                 'customer' => $customer_id,
@@ -296,6 +276,33 @@ class Payment {
             }
 
             $invoice = $this->stripe->invoices->create($stripe_data);
+
+            $this->stripe->invoiceItems->create([
+                'customer' => $customer_id,
+                'amount' => $subtotal,
+                'currency' => 'aud',
+                'description' => $product_description || 'Rolling Stone Magazine Subscription',
+                'invoice' => $invoice->id
+            ]);
+
+            $this->stripe->invoiceItems->create([
+                'customer' => $customer_id,
+                'unit_amount' => $shipping_cost,
+                'currency' => 'aud',
+                'quantity' => $number_of_issues,
+                'description' => 'Shipping',
+                'invoice' => $invoice->id
+            ]);
+
+            if ('' != $coupon_code && $amount_off < 0) :
+                $this->stripe->invoiceItems->create([
+                    'customer' => $customer_id,
+                    'amount' => $amount_off,
+                    'currency' => 'aud',
+                    'description' => 'Coupon code: ' . $coupon_code,
+                    'invoice' => $invoice->id
+                ]);
+            endif;
 
             if ('charge_automatically' == $collection_method) {
                 $this->stripe->invoices->pay($invoice->id);

@@ -8,32 +8,51 @@ use Auth0\SDK\Configuration\SdkConfiguration;
 use Auth0\SDK\Contract\StoreInterface;
 use Auth0\SDK\Utility\Toolkit;
 
+use function defined;
+use function in_array;
+use function is_array;
+use function is_int;
+use function is_string;
+
 /**
- * Class CookieStore.
  * This class provides a layer to persist transient auth data using cookies.
  */
 final class CookieStore implements StoreInterface
 {
+    /**
+     * @var int
+     */
+    public const KEY_CHUNKING_THRESHOLD = 2048;
+
+    /**
+     * @var string
+     */
     public const KEY_HASHING_ALGO = 'sha256';
-    public const KEY_CHUNKING_THRESHOLD = 3072;
+
+    /**
+     * @var string
+     */
     public const KEY_SEPARATOR = '_';
+
+    /**
+     * @var string
+     */
     public const VAL_CRYPTO_ALGO = 'aes-128-gcm';
 
     /**
-     * Instance of SdkConfiguration, for shared configuration across classes.
+     * When true, CookieStore will not setState() itself. You will need manually call the method to persist state to storage.
      */
-    private SdkConfiguration $configuration;
+    private bool $deferring = false;
 
     /**
-     * Cookie base name.
-     * Use 'namespace' argument to set this during instantiation.
+     * Determine if changes have been made since the last setState.
      */
-    private string $namespace;
+    private bool $dirty = false;
 
     /**
-     * The threshold (in bytes) in which chunking/splitting occurs.
+     * Determine if changes have been made since the last setState.
      */
-    private int $threshold;
+    private bool $encrypt = true;
 
     /**
      * Internal cache of the storage state.
@@ -43,31 +62,258 @@ final class CookieStore implements StoreInterface
     private array $store = [];
 
     /**
-     * When true, CookieStore will not setState() itself. You will need manually call the method to persist state to storage.
-     */
-    private bool $deferring = false;
-
-    /**
      * CookieStore constructor.
      *
-     * @param SdkConfiguration $configuration   Base configuration options for the SDK. See the SdkConfiguration class constructor for options.
-     * @param string           $namespace       A string in which to store cookies under on devices.
+     * @param SdkConfiguration $configuration Base configuration options for the SDK. See the SdkConfiguration class constructor for options.
+     * @param string           $namespace     a string in which to store cookies under on devices
+     *
+     * @psalm-suppress RedundantCondition
      */
     public function __construct(
-        SdkConfiguration $configuration,
-        string $namespace = 'auth0'
+        private SdkConfiguration $configuration,
+        private string $namespace = 'auth0',
     ) {
-        [$namespace] = Toolkit::filter([$namespace])->string()->trim();
+        $this->getState();
+    }
+
+    /**
+     * Decrypt data from a stored cookie string.
+     *
+     * @param string $data string representing an encrypted data structure
+     *
+     * @return null|array<mixed>
+     *
+     * @psalm-suppress TypeDoesNotContainType
+     */
+    public function decrypt(
+        string $data,
+    ): ?array {
+        if (! $this->encrypt) {
+            $decoded = rawurldecode($data);
+            $decoded = json_decode($decoded, true);
+
+            if (is_array($decoded)) {
+                return $decoded;
+            }
+
+            return [];
+        }
+
+        [$data] = Toolkit::filter([$data])->string()->trim();
 
         Toolkit::assert([
-            [$namespace, \Auth0\SDK\Exception\ArgumentException::missing('namespace')],
+            [$data, \Auth0\SDK\Exception\ArgumentException::missing('data')],
         ])->isString();
 
-        $this->configuration = $configuration;
-        $this->namespace = hash(self::KEY_HASHING_ALGO, (string) $namespace);
-        $this->threshold = self::KEY_CHUNKING_THRESHOLD - strlen($this->namespace) + 2;
+        $secret = $this->configuration->getCookieSecret();
 
-        $this->getState();
+        if (null === $secret) {
+            throw \Auth0\SDK\Exception\ConfigurationException::requiresCookieSecret();
+        }
+
+        $decoded = rawurldecode((string) $data);
+        $stripped = stripslashes($decoded);
+        $data = json_decode($stripped, true, 512);
+
+        /** @var array{iv?: null|int|string, tag?: null|int|string, data: string} $data */
+        if (! isset($data['iv']) || ! isset($data['tag']) || ! is_string($data['iv']) || ! is_string($data['tag'])) {
+            return null;
+        }
+
+        $iv = base64_decode($data['iv'], true);
+        $tag = base64_decode($data['tag'], true);
+
+        if (! is_string($iv) || ! is_string($tag)) {
+            return null;
+        }
+
+        $data = openssl_decrypt($data['data'], self::VAL_CRYPTO_ALGO, $secret, 0, $iv, $tag);
+
+        if (! is_string($data)) {
+            return null;
+        }
+
+        $data = json_decode($data, true);
+
+        return is_array($data) ? $data : null;
+    }
+
+    /**
+     * Defer saving state changes to destination to improve performance during blocks of changes.
+     *
+     * @param bool $deferring whether to defer persisting the storage state
+     */
+    public function defer(
+        bool $deferring,
+    ): void {
+        $this->deferring = $deferring;
+
+        // If we were deferring state saving and we've been asked to cancel that deference
+        if (! $deferring) {
+            // Immediately push the state to the host device.
+            $this->setState();
+        }
+    }
+
+    /**
+     * Removes a persisted value identified by $key.
+     *
+     * @param string $key cookie to delete
+     */
+    public function delete(
+        string $key,
+    ): void {
+        [$key] = Toolkit::filter([$key])->string()->trim();
+
+        Toolkit::assert([
+            [$key, \Auth0\SDK\Exception\ArgumentException::missing('key')],
+        ])->isString();
+
+        if (isset($this->store[(string) $key])) {
+            unset($this->store[(string) $key]);
+            $this->dirty = true;
+        }
+
+        if (! $this->deferring) {
+            $this->setState();
+        }
+    }
+
+    /**
+     * Encrypt data for safe storage format for a cookie.
+     *
+     * @param array<mixed> $data    data to encrypt
+     * @param array<mixed> $options additional configuration options
+     *
+     * @psalm-suppress TypeDoesNotContainType
+     */
+    public function encrypt(
+        array $data,
+        array $options = [],
+    ): string {
+        if (! $this->encrypt) {
+            $data = $options['encoded1'] ?? json_encode($data);
+
+            if (! is_string($data)) {
+                return '';
+            }
+
+            return rawurlencode($data);
+        }
+
+        $secret = $this->configuration->getCookieSecret();
+        $ivLen = $options['ivLen'] ?? openssl_cipher_iv_length(self::VAL_CRYPTO_ALGO);
+        $tag = null;
+
+        if (null === $secret) {
+            throw \Auth0\SDK\Exception\ConfigurationException::requiresCookieSecret();
+        }
+
+        if (! is_int($ivLen)) {
+            return '';
+        }
+
+        $iv = $options['iv'] ?? openssl_random_pseudo_bytes($ivLen);
+
+        if (! is_string($iv)) {
+            return '';
+        }
+
+        $data = $options['encoded1'] ?? json_encode($data);
+
+        if (! is_string($data)) {
+            return '';
+        }
+
+        // Encrypt the PHP array.
+        $encrypted = $options['encrypted'] ?? openssl_encrypt($data, self::VAL_CRYPTO_ALGO, $secret, 0, $iv, $tag);
+        $iv = $options['iv'] ?? $iv;
+        $tag = $options['tag'] ?? $tag;
+
+        if (! is_string($encrypted)) {
+            return '';
+        }
+
+        if (! is_string($tag)) {
+            return '';
+        }
+
+        // Return a JSON encoded object containing the crypto tag and iv, and the encrypted data.
+        $encoded = $options['encoded2'] ?? json_encode(['tag' => base64_encode($tag), 'iv' => base64_encode($iv), 'data' => $encrypted]);
+
+        if (is_string($encoded)) {
+            return rawurlencode($encoded);
+        }
+
+        return '';
+    }
+
+    /**
+     * Gets persisted values identified by $key.
+     * If the value is not set, returns $default.
+     *
+     * @param string $key     cookie to set
+     * @param mixed  $default default to return if nothing was found
+     *
+     * @return mixed
+     */
+    public function get(
+        string $key,
+        $default = null,
+    ) {
+        [$key] = Toolkit::filter([$key])->string()->trim();
+
+        Toolkit::assert([
+            [$key, \Auth0\SDK\Exception\ArgumentException::missing('key')],
+        ])->isString();
+
+        return $this->store[$key] ?? $default;
+    }
+
+    /**
+     * Build options array for use with setcookie().
+     *
+     * @param ?int $expires
+     *
+     * @return array{expires: int, path: string, domain?: string, secure: bool, httponly: bool, samesite: string, url_encode?: int}
+     */
+    public function getCookieOptions(
+        ?int $expires = null,
+    ): array {
+        $expires ??= $this->configuration->getCookieExpires();
+
+        if (0 !== $expires) {
+            $expires = time() + $expires;
+        }
+
+        $options = [
+            'expires' => $expires,
+            'path' => $this->configuration->getCookiePath(),
+            'secure' => $this->configuration->getCookieSecure(),
+            'httponly' => true,
+            'samesite' => 'form_post' === $this->configuration->getResponseMode() ? 'None' : $this->configuration->getCookieSameSite() ?? 'Lax',
+        ];
+
+        if (! in_array(mb_strtolower($options['samesite']), ['lax', 'none', 'strict'], true)) {
+            $options['samesite'] = 'Lax';
+        }
+
+        $domain = $this->configuration->getCookieDomain() ?? null;
+        $httpHost = $_SERVER['HTTP_HOST'] ?? 'UNAVAILABLE';
+
+        if (null !== $domain && $domain !== $httpHost) {
+            $options['domain'] = $domain;
+        }
+
+        return $options;
+    }
+
+    /**
+     * Returns the current encryption state.
+     */
+    public function getEncrypted(): bool
+    {
+        return $this->encrypt;
     }
 
     /**
@@ -79,43 +325,21 @@ final class CookieStore implements StoreInterface
     }
 
     /**
-     * Returns the current threshold for chunk size calculations.
-     */
-    public function getThreshold(): int
-    {
-        return $this->threshold;
-    }
-
-    /**
-     * Defer saving state changes to destination to improve performance during blocks of changes.
-     *
-     * @param bool $deferring Whether to defer persisting the storage state.
-     */
-    public function defer(
-        bool $deferring
-    ): void {
-        // If we were deferring state saving and we've been asked to cancel that deference
-        if ($this->deferring === true && $deferring === false) {
-            // Immediately push the state to the host device.
-            $this->setState();
-        }
-
-        // Update our deference state.
-        $this->deferring = $deferring;
-    }
-
-    /**
      * Setup our storage state by pulling from persistence source.
      *
-     * @param array<mixed> $state Skip loading any persistent source state and inject a custom state.
+     * @param null|mixed[] $state skip loading any persistent source state and inject a custom state
      *
      * @return array<mixed>
      */
     public function getState(
-        ?array $state = null
+        ?array $state = null,
     ): array {
         // Overwrite our internal state with one passed (presumably during unit tests.)
-        if ($state !== null) {
+        if (null !== $state) {
+            if ($this->store !== $state) {
+                $this->dirty = true;
+            }
+
             return $this->store = $state;
         }
 
@@ -133,16 +357,14 @@ final class CookieStore implements StoreInterface
             }
 
             // A chunked cookie was found; affix it's value to $data for decryption.
-            if (is_string($_COOKIE[$cookieName])) {
-                $data .= $_COOKIE[$cookieName];
-            }
+            $data .= $_COOKIE[$cookieName];
 
             // Increment the index for next loop and look for another chunk.
-            $index++;
+            ++$index;
         }
 
         // If no cookies were found, set an empty state and continue.
-        if (mb_strlen($data) === 0) {
+        if ('' === $data) {
             return $this->store = [];
         }
 
@@ -153,7 +375,7 @@ final class CookieStore implements StoreInterface
         $this->store = $data ?? [];
 
         // If cookies were undecryptable, push the updated empty state to the browser.
-        if ($data === null) {
+        if (null === $data) {
             $this->setState();
         }
 
@@ -161,36 +383,102 @@ final class CookieStore implements StoreInterface
     }
 
     /**
-     * Push our storage state to the source for persistence.
+     * Removes all persisted values.
      */
-    public function setState(): self
+    public function purge(): void
     {
+        if ([] !== $this->store) {
+            $this->store = [];
+            $this->dirty = true;
+        }
+
+        if (! $this->deferring) {
+            $this->setState();
+        }
+    }
+
+    /**
+     * Persists $value on cookies, identified by $key.
+     *
+     * @param string $key   cookie to set
+     * @param mixed  $value value to use
+     */
+    public function set(
+        string $key,
+        $value,
+    ): void {
+        [$key] = Toolkit::filter([$key])->string()->trim();
+
+        Toolkit::assert([
+            [$key, \Auth0\SDK\Exception\ArgumentException::missing('key')],
+        ])->isString();
+
+        if (! isset($this->store[(string) $key]) || $this->store[(string) $key] !== $value) {
+            $this->store[(string) $key] = $value;
+            $this->dirty = true;
+        }
+
+        if (! $this->deferring) {
+            $this->setState();
+        }
+    }
+
+    /**
+     * Toggle the encryption state.
+     *
+     * @param bool $encrypt enable or disable cookie encryption
+     */
+    public function setEncrypted(bool $encrypt = true): self
+    {
+        $this->encrypt = $encrypt;
+
+        return $this;
+    }
+
+    /**
+     * Push our storage state to the source for persistence.
+     *
+     * @psalm-suppress UnusedFunctionCall
+     *
+     * @param bool $force
+     */
+    public function setState(
+        bool $force = false,
+    ): self {
+        if (! $this->dirty && ! $force) {
+            return $this;
+        }
+
         $setOptions = $this->getCookieOptions();
         $deleteOptions = $this->getCookieOptions(-1000);
         $existing = [];
         $using = [];
 
         // Iterate through the host device cookies and collect a list of ones that belong to us.
-        foreach ($_COOKIE as $cookieName => $_) {
+        foreach (array_keys($_COOKIE) as $cookieName) {
             $cookieBeginsWith = $this->namespace . self::KEY_SEPARATOR;
 
-            if (strlen($cookieName) >= strlen($cookieBeginsWith) &&
-                mb_substr($cookieName, 0, strlen($cookieBeginsWith)) === $cookieBeginsWith) {
+            if (mb_strlen($cookieName) >= mb_strlen($cookieBeginsWith)
+                && mb_substr($cookieName, 0, mb_strlen($cookieBeginsWith)) === $cookieBeginsWith) {
                 $existing[] = $cookieName;
             }
         }
 
         // Check if we have anything in memory to encrypt and store on the host device.
-        if (count($this->store) !== 0) {
+        if ([] !== $this->store) {
             // Return an encrypted string representing our memory state.
             $encrypted = $this->encrypt($this->store);
 
-            // Cookies have a finite size limit. If ours is too large, "chunk" it (split it into multiple cookies.)
-            // @phpstan-ignore-next-line
-            $chunks = str_split($encrypted, $this->threshold);
+            /**
+             * Cookies have a finite size limit. If ours is too large, "chunk" it (split it into multiple cookies.).
+             *
+             * @phpstan-ignore-next-line
+             */
+            $threshold = self::KEY_CHUNKING_THRESHOLD - mb_strlen($this->namespace);
 
-            // @phpstan-ignore-next-line
-            if ($chunks !== false) {
+            if ($threshold > 0) {
+                $chunks = mb_str_split($encrypted, $threshold);
+
                 // Store each "chunk" as a separate cookie on the host device.
                 foreach ($chunks as $index => $chunk) {
                     // Add a '_X' index suffix to each chunked cookie; we'll use this to iterate over all when we rejoin the cookie for decryption.
@@ -202,7 +490,8 @@ final class CookieStore implements StoreInterface
                     // Push the updated cookie to the host device for persistence.
                     // @codeCoverageIgnoreStart
                     if (! defined('AUTH0_TESTS_DIR')) {
-                        setcookie($cookieName, $chunk, $setOptions);
+                        /** @var array{expires?: int, path?: string, domain?: string, secure?: bool, httponly?: bool, samesite?: 'Lax'|'lax'|'None'|'none'|'Strict'|'strict', url_encode?: int} $setOptions */
+                        setrawcookie($cookieName, $chunk, $setOptions);
                     }
                     // @codeCoverageIgnoreEnd
 
@@ -222,7 +511,8 @@ final class CookieStore implements StoreInterface
             // Push the cookie deletion command to the host device.
             // @codeCoverageIgnoreStart
             if (! defined('AUTH0_TESTS_DIR')) {
-                setcookie($cookieName, '', $deleteOptions);
+                /** @var array{expires?: int, path?: string, domain?: string, secure?: bool, httponly?: bool, samesite?: 'Lax'|'lax'|'None'|'none'|'Strict'|'strict', url_encode?: int} $deleteOptions */
+                setrawcookie($cookieName, '', $deleteOptions);
             }
             // @codeCoverageIgnoreEnd
 
@@ -230,204 +520,8 @@ final class CookieStore implements StoreInterface
             unset($_COOKIE[$cookieName]);
         }
 
+        $this->dirty = false;
+
         return $this;
-    }
-
-    /**
-     * Persists $value on cookies, identified by $key.
-     *
-     * @param string $key   Cookie to set.
-     * @param mixed  $value Value to use.
-     */
-    public function set(
-        string $key,
-        $value
-    ): void {
-        [$key] = Toolkit::filter([$key])->string()->trim();
-
-        Toolkit::assert([
-            [$key, \Auth0\SDK\Exception\ArgumentException::missing('key')],
-        ])->isString();
-
-        $this->store[(string) $key] = $value;
-
-        if ($this->deferring === false) {
-            $this->setState();
-        }
-    }
-
-    /**
-     * Gets persisted values identified by $key.
-     * If the value is not set, returns $default.
-     *
-     * @param string $key     Cookie to set.
-     * @param mixed  $default Default to return if nothing was found.
-     *
-     * @return mixed
-     */
-    public function get(
-        string $key,
-        $default = null
-    ) {
-        [$key] = Toolkit::filter([$key])->string()->trim();
-
-        Toolkit::assert([
-            [$key, \Auth0\SDK\Exception\ArgumentException::missing('key')],
-        ])->isString();
-
-        return $this->store[$key] ?? $default;
-    }
-
-    /**
-     * Removes a persisted value identified by $key.
-     *
-     * @param string $key Cookie to delete.
-     */
-    public function delete(
-        string $key
-    ): void {
-        [$key] = Toolkit::filter([$key])->string()->trim();
-
-        Toolkit::assert([
-            [$key, \Auth0\SDK\Exception\ArgumentException::missing('key')],
-        ])->isString();
-
-        unset($this->store[(string) $key]);
-
-        if ($this->deferring === false) {
-            $this->setState();
-        }
-    }
-
-    /**
-     * Removes all persisted values.
-     */
-    public function purge(): void
-    {
-        $this->store = [];
-
-        if ($this->deferring === false) {
-            $this->setState();
-        }
-    }
-
-    /**
-     * Encrypt data for safe storage format for a cookie.
-     *
-     * @param array<mixed> $data Data to encrypt.
-     */
-    private function encrypt(
-        array $data
-    ): string {
-        $secret = $this->configuration->getCookieSecret();
-        $ivLen = openssl_cipher_iv_length(self::VAL_CRYPTO_ALGO);
-
-        if ($secret === null) {
-            throw \Auth0\SDK\Exception\ConfigurationException::requiresCookieSecret();
-        }
-
-        // @codeCoverageIgnoreStart
-        if ($ivLen === false) {
-            return '';
-        }
-        // @codeCoverageIgnoreEnd
-
-        $iv = openssl_random_pseudo_bytes($ivLen);
-
-        // @codeCoverageIgnoreStart
-        // @phpstan-ignore-next-line
-        if ($iv === false) {
-            return '';
-        }
-        // @codeCoverageIgnoreEnd
-
-        // Encrypt the serialized PHP array.
-        $encrypted = openssl_encrypt(serialize($data), self::VAL_CRYPTO_ALGO, $secret, 0, $iv, $tag);
-
-        // Return a JSON encoded object containing the crypto tag and iv, and the encrypted data.
-        return json_encode(serialize(['tag' => base64_encode($tag), 'iv' => base64_encode($iv), 'data' => $encrypted]), JSON_THROW_ON_ERROR);
-    }
-
-    /**
-     * Decrypt data from a stored cookie string.
-     *
-     * @param string $data String representing an encrypted data structure.
-     *
-     * @return array<mixed>|null
-     */
-    private function decrypt(
-        string $data
-    ) {
-        [$data] = Toolkit::filter([$data])->string()->trim();
-
-        Toolkit::assert([
-            [$data, \Auth0\SDK\Exception\ArgumentException::missing('data')],
-        ])->isString();
-
-        $secret = $this->configuration->getCookieSecret();
-
-        if ($secret === null) {
-            throw \Auth0\SDK\Exception\ConfigurationException::requiresCookieSecret();
-        }
-
-        $data = json_decode((string) $data, true);
-
-        if (! is_string($data)) {
-            return null;
-        }
-
-        $data = unserialize($data);
-
-        if (! isset($data['iv']) || ! isset($data['tag']) || ! is_string($data['iv']) || ! is_string($data['tag'])) {
-            return null;
-        }
-
-        $iv = base64_decode($data['iv'], true);
-        $tag = base64_decode($data['tag'], true);
-
-        if ($iv === false || $tag === false) {
-            return null;
-        }
-
-        $data = openssl_decrypt($data['data'], self::VAL_CRYPTO_ALGO, $secret, 0, $iv, $tag);
-
-        if ($data === false) {
-            return null;
-        }
-
-        return unserialize($data);
-    }
-
-    /**
-     * Build options array for use with setcookie()
-     *
-     * @param int|null $expires
-     *
-     * @return array<mixed>
-     */
-    private function getCookieOptions(
-        ?int $expires = null
-    ): array {
-        $expires = $expires ?? $this->configuration->getCookieExpires();
-
-        if ($expires !== 0) {
-            $expires = time() + $expires;
-        }
-
-        $options = [
-            'expires' => $expires,
-            'path' => $this->configuration->getCookiePath(),
-            'secure' => $this->configuration->getCookieSecure(),
-            'httponly' => true,
-            'samesite' => $this->configuration->getResponseMode() === 'form_post' ? 'None' : 'Lax',
-        ];
-
-        $domain = $this->configuration->getCookieDomain() ?? $_SERVER['HTTP_HOST'] ?? null;
-
-        if ($domain !== null) {
-            $options['domain'] = $domain;
-        }
-
-        return $options;
     }
 }

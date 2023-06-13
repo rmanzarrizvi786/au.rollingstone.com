@@ -8,7 +8,6 @@ class ComposerStaticInitd2d29987f7615515858c744f77abb05e
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
@@ -26,19 +25,23 @@ class ComposerStaticInitd2d29987f7615515858c744f77abb05e
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
             'Psr\\EventDispatcher\\' => 20,
+            'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
+            'PsrDiscovery\\' => 13,
             'PhpOption\\' => 10,
+        ),
+        'N' => 
+        array (
+            'Nyholm\\Psr7\\' => 12,
         ),
         'H' => 
         array (
-            'Http\\Promise\\' => 13,
             'Http\\Message\\MultipartStream\\' => 29,
-            'Http\\Message\\' => 13,
             'Http\\Discovery\\' => 15,
-            'Http\\Client\\' => 12,
         ),
         'G' => 
         array (
@@ -54,6 +57,11 @@ class ComposerStaticInitd2d29987f7615515858c744f77abb05e
         'D' => 
         array (
             'Dotenv\\' => 7,
+        ),
+        'C' => 
+        array (
+            'Curl\\' => 5,
+            'Composer\\Semver\\' => 16,
         ),
         'A' => 
         array (
@@ -78,6 +86,10 @@ class ComposerStaticInitd2d29987f7615515858c744f77abb05e
         array (
             0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/src',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-factory/src',
@@ -91,33 +103,39 @@ class ComposerStaticInitd2d29987f7615515858c744f77abb05e
         array (
             0 => __DIR__ . '/..' . '/psr/event-dispatcher/src',
         ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
+        'PsrDiscovery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr-discovery/cache-implementations/src',
+            1 => __DIR__ . '/..' . '/psr-discovery/container-implementations/src',
+            2 => __DIR__ . '/..' . '/psr-discovery/discovery/src',
+            3 => __DIR__ . '/..' . '/psr-discovery/event-dispatcher-implementations/src',
+            4 => __DIR__ . '/..' . '/psr-discovery/http-client-implementations/src',
+            5 => __DIR__ . '/..' . '/psr-discovery/http-factory-implementations/src',
+            6 => __DIR__ . '/..' . '/psr-discovery/log-implementations/src',
         ),
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
-        'Http\\Promise\\' => 
+        'Nyholm\\Psr7\\' => 
         array (
-            0 => __DIR__ . '/..' . '/php-http/promise/src',
+            0 => __DIR__ . '/..' . '/nyholm/psr7/src',
         ),
         'Http\\Message\\MultipartStream\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-http/multipart-stream-builder/src',
         ),
-        'Http\\Message\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/message-factory/src',
-        ),
         'Http\\Discovery\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-http/discovery/src',
-        ),
-        'Http\\Client\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/httplug/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -143,6 +161,14 @@ class ComposerStaticInitd2d29987f7615515858c744f77abb05e
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
+        'Curl\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-curl-class/php-curl-class/src/Curl',
+        ),
+        'Composer\\Semver\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/semver/src',
+        ),
         'Auth0\\SDK\\' => 
         array (
             0 => __DIR__ . '/..' . '/auth0/auth0-php/src',
@@ -152,6 +178,7 @@ class ComposerStaticInitd2d29987f7615515858c744f77abb05e
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',

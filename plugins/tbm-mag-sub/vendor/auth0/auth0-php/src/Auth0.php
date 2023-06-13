@@ -4,40 +4,24 @@ declare(strict_types=1);
 
 namespace Auth0\SDK;
 
-use Auth0\SDK\API\Authentication;
-use Auth0\SDK\API\Management;
-use Auth0\SDK\Configuration\SdkConfiguration;
-use Auth0\SDK\Configuration\SdkState;
-use Auth0\SDK\Contract\API\AuthenticationInterface;
-use Auth0\SDK\Contract\API\ManagementInterface;
-use Auth0\SDK\Contract\Auth0Interface;
-use Auth0\SDK\Contract\TokenInterface;
-use Auth0\SDK\Utility\HttpResponse;
-use Auth0\SDK\Utility\PKCE;
-use Auth0\SDK\Utility\Toolkit;
-use Auth0\SDK\Utility\TransientStoreHandler;
+use Auth0\SDK\API\{Authentication, Management};
+use Auth0\SDK\Configuration\{SdkConfiguration, SdkState};
+use Auth0\SDK\Contract\API\{AuthenticationInterface, ManagementInterface};
+use Auth0\SDK\Contract\{Auth0Interface, StoreInterface, TokenInterface};
+use Auth0\SDK\Exception\ConfigurationException;
+use Auth0\SDK\Utility\{HttpResponse, PKCE, Toolkit, TransientStoreHandler};
+use Throwable;
 
-/**
- * Class Auth0.
- */
+use function count;
+use function is_array;
+use function is_string;
+
 final class Auth0 implements Auth0Interface
 {
-    public const VERSION = '8.0.3';
-
     /**
-     * Instance of SdkConfiguration, for shared configuration across classes.
+     * @var string
      */
-    private SdkConfiguration $configuration;
-
-    /**
-     * Instance of SdkState, for shared state across classes.
-     */
-    private ?SdkState $state = null;
-
-    /**
-     * Instance of TransientStoreHandler for storing ephemeral data.
-     */
-    private ?TransientStoreHandler $transient = null;
+    public const VERSION = '8.6.0';
 
     /**
      * Authentication Client.
@@ -50,199 +34,78 @@ final class Auth0 implements Auth0Interface
     private ?Management $management = null;
 
     /**
-     * Auth0 Constructor.
-     *
-     * @param SdkConfiguration|array<mixed> $configuration Required. Base configuration options for the SDK. See the SdkConfiguration class constructor for options.
+     * Instance of SdkState, for shared state across classes.
      */
-    public function __construct(
-        $configuration
-    ) {
-        // If we're passed an array, construct a new SdkConfiguration from that structure.
-        if (is_array($configuration)) {
-            $configuration = new SdkConfiguration($configuration);
-        }
-
-        // Store the configuration internally.
-        $this->configuration = $configuration;
-    }
+    private ?SdkState $state = null;
 
     /**
-     * Create, configure, and return an instance of the Authentication class.
+     * Instance of TransientStoreHandler for storing ephemeral data.
      */
+    private ?TransientStoreHandler $transient = null;
+
+    /**
+     * Instance of SdkConfiguration, for shared configuration across classes.
+     */
+    private ?SdkConfiguration $validatedConfiguration = null;
+
+    /**
+     * Auth0 Constructor.
+     *
+     * @param array<mixed>|SdkConfiguration $configuration Required. Base configuration options for the SDK. See the SdkConfiguration class constructor for options.
+     */
+    public function __construct(
+        private SdkConfiguration | array $configuration,
+    ) {
+    }
+
     public function authentication(): AuthenticationInterface
     {
-        if ($this->authentication === null) {
-            $this->authentication = new Authentication($this->configuration);
+        if (! $this->authentication instanceof Authentication) {
+            $this->authentication = new Authentication($this->configuration());
         }
 
         return $this->authentication;
     }
 
-    /**
-     * Create, configure, and return an instance of the Management class.
-     */
-    public function management(): ManagementInterface
-    {
-        if ($this->management === null) {
-            $this->management = new Management($this->configuration);
-        }
-
-        return $this->management;
-    }
-
-    /**
-     * Retrieve the SdkConfiguration instance.
-     */
-    public function configuration(): SdkConfiguration
-    {
-        return $this->configuration;
-    }
-
-    /**
-     * Return the url to the login page.
-     *
-     * @param string|null                 $redirectUrl Optional. URI to return to after logging out. Defaults to the SDK's configured redirectUri.
-     * @param array<int|string|null>|null $params Additional parameters to include with the request.
-     *
-     * @throws \Auth0\SDK\Exception\ConfigurationException When a Client ID is not configured.
-     * @throws \Auth0\SDK\Exception\ConfigurationException When `redirectUri` is not specified, and supplied SdkConfiguration does not have a default redirectUri configured.
-     *
-     * @link https://auth0.com/docs/api/authentication#login
-     */
-    public function login(
-        ?string $redirectUrl = null,
-        ?array $params = null
-    ): string {
-        $params = $params ?? [];
-        $state = $params['state'] ?? $this->getTransientStore()->issue('state');
-        $params['nonce'] = $params['nonce'] ?? $this->getTransientStore()->issue('nonce');
-        $params['max_age'] = $params['max_age'] ?? $this->configuration()->getTokenMaxAge();
-
-        unset($params['state']);
-
-        if ($this->configuration()->getUsePkce()) {
-            $codeVerifier = PKCE::generateCodeVerifier(128);
-            $params['code_challenge'] = PKCE::generateCodeChallenge($codeVerifier);
-            $params['code_challenge_method'] = 'S256';
-            $this->getTransientStore()->store('code_verifier', $codeVerifier);
-        }
-
-        if ($params['max_age'] !== null) {
-            $this->getTransientStore()->store('max_age', (string) $params['max_age']);
-        }
-
-        return $this->authentication()->getLoginLink((string) $state, $redirectUrl, $params);
-    }
-
-    /**
-     * Return the url to the signup page when using the New Universal Login Experience.
-     *
-     * @param string|null                 $redirectUrl Optional. URI to return to after logging out. Defaults to the SDK's configured redirectUri.
-     * @param array<int|string|null>|null $params Additional parameters to include with the request.
-     *
-     * @throws \Auth0\SDK\Exception\ConfigurationException When a Client ID is not configured.
-     * @throws \Auth0\SDK\Exception\ConfigurationException When `redirectUri` is not specified, and supplied SdkConfiguration does not have a default redirectUri configured.
-     *
-     * @link https://auth0.com/docs/universal-login/new-experience
-     * @link https://auth0.com/docs/api/authentication#login
-     */
-    public function signup(
-        ?string $redirectUrl = null,
-        ?array $params = null
-    ): string {
-        return $this->login($redirectUrl, Toolkit::merge([
-            'screen_hint' => 'signup',
-        ], $params));
-    }
-
-    /**
-     * If invitation parameters are present in the request, handle extraction and return a URL for redirection to Universal Login to accept. Returns null if no invitation parameters were found.
-     *
-     * @param string|null                 $redirectUrl Optional. URI to return to after logging out. Defaults to the SDK's configured redirectUri.
-     * @param array<int|string|null>|null $params Additional parameters to include with the request.
-     *
-     * @throws \Auth0\SDK\Exception\ConfigurationException When a Client ID is not configured.
-     * @throws \Auth0\SDK\Exception\ConfigurationException When `redirectUri` is not specified, and supplied SdkConfiguration does not have a default redirectUri configured.
-     *
-     * @link https://auth0.com/docs/universal-login/new-experience
-     * @link https://auth0.com/docs/api/authentication#login
-     */
-    public function handleInvitation(
-        ?string $redirectUrl = null,
-        ?array $params = null
-    ): ?string {
-        $invite = $this->getInvitationParameters();
-
-        if ($invite !== null) {
-            return $this->login($redirectUrl, Toolkit::merge([
-                'invitation' => (string) $invite->invitation,
-                'organization' => (string) $invite->organization,
-            ], $params));
-        }
-
-        return null;
-    }
-
-    /**
-     * Delete any persistent data and clear out all stored properties, and return the URI to Auth0 /logout endpoint for redirection.
-     *
-     * @param string|null                 $returnUri Optional. URI to return to after logging out. Defaults to the SDK's configured redirectUri.
-     * @param array<int|string|null>|null $params    Optional. Additional parameters to include with the request.
-     *
-     * @throws \Auth0\SDK\Exception\ConfigurationException When a Client ID is not configured.
-     * @throws \Auth0\SDK\Exception\ConfigurationException When `returnUri` is not specified, and supplied SdkConfiguration does not have a default redirectUri configured.
-     *
-     * @link https://auth0.com/docs/api/authentication#logout
-     */
-    public function logout(
-        ?string $returnUri = null,
-        ?array $params = null
-    ): string {
-        $this->clear();
-
-        return $this->authentication()->getLogoutLink($returnUri, $params);
-    }
-
-    /**
-     * Delete any persistent data and clear out all stored properties.
-     *
-     * @param bool $transient When true, data in transient storage is also cleared.
-     */
     public function clear(
-        bool $transient = true
+        bool $transient = true,
     ): self {
-        // Delete all data in the session storage medium.
-        if ($this->configuration()->hasSessionStorage()) {
-            $this->configuration->getSessionStorage()->purge();
+        if ($this->configuration()->usingStatefulness()) {
+            $this->deferStateSaving();
+
+            // Delete all data in the session storage medium.
+            if ($this->configuration()->hasSessionStorage()) {
+                $this->configuration()->getSessionStorage()->purge();
+            }
+
+            // Delete all data in the transient storage medium.
+            if ($this->configuration()->hasTransientStorage() && $transient) {
+                $this->configuration()->getTransientStorage()->purge();
+            }
+
+            // If state saving had been deferred, disable it and force a update to persistent storage.
+            $this->deferStateSaving(false);
         }
 
-        // Delete all data in the transient storage medium.
-        if ($this->configuration()->hasTransientStorage() && $transient === true) {
-            $this->configuration->getTransientStorage()->purge();
-        }
-
-        // If state saving had been deferred, disable it and force a update to persistent storage.
-        $this->deferStateSaving(false);
-
-        // Reset the internal state.
-        $this->getState()->reset();
+        // Refresh the internal state tracker from the store.
+        $this->refreshState();
 
         return $this;
     }
 
-    /**
-     * Verifies and decodes an ID token using the properties in this class.
-     *
-     * @param string             $token             ID token to verify and decode.
-     * @param array<string>      $tokenAudience     Optional. An array of allowed values for the 'aud' claim. Successful if ANY match.
-     * @param array<string>|null $tokenOrganization Optional. An array of allowed values for the 'org_id' claim. Successful if ANY match.
-     * @param string|null        $tokenNonce        Optional. The value expected for the 'nonce' claim.
-     * @param int|null           $tokenMaxAge       Optional. Maximum window of time in seconds since the 'auth_time' to accept the token.
-     * @param int|null           $tokenLeeway       Optional. Leeway in seconds to allow during time calculations. Defaults to 60.
-     * @param int|null           $tokenNow          Optional. Optional. Unix timestamp representing the current point in time to use for time calculations.
-     *
-     * @throws \Auth0\SDK\Exception\InvalidTokenException When token validation fails. See the exception message for further details.
-     */
+    public function configuration(): SdkConfiguration
+    {
+        if (! $this->validatedConfiguration instanceof SdkConfiguration) {
+            if (is_array($this->configuration)) {
+                return $this->validatedConfiguration = new SdkConfiguration($this->configuration);
+            }
+
+            return $this->validatedConfiguration = $this->configuration;
+        }
+
+        return $this->validatedConfiguration;
+    }
+
     public function decode(
         string $token,
         ?array $tokenAudience = null,
@@ -251,98 +114,116 @@ final class Auth0 implements Auth0Interface
         ?int $tokenMaxAge = null,
         ?int $tokenLeeway = null,
         ?int $tokenNow = null,
-        ?int $tokenType = null
+        ?int $tokenType = null,
     ): TokenInterface {
-        $tokenType = $tokenType ?? Token::TYPE_ID_TOKEN;
-        $tokenNonce = $tokenNonce ?? $this->getTransientStore()->getOnce('nonce') ?? null;
-        $tokenMaxAge = $tokenMaxAge ?? $this->getTransientStore()->getOnce('max_age') ?? null;
+        $store = $this->getTransientStore();
+
+        $tokenType ??= Token::TYPE_ID_TOKEN;
+        $tokenNonce ??= $store?->getOnce('nonce') ?? null;
+        $tokenMaxAge ??= $store?->getOnce('max_age') ?? null;
         $tokenIssuer = null;
 
-        $token = new Token($this->configuration, $token, $tokenType);
-        $token->verify();
-
         // If pulled from transient storage, $tokenMaxAge might be a string.
-        if ($tokenMaxAge !== null) {
+        if (null !== $tokenMaxAge) {
             $tokenMaxAge = (int) $tokenMaxAge;
         }
 
-        $token->validate(
-            $tokenIssuer,
-            $tokenAudience,
-            $tokenOrganization,
-            $tokenNonce,
-            $tokenMaxAge,
-            $tokenLeeway,
-            $tokenNow
-        );
+        $token = new Token($this->configuration(), $token, $tokenType);
+
+        $token
+            ->verify()
+            ->validate(
+                $tokenIssuer,
+                $tokenAudience,
+                $tokenOrganization,
+                $tokenNonce,
+                $tokenMaxAge,
+                $tokenLeeway,
+                $tokenNow,
+            );
 
         // Ensure transient-stored values are cleared, even if overriding values were passed to the  method.
-        $this->getTransientStore()->delete('max_age');
-        $this->getTransientStore()->delete('nonce');
+        if ($this->configuration()->usingStatefulness() && $store instanceof TransientStoreHandler) {
+            $store->delete('max_age');
+            $store->delete('nonce');
+        }
 
         return $token;
     }
 
-    /**
-     * Exchange authorization code for access, ID, and refresh tokens.
-     *
-     * @param string|null $redirectUri  Optional. Redirect URI sent with authorize request. Defaults to the SDK's configured redirectUri.
-     * @param string|null $code         Optional. The value of the `code` parameter. One will be extracted from $_GET if not specified.
-     * @param string|null $state        Optional. The value of the `state` parameter. One will be extracted from $_GET if not specified.
-     *
-     * @throws \Auth0\SDK\Exception\StateException   If the code value is missing from the request parameters.
-     * @throws \Auth0\SDK\Exception\StateException   If the state value is missing from the request parameters, or otherwise invalid.
-     * @throws \Auth0\SDK\Exception\StateException   If access token is missing from the response.
-     * @throws \Auth0\SDK\Exception\NetworkException When the API request fails due to a network error.
-     *
-     * @link https://auth0.com/docs/authorization/flows/call-your-api-using-the-authorization-code-flow
-     */
     public function exchange(
         ?string $redirectUri = null,
         ?string $code = null,
-        ?string $state = null
+        ?string $state = null,
     ): bool {
+        $store = $this->getTransientStore();
+
+        if (! $this->configuration()->usingStatefulness() || ! $store instanceof TransientStoreHandler) {
+            throw ConfigurationException::requiresStatefulness('Auth0->exchange()');
+        }
+
         [$redirectUri, $code, $state] = Toolkit::filter([$redirectUri, $code, $state])->string()->trim();
 
-        $code = $code ?? $this->getRequestParameter('code');
-        $state = $state ?? $this->getRequestParameter('state');
-        $codeVerifier = null;
+        $code ??= $this->getRequestParameter('code');
+        $state ??= $this->getRequestParameter('state');
+        $pkce = $store->getOnce('code_verifier');
+        $nonce = $store->isset('nonce');
+        $verified = (null !== $state && $store->verify('state', $state));
+
         $user = null;
 
+        $this->clear(false);
         $this->deferStateSaving();
 
-        if ($code === null) {
+        if (null === $code) {
             $this->clear();
+
             throw \Auth0\SDK\Exception\StateException::missingCode();
         }
 
-        $this->clear(false);
-
-        if ($state === null || ! $this->getTransientStore()->verify('state', $state)) {
+        if (null === $state || ! $verified) {
             $this->clear();
+
             throw \Auth0\SDK\Exception\StateException::invalidState();
         }
 
-        if ($this->configuration()->getUsePkce()) {
-            $codeVerifier = $this->getTransientStore()->getOnce('code_verifier');
+        if (null === $pkce && $this->configuration()->getUsePkce()) {
+            $this->clear();
 
-            if ($codeVerifier === null) {
-                $this->clear();
-                throw \Auth0\SDK\Exception\StateException::missingCodeVerifier();
-            }
+            throw \Auth0\SDK\Exception\StateException::missingCodeVerifier();
         }
 
-        $response = $this->authentication()->codeExchange($code, $redirectUri, $codeVerifier);
+        $response = $this->authentication()->codeExchange($code, $redirectUri, $pkce);
 
         if (! HttpResponse::wasSuccessful($response)) {
             $this->clear();
+
             throw \Auth0\SDK\Exception\StateException::failedCodeExchange();
         }
 
         $response = HttpResponse::decodeContent($response);
 
-        if (! isset($response['access_token']) || ! $response['access_token']) {
+        /** @var array{access_token?: string, scope?: string, refresh_token?: string, id_token?: string, expires_in?: int|string} $response */
+        if (isset($response['id_token'])) {
+            if (! $nonce) {
+                $this->clear();
+
+                throw \Auth0\SDK\Exception\StateException::missingNonce();
+            }
+
+            try {
+                $user = $this->decode($response['id_token'])->toArray();
+                $this->setIdToken($response['id_token']);
+            } catch (Throwable $throwable) {
+                $this->clear();
+
+                throw $throwable;
+            }
+        }
+
+        if (! isset($response['access_token']) || '' === trim($response['access_token'])) {
             $this->clear();
+
             throw \Auth0\SDK\Exception\StateException::badAccessToken();
         }
 
@@ -356,22 +237,12 @@ final class Auth0 implements Auth0Interface
             $this->setRefreshToken($response['refresh_token']);
         }
 
-        if (isset($response['id_token'])) {
-            if (! $this->getTransientStore()->isset('nonce')) {
-                $this->clear();
-                throw \Auth0\SDK\Exception\StateException::missingNonce();
-            }
-
-            $this->setIdToken($response['id_token']);
-            $user = $this->decode($response['id_token'])->toArray();
-        }
-
         if (isset($response['expires_in']) && is_numeric($response['expires_in'])) {
             $expiresIn = time() + (int) $response['expires_in'];
             $this->setAccessTokenExpiration($expiresIn);
         }
 
-        if ($user === null || $this->configuration()->getQueryUserInfo() === true) {
+        if (null === $user || $this->configuration()->getQueryUserInfo()) {
             $response = $this->authentication()->userInfo($response['access_token']);
 
             if (HttpResponse::wasSuccessful($response)) {
@@ -379,63 +250,93 @@ final class Auth0 implements Auth0Interface
             }
         }
 
+        $this->configuration()->getTransientStorage()->purge();
+
+        /** @var null|array<array<mixed>|int|string> $user */
         $this->setUser($user ?? []);
         $this->deferStateSaving(false);
 
         return true;
     }
 
-    /**
-     * Renews the access token and ID token using an existing refresh token.
-     * Scope "offline_access" must be declared in order to obtain refresh token for later token renewal.
-     *
-     * @param array<int|string|null>|null $params Optional. Additional parameters to include with the request.
-     *
-     * @throws \Auth0\SDK\Exception\StateException         If the Auth0 object does not have access token and refresh token, or the API did not renew tokens properly.
-     * @throws \Auth0\SDK\Exception\ConfigurationException When a Client ID is not configured.
-     * @throws \Auth0\SDK\Exception\ConfigurationException When a Client Secret is not configured.
-     * @throws \Auth0\SDK\Exception\NetworkException       When the API request fails due to a network error.
-     *
-     * @link https://auth0.com/docs/tokens/refresh-token/current
-     */
-    public function renew(
-        ?array $params = null
-    ): self {
-        $this->deferStateSaving();
-        $refreshToken = $this->getState()->getRefreshToken();
-
-        if ($refreshToken === null) {
-            $this->clear();
-            throw \Auth0\SDK\Exception\StateException::failedRenewTokenMissingRefreshToken();
-        }
-
-        $response = $this->authentication()->refreshToken($refreshToken, $params);
-        $response = HttpResponse::decodeContent($response);
-
-        if (! isset($response['access_token']) || ! $response['access_token']) {
-            $this->clear();
-            throw \Auth0\SDK\Exception\StateException::failedRenewTokenMissingAccessToken();
-        }
-
-        $this->setAccessToken($response['access_token']);
-
-        if (isset($response['id_token'])) {
-            $this->setIdToken($response['id_token']);
-        }
-
-        $this->deferStateSaving(false);
-
-        return $this;
+    public function getAccessToken(): ?string
+    {
+        return $this->getState()->getAccessToken();
     }
 
-    /**
-     * Return an object representing the current session credentials (including id token, access token, access token expiration, refresh token and user data) without triggering an authorization flow. Returns null when session data is not available.
-     */
+    public function getAccessTokenExpiration(): ?int
+    {
+        return $this->getState()->getAccessTokenExpiration();
+    }
+
+    public function getAccessTokenScope(): ?array
+    {
+        return $this->getState()->getAccessTokenScope();
+    }
+
+    public function getBearerToken(
+        ?array $get = null,
+        ?array $post = null,
+        ?array $server = null,
+        ?array $haystack = null,
+        ?array $needles = null,
+    ): ?TokenInterface {
+        if (null !== $get && count($get) >= 1 && count($_GET) >= 1) {
+            foreach ($get as $parameterName) {
+                if (isset($_GET[$parameterName]) && is_string($_GET[$parameterName])) {
+                    $candidate = $this->processBearerToken($_GET[$parameterName]);
+
+                    if ($candidate instanceof TokenInterface) {
+                        return $candidate;
+                    }
+                }
+            }
+        }
+
+        if (null !== $post && count($post) >= 1 && count($_POST) >= 1) {
+            foreach ($post as $parameterName) {
+                if (isset($_POST[$parameterName]) && is_string($_POST[$parameterName])) {
+                    $candidate = $this->processBearerToken($_POST[$parameterName]);
+
+                    if ($candidate instanceof TokenInterface) {
+                        return $candidate;
+                    }
+                }
+            }
+        }
+
+        if (null !== $server && count($server) >= 1 && count($_SERVER) >= 1) {
+            foreach ($server as $parameterName) {
+                if (isset($_SERVER[$parameterName]) && is_string($_SERVER[$parameterName])) {
+                    $candidate = $this->processBearerToken($_SERVER[$parameterName]);
+
+                    if ($candidate instanceof TokenInterface) {
+                        return $candidate;
+                    }
+                }
+            }
+        }
+
+        if (null !== $needles && null !== $haystack && count($needles) >= 1 && count($haystack) >= 1) {
+            foreach ($needles as $needle) {
+                if (isset($haystack[$needle])) {
+                    $candidate = $this->processBearerToken($haystack[$needle]);
+
+                    if ($candidate instanceof TokenInterface) {
+                        return $candidate;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
     public function getCredentials(): ?object
     {
         $user = $this->getState()->getUser();
 
-        if ($user === null) {
+        if (null === $user) {
             return null;
         }
 
@@ -457,192 +358,12 @@ final class Auth0 implements Auth0Interface
         ];
     }
 
-    /**
-     * Get ID token from an active session
-     */
-    public function getIdToken(): ?string
-    {
-        return $this->getState()->getIdToken();
-    }
-
-    /**
-     * Get userinfo from an active session
-     *
-     * @return array<string,array|int|string>|null
-     */
-    public function getUser(): ?array
-    {
-        return $this->getState()->getUser();
-    }
-
-    /**
-     * Get access token from an active session
-     */
-    public function getAccessToken(): ?string
-    {
-        return $this->getState()->getAccessToken();
-    }
-
-    /**
-     * Get refresh token from an active session
-     */
-    public function getRefreshToken(): ?string
-    {
-        return $this->getState()->getRefreshToken();
-    }
-
-    /**
-     * Get token scopes from an active session
-     *
-     * @return array<string>
-     */
-    public function getAccessTokenScope(): ?array
-    {
-        return $this->getState()->getAccessTokenScope();
-    }
-
-    /**
-     * Get token expiration from an active session
-     */
-    public function getAccessTokenExpiration(): ?int
-    {
-        return $this->getState()->getAccessTokenExpiration();
-    }
-
-    /**
-     * Updates the active session's stored Id Token.
-     *
-     * @param string $idToken Id token returned from the code exchange.
-     */
-    public function setIdToken(
-        string $idToken
-    ): self {
-        $this->getState()->setIdToken($idToken);
-
-        if ($this->configuration()->hasSessionStorage() && $this->configuration()->getPersistIdToken()) {
-            $this->configuration()->getSessionStorage()->set('idToken', $idToken);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set the user property to a userinfo array and, if configured, persist
-     *
-     * @param array<array|int|string> $user User data to store.
-     */
-    public function setUser(
-        array $user
-    ): self {
-        $this->getState()->setUser($user);
-
-        if ($this->configuration()->hasSessionStorage() && $this->configuration()->getPersistUser()) {
-            $this->configuration()->getSessionStorage()->set('user', $user);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Sets and persists the access token.
-     *
-     * @param string $accessToken Access token returned from the code exchange.
-     */
-    public function setAccessToken(
-        string $accessToken
-    ): self {
-        $this->getState()->setAccessToken($accessToken);
-
-        if ($this->configuration()->hasSessionStorage() && $this->configuration()->getPersistAccessToken()) {
-            $this->configuration()->getSessionStorage()->set('accessToken', $accessToken);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Sets and persists the refresh token.
-     *
-     * @param string $refreshToken Refresh token returned from the code exchange.
-     */
-    public function setRefreshToken(
-        string $refreshToken
-    ): self {
-        $this->getState()->setRefreshToken($refreshToken);
-
-        if ($this->configuration()->hasSessionStorage() && $this->configuration()->getPersistRefreshToken()) {
-            $this->configuration()->getSessionStorage()->set('refreshToken', $refreshToken);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Sets and persists the access token scope.
-     *
-     * @param array<string> $accessTokenScope An array of scopes for the access token.
-     */
-    public function setAccessTokenScope(
-        array $accessTokenScope
-    ): self {
-        $this->getState()->setAccessTokenScope($accessTokenScope);
-
-        if ($this->configuration()->hasSessionStorage() && $this->configuration()->getPersistAccessToken()) {
-            $this->configuration()->getSessionStorage()->set('accessTokenScope', $accessTokenScope);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Sets and persists the access token expiration unix timestamp.
-     *
-     * @param int $accessTokenExpiration Unix timestamp representing the expiration time on the access token.
-     */
-    public function setAccessTokenExpiration(
-        int $accessTokenExpiration
-    ): self {
-        $this->getState()->setAccessTokenExpiration($accessTokenExpiration);
-
-        if ($this->configuration()->hasSessionStorage() && $this->configuration()->getPersistAccessToken()) {
-            $this->configuration()->getSessionStorage()->set('accessTokenExpiration', $accessTokenExpiration);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Get the specified parameter from POST or GET, depending on configured response mode.
-     *
-     * @param string $parameterName Name of the parameter to pull from the request.
-     * @param int $filter Defaults to \FILTER_UNSAFE_RAW. The type of PHP filter_var() filter to apply.
-     */
-    public function getRequestParameter(
-        string $parameterName,
-        int $filter = \FILTER_UNSAFE_RAW
-    ): ?string {
-        $responseMode = $this->configuration()->getResponseMode();
-
-        if ($responseMode === 'query' && isset($_GET[$parameterName])) {
-            return filter_var($_GET[$parameterName], $filter, FILTER_NULL_ON_FAILURE);
-        }
-
-        if ($responseMode === 'form_post' && isset($_POST[$parameterName])) {
-            return filter_var($_POST[$parameterName], $filter, FILTER_NULL_ON_FAILURE);
-        }
-
-        return null;
-    }
-
-    /**
-     * Get the code exchange details from the GET request
-     */
     public function getExchangeParameters(): ?object
     {
         $code = $this->getRequestParameter('code');
         $state = $this->getRequestParameter('state');
 
-        if ($code !== null && $state !== null) {
+        if (null !== $code && null !== $state) {
             return (object) [
                 'code' => $code,
                 'state' => $state,
@@ -652,17 +373,19 @@ final class Auth0 implements Auth0Interface
         return null;
     }
 
-    /**
-     * Get the invitation details from the GET request
-     */
-    public function getInvitationParameters(): ?object
+    public function getIdToken(): ?string
+    {
+        return $this->getState()->getIdToken();
+    }
+
+    public function getInvitationParameters(): ?array
     {
         $invite = $this->getRequestParameter('invitation');
         $orgId = $this->getRequestParameter('organization');
         $orgName = $this->getRequestParameter('organization_name');
 
-        if ($invite !== null && $orgId !== null && $orgName !== null) {
-            return (object) [
+        if (null !== $invite && null !== $orgId && null !== $orgName) {
+            return [
                 'invitation' => $invite,
                 'organization' => $orgId,
                 'organizationName' => $orgName,
@@ -672,74 +395,380 @@ final class Auth0 implements Auth0Interface
         return null;
     }
 
-    /**
-     * Create a transient storage handler using the configured transientStorage medium.
-     */
-    private function getTransientStore(): TransientStoreHandler
+    public function getRefreshToken(): ?string
     {
-        if ($this->transient === null) {
-            $this->transient = new TransientStoreHandler($this->configuration()->getTransientStorage());
-        }
-
-        return $this->transient;
+        return $this->getState()->getRefreshToken();
     }
 
-    /**
-     * Retrieve state from session storage and configure SDK state.
-     */
-    private function getState(): SdkState
-    {
-        if ($this->state === null) {
-            $state = [];
+    public function getRequestParameter(
+        string $parameterName,
+        int $filter = FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        array $filterOptions = [],
+    ): ?string {
+        $responseMode = $this->configuration()->getResponseMode();
 
-            if ($this->configuration()->hasSessionStorage()) {
-                if ($this->configuration()->getPersistUser()) {
-                    $state['user'] = $this->configuration()->getSessionStorage()->get('user');
-                }
-
-                if ($this->configuration()->getPersistIdToken()) {
-                    $state['idToken'] = $this->configuration()->getSessionStorage()->get('idToken');
-                }
-
-                if ($this->configuration()->getPersistAccessToken()) {
-                    $state['accessToken'] = $this->configuration()->getSessionStorage()->get('accessToken');
-                    $state['accessTokenScope'] = $this->configuration()->getSessionStorage()->get('accessTokenScope');
-
-                    $expires = $this->configuration()->getSessionStorage()->get('accessTokenExpiration');
-
-                    if ($expires !== null) {
-                        $state['accessTokenExpiration'] = (int) $expires;
-                    }
-                }
-
-                if ($this->configuration()->getPersistRefreshToken()) {
-                    $state['refreshToken'] = $this->configuration()->getSessionStorage()->get('refreshToken');
-                }
-            }
-
-            $this->state = new SdkState($state);
+        // @phpstan-ignore-next-line
+        if (isset($_GET) && [] !== $_GET && ('query' === $responseMode && isset($_GET[$parameterName]) && is_string($_GET[$parameterName]))) {
+            return filter_var(trim($_GET[$parameterName]), $filter, $filterOptions);
         }
 
-        return $this->state;
+        // @phpstan-ignore-next-line
+        if (isset($_POST) && [] !== $_POST && ('form_post' === $responseMode && isset($_POST[$parameterName]) && is_string($_POST[$parameterName]))) {
+            return filter_var(trim($_POST[$parameterName]), $filter, $filterOptions);
+        }
+
+        return null;
+    }
+
+    public function getUser(): ?array
+    {
+        return $this->getState()->getUser();
+    }
+
+    public function handleInvitation(
+        ?string $redirectUrl = null,
+        ?array $params = null,
+    ): ?string {
+        if (! $this->configuration()->usingStatefulness()) {
+            throw ConfigurationException::requiresStatefulness('Auth0->handleInvitation()');
+        }
+
+        $invite = $this->getInvitationParameters();
+
+        if (null !== $invite) {
+            $params = Toolkit::merge([[
+                'invitation' => $invite['invitation'],
+                'organization' => $invite['organization'],
+            ], $params]);
+
+            /** @var null|array<null|int|string> $params */
+
+            return $this->login($redirectUrl, $params);
+        }
+
+        return null;
+    }
+
+    public function isAuthenticated(): bool
+    {
+        return null !== $this->getCredentials();
+    }
+
+    public function login(
+        ?string $redirectUrl = null,
+        ?array $params = null,
+    ): string {
+        $this->deferStateSaving();
+
+        $store = $this->getTransientStore(true);
+
+        if (! $this->configuration()->usingStatefulness() || ! $store instanceof TransientStoreHandler) {
+            throw ConfigurationException::requiresStatefulness('Auth0->login()');
+        }
+
+        $params ??= [];
+        $state = $params['state'] ?? $store->getNonce();
+        $params['nonce'] ??= $store->getNonce();
+        $params['max_age'] ??= $this->configuration()->getTokenMaxAge();
+
+        if ($this->configuration()->getUsePkce()) {
+            $codeVerifier = PKCE::generateCodeVerifier(128);
+            $params['code_challenge'] = PKCE::generateCodeChallenge($codeVerifier);
+            $params['code_challenge_method'] = 'S256';
+
+            $store->store('code_verifier', $codeVerifier);
+        }
+
+        $store->store('state', (string) $state);
+        $store->store('nonce', (string) $params['nonce']);
+
+        if (null !== $params['max_age']) {
+            $store->store('max_age', (string) $params['max_age']);
+        }
+
+        unset($params['state']);
+
+        $this->deferStateSaving(false);
+
+        if ($this->configuration()->getPushedAuthorizationRequest()) {
+            $params['state'] = (string) $state;
+            $params['redirect_uri'] = $redirectUrl;
+
+            return $this->authentication()
+                ->pushedAuthorizationRequest()
+                ->create($params);
+        }
+
+        return $this->authentication()->getLoginLink((string) $state, $redirectUrl, $params);
+    }
+
+    public function logout(
+        ?string $returnUri = null,
+        ?array $params = null,
+    ): string {
+        if (! $this->configuration()->usingStatefulness()) {
+            throw ConfigurationException::requiresStatefulness('Auth0->logout()');
+        }
+
+        $this->clear();
+
+        return $this->authentication()->getLogoutLink($returnUri, $params);
+    }
+
+    public function management(): ManagementInterface
+    {
+        if (! $this->management instanceof Management) {
+            $this->management = new Management($this->configuration());
+        }
+
+        return $this->management;
+    }
+
+    public function refreshState(): self
+    {
+        $this->getState(true);
+
+        return $this;
+    }
+
+    public function renew(
+        ?array $params = null,
+    ): self {
+        $this->deferStateSaving();
+        $refreshToken = $this->getState()->getRefreshToken();
+
+        if (null === $refreshToken) {
+            $this->clear();
+
+            throw \Auth0\SDK\Exception\StateException::failedRenewTokenMissingRefreshToken();
+        }
+
+        $response = $this->authentication()->refreshToken($refreshToken, $params);
+
+        $response = HttpResponse::decodeContent($response);
+
+        /** @var array{access_token?: string, scope?: string, refresh_token?: string, id_token?: string, expires_in?: int|string} $response */
+        if (! isset($response['access_token']) || '' === trim($response['access_token'])) {
+            $this->clear();
+
+            throw \Auth0\SDK\Exception\StateException::failedRenewTokenMissingAccessToken();
+        }
+
+        $this->setAccessToken($response['access_token']);
+
+        if (isset($response['expires_in']) && is_numeric($response['expires_in'])) {
+            $expiresIn = time() + (int) $response['expires_in'];
+            $this->setAccessTokenExpiration($expiresIn);
+        }
+
+        if (isset($response['id_token'])) {
+            $this->setIdToken($response['id_token']);
+        }
+
+        if (isset($response['refresh_token'])) {
+            $this->setRefreshToken($response['refresh_token']);
+        }
+
+        if (isset($response['scope'])) {
+            $this->setAccessTokenScope(explode(' ', $response['scope']));
+        }
+
+        $this->deferStateSaving(false);
+
+        return $this;
+    }
+
+    public function setAccessToken(
+        string $accessToken,
+    ): self {
+        $this->getState()->setAccessToken($accessToken);
+
+        if ($this->configuration()->usingStatefulness() && $this->configuration()->hasSessionStorage() && $this->configuration()->getPersistAccessToken()) {
+            $this->configuration()->getSessionStorage()->set('accessToken', $accessToken);
+        }
+
+        return $this;
+    }
+
+    public function setAccessTokenExpiration(
+        int $accessTokenExpiration,
+    ): self {
+        $this->getState()->setAccessTokenExpiration($accessTokenExpiration);
+
+        if ($this->configuration()->usingStatefulness() && $this->configuration()->hasSessionStorage() && $this->configuration()->getPersistAccessToken()) {
+            $this->configuration()->getSessionStorage()->set('accessTokenExpiration', $accessTokenExpiration);
+        }
+
+        return $this;
+    }
+
+    public function setAccessTokenScope(
+        array $accessTokenScope,
+    ): self {
+        $this->getState()->setAccessTokenScope($accessTokenScope);
+
+        if ($this->configuration()->usingStatefulness() && $this->configuration()->hasSessionStorage() && $this->configuration()->getPersistAccessToken()) {
+            $this->configuration()->getSessionStorage()->set('accessTokenScope', $accessTokenScope);
+        }
+
+        return $this;
+    }
+
+    public function setConfiguration(
+        SdkConfiguration | array $configuration,
+    ): self {
+        $this->validatedConfiguration = null; // Reset validation state.
+        $this->configuration = $configuration; // Set new configuration.
+        $this->configuration(); // Validate configuration immediately.
+
+        return $this;
+    }
+
+    public function setIdToken(
+        string $idToken,
+    ): self {
+        $this->getState()->setIdToken($idToken);
+
+        if ($this->configuration()->usingStatefulness() && $this->configuration()->hasSessionStorage() && $this->configuration()->getPersistIdToken()) {
+            $this->configuration()->getSessionStorage()->set('idToken', $idToken);
+        }
+
+        return $this;
+    }
+
+    public function setRefreshToken(
+        string $refreshToken,
+    ): self {
+        $this->getState()->setRefreshToken($refreshToken);
+
+        if ($this->configuration()->usingStatefulness() && $this->configuration()->hasSessionStorage() && $this->configuration()->getPersistRefreshToken()) {
+            $this->configuration()->getSessionStorage()->set('refreshToken', $refreshToken);
+        }
+
+        return $this;
+    }
+
+    public function setUser(
+        array $user,
+    ): self {
+        $this->getState()->setUser($user);
+
+        if ($this->configuration()->usingStatefulness() && $this->configuration()->hasSessionStorage() && $this->configuration()->getPersistUser()) {
+            $this->configuration()->getSessionStorage()->set('user', $user);
+        }
+
+        return $this;
+    }
+
+    public function signup(
+        ?string $redirectUrl = null,
+        ?array $params = null,
+    ): string {
+        if (! $this->configuration()->usingStatefulness()) {
+            throw ConfigurationException::requiresStatefulness('Auth0->signup()');
+        }
+
+        $params = Toolkit::merge([[
+            'screen_hint' => 'signup',
+        ], $params]);
+
+        /** @var null|array<null|int|string> $params */
+
+        return $this->login($redirectUrl, $params);
     }
 
     /**
      * Defer saving transient or session states to destination medium.
      * Improves performance during large blocks of changes.
      *
-     * @param bool $deferring Whether to defer persisting the storage state.
+     * @param bool $deferring whether to defer persisting the storage state
      */
     private function deferStateSaving(
-        bool $deferring = true
+        bool $deferring = true,
     ): self {
-        if ($this->configuration()->hasSessionStorage()) {
-            $this->configuration()->getSessionStorage()->defer($deferring);
-        }
+        if ($this->configuration()->usingStatefulness()) {
+            if ($this->configuration()->hasSessionStorage()) {
+                $this->configuration()->getSessionStorage()->defer($deferring);
+            }
 
-        if ($this->configuration()->hasTransientStorage()) {
-            $this->configuration()->getTransientStorage()->defer($deferring);
+            if ($this->configuration()->hasTransientStorage()) {
+                $this->configuration()->getTransientStorage()->defer($deferring);
+            }
         }
 
         return $this;
+    }
+
+    /**
+     * Retrieve state from session storage and configure SDK state.
+     *
+     * @param bool $reset
+     */
+    private function getState(bool $reset = false): SdkState
+    {
+        if ($this->state instanceof SdkState && ! $reset) {
+            return $this->state;
+        }
+
+        $state = [];
+
+        if ($this->configuration()->usingStatefulness() && $this->configuration()->hasSessionStorage()) {
+            if ($this->configuration()->getPersistUser()) {
+                $state['user'] = $this->configuration()->getSessionStorage()->get('user');
+            }
+
+            if ($this->configuration()->getPersistIdToken()) {
+                $state['idToken'] = $this->configuration()->getSessionStorage()->get('idToken');
+            }
+
+            if ($this->configuration()->getPersistAccessToken()) {
+                $state['accessToken'] = $this->configuration()->getSessionStorage()->get('accessToken');
+                $state['accessTokenScope'] = $this->configuration()->getSessionStorage()->get('accessTokenScope');
+
+                $expires = $this->configuration()->getSessionStorage()->get('accessTokenExpiration');
+
+                /** @var null|int|string $expires */
+                if (null !== $expires) {
+                    $state['accessTokenExpiration'] = (int) $expires;
+                }
+            }
+
+            if ($this->configuration()->getPersistRefreshToken()) {
+                $state['refreshToken'] = $this->configuration()->getSessionStorage()->get('refreshToken');
+            }
+        }
+
+        return $this->state = new SdkState($state);
+    }
+
+    /**
+     * Create a transient storage handler using the configured transientStorage medium.
+     *
+     * @param bool $reset
+     */
+    private function getTransientStore(bool $reset = false): ?TransientStoreHandler
+    {
+        if ((! $this->transient instanceof TransientStoreHandler || $reset) && ($this->configuration()->usingStatefulness() && $this->configuration()->getTransientStorage() instanceof StoreInterface)) {
+            $this->transient = new TransientStoreHandler($this->configuration()->getTransientStorage());
+        }
+
+        return $this->transient;
+    }
+
+    private function processBearerToken(
+        string $token,
+    ): ?TokenInterface {
+        $token = trim($token);
+        $token = 'Bearer ' === mb_substr($token, 0, 7) ? trim(mb_substr($token, 7)) : $token;
+
+        if ('' !== $token) {
+            try {
+                return $this->decode($token, null, null, null, null, null, null, \Auth0\SDK\Token::TYPE_TOKEN);
+            } catch (\Auth0\SDK\Exception\InvalidTokenException) {
+                return null;
+            }
+        }
+
+        return null;
     }
 }

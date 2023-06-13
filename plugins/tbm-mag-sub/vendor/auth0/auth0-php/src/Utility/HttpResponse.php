@@ -4,60 +4,35 @@ declare(strict_types=1);
 
 namespace Auth0\SDK\Utility;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
+use JsonException;
+use Psr\Http\Message\{ResponseInterface, StreamInterface};
 
-/**
- * Class HttpResponse
- */
 final class HttpResponse
 {
     /**
-     * Returns true when the ResponseInterface identifies a 200 status code; otherwise false.
+     * Extract the content from an HTTP response and parse as JSON (ResponseInterface).
      *
-     * @param ResponseInterface $response           A ResponseInterface instance to extract from.
-     * @param int               $expectedStatusCode Optional. The status code expected to consider the request successful. Defaults to 200.
+     * @param ResponseInterface $response a ResponseInterface instance to extract from
+     *
+     * @throws JsonException when JSON decoding fails
+     *
+     * @return mixed
      */
-    public static function wasSuccessful(
+    public static function decodeContent(
         ResponseInterface $response,
-        int $expectedStatusCode = 200
-    ): bool {
-        return $response->getStatusCode() === $expectedStatusCode;
-    }
-
-    /**
-     * Extract the status code from an HTTP response (ResponseInterface).
-     *
-     * @param ResponseInterface $response A ResponseInterface instance to extract from.
-     */
-    public static function getStatusCode(
-        ResponseInterface $response
-    ): int {
-        return $response->getStatusCode();
-    }
-
-    /**
-     * Extract the headers from an HTTP response (ResponseInterface).
-     *
-     * @param ResponseInterface $response A ResponseInterface instance to extract from.
-     *
-     * @return array<array<string>>
-     */
-    public static function getHeaders(
-        ResponseInterface $response
-    ): array {
-        return $response->getHeaders();
+    ) {
+        return json_decode(self::getContent($response), true, 512, JSON_THROW_ON_ERROR);
     }
 
     /**
      * Extract the content from an HTTP response (ResponseInterface).
      *
-     * @param ResponseInterface $response A ResponseInterface instance to extract from.
+     * @param ResponseInterface $response a ResponseInterface instance to extract from
      *
      * @psalm-suppress RedundantConditionGivenDocblockType
      */
     public static function getContent(
-        ResponseInterface $response
+        ResponseInterface $response,
     ): string {
         $body = $response->getBody();
 
@@ -71,17 +46,39 @@ final class HttpResponse
     }
 
     /**
-     * Extract the content from an HTTP response and parse as JSON (ResponseInterface).
+     * Extract the headers from an HTTP response (ResponseInterface).
      *
-     * @param ResponseInterface $response A ResponseInterface instance to extract from.
+     * @param ResponseInterface $response a ResponseInterface instance to extract from
      *
-     * @return mixed
-     *
-     * @throws \JsonException When JSON decoding fails.
+     * @return array<array<string>>
      */
-    public static function decodeContent(
-        ResponseInterface $response
-    ) {
-        return json_decode(self::getContent($response), true, 512, JSON_THROW_ON_ERROR);
+    public static function getHeaders(
+        ResponseInterface $response,
+    ): array {
+        return $response->getHeaders();
+    }
+
+    /**
+     * Extract the status code from an HTTP response (ResponseInterface).
+     *
+     * @param ResponseInterface $response a ResponseInterface instance to extract from
+     */
+    public static function getStatusCode(
+        ResponseInterface $response,
+    ): int {
+        return $response->getStatusCode();
+    }
+
+    /**
+     * Returns true when the ResponseInterface identifies a 200 status code; otherwise false.
+     *
+     * @param ResponseInterface $response           a ResponseInterface instance to extract from
+     * @param int               $expectedStatusCode Optional. The status code expected to consider the request successful. Defaults to 200.
+     */
+    public static function wasSuccessful(
+        ResponseInterface $response,
+        int $expectedStatusCode = 200,
+    ): bool {
+        return $response->getStatusCode() === $expectedStatusCode;
     }
 }
