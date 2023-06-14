@@ -28,7 +28,7 @@ class Payment {
     public function createCustomer($payment_method, $sub_email, $sub_full_name, $buy_option, $buyer = [], $shipping = []) {
         try {
             $customer = $this->stripe->customers->create([
-                'payment_method' => $payment_method || null,
+                'payment_method' => $payment_method,
                 'email' => $sub_email,
                 'name' => $buyer['full_name'],
                 'address' => [
