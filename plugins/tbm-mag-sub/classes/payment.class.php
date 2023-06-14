@@ -258,6 +258,30 @@ class Payment {
                 $customer_id = $customer->id;
             }
 
+            $this->stripe->invoiceItems->create([
+                'customer' => $customer_id,
+                'amount' => $subtotal,
+                'currency' => 'aud',
+                'description' => $product_description || 'Rolling Stone Magazine Subscription',
+            ]);
+
+            $this->stripe->invoiceItems->create([
+                'customer' => $customer_id,
+                'unit_amount' => $shipping_cost,
+                'currency' => 'aud',
+                'quantity' => $number_of_issues,
+                'description' => 'Shipping'
+            ]);
+
+            if ('' != $coupon_code && $amount_off < 0) :
+                $this->stripe->invoiceItems->create([
+                    'customer' => $customer_id,
+                    'amount' => $amount_off,
+                    'currency' => 'aud',
+                    'description' => 'Coupon code: ' . $coupon_code
+                ]);
+            endif;
+
             $stripe_data = [
                 'customer' => $customer_id,
                 'default_tax_rates' => [
@@ -276,33 +300,6 @@ class Payment {
             }
 
             $invoice = $this->stripe->invoices->create($stripe_data);
-
-            $this->stripe->invoiceItems->create([
-                'customer' => $customer_id,
-                'amount' => $subtotal,
-                'currency' => 'aud',
-                'description' => $product_description || 'Rolling Stone Magazine Subscription',
-                'invoice' => $invoice->id
-            ]);
-
-            $this->stripe->invoiceItems->create([
-                'customer' => $customer_id,
-                'unit_amount' => $shipping_cost,
-                'currency' => 'aud',
-                'quantity' => $number_of_issues,
-                'description' => 'Shipping',
-                'invoice' => $invoice->id
-            ]);
-
-            if ('' != $coupon_code && $amount_off < 0) :
-                $this->stripe->invoiceItems->create([
-                    'customer' => $customer_id,
-                    'amount' => $amount_off,
-                    'currency' => 'aud',
-                    'description' => 'Coupon code: ' . $coupon_code,
-                    'invoice' => $invoice->id
-                ]);
-            endif;
 
             if ('charge_automatically' == $collection_method) {
                 $this->stripe->invoices->pay($invoice->id);
