@@ -9,7 +9,7 @@ if (post_password_required($post)) {
 		echo get_the_password_form();
 	get_template_part('template-parts/protected/footer');
 
-	wp_die();
+	exit;
 }
 
 /**
