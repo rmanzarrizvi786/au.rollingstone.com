@@ -12,6 +12,7 @@ plugins/*
 
 !plugins/ssm-*
 !plugins/tbm-*
+!plugins/amp
 
 uploads
 
