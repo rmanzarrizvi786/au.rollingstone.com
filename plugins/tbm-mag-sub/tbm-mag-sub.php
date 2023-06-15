@@ -2169,7 +2169,8 @@ class TBMMagSub {
                 $auth0 = new Auth0\SDK\Auth0([
                     'domain' => AUTH0_DOMAIN,
                     'clientId' => AUTH0_CLIENT_ID,
-                    'clientSecret' => 'AUTH0_CLIENT_SECRET',
+                    'clientSecret' => AUTH0_CLIENT_SECRET,
+                    'cookieSecret' => AUTH0_COOKIE_SECRET
                 ]);
 
                 $management = $auth0->management();
