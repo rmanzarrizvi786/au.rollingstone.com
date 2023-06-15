@@ -385,8 +385,10 @@ function amp_is_available() {
 		return false;
 	}
 
+	$path = explode( '?', $_SERVER['REQUEST_URI'] );
+
 	if(in_array(
-		$_SERVER['REQUEST_URI'], 
+		$path[0], 
 		[ 
 			'/subscribe-magazine',
 			'/subscribe-magazine/',
