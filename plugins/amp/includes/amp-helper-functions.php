@@ -385,7 +385,20 @@ function amp_is_available() {
 		return false;
 	}
 
-	if('/subscribe-magazine/' == $_SERVER['REQUEST_URI']){
+	if(in_array(
+		$_SERVER['REQUEST_URI'], 
+		[ 
+			'/subscribe-magazine',
+			'/subscribe-magazine/',
+			'/subscribe-magazine/print-only',
+			'/subscribe-magazine/print-onlyl/',
+			'/subscribe-magazine/print-digital',
+			'/subscribe-magazine/print-digital/',
+			'/subscribe-magazine/digital-only',
+			'/subscribe-magazine/digital-only/',
+		],
+		true 
+	)) {
 		return false;
 	}
 
