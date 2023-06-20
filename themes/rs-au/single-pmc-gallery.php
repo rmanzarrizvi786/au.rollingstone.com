@@ -30,7 +30,7 @@ if (!post_password_required($post)) :
 					<h2 class="c-gallery-header__logo">
 						<a class="c-gallery-header__logo-link u-gallery-center" href="/" title="Rolling Stone Australia">
 							<span class="u-gallery-screen-reader-text c-gallery-header__site-title">Rolling Stone Australia</span>
-							<img class="c-gallery-header__logo-image visible" alt="Rolling Stone Australia" src="<?php echo TBMCDN; ?>/assets/images/RS_LOGO-WHITE.svg" width="231" height="42">
+							<img class="c-gallery-header__logo-image visible" alt="Rolling Stone Australia" src="<?php echo TBM_CDN; ?>/assets/images/RS_LOGO-WHITE.svg" width="231" height="42">
 						</a>
 					</h2>
 					<div style="display: flex; margin-top: .5rem">
