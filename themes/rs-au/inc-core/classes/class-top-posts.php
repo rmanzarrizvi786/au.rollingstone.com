@@ -110,7 +110,12 @@ class Top_Posts {
 		];
 
 		$section = 'ros';
-		$brand_category = get_field('brand_category', $post->id);
+
+		$brand_category = "";
+
+		if(!is_null($post)) {
+			$brand_category = get_field('brand_category', $post->id);
+		}
 
 		if(is_single()) {
 			$section = 'single';
