@@ -61,8 +61,11 @@
 		<?php endforeach; ?>
 	</ul>
 
+
 	<div class="c-author__view-all">
+		<?php if($author) : ?>
 		<a href="<?php echo esc_url( get_author_posts_url( $author->ID, $author->user_nicename ) ); ?>" class="c-author__meta-link c-author__meta-link--all t-semibold t-semibold--upper t-semibold--loose"><?php esc_html_e( 'View All', 'pmc-rollingstone' ); ?></a>
+		<?php endif; ?>
 	</div>
 	<?php endif; ?>
 </div><!-- .c-author -->
