@@ -1060,7 +1060,7 @@ class ThemeSetup
 			$category = $PMC_Primary_Taxonomy->get_primary_taxonomy($post_id, 'category');
 		}
 
-		if ($category->parent) {
+		if (!empty($category->parent)) {
 			$parent_category = get_term_by('id', $category->parent, 'category');
 			if (!empty($parent_category->name)) {
 				$breadcrumb[] = $parent_category;
