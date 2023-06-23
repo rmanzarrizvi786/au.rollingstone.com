@@ -567,10 +567,69 @@ if (have_posts()) :
                             <div class="d-flex flex-column">
                                 <div class="d-flex flex-column flex-md-row align-items-stretch mb-3">
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
+                                        <a href="https://au.rollingstone.com/music/music-features/jim-beam-welcome-sessions-wrap-47499/" target="_blank" class="news">
+                                            <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/05/Jim-Beam-Welcome-Sessions-Lime-Cordiale.jpg?resize=1400,700&w=1400">
+                                            <h4>One-of-a-Kind Live Music Experiences: Jim Beam Welcome Sessions Comes to a Close</h4>
+                                            <p>A look back at this year's edition of Jim Beam Welcome Sessions, featuring performances from Lime Cordiale, Drapht, Bag Raiders, Wafia and The Jungle Giants.</p>
+                                        </a>
+                                    </div>
+                                    <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
+                                        <a href="https://au.rollingstone.com/music/music-news/jungle-giants-jim-beam-welcome-sessions-47244/" target="_blank" class="news">
+                                            <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/05/2.JungleGiants_Performance60.jpg?resize=1400,700&w=1400">
+                                            <h4>The Jungle Giants Wrap Up Jim Beam Welcome Sessions In Fine Fashion</h4>
+                                            <p>After almost three months of events, Jim Beam Welcome Sessions has come to a close.</p>
+                                        </a>
+                                    </div>
+                                    <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
+                                        <a href="https://au.rollingstone.com/music/music-news/the-jungle-giants-praise-fans-ahead-of-jim-beam-welcome-sessions-46371/" target="_blank" class="news">
+                                            <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/04/jungle-giants.jpg?resize=900,600&w=1200">
+                                            <h4>“We Change Together”: The Jungle Giants Praise Fans Ahead Of Jim Beam Welcome Sessions Gig</h4>
+                                            <p>The Jungle Giants are set to kick off the final stop of Jim Beam Welcome Sessions gigs that’s set to be a performance to remember.</p>
+                                        </a>
+                                    </div>
+                                    <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
+                                        <a href="https://au.rollingstone.com/music/music-news/jim-beam-welcome-sessions-the-jungle-giants-46250/" target="_blank" class="news">
+                                            <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/03/jungle-giants-2.jpg?resize=1400,700&w=1400">
+                                            <h4>The Jungle Giants Head to Melbourne to Wrap Up Jim Beam Welcome Sessions With a Bang</h4>
+                                            <p>Jim Beam Welcome Sessions are set to wrap up their festivities with one last event for the series, this time thanks to Queensland indie rock icons The Jungle Giants.</p>
+                                        </a>
+                                    </div>
+                                    <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
+                                        <a href="https://au.rollingstone.com/music/music-features/wafia-dazzles-the-gold-coast-with-a-hometown-set-for-jim-beam-welcome-sessions-46772/" target="_blank" class="news">
+                                            <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/04/Wafia-hero.jpg?resize=1400,700&w=1400">
+                                            <h4>Wafia Dazzles The Gold Coast With A Hometown Set For Jim Beam Welcome Sessions</h4>
+                                            <p>Wafia took over for an eclectic set of classics and favourites as part of the 2023 edition of Jim Beam Welcome Sessions on the Gold Coast.</p>
+                                        </a>
+                                    </div>
+                                    <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
+                                        <a href="https://au.rollingstone.com/music/music-features/wafia-fans-jim-beam-welcome-sessions-performance-45873/" target="_blank" class="news">
+                                            <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/03/2303-Wafia-Supplied-2.jpg?resize=900,600&w=1200">
+                                            <h4>“I’d Be An Entirely Different Person”: Wafia On Fan Support Ahead Of Jim Beam Welcome Sessions Performance</h4>
+                                            <p>“I wouldn’t have this career if it wasn’t for my fans and community and their continued support.”</p>
+                                        </a>
+                                    </div>
+                                    <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
+                                        <a href="https://au.rollingstone.com/music/music-features/wafia-jim-beam-welcome-sessions-45767/" target="_blank" class="news">
+                                            <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/03/wafia-1.jpg">
+                                            <h4>Wafia Brings the Heat to the Gold Coast for Jim Beam Welcome Sessions</h4>
+                                            <p>Things are set to heat up again when the festivities move north with a special performance set from none other than Wafia.</p>
+                                        </a>
+                                    </div>
+
+                                    <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
+                                        <a href="https://au.rollingstone.com/music/music-news/bag-raiders-jim-beam-welcome-sessions-adelaide-46406/" target="_blank" class="news">
+                                            <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/04/bag-raiders-1.jpg">
+                                            <h4>Bag Raiders Continued Jim Beam Welcome Sessions With a Vibrant Adelaide Performance</h4>
+                                            <p>Superstar producers Bag Raiders headed to South Australia for a massive DJ set as part of the 2023 edition of Jim Beam Welcome Sessions.</p>
+                                        </a>
+                                    </div>
+                                    
+
+                                    <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/bag-raiders-jim-beam-welcome-sessions-45192/" target="_blank" class="news">
                                             <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2020/02/bag-raiders.jpg?resize=1400,700&w=1400&nologo=1">
                                             <h4>Jim Beam Welcome Sessions Head To Adelaide With Bag Raiders</h4>
-                                            <p>Jim Beam Welcome Sessions are undoubtedly some of the biggest celebrations of local music going around the country right now. It now ups the ante even more with a special DJ set from none other than Bag Raiders.</p>
+                                            <p>Jim Beam Welcome Sessions are undoubtedly some of the biggest celebrations of local music going around the country right now.</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
