@@ -398,6 +398,15 @@ if (have_posts()) :
                             </div>
                             <div class="d-flex flex-column my-4">
                                 <div style="width: 1px; height: 70px; background-color: #ccc;"></div>
+                                <h3 class="mt-1">Welcome Sessions 2023 Recap</h3>
+                                <div class="content-wrap my-2 d-flex">
+                                    <div class="text-center" style="width: 890px; max-width: 100%;font-family: Graphik-Medium, sans-serif;">
+                                        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;"><iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" frameborder="0" type="text/html" src="https://www.dailymotion.com/embed/video/x8lzixm" width="100%" height="100%"   allow="autoplay" allowfullscreen></iframe></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column my-4">
+                                <div style="width: 1px; height: 70px; background-color: #ccc;"></div>
                                 <h3 class="mt-1">Wafia at the Gold Coast Recap</h3>
                                 <div class="content-wrap my-2 d-flex">
                                     <div class="text-center" style="width: 890px; max-width: 100%;font-family: Graphik-Medium, sans-serif;">
