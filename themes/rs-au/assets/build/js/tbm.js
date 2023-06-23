@@ -286,6 +286,7 @@ jQuery(document).ready(function ($) {
 
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
+          event: 'articleView',
           AuthorCD: author,
           CategoryCD: cats,
           TagsCD: tags,

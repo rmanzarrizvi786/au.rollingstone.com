@@ -520,7 +520,7 @@ class ThemeSetup
 		// Main script.
 		wp_register_script('rollingstone-main', TBM_CDN . '/assets/js/main.js', array('jquery', 'iolazy-js', 'polyfill-io-js'), RS_THEME_VERSION, false);
 
-		wp_register_script('tbm', TBM_CDN . '/assets/js/tbm.min.js', array('jquery'), '20220121.1', false);
+		wp_register_script('tbm', TBM_CDN . '/assets/js/tbm.min.js', array('jquery'), '20230623.1', false);
 		// wp_register_script( 'tbm', TBM_CDN . '/assets/js/tbm.js', array( 'jquery' ), time(), false );
 
 		$admin_ajax_url = admin_url('admin-ajax.php');

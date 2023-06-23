@@ -87,6 +87,7 @@ class PMC_Google_Tagmanager { // extends PMC_Singleton{
 			endif; // If there are tags for the post
 		?>
 		window.dataLayer.push({
+				'event': 'articleView',
 				'AuthorCD': '<?php echo $author; ?>',
 				'CategoryCD': '<?php echo $CategoryCD; ?>',
 				'TagsCD': '<?php echo $TagsCD; ?>',
