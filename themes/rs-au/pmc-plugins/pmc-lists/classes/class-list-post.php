@@ -610,6 +610,9 @@ class List_Post {
 			$list_items = $this->get_list_items();
 
 			if ( Lists::LIST_POST_TYPE === $post->post_type ) {
+				$keys = reset( array_keys( (array) $list_items ) );
+
+				$first_item = $list_items[ $keys ];
 
 				$first_item = $list_items[ reset( array_keys( (array) $list_items ) ) ];
 
