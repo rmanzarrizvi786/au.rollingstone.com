@@ -70,7 +70,7 @@ if (!empty($video)) {
 						[
 							'class' => 'c-crop__img',
 							'sizes' => '(max-width: 480px) 440px, (max-width: 959px) 919px, 940px',
-							'srcet' => [440, 919, 940],
+							'srcset' => [440, 919, 940],
 						]
 					);
 				} else {
