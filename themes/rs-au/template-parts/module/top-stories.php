@@ -13,6 +13,7 @@ $rs_query    = new RS_Query(); // RS_Query::get_instance();
 $top_stories = \Rolling_Stone\Inc\Carousels::get_carousel_posts('top-stories', 3);
 
 $most_viewed = null;
+$exclude_posts = !empty($exclude_posts) ? $exclude_posts : '';
 
 if (get_option('force_most_viewed')) {
 	$most_viewed = get_option('force_most_viewed');
