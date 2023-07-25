@@ -7,6 +7,8 @@
 $submissions_active = time() < strtotime('2021-02-01');
 
 // wp_enqueue_script('scu-scholarship-2020', get_template_directory_uri() . '/page-templates/scu-scholarship-2020/js/scripts.js', ['jquery'], time(), true);
+
+$fonts_url = RS_THEME_URL . '/assets/build/fonts';
 ?>
 
 <?php
