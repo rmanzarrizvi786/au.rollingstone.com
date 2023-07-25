@@ -9,6 +9,7 @@
 
 use PMC\Lists\List_Post;
 
+$fonts_url = RS_THEME_URL . '/assets/build/fonts';
 ?>
 
 <!DOCTYPE html>

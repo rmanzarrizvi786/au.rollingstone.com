@@ -13,6 +13,7 @@ $is_a_list_page   = rollingstone_is_list();
 $list_page_active = ($is_a_list_page) ? 'l-header l-header--list' : 'l-header';
 $total_items      = List_Post::get_instance()->get_list_items_count();
 
+$fonts_url = RS_THEME_URL . '/assets/build/fonts';
 ?>
 
 <!DOCTYPE html>
