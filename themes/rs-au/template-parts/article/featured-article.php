@@ -29,7 +29,7 @@ if (class_exists('\PMC\Styled_Heading\Styled_Heading')) {
 
 	// var_dump($heading);
 }
-
+$count_articles = isset($_POST['count_articles']) ? (int) $_POST['count_articles'] : 1;
 ?>
 <div class="l-featured-article">
 
