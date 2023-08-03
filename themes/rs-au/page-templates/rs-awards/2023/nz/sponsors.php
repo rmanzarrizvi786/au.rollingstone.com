@@ -1,1 +1,0 @@
-<h2 class="text-center mb-3">Sponsors</h2>

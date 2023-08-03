@@ -1,4 +1,6 @@
-<!-- <h2 class="text-center mb-3">Info</h2> -->
+<h2 class="text-center my-3 d-flex" style="font-family: GraphikXCondensed-BoldItalic; font-size: 250%;">
+    <span class="mx-2">INFO</span>
+</h2>
 <div class="d-flex align-items-start justify-content-start flex-wrap">
     <div class="col-12 col-md-6 mt-3">
         <div class="d-flex align-items-start justify-content-start flex-nowrap mb-3">
@@ -7,7 +9,7 @@
             </div>
             <div>
                 <div><strong>Where are the awards?</strong></div>
-                <div>Glass House (14-18 MCDONALD STREET, MORNINGSIDE)</div>
+                <div>St. Matthew in the City, 132 Hobson Street, Auckland CBD, Auckland 1010, New Zealand</div>
             </div>
         </div>
 
@@ -17,7 +19,7 @@
             </div>
             <div>
                 <div><strong>When are the awards?</strong></div>
-                <div>Wednesday 31st August 2022. Doors open 7pm for red carpet photographs, awards ceremony starts 7:30pm sharp.</div>
+                <div>Wednesday 20th September 2023.<br>Doors open from 7pm for red carpet arrival. The award ceremony begins at 8pm sharp.</div>
             </div>
         </div>
 
@@ -27,7 +29,7 @@
             </div>
             <div>
                 <div><strong>Will there be food or drinks available?</strong></div>
-                <div>Yes, drinks and canapes will be provided from the bar.</div>
+                <div>Yes, absolutely.</div>
             </div>
         </div>
 
@@ -41,15 +43,15 @@
             </div>
         </div>
 
-        <!-- <div class="d-flex align-items-start justify-content-start flex-nowrap mb-3">
+        <div class="d-flex align-items-start justify-content-start flex-nowrap mb-3">
             <div class="mx-2" style="min-width: 48px;">
                 <img src="<?php echo get_template_directory_uri(); ?>/images/rsa2022/host.png" width="48">
             </div>
             <div>
-                <div><strong>Who will be hosts at the awards ceremony?</strong></div>
-                <div>Matt and Alex</div>
+                <div><strong>Who will host the awards ceremony?</strong></div>
+                <div>Sharyn Casey and Megan Papas</div>
             </div>
-        </div> -->
+        </div>
 
         <!-- <div class="d-flex align-items-start justify-content-start flex-nowrap mb-3">
             <div class="mx-2" style="min-width: 48px;">
@@ -70,7 +72,8 @@
             </div>
             <div>
                 <div><strong>Will anyone be performing at the awards ceremony?</strong></div>
-                <div>Yes! We're preparing some very special performances which we'll be announcing shortly.</div>
+                <!-- <div>Yes! We're preparing some very special performances which we'll be announcing shortly.</div> -->
+                <div>Yes but we will reveal this later!</div>
             </div>
         </div>
 
@@ -80,7 +83,7 @@
             </div>
             <div>
                 <div><strong>Are tickets transferable?</strong></div>
-                <div>No, tickets are non-transferable, if you register but are not on the guest list there will be no entry permitted. ID will be checked upon entry with a valid ticket.</div>
+                <div>No, tickets are non-transferable, if you register but are not on the guest list there will be no entry permitted. ID will be checked upon entry with a valid ticket. </div>
             </div>
         </div>
 
@@ -90,7 +93,7 @@
             </div>
             <div>
                 <div><strong>How do I secure my ticket?</strong></div>
-                <div>Your RSVP link will be emailed to you, you'll need to RSVP at that link by the 17th of August to secure your place. Failing to do so will mean your ticket will be given to someone on the waitlist instead.</div>
+                <div>RSVP by clicking the RSVP button on the invite that was sent to your email. This will send you your ticket to bring on the night. If you miss the RSVP deadline we will pass your invite onto the wait list instead.</div>
             </div>
         </div>
     </div>
