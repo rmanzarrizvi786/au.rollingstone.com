@@ -70,7 +70,7 @@ function rest_get_most_read()
                 'title' => $trending_story->post_title,
                 'category' => $categories[0]->name,
                 'brand_logo' => 'https://images.thebrag.com/common/brands/Rolling-Stone-Australia-light.png',
-                'brank_link' => 'https://au.rollingstone.com',
+                'brand_link' => 'https://au.rollingstone.com',
                 'excerpt' =>  $trending_story->trending_story_alt_text,
                 'link' => get_the_permalink(),
             ];            
@@ -175,7 +175,7 @@ function rest_get_latest()
                 'title' => get_the_title(),
                 'category' => $category,
                 'brand_logo' => 'https://images.thebrag.com/common/brands/Rolling-Stone-Australia-light.png',
-                'brank_link' => 'https://au.rollingstone.com',
+                'brand_link' => 'https://au.rollingstone.com',
                 'excerpt' => $excerpt,
                 'link' => get_the_permalink(),
             ];
