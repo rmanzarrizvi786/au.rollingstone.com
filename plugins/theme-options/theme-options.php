@@ -69,7 +69,7 @@ function rest_get_most_read()
                 'image' => $trending_story_src[0],
                 'title' => $trending_story->post_title,
                 'category' => $categories[0]->name,
-                'brand_logo' => 'https://images.thebrag.com/common/brands/Rolling-Stone-Australia-light.png',
+                'brand_logo' => 'https://images.thebrag.com/common/brands/au.rollingstone.png',
                 'brand_link' => 'https://au.rollingstone.com',
                 'excerpt' =>  $trending_story->trending_story_alt_text,
                 'link' => get_the_permalink(),
