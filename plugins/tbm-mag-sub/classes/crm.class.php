@@ -83,10 +83,10 @@ class CRM {
                 $content['Digital_Issues_Remaining__c'] = 0;
                 $content['Remaining_Issues__c'] = 4;
         } else if ($subscriber->buy_option == 'digitalonly') {
-                $content['Digital_Issues_Remaining__c'] = 4;
+                $content['Digital_Issues_Remaining__c'] = 3; // 4 on sub but assume first issue has been auto sent on purchase
                 $content['Remaining_Issues__c'] = 0;
         } else if ($subscriber->buy_option == 'printdigital') {
-                $content['Digital_Issues_Remaining__c'] = 4;
+                $content['Digital_Issues_Remaining__c'] = 3; // 4 on sub but assume first issue has been auto sent on purchase
                 $content['Remaining_Issues__c'] = 4;
         } else {
                 $content['Digital_Issues_Remaining__c'] = 0;
