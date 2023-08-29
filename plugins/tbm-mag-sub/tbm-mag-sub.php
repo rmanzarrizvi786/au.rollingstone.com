@@ -1206,9 +1206,12 @@ class TBMMagSub {
                 'error' => $coupon['error'], // 'Looks like that coupon code is invalid. If you are sure you are entering it correctly, send us an email at <a href="mailto:subscribe@thebrag.media">subscribe@thebrag.media</a> to sort out the issue.'
             ]);
         } else if (isset($coupon['success'])) {
+            $amount_to_pay = round($price + $this->shipping_cost - number_format($coupon['amount_off'], 2), 2);
+            $amount_to_pay = $amount_to_pay < 0 ? 0 : $amount_to_pay;
+
             wp_send_json_success([
                 'amount_off' => number_format($coupon['amount_off'], 2),
-                'amount_to_pay' => round($price + $this->shipping_cost - number_format($coupon['amount_off'], 2), 2),
+                'amount_to_pay' => $amount_to_pay,
                 'message' => 'Congratulations, your coupon was successfully entered! You\'re all set to get a discount of $' . number_format($coupon['amount_off'], 2) . ' on your first year\'s subscription.'
             ]);
         } else {
