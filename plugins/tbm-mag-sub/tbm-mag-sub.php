@@ -1215,10 +1215,12 @@ class TBMMagSub {
             $amount_to_pay = round($price + $this->shipping_cost - number_format($coupon['amount_off'], 2), 2);
             $amount_to_pay = $amount_to_pay < 0 ? 0 : $amount_to_pay;
 
+            $discount = $coupon['amount_off'] > $price ? $price : $coupon['amount_off'];
+
             wp_send_json_success([
                 'amount_off' => number_format($coupon['amount_off'], 2),
                 'amount_to_pay' => $amount_to_pay,
-                'message' => 'Congratulations, your coupon was successfully entered! You\'re all set to get a discount of $' . number_format($coupon['amount_off'], 2) . ' on your first year\'s subscription.'
+                'message' => 'Congratulations, your coupon was successfully entered! You\'re all set to get a discount of $' . number_format($discount, 2) . ' on your first year\'s subscription.'
             ]);
         } else {
             wp_send_json_success([
