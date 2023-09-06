@@ -15,12 +15,10 @@ $is_a_list_page   = rollingstone_is_list();
 $list_page_active = ($is_a_list_page) ? 'l-header l-header--list' : 'l-header';
 $total_items      = List_Post::get_instance()->get_list_items_count();
 
-$show = isset($_GET['show']) ? trim(strtolower($_GET['show'])) : 'categories';
-$show = is_page('vote-for-rolling-stone-readers-award-2023') ? 'vote' : $show;
+$show = isset($_GET['show']) ? trim(strtolower($_GET['show'])) : 'news';
 ?>
 
 <div class="l-page__header">
-
 	<header class="<?php echo esc_attr($list_page_active); ?>">
 		<?php get_template_part('template-parts/header/nav-network'); ?>
 		<div class="l-header__wrap tbm">
@@ -48,40 +46,14 @@ $show = is_page('vote-for-rolling-stone-readers-award-2023') ? 'vote' : $show;
 		<?php if ('news' == $show) : ?>
 			<div class="content-wrap d-flex">
 				<div class="rsa-header-left">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/rsa2023/date.png" width="100">
+					<img src="https://cdn-r2-2.thebrag.com/pages/rolling-stone-awards-2023-nz/awards6.png" width="120">
 				</div>
-				<div style="flex: 1; text-align: center; padding: 1rem;">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/rsa2023/RSAUAwards_Filigree.png">
+				<div style="flex: 1; text-align: center; padding: 1rem; padding-bottom: 0;">
+					<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/08/RSNZ23_PH_logoLock.png">
+					<img src="https://cdn-r2-2.thebrag.com/pages/rolling-stone-awards-2023-nz/LogoStrip-black.png" style="width: 100%;">
 				</div>
 				<div class="rsa-header-right">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/rsa2023/awards3.png" width="120">
-				</div>
-			</div>
-			<div class="content-wrap d-flex flex-column" style="padding: 2rem;">
-				<div class="d-flex flex-column flex-md-row align-items-end">
-					<div class="d-flex flex-column align-items-center" style="flex: 0 0 65%">
-						<div class="d-flex flex-column">
-							<div class="header-sub-text">
-								SUBSCRIBE TO<br>
-								ROLLING STONE AUSTRALIA<br>
-								MAGAZINE TO BE ELIGIBLE
-							</div>
-							<div>
-								<div class="text-center mt-2">
-									<img src="<?php echo get_template_directory_uri(); ?>/images/rsa2023/DownArrow.svg" width="30">
-								</div>
-								<a href="https://au.rollingstone.com/nominate-for-rolling-stone-australia-readers-award-2023/" target="_blank" class="btn-vote-header" style="text-transform: uppercase;">
-									Vote
-								</a>
-							</div>
-						</div>
-						<div class="d-flex d-none d-md-flex" style="margin-top: 1rem;">
-							<img src="<?php echo get_template_directory_uri(); ?>/images/rsa2023/sponsors.png" style="width: 100%;">
-						</div>
-					</div>
-				</div>
-				<div class="d-flex d-md-none d-flex" style="margin: 1rem 1rem 0;">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/rsa2023/SponsoredByLOGOS.png" width="450">
+					<img src="https://cdn-r2-2.thebrag.com/pages/rolling-stone-awards-2023-nz/awards5.png" width="120">
 				</div>
 			</div>
 

@@ -109,30 +109,6 @@ use PMC\Lists\List_Post;
 	<?php // get_template_part( 'template-parts/header/ads-direct-js' ); 
 	?>
 
-	<!-- Admiral -->
-	<script type="text/javascript">
-		!(function(o, n, t) {
-			t = o.createElement(n), o = o.getElementsByTagName(n)[0], t.async = 1, t.src = "https://bravecalculator.com/v2/0/jmfAe_cRj0ZB4StQ-uahRpOs6jYGaVFa9WTlyW2bPfNf4vnVKw2BPI", o.parentNode.insertBefore(t, o)
-		})(document, "script"), (function(o, n) {
-			o[n] = o[n] || function() {
-				(o[n].q = o[n].q || []).push(arguments)
-			}
-		})(window, "admiral");
-		!(function(n, e, r, t) {
-			function o() {
-				if ((function o(t) {
-						try {
-							return (t = localStorage.getItem("v4ac1eiZr0")) && 0 < t.split(",")[4]
-						} catch (n) {}
-						return !1
-					})()) {
-					var t = n[e].pubads();
-					typeof t.setTargeting === r && t.setTargeting("admiral-engaged", "true")
-				}
-			}(t = n[e] = n[e] || {}).cmd = t.cmd || [], typeof t.pubads === r ? o() : typeof t.cmd.unshift === r ? t.cmd.unshift(o) : t.cmd.push(o)
-		})(window, "googletag", "function");
-	</script>
-
 
 	<!-- TikTok -->
 	<script>
@@ -837,22 +813,10 @@ use PMC\Lists\List_Post;
 		}
 
 		.rsa-header-news {
-			background-color: #CD232A;
 			background-size: cover;
 			background-position: center bottom;
 			background-repeat: repeat-x;
 			position: relative;
-			background-image: url(<?php echo get_template_directory_uri(); ?>/images/rsa2022/TopTornPaper.png);
-		}
-
-		.rsa-header-news:before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			height: 100px;
-			background-color: #fdfcfc;
 		}
 
 		.header-sub-text {
@@ -885,12 +849,9 @@ use PMC\Lists\List_Post;
 
 
 		@media (min-width: 60rem) {
-			.rsa-header-news {
-				min-height: 45rem;
-			}
 
 			.rsa-header {
-				margin-top: 72px;
+				margin-top: 0;
 			}
 		}
 
@@ -990,7 +951,7 @@ use PMC\Lists\List_Post;
 
 		.news-links a,
 		.news-links a:visited {
-			color: #df3535;
+			color: #000;
 			text-decoration: none;
 			transition: .25s all linear;
 		}

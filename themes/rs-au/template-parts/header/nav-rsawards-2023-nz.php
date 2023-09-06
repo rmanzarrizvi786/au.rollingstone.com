@@ -25,10 +25,10 @@ extract($args);
 
 	<?php
 	$menu_items = [
-		// 'news' => [
-		// 	'title' => 'News',
-		// 	'link' => home_url('rolling-stone-awards-2023/nz?show=news')
-		// ],
+		'news' => [
+			'title' => 'News',
+			'link' => home_url('rolling-stone-awards-2023/nz?show=news')
+		],
 		'info' => [
 			'title' => 'Info',
 			'link' => home_url('rolling-stone-awards-2023/nz/?show=info')

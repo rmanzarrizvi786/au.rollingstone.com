@@ -30,11 +30,11 @@ if (have_posts()) :
             <div class="d-flex flex-column flex-md-row align-items-stretch">
               <div class="col-12">
                 <?php
-                $show = isset($_GET['show']) ? trim(strtolower($_GET['show'])) : 'categories';
+                $show = isset($_GET['show']) ? trim(strtolower($_GET['show'])) : 'news';
                 switch ($show) {
-                  // case 'news':
-                  //   get_template_part('page-templates/rs-awards/2023/news');
-                  //   break;
+                  case 'news':
+                    get_template_part('page-templates/rs-awards/2023/nz/news');
+                    break;
                   case 'categories':
                     get_template_part('page-templates/rs-awards/2023/nz/categories', NULL, ['award_categories' => $award_categories, 'noms_open' => $noms_open, 'noms_open_at' => $noms_open_at, 'context' => 'info']);
                     break;
@@ -54,7 +54,7 @@ if (have_posts()) :
                   //   get_template_part('page-templates/rs-awards/2023/sponsors');
                   //   break;
                   default:
-                    get_template_part('page-templates/rs-awards/2023/nz/categories');
+                    get_template_part('page-templates/rs-awards/2023/nz/news');
                     break;
                 }
                 ?>
