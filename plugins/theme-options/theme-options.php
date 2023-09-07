@@ -32,6 +32,16 @@ function tbm_theme_options_rest_api_init()
     ));
 }
 
+function string_limit_words($string, $word_limit)
+{
+    $words = explode(' ', $string, ($word_limit + 1));
+    if (count($words) > $word_limit) {
+        array_pop($words);
+        return implode(' ', $words) . '...';
+    }
+    return implode(' ', $words);
+}
+
 function rest_get_most_read()
 {
     $articles_arr = array();
@@ -65,13 +75,15 @@ function rest_get_most_read()
                 $trending_story_alt_text = trim(strip_tags(get_the_title()));
             }
 
+            $excerpt = trim($trending_story->trending_story_alt_text) != '' ? $trending_story->trending_story_alt_text : string_limit_words(get_the_excerpt(), 25);
+
             $articles_arr[] = [
                 'image' => $trending_story_src[0],
                 'title' => $trending_story->post_title,
                 'category' => $categories[0]->name,
                 'brand_logo' => 'https://images.thebrag.com/common/brands/au.rollingstone.png',
                 'brand_link' => 'https://au.rollingstone.com',
-                'excerpt' =>  $trending_story->trending_story_alt_text,
+                'excerpt' =>  $excerpt,
                 'link' => get_the_permalink(),
             ];            
         endif; // If Trending Story
