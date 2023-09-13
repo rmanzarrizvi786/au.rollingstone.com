@@ -7,7 +7,7 @@
             <div class="img-wrap">
                 <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/bic-runga-1.jpg">
             </div>
-            <h3>Bic Runga & Coterie to Perform at 2023 Panhead Rolling Stone Aotearoa Awards</h3>
+            <h3>Bic Runga & Coterie to Perform at 2023 Panhead Rolling Stone Aotearoa Awards</h3><br />
         </a>
     </div>
 
