@@ -2,6 +2,15 @@
     <span class="mx-2">NEWS</span>
 </h2>
 <div class="d-flex flex-wrap align-items-start news-links">
+<div class="col-12 col-md-6 px-2">
+    <a href="https://au.rollingstone.com/music/music-news/2023-panhead-rolling-stone-aotearoa-awards-performers-bic-runga-coterie-49875/" target="_blank" class="d-flex my-2">
+            <div class="img-wrap">
+                <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/bic-runga-1.jpg">
+            </div>
+            <h3>Bic Runga & Coterie to Perform at 2023 Panhead Rolling Stone Aotearoa Awards</h3>
+        </a>
+    </div>
+
     <div class="col-12 col-md-6 px-2">
         <a href="https://au.rollingstone.com/music/music-news/2023-rolling-stone-aotearoa-awards-nominees-revealed-six-60-the-beths-fazerdaze-48604/" target="_blank" class="d-flex my-2">
             <div class="img-wrap">
