@@ -20,7 +20,7 @@ class Subscription {
             }
             return $this;
         }
-        // return $subscription;
+        return $subscription;
     }
 
     public function get_by($filters = []) {
@@ -67,17 +67,17 @@ class Subscription {
             'full_name' => $post['buyer_full_name'],
             'email' => $post['sub_email'],
             'email_reciever' => $post['sub_email_reciever'],
-
             'address_1' => $post['sub_address_1'],
             'address_2' => $post['sub_address_2'],
             'city' => $post['sub_city'],
             'state' => $post['sub_state'],
             'postcode' => $post['sub_postcode'],
             'country' => !is_null($post['sub_country']) ? $post['sub_country'] : 'Australia',
-
             'coupon_id' => $post['coupon_id'],
             'is_gift' => $post['is_gift'],
-
+            'is_providoor' => $post['is_providoor'],
+            'phone_number' => $post['sub_phone'],
+            'dob' => $post['sub_dob'],
             'sub_full_name' => $post['sub_full_name'],
             'shipping_address_1' => $post['shipping_address_1'],
             'shipping_address_2' => $post['shipping_address_2'],
@@ -85,14 +85,10 @@ class Subscription {
             'shipping_state' => $post['shipping_state'],
             'shipping_postcode' => $post['shipping_postcode'],
             'shipping_country' => !is_null($post['shipping_country']) ? $post['shipping_country'] : 'Australia',
-
             'status' => 'init',
             'ip_address' => $_SERVER['REMOTE_ADDR'],
-
             'uniqid' => $uniqid,
-
             'promotion_response' => isset($post['promotion_response']) && '' != trim($post['promotion_response']) && !is_null($post['promo_response_prefix']) ? $post['promo_response_prefix'] . ": \n" . trim($post['promotion_response']) : NULL,
-
             'buy_option' => $post['buy_option'],
         ];
 
