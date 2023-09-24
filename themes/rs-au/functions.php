@@ -546,15 +546,14 @@ function prefix_exclude_password_protected_posts( $query ) {
 function tbm_the_excerpt( $excerpt ) {
     $excerpt = str_replace( ' [&hellip;]', '', $excerpt );
     $excerpt = str_replace( 'St. ', 'St*& ', $excerpt );
-
     $excerpt = str_replace( 'aka. ', 'aka*& ', $excerpt );
     $excerpt = str_replace( 'a.k.a. ', 'a*&a*&a ', $excerpt );
     $excerpt = str_replace( 'a.k.a ', 'a*&a*&a ', $excerpt );
-
     $excerpt = str_replace( 'M.I.A. ', 'm*&i*&a ', $excerpt );
     $excerpt = str_replace( 'M.I.A ', 'm*&i*&a ', $excerpt );
-
     $excerpt = str_replace( 'Dr. ', 'Dr*& ', $excerpt );
+    $excerpt = str_replace( 'L.A.B ', 'L*&A*&B ', $excerpt ); 
+    $excerpt = str_replace( 'L.A.B. ', 'L*&A*&B*& ', $excerpt ); 
 
     $excerpt = explode('// ', $excerpt);
     $excerpt = count( $excerpt ) > 1 ? $excerpt[1] : $excerpt[0];
@@ -568,6 +567,8 @@ function tbm_the_excerpt( $excerpt ) {
     $excerpt = str_replace( 'a*&a*&a ', 'a.k.a. ', $excerpt );
     $excerpt = str_replace( 'm*&i*&a ', 'M.I.A. ', $excerpt );
     $excerpt = str_replace( 'Dr*& ', 'Dr. ', $excerpt );
+    $excerpt = str_replace( 'L*&A*&B ', 'L.A.B ', $excerpt );
+    $excerpt = str_replace( 'L*&A*&B*& ', 'L.A.B. ', $excerpt );
 
     return $excerpt . '.';
 }
