@@ -1,0 +1,21 @@
+{
+  "name": "pmc-global-functions",
+  "version": "1.0.0",
+  "scripts": {
+    "prod": "gulp"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "del": "^4.1.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-cached": "^1.1.1",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "3.0.2",
+    "gulp-watch": "^5.0.1"
+  }
+}

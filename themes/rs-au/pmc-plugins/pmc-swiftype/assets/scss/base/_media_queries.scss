@@ -1,0 +1,19 @@
+@media only screen and (max-width: 767px) {
+	.left-main {
+		display: none;
+	}
+	.main.block {
+		width: 100%;
+	}
+
+	.search_form {
+		.search-form {
+			& input[type='text'] {
+				width: 80%;
+			}
+			& input[type="submit"] {
+				width: 20%;
+			}
+		}
+	}
+}

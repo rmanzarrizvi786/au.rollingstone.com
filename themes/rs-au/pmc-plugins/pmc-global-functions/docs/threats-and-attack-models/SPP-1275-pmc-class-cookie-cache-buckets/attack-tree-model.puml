@@ -1,0 +1,25 @@
+@startuml
+/'
+    This file contains PlantUML (http://plantuml.com) syntax which is used to generate diagrams about the project.
+
+    Read more here: https://confluence.pmcdev.io/x/YAFUAw
+'/
+    title Attack Tree Model
+    scale 1.5
+
+    hide empty description
+
+    skinparam monochrome true
+
+    state "**Bypass Authentication**" as bypass: Access to private info
+    state "Wordpress init hook - Creating cache buckets" as wpWeb: No cookie validation
+    state "Malicious Attempts" as malicious: Example: Modify cookie key with malicious data.
+
+    wpWeb -up-> bypass
+    malicious -up-> wpWeb
+
+    note right of wpWeb
+        <i>pmc-global-functions:class-pmc-cookie</i>
+        <i>validate that the cookie is trustworthy</i>
+    endnote
+@enduml

@@ -1,0 +1,45 @@
+// Search Results
+
+.result {
+	padding: $padding * 2;
+	border-bottom: 1px solid #e9e9e9;
+	min-height: 130px;
+
+	&:last-of-type {
+		border-bottom: none;
+	}
+	&:hover {
+		background-color: #fafafa;
+	}
+
+	.result-image {
+		float: left;
+		padding-right: $padding;
+		padding-bottom: $padding;
+
+		img {
+			width: 120px;
+			height: auto;
+		}
+	}
+
+	.result-content {
+		padding-left: 130px;
+
+		.result-title a {
+			text-decoration: none;
+			font-size: $font-size + 4;
+			font-weight: bold;
+		}
+
+		.byline {
+			padding: ($padding / 2) 0;
+			color: lighten(color('primary'), 30%);
+
+			.icon {
+				background-size: 12px 12px;
+				padding-right: 10px;
+			}
+		}
+	}
+}

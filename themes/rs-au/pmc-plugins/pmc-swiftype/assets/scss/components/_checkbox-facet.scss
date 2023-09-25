@@ -1,0 +1,53 @@
+// Facet Component Style
+.facet-container {
+	overflow: hidden;
+	padding-top: ($padding * 1.5);
+}
+
+.facet-title,
+.facet-container a {
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: .75rem;
+	letter-spacing: 0.05em;
+}
+
+.facet-title {
+	float: left;
+}
+
+.facet-container a {
+	font-weight: 300;
+	text-decoration: none;
+	float: right;
+	color: #aaa;
+}
+
+.facet-options {
+	clear: both;
+	margin-top: 20px;
+}
+
+.facet-option, div.radio-option {
+	position: relative;
+	padding: 0 20px 0 10px;
+	margin-bottom: 4px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	input {
+		position: relative;
+		right: 5px;
+	}
+
+	&.disabled {
+		display: none;
+	}
+}
+
+.facet-count {
+	position: absolute;
+	right: 0;
+	color: #aaa;
+}

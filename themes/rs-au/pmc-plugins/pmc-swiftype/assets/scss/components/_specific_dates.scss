@@ -1,0 +1,62 @@
+#date_options {
+	.radio-options {
+		position: relative;
+		z-index: 1;
+	}
+	#specific_dates {
+		display: none;
+		padding:1em;
+		border: 1px solid lightslategray;
+		margin: -13px 0 0 1em;
+		position: relative;
+		a,
+		span {
+			color: lightslategray;
+			font-family: "Balto Web Medium",Arial,sans-serif;
+			font-size: 13px;
+			font-weight: 300;
+		}
+		> span {
+			padding: .5em 0;
+			display: block;
+			> label {
+				display: inline-block;
+				width: 40px;
+			}
+			input {
+				padding: .25em;
+				width: 140px;
+			}
+		}
+		button {
+			background: none;
+			border: none;
+			color: lightslategray;
+			padding: 0;
+			margin: 5px;
+		}
+		#specific-dates-submit {
+			border: 1px solid lightslategray;
+			box-sizing: border-box;
+			display: block;
+			margin: 10px auto 0 auto;
+			padding: .5em;
+			text-align: center;
+			width: 90%;
+			cursor: pointer;
+			&.valid {
+				color: white;
+				background: #337AB7;
+			}
+		}
+		#border-cut {
+			background: white;
+			position: absolute;
+			top: -1px;
+			left: -1px;
+			height: 20px;
+			width: 120px;
+		}
+	}
+}
+

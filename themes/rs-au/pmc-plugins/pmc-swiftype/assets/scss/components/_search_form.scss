@@ -1,0 +1,42 @@
+.search_form {
+	box-shadow: 0 1px 0 white, 1px 1px 2px rgba(0, 0, 0, 0.1) inset;
+	border: 1px solid color('border');
+	border-radius: $border-radius;
+	margin-top: $padding * 3;
+	position: relative;
+	
+	.search-form {
+		overflow: hidden;
+		& input[type='text'] {
+			padding: $padding 0;
+			font-size: $font-size + 1;
+			color: color();
+			font-weight: 300;
+			border: none;
+			outline: none;
+			text-indent: 38px;
+			display: block;
+			width: 90%;
+			background: $search-icon;
+			float: left;
+		}
+
+		& input[type="submit"] {
+			background: color('foreground');
+			border: none;
+			outline: none;
+			border-left: 1px solid color('border');
+			float: right;
+			width: 10%;
+			padding: $padding 0;
+			font-size: $font-size + 1;
+			color: mix(black, color('foreground'), 80%);
+			font-weight: 300;
+		}
+
+		& input[type="submit"]:hover {
+			background-color: mix(black, color('foreground'), 20%);
+			cursor: pointer;
+		}
+	}
+}
