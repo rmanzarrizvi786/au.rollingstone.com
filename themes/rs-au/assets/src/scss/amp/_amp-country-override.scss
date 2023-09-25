@@ -1,0 +1,80 @@
+// AMP Country overrides.
+//
+// No styleguide
+
+[amp] {
+	body {
+		background-color: $g-color-country--bg;
+	}
+
+	.article-breadcrumb-container {
+		position: relative;
+		z-index: 2;
+		padding-top: 45px;
+		background-color: transparent;
+
+		&::before {
+			content: '';
+			position: absolute;
+			width: 200px;
+			height: 35px;
+			top: 10px;
+			left: 8px;
+			background-repeat: no-repeat;
+			background-size: contain;
+		}
+	}
+
+	.article-header__breadcrumbs {
+		padding-left: 15px;
+	}
+
+	.amp-wp-content,
+	.amp-category-posts-container {
+		position: relative;
+		z-index: 1;
+		padding: 0 20px;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: -55px;
+			left: 8px;
+			right: 8px;
+			bottom: 0;
+			z-index: -1;
+			border: 1px solid $g-color-border;
+			background-color: $g-color-white;
+			box-shadow: 0 2px 4px 0 rgba( $g-color-black, 0.2 );
+		}
+	}
+
+	.amp-wp-content::before {
+		top: -55px;
+	}
+
+	.amp-category-posts-container {
+		margin-top: 0;
+		margin-bottom: 40px;
+
+		&::before {
+			top: -1px;
+			bottom: -25px;
+			border-top: none;
+		}
+	}
+
+	.amp-wp-meta {
+
+		.amp-wp-posted-on {
+			right: 20px;
+		}
+	}
+
+	.amp-wp-title {
+		@include g-font-family-country;
+		font-size: 23px;
+		line-height: 27px;
+		font-weight: $bold;
+	}
+}

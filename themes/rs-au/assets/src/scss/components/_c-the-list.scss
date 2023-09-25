@@ -1,0 +1,59 @@
+// The List
+//
+// markup:
+// <a href="#" class="c-the-list">
+// 		<span class="t-bold">
+// 			Best Actress Oscar-Winners Since 2000, Ranked Worst to Best
+// 		</span>
+// 	</h4>
+// </a>
+//
+//
+// Styleguide 3.55
+
+@include critical( home ) {
+
+	.c-the-list {
+		width: 100%;
+	  border: 6px solid $g-color-red;
+	  padding: 0 25px 0 110px;
+	  position: relative;
+	  min-height: 114px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+		color: $g-color-black;
+		@extend %text-fade;
+
+		&__headline {
+			font-size: 15px;
+			line-height: 1;
+		}
+
+		&::before{
+	    content: '';
+	    height: 133px;
+	    width: 71px;
+	    background-image: url( '../images/_dev/logo-the-list.svg' );
+	    background-repeat: no-repeat;
+	    display: block;
+	    position: absolute;
+	    left: 20px;
+	    top: -15px;
+	  }
+
+	  &::after{
+	    content: '';
+	    height: 36px;
+	    width: 36px;
+	    background-image: url( '../images/_dev/icon-the-list.svg' );
+	    background-repeat: no-repeat;
+	    display: block;
+	    position: absolute;
+	    right: -20px;
+	    top: 0;
+	    bottom: 0;
+	    margin: auto;
+	  }
+	}
+}

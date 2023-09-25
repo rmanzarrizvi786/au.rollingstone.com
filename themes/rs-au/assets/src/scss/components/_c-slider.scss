@@ -1,0 +1,161 @@
+// Slider
+//
+// markup:
+// <div class="c-slider" data-slider>
+// 	<a href="" class="c-slider__nav c-slider__nav--left" data-slider-nav="prev">
+// 		<svg class="c-slider__icon"><use xlink:href="#svg-icon-chevron"></use></svg>
+// 	</a>
+// 	<a href="" class="c-slider__nav c-slider__nav--right" data-slider-nav="next">
+// 		<svg class="c-slider__icon"><use xlink:href="#svg-icon-chevron"></use></svg>
+// 	</a>
+// 	<div class="c-slider__track" data-slider-track>
+// 		<article class="c-features__item c-slider__item" data-slider-item>
+// 			<a href="#" class="c-features__item-wrap">
+// 				<figure class="c-features__item-image">
+// 					<div class="c-crop c-crop--portrait c-crop--size-features">
+// 						<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 							data-src="https://placehold.it/220x280"
+// 							alt="Inside the Weird and Wild Crusade for Clean Pot"
+// 							class="c-crop__img">
+// 					</div>
+// 				</figure>
+// 				<header class="c-features__item-header">
+// 					<h3 class="c-features__item-headline t-semibold">
+// 					Inside the Weird and Wild Crusade for Clean Pot
+// 					</h3>
+// 				</header>
+// 			</a>
+// 		</article>
+// 		<article class="c-features__item c-slider__item" data-slider-item>
+// 			<a href="#" class="c-features__item-wrap">
+// 				<figure class="c-features__item-image">
+// 					<div class="c-crop c-crop--portrait c-crop--size-features">
+// 						<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 							data-src="https://placehold.it/220x280"
+// 							alt="Inside the Weird and Wild Crusade for Clean Pot"
+// 							class="c-crop__img">
+// 					</div>
+// 				</figure>
+// 				<header class="c-features__item-header">
+// 					<h3 class="c-features__item-headline t-semibold">
+// 					Inside the Weird and Wild Crusade for Clean Pot
+// 					</h3>
+// 				</header>
+// 			</a>
+// 		</article>
+// 		<article class="c-features__item c-slider__item" data-slider-item>
+// 			<a href="#" class="c-features__item-wrap">
+// 				<figure class="c-features__item-image">
+// 					<div class="c-crop c-crop--portrait c-crop--size-features">
+// 						<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 							data-src="https://placehold.it/220x280"
+// 							alt="Inside the Weird and Wild Crusade for Clean Pot"
+// 							class="c-crop__img">
+// 					</div>
+// 				</figure>
+// 				<header class="c-features__item-header">
+// 					<h3 class="c-features__item-headline t-semibold">
+// 					Inside the Weird and Wild Crusade for Clean Pot
+// 					</h3>
+// 				</header>
+// 			</a>
+// 		</article>
+// 		<article class="c-features__item c-slider__item" data-slider-item>
+// 			<a href="#" class="c-features__item-wrap">
+// 				<figure class="c-features__item-image">
+// 					<div class="c-crop c-crop--portrait c-crop--size-features">
+// 						<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 							data-src="https://placehold.it/220x280"
+// 							alt="Inside the Weird and Wild Crusade for Clean Pot"
+// 							class="c-crop__img">
+// 					</div>
+// 				</figure>
+// 				<header class="c-features__item-header">
+// 					<h3 class="c-features__item-headline t-semibold">
+// 					Inside the Weird and Wild Crusade for Clean Pot
+// 					</h3>
+// 				</header>
+// 			</a>
+// 		</article>
+// 	</div>
+// </div>
+//
+// sg-wrapper:
+// <div style="max-width:600px;padding:20px;background-color:#000;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.49
+
+@include critical( home, video-landing, featured-article ) {
+
+	.c-slider {
+		position: relative;
+		width: 100%;
+		overflow-x: scroll;
+		-webkit-overflow-scrolling: touch;
+
+		@media( query( min, tablet ) ) {
+			overflow-x: hidden;
+		}
+
+		&__nav {
+			@extend %flex-center;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			padding: 20px;
+			z-index: z( mountain );
+			opacity: 0;
+			transition: opacity $g-transition-fade;
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				transform: translateY( -50% );
+				width: 40px;
+				height: 40px;
+				background-color: $g-color-white;
+			}
+
+			&--right {
+				left: auto;
+				right: 0;
+				transform: rotateZ( 180deg );
+			}
+
+			&.is-hidden {
+				opacity: 0;
+			}
+
+			@media( query( max, tablet ) ) {
+				display: none;
+			}
+		}
+
+		&:hover &__nav {
+			opacity: 1;
+		}
+
+		&__icon {
+			position: relative;
+			width: 14px;
+			height: 14px;
+			fill: $g-color-red;
+			transform-origin: center;
+			transform: rotate( 90deg );
+		}
+
+		&__track {
+			display: flex;
+			transition: transform $g-transition-transform;
+			will-change: transform;
+		}
+
+		&__item {
+			flex-shrink: 0;
+		}
+	}
+}

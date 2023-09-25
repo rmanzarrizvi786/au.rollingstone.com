@@ -1,0 +1,35 @@
+// AMP WP taxonomy.
+//
+// No styleguide
+
+[amp] {
+	.amp-wp-tax-category {
+		box-sizing: border-box;
+		display: block;
+		margin: 0;
+
+		&::before {
+			content: '';
+			margin: 0;
+		}
+
+		a {
+			border: 2px solid #000000;
+			padding: 6px;
+			text-decoration: none;
+			float: left;
+			margin: 3px 6px 3px 0;
+			color: #000000;
+			font-size: 14px;
+			line-height: 14px;
+
+			&::after {
+				content: '';
+			}
+		}
+	}
+
+	.amp-wp-tax-tag {
+		display: none;
+	}
+}

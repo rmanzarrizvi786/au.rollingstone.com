@@ -1,0 +1,39 @@
+// Related Horizontal
+//
+// markup:
+// <div class="c-related-horizontal">
+// 	<h4 class="c-related-horizontal__title t-bold t-bold--upper">Related Articles</h4>
+// 	<div class="c-related-horizontal__item">
+// 		<a href="#" class="c-related-horizontal__link t-semibold t-semibold--upper">New Album I Forgive You Is About Life "Being F--king Hard"</a>
+// 	</div>
+// 	<div class="c-related-horizontal__item">
+// 		<a href="#" class="c-related-horizontal__link t-semibold t-semibold--upper">Thurston Moore: The Six-Pack Q&A</a>
+// 	</div>
+// </div>
+//
+// Styleguide 3.45
+
+@include critical( list ) {
+
+	.c-related-horizontal {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+	
+		&__title {
+			margin: 5px 15px 5px 0;
+			padding: 7px;
+			font-size: 11px;
+			line-height: 1;
+			letter-spacing: 1px;
+			color: $g-color-white;
+			background: $g-color-black;
+		}
+
+		&__link {
+			@extend %dotted-tag;
+			margin: 5px 15px 5px 0;
+		}
+	}
+
+}

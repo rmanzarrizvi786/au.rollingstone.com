@@ -1,0 +1,47 @@
+// Breadcrumbs
+//
+// markup:
+// <span class="c-breadcrumbs">
+//   <a href="#" class="c-breadcrumbs__link">Home</a>
+//   <a href="#" class="c-breadcrumbs__link">Movies</a>
+// </span>
+//
+// sg-wrapper:
+// <div class="t-bold t-bold--upper">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.5
+
+@include critical( single, country, list, featured-article ) {
+
+	.c-breadcrumbs {
+		display: flex;
+		align-items: flex-start;
+
+		&__link {
+			color: $g-color-black;
+
+			&:focus,
+			&:hover {
+				color: $g-color-red;
+
+				&::before {
+					color: $g-color-black;
+				}
+			}
+		}
+
+		&__link + &__link::before {
+			content: '';
+			display: inline-block;
+			width: 0.5em; // Use `em` for sizing in order to have the arrow naturally resize along with breadcrumbs' font size.
+			height: 0.5em;
+			margin: 0 0.5em 0 0.25em;
+			border: 0.1em solid;
+			border-top: none;
+			border-left: none;
+			transform: translateY( -0.125em ) rotateZ( -45deg );
+		}
+	}
+}

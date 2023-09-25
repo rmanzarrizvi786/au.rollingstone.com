@@ -1,0 +1,60 @@
+// Category Header
+//
+// markup:
+// <div class="c-category-header">
+// 	<h3 class="c-category-header__heading t-bold t-bold--upper t-bold--condensed">
+// 		Category Title
+// 	</h3>
+// 	<a href="#" class="c-category-header__cta t-semibold">
+// 		View All
+// 	</a>
+// </div>
+//
+// sg-wrapper:
+// <div style="padding:40px;background-color:#d32531">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.11
+
+@include critical( video-article ) {
+
+	.c-category-header {
+		display: flex;
+		align-items: center;
+		background-color: $g-color-red--darken;
+
+		@media ( query( min, tablet ) ) {
+			margin-top: 25px;
+		}
+
+		&__heading {
+			position: relative;
+			left: 10px;
+			font-size: 23px;
+			line-height: 1;
+			color: $g-color-white;
+
+			@media ( query( min, tablet ) ) {
+				top: -20px;
+				left: 5px;
+				font-size: 46px;
+				line-height: 36px;
+			}
+		}
+
+		&__cta {
+			padding: 0 20px;
+			margin-left: auto;
+			color: $g-color-white;
+			line-height: 36px;
+			font-size: 14px;
+			border-left: 1px solid #9A1019;
+			transition: background-color $g-transition-color;
+
+			&:hover {
+				background: #9A1019;
+			}
+		}
+	}
+}

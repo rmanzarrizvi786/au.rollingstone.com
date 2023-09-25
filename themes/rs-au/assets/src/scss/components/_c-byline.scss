@@ -1,0 +1,101 @@
+// Byline
+//
+// markup:
+// <div class="c-byline">
+//   <div class="c-byline__authors">
+//     <em class="c-byline__by">By</em>
+//     <div class="c-byline__author">
+//       <a href="https://example.com/author/xyz" class="c-byline__link t-heading" rel="author">Josh Eells</a>
+//     </div>
+//     <span class="c-byline__amp t-heading">&</span>
+//     <div class="c-byline__author">
+//       <a href="https://example.com/author/xyz" class="c-byline__link t-heading" rel="author">
+//         Samantha Longnamerstine
+//       </a>
+//       <div class="c-byline__detail">
+//         <sg-insert>3.2</sg-insert>
+//       </div>
+//     </div>
+//   </div>
+// </div>
+//
+// sg-wrapper:
+// <div class="t-copy" style="min-height:500px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.7
+
+@include critical( single, country, list, featured-article ) {
+
+	.c-byline {
+
+		&__amp {
+			color: $g-color-link;
+		}
+
+		&__by {
+			display: inline-block;
+			min-width: 20px;
+			font-size: 108%;
+			font-style: italic;
+			color: $g-color-black;
+		}
+
+		&__author {
+			position: relative;
+			display: inline-block;
+			padding: 0 4px;
+
+			.single-post & {
+				padding: 0;
+			}
+		}
+
+		&__link {
+			word-break: break-word;
+			color: $g-color-link;
+
+			&:hover,
+			&:focus {
+				text-decoration: none;
+				box-shadow: inset 0 -1px 0 0;
+			}
+		}
+	}
+}
+
+@include critical( single, country, list ) {
+
+	//
+	// Author details dropdown opens on hover.
+	//
+
+	.c-byline {
+
+		&__icon {
+			margin-left: 2px;
+			fill: $g-color-link;
+			transform: translateY( 1px );
+		}
+
+		&__detail {
+			position: absolute;
+			z-index: z( hill );
+			left: -23px;
+			padding-top: 5px;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity $g-transition-fade, visibility $g-transition-fade;
+
+			@media ( query( min, desktop-xl ) ) {
+				padding-top: 20px;
+			}
+		}
+
+		&__author:hover &__detail {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+}

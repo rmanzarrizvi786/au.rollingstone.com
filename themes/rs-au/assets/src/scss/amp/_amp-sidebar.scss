@@ -1,0 +1,35 @@
+// AMP sidebar.
+//
+// No styleguide
+
+[amp] {
+	amp-sidebar {
+		color: $g-color-white;
+		background-color: transparent;
+
+		.menu {
+			margin: 0;
+			background-color: $g-color-black;
+			box-shadow: 0 100vh 0 100vh $g-color-black;
+
+			li {
+				padding: 0;
+				border: none;
+				border-bottom: 1px solid $g-color-border--mega;
+
+				a {
+					@include g-font-family-sans;
+					font-size: 20px;
+					line-height: #{ 24px / 20px };
+					font-weight: $bold;
+					display: flex;
+					align-items: center;
+					justify-content: flex-start;
+					height: auto;
+					padding: 13px 20px;
+					color: $g-color-white;
+				}
+			}
+		}
+	}
+}

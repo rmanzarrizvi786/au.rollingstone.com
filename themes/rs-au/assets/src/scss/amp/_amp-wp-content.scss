@@ -1,0 +1,147 @@
+// AMP WP content.
+//
+// No styleguide
+
+[amp] {
+	.amp-wp-content {
+		position: relative;
+		padding: 0 15px;
+		display: flex;
+		flex-flow: column nowrap;
+	}
+
+	//
+	// Post title.
+	//
+
+	.amp-wp-title {
+		order: -5;
+		@include g-font-family-sans;
+		font-size: 28px;
+		line-height: #{ 33px / 28px };
+		font-weight: $bold;
+		flex: 1 1 auto;
+		padding: 10px 0 5px;
+		color: $g-color-black;
+	}
+
+	//
+	// Post excerpt.
+	//
+
+	.amp-wp-excerpt {
+		order: -4;
+		@include g-font-family-sans;
+		font-size: 15px;
+		line-height: #{ 18px / 15px };
+		font-weight: $semibold;
+		padding: 5px 0;
+		color: $g-color-black;
+
+		p {
+			margin-bottom: 0;
+		}
+
+		p + p {
+			padding-top: 5px;
+		}
+	}
+
+	//
+	// Post rating.
+	//
+
+	.amp-wp-meta-rating {
+		order: -3;
+		display: flex;
+		padding: 10px 0;
+
+		&-star {
+			position: relative;
+			width: 15px;
+			height: 15px;
+			margin-right: 10px;
+
+			svg {
+				width: 15px;
+				height: 15px;
+				fill: $g-color-star;
+			}
+
+			&.active svg {
+				fill: $g-color-red;
+			}
+
+			&.half-star {
+				position: absolute;
+				z-index: 1;
+				top: 0;
+				left: 0;
+			}
+		}
+	}
+
+	//
+	// Post meta.
+	//
+
+	.amp-wp-meta {
+		order: -2;
+		list-style: none;
+		margin: 0;
+		padding: 10px 0;
+		flex: 1 1 auto;
+
+		.amp-wp-posted-on {
+			@extend %amp-meta;
+			position: absolute;
+			top: -20px;
+			right: 15px;
+			width: auto;
+			padding: 0;
+			color: $g-color-muted;
+			text-align: right;
+			text-transform: uppercase;
+		}
+
+		.amp-wp-byline {
+			@include g-font-family-sans;
+			font-size: 13px;
+			line-height: #{ 24px / 13px };
+			font-weight: $bold;
+			text-transform: uppercase;
+			color: $g-color-black;
+		}
+	}
+
+	//
+	// Social share.
+	//
+
+	.amp-social-share-bar-container {
+		order: -1;
+		display: block;
+		padding: 5px 0;
+		margin: 0 auto;
+		border: none;
+	}
+
+	.share-this {
+		display: none;
+	}
+
+	.amp-social-share-bar {
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		margin: 0 -8px -8px 0;
+
+		> amp-social-share {
+			flex: 1 1 auto;
+			border-radius: 0;
+			background-size: 22px;
+			max-height: 28px;
+			margin: 0 8px 8px 0;
+		}
+	}
+}

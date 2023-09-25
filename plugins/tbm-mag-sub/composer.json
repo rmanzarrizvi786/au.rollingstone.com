@@ -1,0 +1,15 @@
+{
+    "require": {
+        "stripe/stripe-php": "^10.14",
+        "auth0/auth0-php": "^8.6",
+        "nyholm/psr7": "^1.8",
+        "facebook/php-business-sdk": "^16.0",
+        "vlucas/phpdotenv": "^5.5",
+        "php-curl-class/php-curl-class": "^9.16"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}

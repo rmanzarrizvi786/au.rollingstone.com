@@ -1,0 +1,263 @@
+// Site Footer
+//
+// markup:
+// <footer class="l-footer">
+// 	<div class="l-footer__wrap">
+// 		<div class="l-footer__nav">
+// 			<nav class="l-footer__menu l-footer__menu--wide">
+// 				<sg-insert>3.38.1</sg-insert>
+// 			</nav>
+// 			<nav class="l-footer__menu">
+// 				<sg-insert>3.38.1</sg-insert>
+// 			</nav>
+// 			<nav class="l-footer__menu">
+// 				<sg-insert>3.38.1</sg-insert>
+// 			</nav>
+// 			<nav class="l-footer__menu">
+// 				<sg-insert>3.38.1</sg-insert>
+// 			</nav>
+// 		</div>
+// 		<div class="l-footer__newsletter">
+// 			<p class="l-footer__newsletter-heading t-bold">Newsletter Signup</p>
+// 			<div class="l-footer__newsletter-form">
+// 				<sg-insert>3.24</sg-insert>
+// 			</div>
+// 		</div>
+// 		<div class="l-footer__cover">
+// 			<a href="#">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					 data-src="https://placehold.it/300x373"
+// 					 data-srcset="https://placehold.it/300x373 1x, https://placehold.it/600x746 2x"
+// 					 alt=""
+// 					 class="l-footer__cover-image">
+// 			</a>
+// 		</div>
+// 		<div class="l-footer__legal">
+// 			<a href="#" class="l-footer__branding">
+// 				<svg class="l-footer__logo"><use xlink:href="#svg-rs-logo"></use></svg>
+// 				<span class="screen-reader-text">Rolling Stone</span>
+// 			</a>
+// 			<p class="l-footer__copyright t-semibold">&copy; 2018 Rolling Stone LLC</p>
+// 		</div>
+// 	</div>
+// </footer>
+//
+// Styleguide 4.9
+
+@include critical() {
+	.l-footer {
+		margin-top: 25px;
+		color: $g-color-white;
+		background-color: $g-color-black;
+
+		&__wrap {
+			@include h-container;
+			position: relative;
+			padding-top: 25px;
+			padding-bottom: 25px;
+
+			@media ( query( min, tablet ) ) {
+				padding-bottom: 15px;
+			}
+
+			@include if-no-side-skins {
+				@media ( query( min, desktop-xl ) ) {
+					padding-left: 325px;
+				}
+			}
+		}
+
+		//
+		// Footer nav menus.
+		//
+
+		&__nav {
+			@media ( query( min, tablet ) ) {
+				display: flex;
+				margin: 0 -20px;
+			}
+		}
+
+		&__menu {
+			@media ( query( min, tablet ) ) {
+				flex: 1 1 auto;
+				width: 25%;
+				padding: 5px 25px;
+
+				&--wide {
+					width: percentage( 1 / 3 );
+				}
+			}
+
+			& + & {
+				padding-top: 20px;
+
+				@media ( query( min, tablet ) ) {
+					padding-top: 0;
+					border-left: 1px solid $g-color-border--mega;
+				}
+			}
+		}
+
+		//
+		// Newsletter signup.
+		//
+
+		&__newsletter {
+			display: none;
+
+			@media ( query( min, tablet ) ) {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 12px 0;
+				margin: 10px 0;
+				border-top: 1px solid $g-color-border--mega;
+				border-bottom: 1px solid $g-color-border--mega;
+			}
+		}
+
+		&__newsletter-heading {
+			padding-right: 50px;
+			font-size: 29px;
+		}
+
+		&__newsletter-form {
+			flex: 1 1 auto;
+		}
+
+		//
+		// Cover.
+		//
+
+		&__cover {
+			display: none;
+
+			@include if-no-side-skins {
+				@media ( query( min, desktop-xl ) ) {
+					display: block;
+					position: absolute;
+					bottom: 0;
+					left: 10px;
+					width: 300px;
+					height: calc( 100% - 20px );
+				}
+			}
+		}
+
+		&__cover-image {
+			display: block;
+			position: absolute;
+			left: 50%;
+			transform: translateX( -50% ) scale( 0.9 );
+			width: auto;
+			max-height: 100%;
+		}
+
+		//
+		// Legal.
+		//
+
+		&__legal {
+			@media ( query( min, tablet ) ) {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+		}
+
+		&__copyright {
+			padding-top: 20px;
+			font-size: 14px;
+			line-height: 1.2;
+			text-align: center;
+
+			@media ( query( min, tablet ) ) {
+				order: -1;
+				flex: 1 1 auto;
+				padding-top: 0;
+				font-size: 12px;
+				text-align: left;
+				color: $g-color-muted--light;
+			}
+		}
+
+		//
+		// Branding.
+		//
+
+		&__branding {
+			display: block;
+			width: 100%;
+			padding-top: 25px;
+			text-align: center;
+
+			@media ( query( min, tablet ) ) {
+				width: auto;
+				padding-top: 10px;
+			}
+		}
+
+		&__logo {
+			position: relative;
+			top: 3px;
+			width: 203px;
+			height: 37px;
+			fill: $g-color-red;
+		}
+
+		//
+		// Tips
+
+		&__tip {
+			display: none;
+
+			@media ( query( min, tablet ) ) {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 12px 0;
+				margin: 10px 0;
+			}
+
+		}
+
+		&__tip-heading {
+			font-size: 29px;
+			flex: none;
+			line-height: 35px;
+			padding-right: 25px;
+		}
+
+		&__tip-body {
+			flex: 1 1 auto;
+			font-size: 14px;
+			font-style: italic;
+			height: 34px;
+			line-height: 17px;
+		}
+
+		&__tip-link {
+			align-items: center;
+			border: 1px solid currentColor;
+			color: $g-color-white;
+			display: flex;
+			height: 42px;
+			justify-content: center;
+			font-size: 11px;
+			letter-spacing: 1px;
+			line-height: 13px;
+			text-transform: uppercase;
+			width: 190px;
+
+			&:focus,
+			&:hover {
+				color: $g-color-link;
+			}
+		}
+
+		&__tip &__logo {
+			margin-left: 40px;
+		}
+	}
+}

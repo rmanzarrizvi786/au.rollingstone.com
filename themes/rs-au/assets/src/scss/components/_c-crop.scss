@@ -1,0 +1,143 @@
+// Crop Helper
+//
+// markup:
+// <div class="c-crop c-crop--landscape c-crop--size-1x1">
+// 	<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 			data-src="https://placehold.it/820x615"
+// 			data-srcset="
+// 			https://placehold.it/400x400 400w,
+// 			https://placehold.it/768x768 768w,
+// 			https://placehold.it/1000x1000 1000w,
+// 			https://placehold.it/1240x1240 1240w"
+// 			sizes="(max-width: 767px) 100vw, (max-width: 959px) 66vw, 620px"
+// 			alt="Post headline"
+// 			class="c-crop__img">
+// </div>
+//
+// Styleguide 3.18
+
+@include critical( single, country, section-front, archive, home, list, video-article, video-landing, video-tag, featured-article ) {
+
+	.c-crop {
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		background-color: rgba( $g-color-black, 0.05 );
+
+		&::after {
+			content: '';
+			display: block;
+			width: 100%;
+			padding-bottom: 100% / ( 4 / 3 );
+		}
+
+		&__img {
+			@include fit-image();
+			position: absolute;
+			object-position: 0 top;
+			top: 50%;
+			left: 50%;
+			width: calc( 100% + 2px );
+			max-width: calc( 100% + 2px );
+			height: calc( 100% + 2px );
+			transform: translate( -50%, -50% );
+		}
+
+		//
+		// Handle various aspect ratios of the resulting image.
+		//
+
+		&--ratio-2x3::after   { padding-bottom: 100% / ( 2 / 3 ); }     // 0.66
+		&--ratio-11x14::after { padding-bottom: 100% / ( 11 / 14 ); }   // 0.78
+		&--ratio-5x6::after   { padding-bottom: 100% / ( 5 / 6 ); }     // 0.83
+		&--ratio-1x1::after   { padding-bottom: 100%; }                 // 1.00
+		&--ratio-4x3::after   { padding-bottom: 100% / ( 4 / 3 ); }     // 1.33
+		&--ratio-3x2::after   { padding-bottom: 100% / ( 3 / 2 ); }     // 1.50
+		&--ratio-7x4::after   { padding-bottom: 100% / ( 7 / 4 ); }     // 1.75
+		&--ratio-video::after { padding-bottom: 100% / ( 815 / 458 ); } // 1.7795 (exact value needed)
+		&--ratio-2x1::after   { padding-bottom: 50% }                   // 2.00
+
+		//
+		// Art directed crop sizes
+		// TODO switch it to picture element and style probably within target components
+		//
+
+		&--size-related::after {
+			padding-bottom: 100%;
+
+			@media ( query( min, tablet ) ) {
+				padding-bottom: 100% / ( 190 / 125 );
+			}
+		}
+
+		&--size-featured::after {
+			padding-bottom: 50%;
+
+			@media ( query( min, desktop-xl ) ) {
+				padding-bottom: 100% / ( 3 / 2 );
+			}
+		}
+
+		&--size-featured-home::after {
+			padding-bottom: 100%;
+
+			@media ( query( min, desktop ) ) and ( max-width: 1100px ) {
+				padding-bottom: 100% / ( 230 / 145 );
+			}
+
+			@media ( min-width: 1100px ) {
+				padding-bottom: 100%;
+			}
+		}
+
+		&--size-features-main::after {
+			padding-bottom: 100% / ( 375 / 260 );
+
+			@media ( max-width: 820px ) {
+				padding-bottom: 100% / ( 500 / 330 );
+			}
+		}
+
+		&--size-domino::after {
+			@media ( query( max, tablet ) ) {
+				padding-bottom: 100%;
+			}
+		}
+
+		//
+		// Video crop.
+		//
+		&--video {
+			.player-container {
+				width: auto;
+				height: auto !important; /* stylelint-disable-line declaration-no-important */
+			}
+		}
+
+		&--video.c-crop--landscape &__img {
+			height: calc( 100% + 2px );
+		}
+
+		// Stretch embeds
+		iframe,
+		video,
+		[id ^=jwplayer_][id *=_div] {
+			position: absolute;
+		}
+		iframe[data-src *=youtu] {
+			width:100%;
+			height:100%;
+		}
+		// stylelint-disable selector-max-specificity
+		.player-minimize{
+			iframe,
+			video,
+			[id ^=jwplayer_][id *=_div] {
+				position: relative;
+			}
+		}
+		// stylelint-enable selector-max-specificity
+	}
+}

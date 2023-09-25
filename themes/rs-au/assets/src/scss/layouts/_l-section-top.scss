@@ -1,0 +1,141 @@
+// Section Top
+//
+// markup:
+// <div class="l-section-top">
+// 	<h1 class="l-section-top__heading">
+// 		<span class="t-super t-super--upper">Movies</span>
+// 	</h1>
+// 	<nav class="l-section-top__menu">
+// 		<sg-insert>3.38.2</sg-insert>
+// 	</nav>
+// </div>
+//
+// sg-wrapper:
+// <div style="padding:40px;background-color:#d32531">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 4.16
+
+@include critical( section-front, country, video-landing, video-tag ) {
+
+	.l-section-top {
+		@include h-container;
+		position: relative;
+		text-align: center;
+
+		@media( query( min, desktop ) ) {
+			display: grid;
+			grid-auto-columns: max-content;
+			grid-gap: 30px;
+			grid-auto-flow: column;
+			align-items: center;
+		}
+
+		// Account for Z-index issues when page background color is set
+		> * {
+		  position: relative;
+		}
+
+		&::before {
+			@media( query( min, tablet ) ) {
+				content: '';
+				position: absolute;
+				top: 0;
+				width: 100vw;
+				height: 100%;
+				left: calc( 50% - 50vw );
+				background-color: $g-color-red--darken;
+				box-shadow: 0 3px 8px 0 #8f121a;
+				z-index: 1;
+
+				.has-side-skins & {
+					width: 100%;
+					left: initial;
+				}
+			}
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: -70px;
+			left: 50%;
+			transform: translateX( -50% );
+			width: 100vw;
+			background-color: $g-color-red;
+
+			@media ( query( min, tablet ) ) {
+				bottom: -155px;
+			}
+
+			.has-side-skins & {
+				max-width: 100%;
+			}
+		}
+
+		&__heading {
+			position: relative;
+			z-index: z( 'mountain' ) + 1;
+			padding-bottom: 5px;
+			font-size: 38px;
+			line-height: 46px;
+			color: $g-color-white;
+			padding-top: 10px;
+
+			@media ( query( min, tablet ) ) {
+				padding-bottom: 0;
+				padding-top: 0;
+				font-size: 45px;
+				line-height: 78px;
+			}
+		}
+
+		&__menu {
+			position: relative;
+			z-index: z( 'mountain' );
+			font-size: 15px;
+			height: 100%;
+		}
+
+		&--tight-bg {
+			&::before,
+			&::after {
+				bottom: -50px;
+
+				@media ( query( min, desktop-xl ) ) {
+					bottom: -70px;
+				}
+			}
+
+		}
+	}
+
+	.l-section-top-branded-videos {
+		@include h-container;
+		text-align: center;
+		max-width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+
+		@media( query( min, desktop ) ) {
+			display: grid;
+			grid-gap: 30px;
+			grid-auto-flow: column;
+			align-items: center;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		img {
+			width: 100%;
+			height: auto;
+			border: none;
+		}
+
+	}
+
+}

@@ -1,0 +1,55 @@
+/*! PocketGrid 1.1.0
+* Copyright 2013 Arnaud Leray
+* MIT License
+*/
+/* Border-box-sizing */
+.block-group, .block, .block-group:after, .block:after, .block-group:before, .block:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* Clearfix */
+.block-group {
+	*zoom: 1;
+}
+.block-group:before, .block-group:after {
+	display: table;
+	content: "";
+	line-height: 0;
+}
+.block-group:after {
+	clear: both;
+}
+
+.block-group {
+	/* ul/li compatibility */
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+/* Nested grid */
+.block-group > .block-group {
+	clear: none;
+	float: left;
+	margin: 0 !important;
+}
+
+/* Default block */
+.block {
+	float: left;
+	width: 100%;
+}
+
+.width-10   { width: 10%;  }
+.width-20   { width: 20%;  }
+.width-25   { width: 25%;  }
+.width-30   { width: 30%;  }
+.width-40   { width: 40%;  }
+.width-50   { width: 50%;  }
+.width-60   { width: 60%;  }
+.width-70   { width: 70%;  }
+.width-80   { width: 80%;  }
+.width-90   { width: 90%;  }
+.width-100  { width: 100%; }

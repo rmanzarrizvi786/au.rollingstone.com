@@ -1,0 +1,41 @@
+// Rating
+//
+// markup:
+// <div class="c-rating">
+// 	<svg class="c-rating__star c-rating__star--active"><use xlink:href="#svg-icon-star"></use></svg>
+// 	<svg class="c-rating__star c-rating__star--active"><use xlink:href="#svg-icon-star"></use></svg>
+// 	<svg class="c-rating__star c-rating__star--active"><use xlink:href="#svg-icon-star"></use></svg>
+// 	<svg class="c-rating__star"><use xlink:href="#svg-icon-star"></use></svg>
+// 	<svg class="c-rating__star"><use xlink:href="#svg-icon-star"></use></svg>
+// </div>
+//
+// Styleguide 3.43
+
+@include critical( home, list, single ) {
+
+	.c-rating {
+		display: inline-flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 140px;
+
+		&.c-rating--4-stars {
+			width: 112px;
+		}
+
+		&__star {
+			position: relative;
+			width: 15px;
+			height: 15px;
+
+			use {
+				fill: $g-color-star;
+			}
+
+			&--active use:last-child {
+				fill: $g-color-red;
+			}
+		}
+
+	}
+}

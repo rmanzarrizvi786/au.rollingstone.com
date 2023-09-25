@@ -1,0 +1,164 @@
+// Related
+//
+// markup:
+// <div class="c-related">
+// 	<h4 class="c-related__heading t-bold t-bold--upper">
+// 		Related
+// 	</h4>
+// 	<a href="#" class="c-related__link">
+// 		<div class="c-related__img">
+// 			<div class="c-crop c-crop--landscape c-crop--size-related">
+// 				<img class="c-crop__img"
+// 					 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					 data-src="https://placehold.it/190x125"
+// 					 data-srcset="
+// 							https://placehold.it/190x125 190w,
+// 							https://placehold.it/380x250 380w"
+// 					 sizes="190px"
+// 					 alt="Dummy Image">
+// 			</div>
+// 		</div>
+// 		<h5 class="c-related__caption t-bold">
+// 			Black Superheroes Matter: Why a 'Black Panther' Movie Is Revolutionary
+// 		</h5>
+// 	</a>
+// 	<a href="#" class="c-related__link">
+// 		<h5 class="c-related__caption t-bold">
+// 			The Black Panther Revolution
+// 		</h5>
+// 	</a>
+// </div>
+//
+// sg-wrapper:
+// <div style="width:190px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.44
+
+@include critical( single, country ) {
+
+	.c-related {
+		background-color: #F3F3F3;
+		border-top: 5px solid $g-color-red;
+		margin-right: 25px;
+		margin-bottom: 0px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+		width: 201px;
+		padding: 0px 13px 5px;
+
+		@media ( query( max, mobile ) ) {
+			width: 100%;
+		}
+
+		&__heading {
+			@extend %flex-center;
+			justify-content: flex-start;
+			padding: 7px 0 8px;
+			font-size: 16px;
+			line-height: 1;
+			color: $g-color-black;
+			letter-spacing: 0.025rem;
+		}
+
+		&__link {
+			position: relative;
+			display: flex;
+			align-items: center;
+			padding: 15px 0;
+			color: $g-color-black;
+			transition: color $g-transition-color;
+
+			&:hover,
+			&:focus {
+				color: $g-color-red;
+			}
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 0;
+				border-top: 1px solid $g-color-border;
+			}
+
+			@media ( query( min, tablet ) ) {
+				display: block;
+				padding: 0;
+
+				&:first-of-type::before {
+					border: none;
+				}
+			}
+		}
+
+		&__img {
+			flex-shrink: 0;
+			width: 90px;
+			max-width: 100%;
+			margin-right: 20px;
+
+			@media ( query( min, tablet ) ) {
+				width: 190px;
+				margin: 0;
+			}
+		}
+
+		&__caption {
+			position: relative;
+			display: block;
+			font-size: 15px;
+			line-height: 18.4px;
+
+			@media ( query( min, tablet ) ) {
+				padding: 12.8px 0 12.8px 10px;
+
+				&::before {
+					content: '';
+					position: absolute;
+					top: 20px;
+					left: 0;
+				}
+			}
+
+			@media ( query( max, mobile ) ) {
+				padding: 0 0;
+			}
+		}
+
+		//
+		// Inverted Style
+		//
+
+		&--inverted {
+			background-color: $g-color-bg--dark;
+			border-bottom: none;
+		}
+
+		&--inverted &__heading,
+		&--inverted &__link {
+			padding-left: 7.5px;
+			padding-right: 7.5px;
+			color: $g-color-white;
+		}
+
+		&--inverted &__link::before {
+			width: calc(100% - 15px);
+			left: 7.5px;
+			border-color: #26384C;
+		}
+
+		&--inverted &__caption::before {
+			background-color: $g-color-red;
+			border-radius: 50%;
+		}
+	}
+}
+
+@include critical( country ) {
+	.c-related__heading {
+		border-top-color: $g-color-country--accent;
+	}
+}

@@ -1,0 +1,23 @@
+// AMP Article Breadcrumbs.
+//
+// No styleguide
+
+[amp] {
+
+	.article-breadcrumb-container {
+		max-width: 568px;
+		margin: 0 auto;
+		padding: 0;
+	}
+
+	.article-header__breadcrumbs {
+		max-width: 50%;
+		padding: 15px 10px 5px;
+
+		li a {
+			@extend %amp-meta;
+			text-align: left;
+			color: $g-color-black;
+		}
+	}
+}

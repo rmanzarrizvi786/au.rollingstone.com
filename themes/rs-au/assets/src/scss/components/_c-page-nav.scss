@@ -1,0 +1,137 @@
+// Page Navigation Menu
+//
+// Styleguide 3.38
+
+@include critical() {
+
+	$c-page-nav-item-height: 44px;
+
+	.c-page-nav {
+		position: relative;
+		height: $c-page-nav-item-height;
+		color: $g-color-white;
+
+		@media ( query( min, tablet ) ) {
+			height: auto;
+		}
+
+		@media ( query( max, tablet ) ) {
+			overflow: hidden;
+
+			&.is-expanded {
+				overflow: visible;
+			}
+		}
+
+		&__list {
+			position: absolute;
+			z-index: 1;
+			display: flex;
+			flex-flow: column nowrap;
+			width: 100%;
+			list-style: none;
+			color: $g-color-white;
+
+			@media ( query( min, tablet ) ) {
+				position: relative;
+				flex-direction: row;
+				justify-content: center;
+			}
+		}
+
+		&__item {
+
+			@media ( query( max, tablet ) ) {
+				position: relative;
+				overflow: hidden;
+				display: block;
+				margin-top: 5px;
+				transform: translateY( 100% );
+				opacity: 0;
+				visibility: hidden;
+				transition: transform 0ms linear 225ms, opacity 225ms $ease-standard-curve, visibility 225ms $ease-standard-curve;
+				color: $g-color-white;
+
+				&.is-active {
+					order: -1;
+					visibility: visible;
+					transform: none;
+					opacity: 1;
+					margin-top: 0;
+				}
+
+				&.is-visible {
+					transform: none;
+					opacity: 1;
+					visibility: visible;
+					transition: transform 225ms $ease-standard-curve, opacity 225ms $ease-standard-curve, visibility 225ms $ease-standard-curve;
+				}
+			}
+		}
+
+		&__link {
+			position: relative;
+			z-index: 1;
+			display: block;
+			padding: 10px 15px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			color: $g-color-white;
+
+			@media ( query( min, tablet ) ) {
+				padding: 0 15px;
+			}
+		}
+
+		//
+		// One column list.
+		//
+
+		&--1-column &__list {
+			@media ( query( min, tablet ) ) {
+				flex-flow: column nowrap;
+			}
+		}
+
+		//
+		// Two columns list.
+		//
+
+		&--2-columns &__list {
+			@media ( query( min, tablet ) ) {
+				flex-flow: row wrap;
+			}
+		}
+
+		&--2-columns &__item {
+			@media ( query( min, tablet ) ) {
+				width: 50%;
+			}
+		}
+
+		//
+		// Chevron.
+		//
+
+		@media ( query( max, tablet ) ) {
+			&__list::after {
+				content: '';
+				position: absolute;
+				width: 12px;
+				height: 12px;
+				top: $c-page-nav-item-height / 2;
+				right: 15px;
+				transform: scaleY( 0.85 ) translate( -50%, -75% ) rotateZ( 45deg );
+				border: 2px solid;
+				border-left: none;
+				border-top: none;
+				transition: transform 225ms $ease-standard-curve;
+			}
+
+			&.is-expanded &__list::after {
+				transform: scaleY( -0.85 ) translate( -50%, 25% ) rotateZ( 45deg );
+			}
+		}
+	}
+}

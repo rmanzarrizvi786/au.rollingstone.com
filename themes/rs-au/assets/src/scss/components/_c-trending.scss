@@ -1,0 +1,356 @@
+// Trending Widget
+//
+// markup:
+// <div class="c-trending"></div>
+//
+// sg-wrapper:
+// <div style="max-width:300px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.56
+
+// Hero Trending
+//
+// markup:
+// <div class="c-trending c-trending--hero">
+// 	<h4 class="c-trending__heading t-bold t-bold--upper t-bold--loose">
+// 		<svg class="c-trending__heading-icon">
+// 			<use xlink:href="#svg-icon-trending"></use>
+// 		</svg>
+// 		Trending
+// 	</h4>
+// 	<ol class="c-trending__list">
+// 		<li class="c-trending__item">
+// 			<a href="#" class="c-trending__link">
+// 				<h5 class="c-trending__title">
+// 					<div class="c-trending__number"><span class="c-trending__counter t-bold"></span></div>
+// 					<span class="c-trending__caption t-semibold">'The Walking Dead': Everything You Need to...</span>
+// 				</h5>
+// 			</a>
+// 		</li>
+// 		<li class="c-trending__item">
+// 			<a href="#" class="c-trending__link">
+// 				<h5 class="c-trending__title">
+// 					<div class="c-trending__number"><span class="c-trending__counter t-bold"></span></div>
+// 					<span class="c-trending__caption t-semibold">Watch Fergie's Disastrous National Anthem at...</span>
+// 				</h5>
+// 			</a>
+// 		</li>
+// 		<li class="c-trending__item">
+// 			<a href="#" class="c-trending__link">
+// 				<h5 class="c-trending__title">
+// 					<div class="c-trending__number"><span class="c-trending__counter t-bold"></span></div>
+// 					<span class="c-trending__caption t-semibold">The 'Black Panther' Revolution</span>
+// 				</h5>
+// 			</a>
+// 		</li>
+// 		<li class="c-trending__item">
+// 			<a href="#" class="c-trending__link">
+// 				<h5 class="c-trending__title">
+// 					<div class="c-trending__number"><span class="c-trending__counter t-bold"></span></div>
+// 					<span class="c-trending__caption t-semibold">The Tao of Kurt Cobain: 12 Great Quotes From...</span>
+// 				</h5>
+// 			</a>
+// 		</li>
+// 		<li class="c-trending__item">
+// 			<a href="#" class="c-trending__link">
+// 				<h5 class="c-trending__title">
+// 					<div class="c-trending__number"><span class="c-trending__counter t-bold"></span></div>
+// 					<span class="c-trending__caption t-semibold">See Doors' Epic 'When the Music's Over' at...</span>
+// 				</h5>
+// 			</a>
+// 		</li>
+// 	</ol>
+// </div>
+//
+// Styleguide 3.56.1
+
+// Sidebar Trending
+//
+// markup:
+// <div class="c-trending c-trending--sidebar">
+// 	<h4 class="c-trending__heading t-bold t-bold--upper t-bold--loose">
+// 		<svg class="c-trending__heading-icon">
+// 			<use xlink:href="#svg-icon-trending"></use>
+// 		</svg>
+// 		Trending
+// 	</h4>
+// 	<ol class="c-trending__list">
+// 		<li class="c-trending__item c-trending__item--featured">
+// 			<a href="#" class="c-trending__link">
+// 				<div class="c-trending__image c-crop c-crop--landscape c-crop--size-3x2">
+// 					<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 						 data-src="https://placehold.it/300x200"
+// 						 data-srcset="
+// 							https://placehold.it/300x200 300w,
+// 							https://placehold.it/600x400 600w"
+// 						 sizes="300px"
+// 						 alt="'The Walking Dead': Everything You Need to..."
+// 						 class="c-crop__img">
+// 				</div>
+// 				<h5 class="c-trending__title">
+// 					<div class="c-trending__number">
+// 						<span class="c-trending__counter t-bold t-bold--condensed"></span>
+// 					</div>
+// 					<span class="c-trending__caption t-semibold">'The Walking Dead': Everything You Need to...</span>
+// 				</h5>
+// 			</a>
+// 		</li>
+// 		<li class="c-trending__item">
+// 			<a href="#" class="c-trending__link">
+// 				<h5 class="c-trending__title">
+// 					<div class="c-trending__number">
+// 						<span class="c-trending__counter t-bold t-bold--condensed"></span>
+// 					</div>
+// 					<span class="c-trending__caption t-semibold">Watch Fergie's Disastrous National Anthem at...</span>
+// 				</h5>
+// 			</a>
+// 		</li>
+// 		<li class="c-trending__item">
+// 			<a href="#" class="c-trending__link">
+// 				<h5 class="c-trending__title">
+// 					<div class="c-trending__number">
+// 						<span class="c-trending__counter t-bold t-bold--condensed"></span>
+// 					</div>
+// 					<span class="c-trending__caption t-semibold">The 'Black Panther' Revolution</span>
+// 				</h5>
+// 			</a>
+// 		</li>
+// 		<li class="c-trending__item">
+// 			<a href="#" class="c-trending__link">
+// 				<h5 class="c-trending__title">
+// 					<div class="c-trending__number">
+// 						<span class="c-trending__counter t-bold t-bold--condensed"></span>
+// 					</div>
+// 					<span class="c-trending__caption t-semibold">The Tao of Kurt Cobain: 12 Great Quotes From...</span>
+// 				</h5>
+// 			</a>
+// 		</li>
+// 		<li class="c-trending__item">
+// 			<a href="#" class="c-trending__link">
+// 				<h5 class="c-trending__title">
+// 					<div class="c-trending__number">
+// 						<span class="c-trending__counter t-bold t-bold--condensed"></span>
+// 					</div>
+// 					<span class="c-trending__caption t-semibold">See Doors' Epic 'When the Music's Over' at...</span>
+// 				</h5>
+// 			</a>
+// 		</li>
+// 	</ol>
+// </div>
+//
+// Styleguide 3.56.2
+
+@include critical( single, country, section-front, archive, home, list ) {
+
+	// Since it is a widget, both variations are included in the `critical`
+	// block for all template types.
+
+	.c-trending {
+		counter-reset: c-trending-counter;
+
+		&__heading {
+			@extend %flex-center;
+			background-color: $g-color-red;
+			border-top: 4px solid $g-color-red;
+			color: $g-color-white;
+			font-size: 35px;
+			padding: 10px 0;
+			line-height: 1;
+			letter-spacing: 0;
+			
+			.is-sidebar-open & {
+				background-color: transparent;
+			}
+		}
+
+		&__heading-icon {
+			height: 1em;
+			width: 1em;
+			margin-right: 10px;
+			fill: $g-color-white;
+		}
+
+		&__list {
+			list-style: none;
+		}
+
+		&__item + &__item {
+			border-top: 1px solid $g-color-border;
+		}
+
+		&__link {
+			color: currentColor;
+			transition: color $g-transition-color;
+
+			&:focus,
+			&:hover {
+				color: $g-color-muted--dark;
+			}
+		}
+
+		&__link:hover &__caption {
+			color: $g-color-muted--dark;
+		}
+
+		&__title {
+			display: flex;
+			align-items: center;
+			padding: 7px 0;
+			font-size: 13px;
+			line-height: 13px;
+		}
+
+		&__number {
+			@extend %flex-center;
+			flex-shrink: 0;
+			width: 32px;
+			height: 32px;
+			margin: 5px 15px;
+			color: $g-color-red;
+			font-size: 24px;
+
+			span {
+				margin-left: 1px;
+			}
+
+		}
+
+		&__counter {
+			&::before {
+				counter-increment: c-trending-counter;
+				content: counter( c-trending-counter );
+			}
+		}
+
+		&__caption {
+			position: relative;
+			left: 0;
+			padding: 0 15px;
+			transition: color $g-transition-color;
+		}
+
+		//
+		// Hero trending list.
+		//
+
+		&--hero &__title {
+			padding: 12px;
+		}
+
+		&--hero &__list {
+			background-color: $g-color-white;
+			box-shadow: 0 2px 13px 0 rgba( $g-color-black, 0.15 );
+		}
+
+		&--hero &__number {
+			border-radius: 50%;
+			border: 1px solid $g-color-red;
+			font-size: 14.3px;
+			height: 25px;
+			letter-spacing: 1.79px;
+			line-height: 18px;
+			width: 25px;
+			margin: 5px 12px 5px 0;
+		}
+
+		&--hero &__caption {
+			padding: 0;
+		}
+
+		//
+		// Sidebar trending list.
+		//
+
+		&--sidebar {
+			background-color: $g-color-white;
+			border: 4px solid $g-color-red;
+			padding: 0px 18px;
+			margin-top: 16px;
+
+			.is-sidebar-open & {
+				background-color: transparent;
+			}
+
+			&::before, &::after {
+				background-color: $g-color-white;
+				content: "";
+				display: block;
+				height: 4px;
+				left: 16px;
+				position: relative;
+				width: 225px;
+				
+				.is-sidebar-open & {
+					background-color: #e5e5e5; // Matches .is-sidebar-open .l-page__content::after
+				}
+			}
+
+			&::before {
+				top: -4px;
+			}
+			&::after {
+				top: 4px;
+			}
+
+		}
+
+		&--sidebar &__list {
+			transform: translateY( -12px );
+		}
+
+		&--sidebar &__number {
+			margin-left: 0px;
+			margin-right: 8px;
+		}
+
+		&--sidebar &__number &__counter {
+			font-family: "Publico Banner";
+			font-size: 30px;
+			line-height: 36px;
+		}
+
+		&--sidebar &__heading {
+			background-color: $g-color-white;
+			border: 0;
+			color: $g-color-red;
+			font-size: 34px;
+			left: 1rem;
+			line-height: 41px;
+			margin: 0;
+			padding: 0;
+			position: relative;
+			text-align: center;
+			top: -26px;
+			width: 225px;
+		}
+
+		&--sidebar &__heading-icon {
+			fill: $g-color-red;
+		}
+
+		&--sidebar &__image,
+		&--sidebar &__title {
+			position: relative;
+			z-index: z( 'default' );
+
+			&::before {
+				content: '';
+				position: absolute;
+				z-index: z( 'default' );
+			}
+		}
+
+		&--sidebar &__image {
+			max-height: 172px;
+			max-width: 258px;
+			margin-bottom: 3px;
+		}
+
+		&--sidebar &__caption {
+			color: $g-color-black;
+			padding: 0;
+		}
+	}
+}

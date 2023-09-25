@@ -1,0 +1,26 @@
+// Sans Super Bold
+//
+// t-super - Default
+// t-super--upper - Uppercase
+//
+// markup:
+// <p class="t-super {$modifiers}">This is a super bold</p>
+//
+// Styleguide 2.4
+
+@include critical() {
+
+	.t-super {
+		font-family: $g-font-family-sans-super;
+		font-weight: $super;
+
+		.fonts-loading & {
+			font-family: $g-font-family-sans-super-subset;
+			letter-spacing: 0.0125em;
+		}
+
+		&--upper {
+			text-transform: uppercase;
+		}
+	}
+}

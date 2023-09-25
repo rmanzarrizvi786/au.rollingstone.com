@@ -1,0 +1,36 @@
+// Sans Bold
+//
+// t-bold - Default
+// t-bold--upper - Uppercase
+// t-bold--condensed - Condensed
+// t-bold--loose - Loose
+//
+// markup:
+// <p class="t-bold {$modifiers}">This is a caption</p>
+//
+// Styleguide 2.2
+
+@include critical() {
+
+	.t-bold {
+		font-family: $g-font-family-sans;
+		font-weight: $bold;
+
+		.fonts-loading & {
+			font-family: $g-font-family-sans-subset;
+		}
+
+		&--upper {
+			text-transform: uppercase;
+		}
+
+		&--condensed {
+			letter-spacing: -1px;
+		}
+
+		&--loose {
+			letter-spacing: 0.125em;
+		}
+	}
+}
+

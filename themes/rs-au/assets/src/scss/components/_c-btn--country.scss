@@ -1,0 +1,19 @@
+// Button component
+//
+// No styleguide
+
+@include critical( country ) {
+
+	.c-btn {
+
+		&--pagination--country {
+			background-color: $g-color-country--accent;
+
+			&:focus,
+			&:hover {
+				background: lighten($g-color-country--accent, 10%);
+			}
+		}
+	}
+
+}

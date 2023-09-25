@@ -1,0 +1,128 @@
+// Icon
+//
+// markup:
+// <span class="c-icon">
+// 	<svg><use xlink:href="#svg-icon-twitter"></use></svg>
+// </span>
+//
+// Styleguide 3.30
+
+// White Icon
+//
+// markup:
+// <span class="c-icon c-icon--white">
+// 	<svg><use xlink:href="#svg-icon-twitter"></use></svg>
+// </span>
+//
+// Styleguide 3.30.1
+
+// Large Icon
+//
+// markup:
+// <span class="c-icon c-icon--large">
+// 	<svg><use xlink:href="#svg-icon-twitter"></use></svg>
+// </span>
+//
+// Styleguide 3.30.2
+
+// Inline Icon
+//
+// markup:
+// <span class="c-icon c-icon--inline">
+// 	<svg><use xlink:href="#svg-icon-twitter"></use></svg>
+// </span>
+//
+// Styleguide 3.30.3
+
+// Round icon
+//
+// markup:
+// <span class="c-icon c-icon--round">
+// 	<svg><use xlink:href="#svg-icon-twitter"></use></svg>
+// </span>
+//
+// Styleguide 3.30.4
+
+// Inverted Icon
+//
+// markup:
+// <span class="c-icon c-icon--inverted">
+// 	<svg><use xlink:href="#svg-icon-twitter"></use></svg>
+// </span>
+//
+// Styleguide 3.30.5
+
+// Twitter Icon
+//
+// markup:
+// <span class="c-icon c-icon--twitter">
+// 	<svg><use xlink:href="#svg-icon-twitter"></use></svg>
+// </span>
+//
+// Styleguide 3.30.6
+
+// RS Pro Icon
+//
+// markup:
+// <span class="c-icon c-icon--rs-pro">
+// 	<svg><use xlink:href="#svg-icon-twitter"></use></svg>
+// </span>
+//
+// Styleguide 3.30.7
+
+@include critical() {
+	.c-icon {
+		@extend %flex-center;
+		padding: 5px;
+		line-height: 0;
+
+		svg {
+			width: 15px;
+			height: 15px;
+			fill: $g-color-black;
+		}
+
+		&--white svg {
+			fill: $g-color-white;
+		}
+
+		&--large svg {
+			width: 18px;
+			height: 18px;
+		}
+
+		&--inline {
+			display: inline-flex;
+			vertical-align: middle;
+		}
+
+		&--round {
+			width: 24px;
+			height: 24px;
+			border-radius: 99%;
+		}
+
+		&--inverted {
+			background-color: $g-color-white;
+			transition: background-color $g-transition-color;
+
+			svg {
+				fill: $g-color-black;
+			}
+		}
+
+		&--twitter svg {
+			fill: $g-color-twitter;
+		}
+
+		&--rs-pro {
+			padding: 0 5px 0 0;
+		}
+
+		&--rs-pro svg {
+			width: 21px;
+			height: 21px;
+			fill: $g-color-red;
+		}
+	}
+}

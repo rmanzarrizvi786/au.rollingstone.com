@@ -1,0 +1,157 @@
+// Blog
+//
+// markup:
+// <div class="l-blog">
+// 	<main class="l-blog__primary">
+// 	 <article>
+// 			<sg-insert>4.5</sg-insert>
+// 			<sg-insert>3.40</sg-insert>
+// 			<div class="l-article-content">
+// 				<sg-insert>3.14</sg-insert>
+// 				<footer>
+// 					<sg-insert>3.53</sg-insert>
+// 					<sg-insert>3.42</sg-insert>
+// 				</footer>
+// 			</div>
+// 		</article>
+// 	</main>
+// 	<aside class="l-blog__secondary">
+// 		<div class="l-blog__item">
+// 			<sg-insert>3.56</sg-insert>
+// 		</div>
+// 		<div class="l-blog__item">
+// 			<sg-insert>3.19</sg-insert>
+// 		</div>
+// 		<div class="l-blog__item">
+// 			<sg-insert>3.1</sg-insert>
+// 		</div>
+// 	</aside>
+// </div>
+//
+// Styleguide 4.6
+
+@include critical( single, country, section-front, archive, list, video-article ) {
+
+	.l-blog {
+		@include h-container;
+		position: relative;
+		z-index: z( 'default' );
+		padding-top: 20px;
+
+		@media ( query( min, desktop ) ) {
+			display: grid;
+			grid-template-columns: calc(100% - 320px) 20px 300px; // 20px gutter as column for IE11, use calc vs. fr to get around issue with skins
+			padding-top: 30px;
+
+			@include if-list-page {
+				grid-template-columns: calc(100% - 285px) 5px 290px;
+			}
+		}
+
+		&__header {
+			grid-column: 1 / 4;
+			margin-bottom: 20px;
+			width: 100%;
+		}
+
+		&__primary {
+			grid-column: 1 / 2;
+		}
+
+		&__secondary {
+			grid-column: 3 / 4;
+			width: 300px;
+			margin-right: auto;
+			margin-left: auto;
+			margin-bottom: 25px;
+
+			.admz {
+				margin: 20px auto;
+			}
+
+			@media ( query( max, desktop ) ) {
+				padding-top: 40px;
+			}
+
+			@media ( max-width: $g-site-min-width ) {
+				margin-left: -10px;
+			}
+		}
+
+		&__item {
+
+			& + & {
+				padding-top: 15px;
+
+				@media ( query( min, tablet ) ) {
+					padding-top: 20px;
+				}
+			}
+
+			& + &--spacer-s {
+				padding-top: 5px;
+
+				@media ( query( min, tablet ) ) {
+					padding-top: 10px;
+				}
+			}
+
+			& + &--spacer-l {
+				padding-top: 20px;
+
+				@media ( query( min, tablet ) ) {
+					padding-top: 30px;
+				}
+			}
+
+			& + &--spacer-xl {
+				padding-top: 30px;
+
+				@media ( query( min, tablet ) ) {
+					padding-top: 40px;
+				}
+			}
+		}
+
+		&__flag {
+			position: absolute;
+			top: 0;
+			left: 0;
+			max-width: 60%;
+			transform: translateY(-50%);
+		}
+
+		&--with-gap {
+			padding-bottom: 30px;
+
+			@media ( query( min, tablet ) ) {
+				padding-bottom: 40px;
+			}
+		}
+
+		&--with-flag {
+			padding-top: 40px;
+
+			@media ( query( min, desktop ) ) {
+				padding-top: 45px;
+			}
+		}
+
+		//
+		// Article layout with branding.
+		//
+
+		.is-single.has-branding:not(.single-pmc_top_video) & { // stylelint-disable-line selector-max-specificity
+			margin-top: 25px;
+			padding-bottom: 30px;
+			background: $g-color-white;
+			box-shadow: 0 2px 4px 0 rgba(0,0,0,0.20);
+			width: calc(100% - 14px);
+
+			@media ( query( min, tablet ) ) {
+				margin-top: 50px;
+			}
+		}
+
+	}
+}

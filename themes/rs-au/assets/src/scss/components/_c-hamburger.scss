@@ -1,0 +1,68 @@
+// Hamburger
+//
+// markup:
+// <button class="c-hamburger">
+// 	<svg class="c-hamburger__icon"><use xlink:href="#svg-icon-hamburger"></use></svg>
+// 	<span class="c-hamburger__label t-semibold t-semibold--upper">Menu</span>
+// </button>
+//
+// Styleguide 3.29
+
+@include critical() {
+
+	.c-hamburger {
+		@extend %flex-center;
+		padding: 0 15px;
+		color: $g-color-black;
+		transition: color $g-transition-color;
+
+		@media ( query( min, desktop ) ) {
+			padding: 3px 10px;
+
+			.is-header-sticky & {
+				padding: 10px;
+				font-size: 14px;
+				color: $g-color-red;
+
+				&:hover,
+				&:focus {
+					color: $g-color-black;
+				}
+			}
+		}
+
+		&:hover,
+		&:focus {
+			color: $g-color-red;
+			outline: none;
+		}
+
+		&__icon {
+			display: block;
+			fill: currentColor;
+			width: 22px;
+			height: 22px;
+
+			@media ( query( min, desktop ) ) {
+				width: 20px;
+				height: 17px;
+			}
+		}
+
+		&__label {
+			margin-left: 5px;
+
+			@media ( query( max, desktop ) ) {
+				display: none;
+			}
+		}
+
+		//
+		// Collapsed hamburger in sticky header.
+		//
+
+		.is-header-sticky &--sticky-collapsed &__label {
+			display: none;
+		}
+	}
+}

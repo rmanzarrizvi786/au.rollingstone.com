@@ -1,0 +1,82 @@
+// Social Bar For Author Profile
+//
+// markup:
+// <ul class="c-social-bar c-social-bar--author-profile">
+//  <li class="c-social-bar__item">
+//      <a href="#" class="c-social-bar__link t-semibold" target="_blank" rel="noopener noreferrer" title="Twitter Profile ">
+//          <span class="c-icon">
+//              <svg><use xlink:href="#svg-icon-twitter"></use></svg>
+//          </span>
+//          twitter
+//          <span class="screen-reader-text">
+//              Twitter Profile
+//          </span>
+//      </a>
+//  </li>
+//  <li class="c-social-bar__item">
+//      <a href="#" class="c-social-bar__link t-semibold" target="_blank" rel="noopener noreferrer" title="Facebook Profile ">
+//          <span class="c-icon">
+//              <svg><use xlink:href="#svg-icon-facebook"></use></svg>
+//          </span>
+//          facebook
+//          <span class="screen-reader-text">
+//              Facebook Profile
+//          </span>
+//      </a>
+//  </li>
+//  <li class="c-social-bar__item">
+//      <a href="#" class="c-social-bar__link t-semibold" target="_blank" rel="noopener noreferrer" title="Youtube Profile ">
+//          <span class="c-icon">
+//              <svg><use xlink:href="#svg-icon-youtube"></use></svg>
+//          </span>
+//          youtube
+//          <span class="screen-reader-text">
+//              Youtube Profile
+//          </span>
+//      </a>
+//  </li>
+// </ul>
+//
+// Styleguide 3.50.5
+
+@include critical( archive ) {
+	.c-social-bar {
+
+		&--author-profile {
+			flex-direction: column;
+			align-items: flex-start;
+
+			@media ( query( min, desktop ) ) {
+				flex-direction: row;
+			}
+
+			.c-icon {
+				padding: 0;
+				margin-right: 5px;
+			}
+
+			.c-icon svg {
+				width: 19px;
+				height: 19px;
+			}
+		}
+
+		&--author-profile &__item {
+			flex: inherit;
+
+			@media ( query( min, desktop ) ) {
+				margin-right: 25px;
+			}
+		}
+
+		&--author-profile &__link {
+			background-color: transparent;
+			color: $g-color-black;
+			font-size: 10px;
+			letter-spacing: 0.5px;
+			line-height: 1;
+			margin-bottom: 10px;
+			text-transform: uppercase;
+		}
+	}
+}

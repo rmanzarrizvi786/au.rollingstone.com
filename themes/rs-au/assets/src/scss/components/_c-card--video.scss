@@ -1,0 +1,231 @@
+// Video Card
+//
+// markup:
+// <article class="c-card c-card--video">
+// 	<div class="c-card__wrap">
+// 		<figure class="c-card__image">
+// 			<div class="c-crop c-crop--video c-crop--landscape c-crop--size-brand" data-video-crop data-video-id="pWB5JZRGl0U">
+// 				<div class="c-card__badge c-card__badge--play">
+// 					<div class="c-badge c-badge--play">
+// 						<svg class="c-play-btn c-play-btn--clock" viewBox="0 0 88 88">
+// 							<g transform="translate(-.082 -.082)" fill="none" fill-rule="evenodd">
+// 								<circle class="c-play-btn__fill" fill="#D32531" stroke="#D32531" stroke-width="4" cx="44" cy="44" r="44" />
+// 								<circle class="c-play-btn__border" fill="none" stroke="none" stroke-width=4 cx="44" cy="44" r="44" stroke-dasharray="276" stroke-dashoffset="276" />
+// 								<path class="c-play-btn__icon" d="M38.242 28.835c-.634-.467-2.323-.467-2.46 1.298v19.743a.99.99 0 0 0 1.577.796 3.88 3.88 0 0 0 1.577-3.123V33.105l16.008 10.969-18.458 12.61c-.44.3-.703.798-.703 1.331a1.564 1.564 0 0 0 2.46 1.298l20.383-13.941c.528-.317 1.252-1.615 0-2.596l-20.384-13.94z" fill="#FFF"/>
+// 							</g>
+// 						</svg>
+// 					</div>
+// 				</div>
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					data-src="https://placehold.it/300x170"
+// 					data-srcset="https://placehold.it/300x170 300w, https://placehold.it/450x255 450w, https://placehold.it/350x200 350w, https://placehold.it/210x120 210w"
+// 					sizes=""(max-width: 480px) 210px, (max-width: 767px) 350px,(max-width: 959px) 450px, 300px""
+// 					alt="Daily Show's Michelle Wolf to Host White House Correspondents' Dinner"
+// 					class="c-crop__img">
+// 			</div>
+// 		</figure>
+// 		<header class="c-card__header">
+// 			<h3 class="c-card__heading t-bold" data-video-gallery-card-heading>
+// 				See the Wombats' Cutting, Acoustic Rendition of 'Lemon to a Knife Fight'
+// 			</h3>
+// 			<span class="c-card__tag t-semibold t-semibold--upper t-semibold--loose" data-video-gallery-card-tag>
+// 				Features
+// 			</span>
+// 			<p class="c-card__lead t-copy" data-video-gallery-card-lead>
+// 				Danish singer performs "When I Was Young," "Run Away," for Rolling Stone's live series
+// 			</p>
+// 		</header>
+// 	</div>
+// </article>
+//
+// sg-wrapper:
+// <div style="padding:20px; background-color:#000;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.8.10
+
+@include critical( home, video-landing, video-tag ) {
+
+	.c-card {
+
+		&--video &__wrap {
+			display: flex;
+			align-items: center;
+
+			@media ( query( min, desktop ) ) {
+				flex-direction: row;
+			}
+		}
+
+		&--video &__image {
+			padding: 20px;
+			cursor: pointer;
+
+			@media ( query( min, desktop ) ) {
+				order: 2;
+				width: 60vw;
+				max-width: 815px;
+
+				// Allow video to resize when there are skins.
+				@include if-no-side-skins {
+					flex-shrink: 0;
+				}
+			}
+		}
+
+		// Sorry for specificity here, but our states need to be scoped here
+		/* stylelint-disable selector-max-specificity */
+		&--video &__image:hover .c-play-btn__border {
+			stroke-dashoffset: 0;
+			stroke: $g-color-white;
+			transition: stroke-dashoffset 0.5s $ease-in-out-sine, stroke 0.2s $ease-in-out-sine;
+		}
+		/* stylelint-enable selector-max-specificity */
+
+		&--video &__header {
+			width: 100%;
+			padding: 0 20px 20px 20px;
+
+			@media ( query( min, desktop ) ) {
+				padding: 90px 30px;
+				max-width: 445px;
+			}
+		}
+
+		&--video &__tag {
+			color: $g-color-white;
+			border-bottom: 1px solid $g-color-red;
+			width: max-content;
+			a {
+				color: $g-color-white;
+				border-bottom: 1px solid $g-color-red;
+			}
+		}
+
+		&--video &__heading {
+			margin-top: 10px;
+			margin-bottom: 1em;
+			font-size: 18px;
+			letter-spacing: 0.53px;
+			line-height: 1;
+			color: $g-color-white;
+
+			@media ( query( min, tablet ) ) {
+				font-size: 30px;
+				letter-spacing: 0.88px;
+			}
+
+			a {
+				color: $g-color-white;
+			}
+		}
+
+		&--video &__lead {
+			font-size: 18px;
+			color: $g-color-white;
+			letter-spacing: 0.53px;
+
+			@media ( query( max, desktop ) ) {
+				display: none;
+			}
+		}
+
+		&--video &__badge {
+			top: auto;
+			left: 0;
+			bottom: 0;
+			padding: 20px;
+			transform: none;
+
+			@media ( query( min, tablet ) ) {
+				padding: 40px;
+			}
+		}
+
+		&--video &__social-bar {
+			width: 100%;
+			max-width: 330px;
+			margin-top: 10px;
+			margin-left: auto;
+			margin-right: auto;
+
+			@media ( query( min, desktop ) ) {
+				max-width: 385px;
+				margin-top: 40px;
+				margin-left: 0;
+				margin-right: 0;
+
+				.c-social-bar__link {
+					width: auto;
+				}
+			}
+		}
+
+		&--video--image-first {
+			margin-top: 20px;
+			width: 100%;
+
+			@media ( query( min, desktop ) ) {
+				margin-top: 35px;
+				margin-bottom: 40px;
+			}
+		}
+
+		&--video--image-first &__image {
+			order: -1;
+			align-self: flex-start;
+
+			@media ( query( max, desktop ) ) {
+				width: calc(100% + 40px);
+				margin: 0 -20px;
+			}
+		}
+
+		&--video--light &__image {
+			padding: 0;
+			box-shadow: 0 4px 5px 0 rgba(0,0,0,0.20);
+		}
+
+		&--video--light &__header {
+			padding: 30px 0;
+			text-align: center;
+
+			@media ( query( min, desktop ) ) {
+				padding: 50px;
+				text-align: left;
+			}
+		}
+
+		&--video--light &__tag {
+			@media ( query( max, desktop ) ) {
+				display: none;
+			}
+		}
+
+		&--video--light &__heading {
+			color: $g-color-black;
+
+			a {
+				color: $g-color-black;
+			}
+		}
+
+		&--video--light &__lead {
+			color: $g-color-copy;
+		}
+
+		&--video--light &__badge {
+
+			@media ( query( max, tablet ) ) {
+				left: 50%;
+				bottom: 50%;
+				transform: translate(-50%,50%);
+			}
+
+			@media ( query( min, tablet ) ) {
+				padding: 20px;
+			}
+		}
+	}
+}

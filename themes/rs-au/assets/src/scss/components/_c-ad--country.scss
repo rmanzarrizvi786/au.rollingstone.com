@@ -1,0 +1,30 @@
+// Ad component on country branding page
+//
+// No styleguide
+
+@include critical( country ) {
+
+	.c-ad {
+
+		&--mobile-header {
+
+			.has-branding & {
+				background: $g-color-black;
+			}
+
+			.has-branding.is-single & {
+				background: $g-color-country--bg;
+			}
+		}
+
+		&--desktop-header {
+
+			.has-branding & {
+				position: relative;
+				z-index: z(orbit); // render above header box-shadow
+				background-color: $g-color-white;
+				border-bottom: none;
+			}
+		}
+	}
+}

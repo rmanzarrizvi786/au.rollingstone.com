@@ -1,0 +1,131 @@
+// Columnists
+//
+// markup:
+// <div class="c-columnists">
+// 	<h3 class="c-columnists__label">
+// 		<span class="t-bold t-bold--upper">Columnists</span>
+// 	</h3>
+// 	<ul class="c-columnists__list">
+// 		<li class="c-columnists__item">
+// 			<sg-insert>3.54</sg-insert>
+// 		</li>
+// 		<li class="c-columnists__item">
+// 			<sg-insert>3.54</sg-insert>
+// 		</li>
+// 		<li class="c-columnists__item">
+// 			<sg-insert>3.54</sg-insert>
+// 		</li>
+// 	</ul>
+// </div>
+//
+// Styleguide 3.13
+
+@include critical( home ) {
+
+	.c-columnists {
+		position: relative;
+		padding: 20px;
+		background: $g-color-white;
+		border: 2px solid $g-color-red;
+
+		@media ( query( min, desktop ) ) {
+			padding: 40px;
+		}
+
+		&::before,  &::after {
+			background-color: $g-color-white;
+			border-bottom: 25px solid $g-color-red;
+			border-top: 25px solid $g-color-red;
+			content: "";
+			display: block;
+			height: 100%;
+			padding: 10px 0px;
+			position: absolute;
+			width: 2px;
+			top: 0;
+			z-index: 1;
+
+			@media ( query( min, tablet ) ) {
+				border-bottom: 23px solid $g-color-red;
+				border-top: 23px solid $g-color-red;
+			}
+
+		}
+
+		&::before {
+			left: -2px;
+		}
+
+		&::after {
+			right: -2px;
+		}
+
+		&__label {
+			background: $g-color-white;
+			color: $g-color-black;
+			font-size: 32px;
+			height: 49px;
+			letter-spacing: -0.42px;
+			left: 50%;
+			letter-spacing: -0.42px;
+			line-height: 38px;
+			padding: 4px 13px;
+			position: absolute;
+			top: 0;
+			transform: translate(-50%, -50%);
+			white-space: nowrap;
+
+			@media ( query( min, desktop-xl ) ) {
+				font-size: 38px;
+				letter-spacing: -0.5px;
+				line-height: 46px;
+				padding: 0px 11px;
+			}
+
+		}
+
+		&__badge {
+			vertical-align: text-top;
+			letter-spacing: -4px;
+			margin-right: 4px;
+
+			@media ( query( min, desktop-xl ) ) {
+				margin-right: 8px;
+			}
+		}
+
+		&__badge &__icon {
+			fill: $g-color-red;
+			height: 32px;
+			width: 32px;
+
+			@media ( query( min, desktop-xl ) ) {
+				width: 40px;
+				height: 40px;
+			}
+		}
+
+		&__list {
+			display: flex;
+			flex-wrap: wrap;
+			list-style: none;
+		}
+
+		&__item {
+			width: 100%;
+			padding: 10px;
+
+			@media ( query( max, tablet ) ) {
+				margin-bottom: 25px;
+				&:last-child {
+					margin-bottom: 0px;
+				}
+			}
+
+			@media ( query( min, tablet ) ) {
+				width: 33.33%;
+			}
+		}
+	}
+
+}

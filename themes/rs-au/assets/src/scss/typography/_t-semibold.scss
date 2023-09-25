@@ -1,0 +1,49 @@
+// Sans Semibold
+//
+// t-semibold - Default
+// t-semibold--upper - Uppercase
+// t-semibold--condensed - Condensed
+// t-semibold--loose - Loose
+//
+// markup:
+// <p class="t-semibold {$modifiers}">This is a heading</p>
+//
+// Styleguide 2.3
+
+@include critical() {
+
+	.t-semibold {
+		font-family: $g-font-family-sans;
+		font-weight: $semibold;
+
+		.fonts-loading & {
+			font-family: $g-font-family-sans-subset;
+			font-weight: $bold;
+			letter-spacing: -0.0285em;
+		}
+
+		&--upper {
+			text-transform: uppercase;
+
+			.fonts-loading & {
+				letter-spacing: -0.013em;
+			}
+		}
+
+		&--condensed {
+			letter-spacing: -0.0221em;
+
+			.fonts-loading & {
+				letter-spacing: -0.0345em;
+			}
+		}
+
+		&--loose {
+			letter-spacing: 0.1em;
+
+			.fonts-loading & {
+				letter-spacing: 0.088em;
+			}
+		}
+	}
+}

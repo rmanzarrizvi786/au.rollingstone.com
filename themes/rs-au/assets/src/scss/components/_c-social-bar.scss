@@ -1,0 +1,189 @@
+// Social Bar
+//
+// markup:
+// <ul class="c-social-bar"></ul>
+//
+// Styleguide 3.50
+
+// Small Social Bar
+//
+// markup:
+// <ul class="c-social-bar c-social-bar--small">
+// 	<li class="c-social-bar__item">
+// 		<a href="https://www.facebook.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Share on Facebook">
+// 			<span class="c-social-bar__icon">
+// 				<sg-insert>3.30.1</sg-insert>
+// 			</span>
+// 			<span class="screen-reader-text">Share on Facebook</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item">
+// 		<a href="https://twitter.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Tweet">
+// 			<span class="c-social-bar__icon">
+// 				<sg-insert>3.30.1</sg-insert>
+// 			</span>
+// 			<span class="screen-reader-text">Tweet</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item">
+// 		<a href="http://www.tumblr.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Share on Tumblr">
+// 			<span class="c-social-bar__icon">
+// 				<sg-insert>3.30.1</sg-insert>
+// 			</span>
+// 			<span class="screen-reader-text">Share on Tumblr</span>
+// 		</a>
+// 	</li>
+// </ul>
+//
+// sg-wrapper:
+// <div style="max-width:150px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.50.1
+
+// Round Social Bar
+//
+// markup:
+// <ul class="c-social-bar c-social-bar--round">
+// 	<li class="c-social-bar__item">
+// 		<a href="https://www.facebook.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Share on Facebook">
+// 			<span class="c-social-bar__icon">
+// 				<sg-insert>3.30.1</sg-insert>
+// 			</span>
+// 			<span class="screen-reader-text">Share on Facebook</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item">
+// 		<a href="https://twitter.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Tweet">
+// 			<span class="c-social-bar__icon">
+// 				<sg-insert>3.30.1</sg-insert>
+// 			</span>
+// 			<span class="screen-reader-text">Tweet</span>
+// 		</a>
+// 	</li>
+// 	<li class="c-social-bar__item">
+// 		<a href="http://www.tumblr.com"
+// 		   class="c-social-bar__link"
+// 		   target="_blank"
+// 		   rel="noopener noreferrer"
+// 		   title="Share on Tumblr">
+// 			<span class="c-social-bar__icon">
+// 				<sg-insert>3.30.1</sg-insert>
+// 			</span>
+// 			<span class="screen-reader-text">Share on Tumblr</span>
+// 		</a>
+// 	</li>
+// </ul>
+//
+// sg-wrapper:
+// <div style="max-width:150px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.50.2
+
+@include critical() {
+
+	.c-social-bar {
+		display: flex;
+		list-style: none;
+
+		&__item {
+			flex: 1 1 auto;
+		}
+
+		&__link {
+			@extend %flex-center;
+			background-color: $g-color-copy;
+			transition: opacity $g-transition-color;
+
+			&:hover,
+			&:focus {
+				opacity: 0.8;
+			}
+
+			&[href*='facebook.com'] {
+				background-color: $g-color-facebook;
+			}
+
+			&[href*='twitter.com'] {
+				background-color: $g-color-twitter;
+			}
+
+			&[href*='pinterest.com'] {
+				background-color: $g-color-pinterest;
+			}
+
+			&[href*='tumblr.com'] {
+				background-color: $g-color-tumblr;
+			}
+
+			&[href*='reddit.com'] {
+				background-color: $g-color-reddit;
+			}
+
+			&[href*='linkedin.com'] {
+				background-color: $g-color-linkedin;
+			}
+
+			&[href*='whatsapp.com'],
+			&[data-action*='whatsapp'] {
+				background-color: $g-color-whatsapp;
+			}
+
+			&--show-more {
+				background-color: $g-color-green;
+			}
+		}
+
+		//
+		// Small social bar in the header.
+		//
+
+		&--small &__item + &__item {
+			margin-left: 8px;
+		}
+
+		&--small &__link {
+			width: 35px;
+			height: 25px;
+		}
+
+		//
+		// Round social bar in the mega menu.
+		//
+
+		&--round &__item + &__item {
+			margin-left: 7px;
+		}
+
+		&--round &__link {
+			width: 38px;
+			height: 38px;
+			border: 1px solid $g-color-copy;
+			border-radius: 99%;
+			background-color: transparent;
+		}
+	}
+}

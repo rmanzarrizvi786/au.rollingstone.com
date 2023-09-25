@@ -1,0 +1,338 @@
+// Post Content
+//
+// markup:
+// <div class="c-content t-copy">
+// 	<p>Two years ago, Chadwick Boseman was in a movie called <a href="#">Gods of Egypt</a>. It was not a
+// 		very good movie. But in addition to its not-goodness, it also became infamous for whitewashing –
+// 		casting, as ancient African deities, a white guy from Scotland, a white guy from Denmark and at
+// 		least seven white people from Australia. Boseman, the sole black lead, played Thoth, the Egyptian
+// 		god of wisdom and inventor of mathematics. Before the movie came out, an interviewer asked him about
+// 		the criticism, and Boseman said that not only did he agree with it, it was why he took the part – so
+// 		audiences would see at least one god of African descent. "But, yeah," he added dryly. "People don't
+// 		make $140 million movies starring black and brown people."</p>
+// 	<p>What a difference two years makes. Because now we have Black Panther – not just a $140 million movie
+// 		starring black and brown people, but a $200 million one. It's very overdue. Stan Lee and Jack Kirby
+// 		created Panther, the first black superhero, way back in 1966, but he didn't show up on the big
+// 		screen until 50 years later, when Boseman stole Captain America: Civil War.</p>
+// 	<p>Now, after a decade of Marvel Universe films starring a demographically disproportionate number of
+// 		white Chrises, the world finally has its first African superhero movie.</p>
+// 	<p>"It's a sea-change moment," Boseman says. "I still remember the excitement people had seeing Malcolm
+// 		X. And this is greater, because it includes other people, too. Everybody comes to see the Marvel
+// 		movie."</p>
+// 	<sg-insert>3.1.1</sg-insert>
+// 	<p>Up until now, Boseman, 41, was most famous for being the biopic guy, playing an unprecedented run of
+// 		trailblazing African-American icons: Jackie Robinson (42), James Brown (Get On Up), Thurgood
+// 		Marshall (Marshall). In a way, Black Panther is the logical next step – Thurgood Marshall with
+// 		vibranium claws and a stealth jet. Boseman has for years wanted to play the character, keeping a
+// 		journal with notes as far back as 2012. "It's perfect casting," director Ryan Coogler says. "His
+// 		physicality, his reserved personality, the way he looks younger than he is, wise beyond his
+// 		years."</p>
+// 	<div class="l-article-content__pull l-article-content__pull--left">
+// 		<sg-insert>3.44</sg-insert>
+// 	</div>
+// 	<p>"Chad gave a hell of a performance," says Michael B. Jordan, who co-stars as his archnemesis,
+// 		Killmonger. "I couldn't imagine anybody else."</p>
+// 	<p>A few weeks before the movie opens, Boseman is trying to lay low, sipping peppermint tea at the
+// 		hipster L.A. coffee shop where he used to come to write, back when he was an aspiring screenwriter
+// 		freshly arrived from New York. He's in head-to-toe black – cardigan, T-shirt, chinos, socks – except
+// 		for some suede Valentino sneakers and a beaded necklace of Pan-African red, gold and green. He's
+// 		tall and lean, with long, elegant fingers and the knuckles of a boxer.</p>
+// 	<p>(Coogler says they would sometimes spar on set to get amped up.) One of his strengths as an actor is
+// 		a quiet, intense watchfulness, and he's the same in real life, taking in the world with a skeptical
+// 		half-squint. ("I see everything," Boseman says.) When he does speak, he's invariably thoughtful and
+// 		thorough. "You're saying I'm long-winded!" he says, laughing.</p>
+// 	<blockquote>
+// 		<p>"We were making a film about what it means to be African," Coogler says.</p>
+// 	</blockquote>
+// 	<p>Before we part ways, Boseman has had a change of heart. He's talking about the Oxford trip – the
+// 		celebrity who gave Rashad money. "After we got back, we got a benefactor letter," he says. "Denzel
+// 		paid for me."</p>
+// 	<sg-insert>3.1.1</sg-insert>
+// 	<p>In some ways, Boseman is a funny fit for a blockbuster action star. He's "90 percent" vegan, casually
+// 		name-checks radical black intellectuals like Yosef Ben-Jochannan and Frantz Fanon, and says he gets
+// 		anxious onstage or in front of crowds. ("Going on a talk show? Oh, my God. Nah.") But he also knows
+// 		he's a conduit for something bigger: "I truly believe there's a truth that needs to enter the world
+// 		at a particular time. And that's why people are excited about Panther. This is the time."</p>
+// 	<h3>Becoming the Black Panther</h3>
+// 	<p>When Boseman got the role of Black Panther, one of the first things he did was ask his father to take
+// 		a DNA test. He wanted to know more about his roots. "AfricanAncestry.com," he says. "They get
+// 		specific about what ethnic group you come from, as opposed to just what country." (For the record:
+// 		Yoruba from Nigeria, Limba and Mende from Sierra Leone, and Jola from Guinea-Bissau.) He says he's
+// 		also traced his American lineage as far back as he could. "To go any farther," he says with a wry
+// 		smile, "I'd have to go to property records."</p>
+// 	<p>Boseman drew from a wide range of real-life influences for T'Challa: Shaka Zulu and Patrice Lumumba,
+// 		Mandela speeches and Fela Kuti songs. He read about Masai warriors and talked to a Yoruba babalawo.
+// 		For his fight scenes, he trained in African martial arts – Dambe boxing, Zulu stick fighting and
+// 		Angolan capoeira. He also made two trips to South Africa for research. On one trip, a Cape Town
+// 		street musician bestowed on him a Xhosa name: Mxolisi, or "Peacemaker."</p>
+// </div>
+//
+// sg-wrapper:
+// <div style="padding:40px;max-width:800px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.14
+
+@include critical( single, country, list, featured-article, standard-template ) {
+
+	// Lets allow increased specificity in content generated by Wysiwyg editor
+	.c-content {
+		font-size: 16px;
+		color: $g-color-copy;
+		line-height: 24px;
+
+		.video-embed {
+			position: relative;
+			width: 100%;
+			height: 0;
+			padding-bottom: calc(9 / 16 * 100%);
+
+			iframe {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		p {
+			padding: 10.4px 0;
+		}
+
+		> {
+			p,
+			h1, h2, h3, h4, h5, h6,
+			ul, ol,
+			blockquote {
+				padding: 15px 0;
+
+				&:first-child {
+					padding-top: 0;
+				}
+			}
+
+			h1 {
+				@include g-font-family-sans(25px);
+				font-weight: $bold;
+				color: $g-color-black;
+				font-size: 25px;
+				line-height: 32px;
+
+				@media ( query( min, tablet ) ) {
+					@include g-font-family-sans(32px);
+					font-size: 32px;
+					line-height: 40px;
+				}
+			}
+
+			h2 {
+				@include g-font-family-sans(20px);
+				font-weight: $bold;
+				color: $g-color-black;
+				font-size: 20px;
+				line-height: 25px;
+
+				@media ( query( min, tablet ) ) {
+					@include g-font-family-sans(26px);
+					font-size: 26px;
+					line-height: 32px;
+				}
+			}
+
+			h3 {
+				@include g-font-family-sans(18px);
+				font-weight: $bold;
+				color: $g-color-black;
+				font-size: 18px;
+				line-height: 22px;
+
+				@media ( query( min, tablet ) ) {
+					@include g-font-family-sans(24px);
+					font-size: 24px;
+					line-height: 29px;
+				}
+			}
+
+			h4 {
+				@include g-font-family-sans(17px);
+				font-weight: $bold;
+				color: $g-color-black;
+				font-size: 17px;
+				line-height: 20px;
+
+				@media ( query( min, tablet ) ) {
+					@include g-font-family-sans(20px);
+					font-size: 20px;
+					line-height: 24px;
+				}
+			}
+
+			h5 {
+				@include g-font-family-sans(16px);
+				font-weight: $bold;
+				color: $g-color-black;
+				font-size: 16px;
+				line-height: 19px;
+
+				@media ( query( min, tablet ) ) {
+					@include g-font-family-sans(17px);
+					font-size: 17px;
+					line-height: 21px;
+				}
+			}
+
+			h6 {
+				@include g-font-family-sans(12px);
+				font-weight: $bold;
+				color: $g-color-black;
+				font-size: 12px;
+				line-height: 15px;
+
+				@media ( query( min, tablet ) ) {
+					@include g-font-family-sans(14px);
+					font-size: 14px;
+					line-height: 17px;
+				}
+			}
+
+			table {
+				margin: 15px 0;
+			}
+
+			p a {
+				@include g-font-family-sans(16px);
+				position: relative;
+				font-weight: $semibold;
+				color: $g-color-link;
+
+				&::before {
+					content: '';
+					position: absolute;
+					top: 0;
+					left: 0;
+					height: 100%;
+					width: 100%;
+					background-color: rgba(211, 37, 49, 0.1);
+					transform: scaleX(0) scaleY(0.9);
+					transform-origin: left center;
+					transition: transform 0.3s $ease-in-out-quad;
+				}
+
+				&:focus::before,
+				&:hover::before {
+					transform: scaleX(1) scaleY(0.9);
+				}
+
+			}
+
+			blockquote {
+				@include g-font-family-sans(20px);
+				font-weight: $bold;
+				color: $g-color-black;
+				font-style: normal;
+				font-size: 20px;
+				line-height: 25px;
+				text-align: center;
+
+				footer {
+					font-size: 0.5em;
+				}
+
+				@media ( query( min, tablet ) ) {
+					@include g-font-family-sans(26px);
+					font-size: 26px;
+					line-height: 32px;
+				}
+			}
+
+			ul, ol {
+				list-style-position: inside;
+			}
+
+			table {
+				display: block;
+				padding-bottom: 0.75rem;
+				width: 100%;
+				max-width: calc(100vw - 40px);
+				overflow-x: auto;
+				border: 0;
+				border-collapse: collapse;
+				border-spacing: 0;
+				text-align: left;
+				white-space: nowrap;
+
+				td,
+				th {
+					border-bottom: 1px solid $g-color-border;
+					padding: 15px 10px;
+				}
+
+				th {
+					border-color: $g-color-copy;
+				}
+
+				@media ( query( min, desktop ) ) {
+					max-width: calc(100vw - 360px);
+				}
+
+				@media ( query( min, desktop-xl ) ) {
+					width: 680px;
+				}
+
+				@media ( min-width: 1300px ) {
+					width: 700px;
+				}
+
+			}
+
+			iframe {
+				margin-left: 0;
+				margin-right: 0;
+			}
+		}
+
+		&--no-sidebar > {
+			h1 {
+				@include g-font-family-sans(32px);
+				font-weight: $bold;
+				color: $g-color-black;
+				font-size: 32px;
+				line-height: 30px;
+
+				@media ( query( min, tablet ) ) {
+					@include g-font-family-sans(48px);
+					font-size: 48px;
+					line-height: 50px;
+				}
+			}
+
+			h2 {
+				@include g-font-family-sans(20px);
+				font-weight: $bold;
+				color: $g-color-black;
+				font-size: 20px;
+				line-height: 25px;
+
+				@media ( query( min, tablet ) ) {
+					@include g-font-family-sans(24px);
+					font-size: 24px;
+					line-height: 32px;
+				}
+			}
+
+			p > {
+				strong, b {
+					@include g-font-family-sans(17px);
+					font-weight: $bold;
+					color: $g-color-black;
+				}
+
+				a {
+					color: #1389FE;
+				}
+			}
+		}
+	}
+}

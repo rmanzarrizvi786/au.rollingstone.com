@@ -1,0 +1,143 @@
+// Reviews Card
+//
+// markup:
+// <article class="c-reviews-card">
+// 	<a href="#" class="c-reviews-card__wrap">
+// 		<figure class="c-reviews-card__image">
+// 			<div class="c-reviews-card__crop c-crop c-crop--landscape c-crop--size-1x1">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					 data-src="https://placehold.it/200x200"
+// 					 data-srcset="
+// 							https://placehold.it/200x200 200w,
+// 							https://placehold.it/225x225 225w"
+// 					 sizes="(max-width: 1259px) 200px, 225px"
+// 					 alt="Album cover"
+// 					 class="c-crop__img">
+// 			</div>
+// 		</figure>
+// 		<header class="c-reviews-card__header">
+// 			<div class="c-reviews-card__rating">
+// 				<sg-insert>3.43</sg-insert>
+// 			</div>
+// 			<h4 class="c-reviews-card__headline">
+// 				<span class="t-copy">CupcakKe</span>
+// 			</h4>
+// 			<h5 class="c-reviews-card__subheadline">
+// 				<span class="t-semibold t-semibold--upper">Euphorize</span>
+// 			</h5>
+// 			<p class="c-reviews-card__lead">
+// 				<span class="t-copy">The fearless Chicago rapper offers her best album yet.</span>
+// 			</p>
+// 			<div class="c-reviews-card__cta">
+// 				<span class="t-semibold t-semibold--upper">Read More</span>
+// 			</div>
+// 		</header>
+// 	</a>
+// </article>
+//
+// sg-wrapper:
+// <div class="t-copy" style="max-width:200px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.47
+
+@include critical( home ) {
+
+	.c-reviews-card {
+		text-align: center;
+		display: flex;
+		height: 100%;
+
+		&__wrap {
+			position: relative;
+			display: block;
+			padding-bottom: 40px;
+			color: $g-color-black;
+			will-change: transform;
+		}
+
+		&__image {
+			transition: opacity $g-transition-fade;
+			margin: 0 auto;
+
+			&--book {
+				max-width: 175px;
+			}
+
+			&::after {
+				display: none;
+			}
+		}
+
+		&:focus &__image,
+		&:hover &__image {
+			opacity: $g-fade-opacity;
+		}
+
+		&__crop {
+			box-shadow: 0 2px 4px 0 rgba($g-color-black, 0.23);
+			border-radius: 5px;
+			overflow: hidden;
+		}
+
+		&__rating {
+			margin-top: 15px;
+		}
+
+		&__headline {
+			margin-top: 5px;
+			font-weight: $bold;
+			font-size: 24px;
+			line-height: 27px;
+			@extend %text-fade;
+
+			.t-copy{
+				font-family: $g-font-family-country-subset;
+			}
+		}
+
+		&__subheadline {
+			margin-top: 5px;
+			font-size: 10.15px;
+			letter-spacing: 1.45px;
+		}
+
+		&__lead {
+			margin-top: 10px auto 0 auto;
+			font-size: 15px;
+			line-height: 20px;
+			max-width: 215px;
+		}
+
+		&__cta {
+			position: absolute;
+			bottom: 10px;
+			left: 0;
+			right: 0;
+			margin: auto;
+			width: fit-content;
+			font-size: 10.15px;
+			letter-spacing: 1.45px;
+			color: $g-color-red;
+
+			&::after{
+				content: '';
+				width: 100%;
+				height: 1px;
+				background-color: $g-color-red;
+				display: block;
+				position: absolute;
+				transition: 0.15s ease-in;
+				opacity: 0;
+				transform: scaleX(0);
+			}
+
+			&:hover::after{
+				opacity: 1;
+				transform: scaleX(1);
+			}
+		}
+
+	}
+}

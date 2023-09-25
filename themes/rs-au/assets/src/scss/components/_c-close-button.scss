@@ -1,0 +1,60 @@
+// Close Button
+//
+// markup:
+// <button class="c-close-button" data-flyout="is-mega-open" data-flyout-trigger="close">
+// 	<span class="screen-reader-text">Close the menu</span>
+// </button>
+//
+// Styleguide 3.12
+
+@include critical() {
+
+	.c-close-button {
+		position: relative;
+		display: block;
+		width: 36px;
+		height: 36px;
+		border-radius: 99%;
+		background-color: $g-color-link;
+		box-shadow: 0 2px 4px 0 rgba( $g-color-black, 0.2 );
+		-webkit-tap-highlight-color: rgba( $g-color-black, 0 );
+
+		@media( query( min, desktop ) ) {
+			width: 50px;
+			height: 50px;
+		}
+
+		&:hover,
+		&:focus {
+			outline: none;
+
+			&::before,
+			&::after {
+				transform: rotateZ( 360deg );
+			}
+		}
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			top: calc( 50% - 1px );
+			left: 8px;
+			width: 20px;
+			height: 1px;
+			transform: rotateZ( 45deg );
+			transition: transform 600ms $ease-deceleration-curve;
+			background-color: $g-color-white;
+
+			@media( query( min, desktop ) ) {
+				left: 11px;
+				width: 29px;
+				height: 2px;
+			}
+		}
+
+		&::after {
+			transform: rotateZ( -45deg );
+		}
+	}
+}

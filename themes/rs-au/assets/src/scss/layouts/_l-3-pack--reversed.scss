@@ -1,0 +1,93 @@
+// Articles 3-Pack Reversed
+//
+// markup:
+// <section class="l-3-pack l-3-pack--reversed">
+// 	<div class="l-3-pack__item l-3-pack__item--primary">
+// 		<sg-insert>3.8.8</sg-insert>
+// 	</div>
+// 	<div class="l-3-pack__item l-3-pack__item--secondary">
+// 		<sg-insert>3.8.6</sg-insert>
+// 	</div>
+// 	<div class="l-3-pack__item l-3-pack__item--tertiary">
+// 		<sg-insert>3.8.6</sg-insert>
+// 	</div>
+// </section>
+//
+// Styleguide 4.2
+
+@include critical( home ) {
+	.l-3-pack {
+
+		// Bottom Siblings Layout
+		&--reversed {
+			display: grid;
+			grid-template-columns: 1fr 20px 1fr;
+			grid-template-rows: 1fr 20px auto;
+		}
+
+		&--reversed &__item {
+			padding-top: 0;
+		}
+
+		&--reversed &__item--primary {
+			grid-column: 1 / 4;
+			grid-row: 1 / 2;
+		}
+
+		&--reversed &__item--secondary {
+			grid-column: 1 / 2;
+			grid-row: 3 / 4;
+		}
+
+		&--reversed &__item--tertiary {
+			grid-column: 3 / 4;
+			grid-row: 3 / 4;
+		}
+
+		// Right Siblings Layout
+		@media ( query( min, tablet ) ) and ( query( max, desktop ) ), ( min-width: 1100px ) {
+			&--reversed {
+				grid-template-columns: 2fr 20px 26%;
+				grid-template-rows: 1fr 20px 1fr;
+			}
+
+			&--reversed &__item--primary {
+				grid-column: 1 / 2;
+				grid-row: 1 / 4;
+			}
+
+			&--reversed &__item--secondary {
+				grid-column: 3 / 4;
+				grid-row: 1 / 2;
+			}
+
+			&--reversed &__item--tertiary {
+				grid-column: 3 / 4;
+				grid-row: 3 / 4;
+			}
+		}
+
+	}
+
+	.has-side-skins .l-3-pack--reversed {
+		display: grid;
+		grid-template-columns: 1fr 20px 1fr;
+		grid-template-rows: 1fr 20px auto;
+	  }
+
+	.has-side-skins .l-3-pack--reversed .l-3-pack__item--primary {
+		grid-column: 1 / 4;
+		grid-row: 1 / 2;
+	}
+
+	.has-side-skins .l-3-pack--reversed .l-3-pack__item--secondary {
+		grid-column: 1 / 2;
+		grid-row: 3 / 4;
+	}
+
+	has-side-skins.l-3-pack--reversed .l-3-pack__item--tertiary {
+		grid-column: 3 / 4;
+		grid-row: 3 / 4;
+	}
+
+}

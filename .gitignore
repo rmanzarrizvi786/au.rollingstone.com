@@ -1,0 +1,31 @@
+.DS_Store
+
+wflogs/
+
+plugins/*
+!plugins/brag-observer
+!plugins/brag-observer-feed
+!plugins/download-pmc-lists
+!plugins/pmc-swiftype
+!plugins/rs-au-mailchimp
+!plugins/theme-options
+
+!plugins/ssm-*
+!plugins/tbm-*
+!plugins/amp
+
+uploads
+
+# ignore specific themes
+themes/twenty*/
+
+# ignore node dependency directories
+node_modules/
+
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+languages/
+*.zip

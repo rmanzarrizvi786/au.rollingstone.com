@@ -1,0 +1,29 @@
+.tabs-wrapper {
+	margin-top: $padding * 2;
+	border-bottom: none;
+}
+.tabs {
+	height: 26px;
+}
+.tab {
+	border: 1px solid color('border');
+	padding: 10px 20px;
+	text-decoration: none;
+	background-color: color('foreground');
+	color: #000;
+	border-right: none;
+
+	&:hover {
+		background-color: #fff;
+	}
+
+	&:last-of-type {
+		border-right: 1px solid color('border');
+	}
+
+	&.active {
+		border-bottom: none;
+		padding-bottom: 11px;
+		background-color: #fff;
+	}
+}

@@ -1,0 +1,121 @@
+// Video Grid
+//
+// markup:
+// <div class="c-video-grid">
+// 	<div class="c-video-grid__main">
+// 		<article class="c-card c-card--video-grid c-card--video-grid--big">
+// 			<a href="#" class="c-card__wrap">
+// 				<figure class="c-card__image">
+// 					<div class="c-crop c-crop--landscape c-crop--size-brand">
+// 						<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 							data-src="https://placehold.it/620x360"
+// 							data-srcset="
+// 								https://placehold.it/620x360 620w,
+// 								https://placehold.it/250x142 250w"
+// 							sizes="(max-width: 767px) 250px, 620px"
+// 							alt="Daily Show's Michelle Wolf to Host White House Correspondents' Dinner"
+// 							class="c-crop__img">
+// 					</div>
+// 				</figure>
+// 				<header class="c-card__header">
+// 					<h3 class="c-card__heading t-bold">
+// 						Daily Show's Michelle Wolf to Host White House Correspondents' Dinner
+// 					</h3>
+// 				</header>
+// 			</a>
+// 		</article>
+// 	</div>
+// 	<div class="c-video-grid__subgrid">
+// 			<div class="c-video-grid__item">
+// 				<sg-insert>3.8.11</sg-insert>
+// 			</div>
+// 			<div class="c-video-grid__item">
+// 				<sg-insert>3.8.11</sg-insert>
+// 			</div>
+// 			<div class="c-video-grid__item">
+// 				<sg-insert>3.8.11</sg-insert>
+// 			</div>
+// 			<div class="c-video-grid__item">
+// 				<sg-insert>3.8.11</sg-insert>
+// 			</div>
+// 	</div>
+// </div>
+//
+// Styleguide 3.58
+
+@include critical( video-landing, video-tag ) {
+
+	.c-video-grid {
+		display: flex;
+		width: calc( 100% + 40px );
+		margin: -10px -20px 10px -20px;
+		padding: 0 10px 30px 10px;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+
+		@media ( query( min, tablet ) ) {
+			width: calc( 100% + 20px );
+			margin: -10px -10px 30px -10px;
+			padding: 0;
+		}
+
+		&__main,
+		&__item,
+		&__item--branded-videos {
+			margin: 10px;
+
+			@media ( query( max, tablet ) ) {
+				width: 250px;
+				flex-shrink: 0;
+			}
+		}
+
+		&__main,
+		&__item {
+			width: calc( 50% - 20px );
+		}
+
+		&__item--branded-videos {
+			@media ( query( min, tablet ) ) {
+				width: calc( 25% - 20px );
+			}
+		}
+
+		&__item--playlist {
+			width: calc( ( 100% / 3 ) - 20px );
+			border-radius: 5px;
+			overflow: hidden;
+
+			@media ( query( max, tablet ) ) {
+				width: 250px;
+				flex-shrink: 0;
+			}
+		}
+
+		&__subgrid,
+		&__subgrid--branded-videos {
+			display: flex;
+		}
+
+		&__subgrid {
+			@media ( query( min, tablet ) ) {
+				width: 50%;
+				flex-wrap: wrap;
+			}
+		}
+
+		&__subgrid--branded-videos {
+			width: 100%;
+
+			@media ( query( min, tablet ) ) {
+				flex-wrap: wrap;
+			}
+		}
+
+		&__rail {
+			display: flex;
+			width: 100%;
+		}
+	}
+
+}

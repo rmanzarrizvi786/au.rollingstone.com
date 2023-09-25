@@ -1,0 +1,32 @@
+// Tags
+//
+// markup:
+// <div class="c-tags">
+// 	<p class="t-semibold">
+// 		In This Article:
+// 		<a href="#" class="c-tags__item">Chadwick Boseman</a>,
+// 		<a href="#" class="c-tags__item">Ryan Coogler</a>,
+// 		<a href="#" class="c-tags__item">Black Panther</a>
+// 	</p>
+// </div>
+//
+// Styleguide 3.53
+
+@include critical( single, country, list, featured-article ) {
+
+	.c-tags {
+		padding: 10px 0;
+		font-size: 14px;
+		line-height: 21px;
+		color: $g-color-black;
+
+		&__item {
+			color: $g-color-muted;
+			transition: color $g-transition-color;
+
+			&:hover {
+				color: $g-color-black;
+			}
+		}
+	}
+}

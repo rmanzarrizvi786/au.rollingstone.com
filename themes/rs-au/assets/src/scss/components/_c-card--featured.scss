@@ -1,0 +1,66 @@
+// Article Featured Card
+//
+// markup:
+// <article class="c-card c-card--featured">
+// 	<a href="#" class="c-card__wrap">
+// 		<figure class="c-card__image">
+// 			<div class="c-crop c-crop--portrait c-crop--size-featured">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					 data-src="https://placehold.it/306x204"
+// 					 data-srcset="
+// 						https://placehold.it/306x204 306w,
+// 						https://placehold.it/768x512 768w"
+// 					 sizes="(max-width: 479px) 100vw, (max-width: 767px) 50vw, (max-width: 959px) 34vw, 306px"
+// 					 alt="Post headline"
+// 					 class="c-crop__img">
+// 			</div>
+// 		</figure>
+// 		<header class="c-card__header">
+// 			<h3 class="c-card__heading t-bold">
+// 				Daily Show's Michelle Wolf to Host White House Correspondents' Dinner
+// 			</h3>
+// 		</header>
+// 	</a>
+// </article>
+//
+// sg-wrapper:
+// <div style="max-width:500px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.8.5
+
+@include critical( section-front, country ) {
+
+	.c-card {
+
+		&--featured {
+			height: 100%;
+		}
+
+		&--featured &__wrap {
+			@extend %card-hover;
+			background: $g-color-white;
+			box-shadow: $g-shadow-card;
+		}
+
+		&--featured &__header {
+			padding: 15px 15px 15px 18px;
+		}
+
+		&--featured &__heading {
+			font-size: 16px;
+			line-height: 18px;
+
+			// Max 3 line-heights
+			@media ( query( min, tablet ) ) {
+				max-height: 54px;
+				overflow: hidden;
+			}
+		}
+
+		&--featured &__tag {
+			margin-bottom: 7px;
+		}
+	}
+}

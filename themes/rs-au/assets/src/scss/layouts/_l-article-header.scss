@@ -1,0 +1,110 @@
+// Article Header
+//
+// markup:
+// <header class="l-article-header">
+// 	<div class="l-article-header__block l-article-header__block--breadcrumbs t-semibold t-semibold--upper">
+// 		<sg-insert>3.5</sg-insert>
+// 	</div>
+// 	<time class="l-article-header__block l-article-header__block--time t-semibold t-semibold--upper" datetime="2018-02-28T6:33Z">
+// 		February 28, 2018 10:33AM PT
+// 	</time>
+// 	<h1 class="l-article-header__row l-article-header__row--title t-bold t-bold--condensed'">
+// 		Danai Gurira on Going From Zombie-Slayer to 'Black Panther' MVP
+// 	</h1>
+// 	<h2 class="l-article-header__row l-article-header__row--lead t-semibold t-semibold--condensed">
+// 		How Chadwick Boseman and Ryan Coogler created the most radical superhero movie of all time
+// 	</h2>
+// 	<div class="l-article-header__block l-article-header__block--byline">
+// 		<sg-insert>3.7</sg-insert>
+// 	</div>
+// 	<div class="l-article-header__block l-article-header__block--share">
+// 		<sg-insert>3.50.4</sg-insert>
+// 	</div>
+// </header>
+//
+// sg-wrapper:
+// <div class="t-copy" style="padding-bottom:400px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 4.5
+
+@include critical( single, country, list ) {
+	.l-article-header {
+		@extend %flex-center;
+		flex-flow: row wrap;
+		justify-content: space-between;
+		margin-top: -5px; // Negate the first cell's `padding-top` value.
+
+		&__row {
+			padding: 5px 0;
+			flex: 0 0 auto;
+			width: 100%;
+
+			&--title {
+				padding-top: 10px;
+				font-size: 28px;
+				line-height: 33px;
+
+				@media ( query( min, tablet ) ) {
+					padding-top: 5px;
+					font-size: 36px;
+					line-height: 40px;
+				}
+
+				@media ( query( min, desktop ) ) {
+					font-size: 40px;
+					line-height: 45px;
+				}
+			}
+
+			&--lead {
+				font-size: 15px;
+				line-height: 18px;
+
+				@media ( query( min, tablet ) ) {
+					font-size: 19px;
+					line-height: 23px;
+				}
+			}
+		}
+
+		&__block {
+			padding: 5px 0;
+			flex: 1 1 auto;
+
+			&--breadcrumbs,
+			&--time {
+				font-size: 11px;
+				line-height: 13px;
+			}
+
+			&--breadcrumbs {
+				padding-right: 10px;
+			}
+
+			&--time {
+				flex-grow: 0;
+				color: $g-color-muted;
+			}
+
+			&--byline {
+				padding: 10px 10px 10px 0;
+				font-size: 13px;
+			}
+
+			&--share {
+				flex-grow: 0;
+				width: 100%;
+
+				@media ( query( min, mobile ) ) {
+					width: auto;
+				}
+			}
+		}
+
+		&__siteserved-ad {
+			width: 100%;
+		}
+	}
+}

@@ -1,0 +1,17 @@
+// 'Country' Font
+//
+// markup:
+// <p class="t-country">This is a caption</p>
+//
+// Styleguide 2.5
+
+@include critical( country, 404 ) {
+	.t-country {
+		font-family: $g-font-family-country;
+		font-weight: $bold;
+
+		.fonts-loading & {
+			font-family: $g-font-family-country-subset;
+		}
+	}
+}

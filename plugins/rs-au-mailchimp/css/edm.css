@@ -1,0 +1,29 @@
+.autocomplete-suggestions {
+    text-align: left; cursor: default; border: 1px solid #ccc; border-top: 0; background: #fff; box-shadow: -1px 1px 3px rgba(0,0,0,.1);
+
+    /* core styles should not be changed */
+    position: absolute; display: none; z-index: 9999; max-height: 254px; overflow: hidden; overflow-y: auto; box-sizing: border-box;
+}
+.autocomplete-suggestion { position: relative; padding: .25rem .6rem; line-height: 23px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 1rem; color: #333; }
+.autocomplete-suggestion b { font-weight: normal; color: #2982b3; }
+.autocomplete-suggestion.selected { background: #f0f0f0; }
+
+.remove {
+    display: inline-block;
+    background: #999;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    padding: 0 5px 10px 5px;
+    text-align: center;
+    border-radius: 100%;
+}
+#campaign-posts li:nth-child(2n) {
+    /*background: #ddd;*/
+}
+.form-table tr td {
+    vertical-align: top;
+}
+.hide { display: none; }
+
+.remove-all-posts { display: inline-block; float: right; color: #ccc; cursor: pointer; }

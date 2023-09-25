@@ -1,0 +1,92 @@
+// Form
+//
+// markup:
+// <form class="c-form c-form--faded c-form--footer">
+// 	<div class="c-form__group">
+// 		<div class="c-form__field t-semibold">
+// 			<input type="email" class="c-form__input" placeholder="Your email" required>
+// 		</div>
+// 		<button class="c-form__button">
+// 			<span class="t-bold t-bold--upper">
+// 				Submit
+// 			</span>
+// 		</button>
+// 	</div>
+// </form>
+//
+// Styleguide 3.24
+
+@include critical() {
+
+	.c-form {
+
+		&__group {
+			display: flex;
+		}
+
+		&__field {
+			flex-grow: 1;
+		}
+
+		&__input {
+			height: 40px;
+			width: 100%;
+			padding: 0 15px;
+			font-size: 15px;
+			color: $g-color-black;
+
+			&::placeholder {
+				color: #909090;
+			}
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		&__button {
+			flex-shrink: 0;
+			padding: 0 20px;
+			font-size: 12px;
+			letter-spacing: 0.05em;
+			color: $g-color-white;
+			background-color: $g-color-black;
+			transition: background-color $g-transition-color;
+
+			&:focus,
+			&:hover {
+				background-color: $g-color-black-opaque;
+			}
+		}
+
+		//
+		// Faded form.
+		//
+
+		&--faded &__input {
+			border-radius: 5px 0 0 5px;
+			box-shadow: inset 0 3px 8px 0 rgba( $g-color-black, 0.5 );
+		}
+
+		&--faded &__button {
+			border-radius: 0 5px 5px 0;
+			color: $g-color-white;
+			background-color: $g-color-link;
+		}
+
+		//
+		// Footer form.
+		//
+
+		&--footer &__input {
+			font-size: 14px;
+		}
+
+		&--footer &__button {
+			width: 25%;
+			margin-left: 24px;
+			font-size: 11px;
+			background-color: $g-color-red;
+		}
+	}
+}

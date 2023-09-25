@@ -1,0 +1,72 @@
+// Header Page Navigation Menu
+//
+// markup:
+// <div class="c-page-nav c-page-nav--header" data-dropdown data-line-menu>
+// 	<ul class="c-page-nav__list">
+// 		<li class="c-page-nav__item" data-ripple>
+// 			<a href="#Item" class="c-page-nav__link t-semibold">Item</a>
+// 		</li>
+// 		<li class="c-page-nav__item" data-ripple>
+// 			<a href="#Item" class="c-page-nav__link t-semibold">Item</a>
+// 		</li>
+// 		<li class="c-page-nav__item" data-ripple>
+// 			<a href="#Item" class="c-page-nav__link t-semibold">Item</a>
+// 		</li>
+// 		<li class="c-page-nav__item" data-ripple>
+// 			<a href="#Item" class="c-page-nav__link t-semibold">Item</a>
+// 		</li>
+// 		<li class="c-page-nav__item" data-ripple>
+// 			<a href="#Item" class="c-page-nav__link t-semibold">Item</a>
+// 		</li>
+// 	</ul>
+// </div>
+//
+// sg-wrapper:
+// <div style="max-width:1000px; background-color:#d32531; padding:20px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.38.2
+
+@include critical( section-front, country, video-landing, video-tag ) {
+
+	.c-page-nav {
+
+		&--header {
+			@media ( query( min, tablet ) ) {
+				display: flex;
+				align-items: center;
+				height: 100%;
+			}
+
+			@media( query(min, tablet ) ) and ( query( max, desktop ) ) {
+				padding-bottom: 16px;
+			}
+		}
+
+		&--header:hover &__link:not(:hover) { // stylelint-disable-line selector-max-specificity
+			@media ( query( min, tablet ) ) {
+				opacity: 0.8;
+			}
+		}
+
+		&--header &__item {
+			@media( query( max, tablet ) ) {
+				background-color: $g-color-red--darken;
+			}
+		}
+
+		&--header &__link {
+			@media ( query( max, tablet ) ) {
+				@include g-font-family-sans;
+				font-weight: $semibold;
+			}
+
+			@media ( query( min, tablet ) ) {
+				font-size: 16px;
+				transition: opacity 195ms $ease-standard-curve;
+				font-style: italic;
+			}
+		}
+	}
+}

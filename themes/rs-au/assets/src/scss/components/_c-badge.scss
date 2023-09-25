@@ -1,0 +1,103 @@
+// Badge
+//
+// markup:
+// <div class="c-badge c-badge--gallery">
+// 	<svg class="c-badge__icon"><use xlink:href="#svg-icon-camera"></use></svg>
+// 	<div class="c-badge__label t-semibold t-semibold--upper">
+// 		21 Photos
+// 	</div>
+// </div>
+//
+// sg-wrapper:
+// <div style="max-width:200px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.3
+
+@include critical( archive, section-front, country, home, video-article, single ) {
+
+	.c-badge {
+		@extend %flex-center;
+		color: $g-color-white;
+
+		&__icon {
+			fill: currentColor;
+		}
+
+		//
+		// Gallery Badge
+		//
+
+		&--gallery {
+			padding: 8px;
+			background: rgba($g-color-black, 0.7);
+			border-radius: 5px;
+
+			@media ( query( min, tablet ) ) {
+				padding: 8px 10px;
+			}
+		}
+
+		&--gallery &__icon {
+			width: 18px;
+			height: 16px;
+
+			@media ( query( min, tablet ) ) {
+				width: 21px;
+				height: 19px;
+			}
+		}
+
+		&--gallery &__label {
+			margin-left: 5px;
+			font-size: 11px;
+			line-height: 11px;
+
+			@media ( query( max, tablet ) ) {
+				display: none;
+			}
+		}
+
+		@media ( query( max, tablet ) ) {
+
+			&--mobile-full {
+				padding: 8px 10px;
+			}
+
+			&--mobile-full &__icon {
+				width: 21px;
+				height: 19px;
+			}
+
+			&--mobile-full &__label {
+				display: block;
+			}
+		}
+
+		&--sponsored {
+
+			justify-content: left;
+
+			.pmc-frontend-components {
+
+				&.badges-sponsored-content {
+
+					margin-top: 10px;
+					margin-bottom: 15px;
+					padding: 3px 10px;
+					background-color: $g-color-red;
+					color: $g-color-white;
+					font-family: $g-font-family-sans;
+					font-weight: $bold;
+					font-size: 12px;
+					text-transform: uppercase;
+
+				}
+
+			}
+
+		}
+
+	}
+}

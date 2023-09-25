@@ -1,0 +1,42 @@
+// AMP gallery thumbnails below featured image.
+//
+// Since we're using non-BEM templates and `[amp]` namespacing,
+// the `selector-max-specificity` stylelint check is disabled.
+//
+// No styleguide
+
+/* stylelint-disable selector-max-specificity */
+[amp] {
+
+	.gallery-B .amp-comments-link {
+		border-bottom: none;
+		margin-bottom: 10px;
+
+		a {
+			display: block;
+			width: 100%;
+			color: $g-color-yellow;
+		}
+	}
+
+	.gallery-image-section {
+		margin-bottom: 10px;
+
+		.gallery-thumbnails {
+			width: auto;
+			margin: 0 -5px;
+
+			.gallery-thumbnail {
+				flex: 0 0 auto;
+				width: calc( 25% - 10px );
+				max-height: none;
+				margin: 0 5px;
+
+				img {
+					object-fit: cover;
+				}
+			}
+		}
+	}
+}
+/* stylelint-enable selector-max-specificity */

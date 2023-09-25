@@ -1,0 +1,12 @@
+//
+// Critical CSS for the country template.
+//
+
+$IS_CRITICAL: true;
+$CRITICAL_TYPE: country;
+
+@import 'style';
+
+.c-editors-picks {
+	background-color: $g-color-white;
+}

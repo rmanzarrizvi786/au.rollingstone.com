@@ -1,0 +1,63 @@
+// AMP newsletter signup and comments link.
+//
+// No styleguide
+
+[amp] {
+	.amp-newsletter-signup {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		margin: 25px auto 0;
+		padding: 15px 0 5px;
+		border-top: 2px solid $g-color-black;
+		color: $g-color-black;
+	}
+
+	.amp-newsletter-signup-badge {
+		flex: 0 0 auto;
+
+		svg {
+			fill: $g-color-red;
+		}
+
+		&,
+		svg {
+			width: 36px;
+			height: 36px;
+		}
+	}
+
+	.amp-newsletter-signup-text {
+		@include g-font-family-sans;
+		font-size: 14px;
+		line-height: 1;
+		margin-left: 10px;
+
+		a {
+			text-decoration: none;
+			color: $g-color-red;
+		}
+	}
+
+	.amp-comments-link {
+		width: 100%;
+		margin: 0 auto 25px;
+		padding: 0 0 10px;
+		border: none;
+		border-bottom: 1px solid $g-color-black;
+		text-align: center;
+
+		a {
+			@include g-font-family-sans;
+			display: inline-block;
+			padding: 12px 15px;
+			font-size: 11px;
+			line-height: 1;
+			font-weight: $semibold;
+			text-transform: uppercase;
+			text-decoration: none;
+			color: $g-color-white;
+			background-color: $g-color-black;
+		}
+	}
+}

@@ -1,0 +1,116 @@
+// Latest List
+//
+// markup:
+// <div class="c-latest-list">
+// 	<div class="c-latest-list__header">
+// 		<h4 class="c-latest-list__heading">
+// 			<span class="t-bold t-bold--upper t-bold--loose">Latest News</span>
+// 		</h4>
+// 	</div>
+// 	<div class="c-latest-list__item">
+// 		<sg-insert>3.8.4</sg-insert>
+// 	</div>
+// 	<div class="c-latest-list__item">
+// 		<sg-insert>3.8.4</sg-insert>
+// 	</div>
+// 	<div class="c-latest-list__item">
+// 		<sg-insert>3.8.4</sg-insert>
+// 	</div>
+// 	<div class="c-latest-list__item">
+// 		<sg-insert>3.8.4</sg-insert>
+// 	</div>
+// 	<a href="#" class="c-latest-list__cta">
+// 		<span class="t-semibold t-semibold--upper">Read More</span>
+// 	</a>
+// </div>
+//
+// sg-wrapper:
+// <div style="max-width:400px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.32
+
+@include critical( home ) {
+
+	.c-latest-list {
+
+		@media ( query( min, desktop ) ) {
+			display: flex;
+			flex-direction: column;
+			height: 635px;
+			justify-content: space-between;
+		}
+		
+		@media ( query( max, desktop ) ) {
+			text-align: right;
+			height: auto;
+		}
+
+		@media ( query( min, desktop-xl ) ) {
+			height: 41rem; 
+		}
+
+		&__header {
+			margin-top: 30px;
+			margin-bottom: 10px;
+			text-align: left;
+			
+			@media ( query( min, desktop ) ) {
+				margin-top: 0;
+				margin-bottom: 20px;
+				background-color: $g-color-red;
+			}
+
+			@media ( query( min, desktop-xl ) ) {
+				margin-bottom: 40px;
+			}
+		}
+
+		&__heading {
+			font-size: 26px;
+			line-height: 26px;
+			color: $g-color-red;
+
+			@media ( query( min, desktop ) ) {
+				color: $g-color-white;
+				font-size: 35px;
+				line-height: 30px;
+				width: 48px;
+				letter-spacing: 0;
+			}
+		}
+
+		&__item {
+
+			text-align: left;
+			padding-bottom: 30px;
+
+			@media ( query( min, desktop ) ) {
+				margin-bottom: 0px;
+				padding-bottom: 0px;
+			}
+
+			@media ( query( max, desktop ) ) {
+			  margin-bottom: 15px;
+			  padding-bottom: 15px;
+			}
+		}
+
+		&__cta {
+			font-size: 12px;
+			color: $g-color-red;
+			letter-spacing: 1px;
+		}
+
+		&__line {
+			color: $g-color-red;
+			display: block;
+			height: 1px;
+			border: 0;
+			border-top: 1px solid #DDDEE4;
+			margin: 16px 0;
+			padding: 0;
+		}
+	}
+}

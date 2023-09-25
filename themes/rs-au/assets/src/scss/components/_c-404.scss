@@ -1,0 +1,67 @@
+
+// 404
+//
+// No Styleguide
+
+@include critical( 404 ) {
+
+	.c-404 {
+		margin-bottom: -25px;
+		padding-left: 30px;
+		padding-right: 30px;
+		padding-top: 75px;
+		padding-bottom: 150px;
+		background: $g-color-bg--dark;
+		color: $g-color-white;
+		text-align: center;
+		line-height: 1;
+		background-size: cover;
+		background-position: center;
+
+		&__title {
+			font-size: 133px;
+			letter-spacing: 15.67px;
+		}
+
+		&__subtitle {
+			margin-top: 20px;
+			font-size: 26px;
+			letter-spacing: 7.16px;
+			text-transform: uppercase;
+		}
+
+		&__description {
+			margin-top: 40px;
+			margin-left: auto;
+			margin-right: auto;
+			max-width: 500px;
+			font-size: 44px;
+			font-style: italic;
+			line-height: 53px;
+		}
+
+		// Override
+		.t-country {
+			font-weight: $normal;
+		}
+
+		&__btn {
+			display: block;
+			margin-top: 40px;
+			margin-left: auto;
+			margin-right: auto;
+			width: 380px;
+			max-width: 70%;
+			padding: 20px;
+			font-size: 17px;
+			color: currentColor;
+			letter-spacing: 0.44px;
+			background: $g-color-link;
+			transition: background $g-transition-fade;
+
+			&:hover {
+				background-color: lighten($g-color-link, 10%);
+			}
+		}
+	}
+}

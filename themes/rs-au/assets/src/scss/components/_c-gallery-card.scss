@@ -1,0 +1,161 @@
+// Photo Galleries Card
+//
+// markup:
+// <article class="c-gallery-card">
+// 	<a href="#" class="c-gallery-card__wrap">
+// 		<figure class="c-gallery-card__image">
+// 			<div class="c-crop c-crop--landscape c-crop--size-3x2">
+// 				<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 					data-src="https://placehold.it/760x505"
+// 					alt="Album cover"
+// 					class="c-crop__img">
+// 			</div>
+// 			<div class="c-gallery-card__badge">
+// 				<sg-insert>3.3</sg-insert>
+// 			</div>
+// 		</figure>
+// 		<header class="c-gallery-card__header">
+// 			<h4 class="c-gallery-card__headline t-bold">The Best Photos of 2017</h4>
+// 			<p class="c-gallery-card__lead t-copy">
+// 				From Harry to Kendrick to Paris, the year's best original images that
+// 				appeared in the pages of 'Rolling Stone' and RollingStone.com
+// 			</p>
+// 			<div class="c-gallery-card__thumbs">
+// 				<figure class="c-gallery-card__thumb">
+// 					<div class="c-crop c-crop--landscape c-crop--size-3x2">
+// 						<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 							data-src="https://placehold.it/90x60/000000"
+// 							alt="Thumb"
+// 							class="c-crop__img">
+// 					</div>
+// 				</figure>
+// 				<figure class="c-gallery-card__thumb">
+// 					<div class="c-crop c-crop--landscape c-crop--size-3x2">
+// 						<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 							data-src="https://placehold.it/90x60/000000"
+// 							alt="Thumb"
+// 							class="c-crop__img">
+// 					</div>
+// 				</figure>
+// 				<figure class="c-gallery-card__thumb">
+// 					<div class="c-crop c-crop--landscape c-crop--size-3x2">
+// 						<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 							data-src="https://placehold.it/90x60/000000"
+// 							alt="Thumb"
+// 							class="c-crop__img">
+// 					</div>
+// 				</figure>
+// 			</div>
+// 		</header>
+// 	</a>
+// </article>
+//
+// Styleguide 3.26
+
+@include critical( home ) {
+
+	.c-gallery-card {
+		width: 760px;
+		max-width: 60vw;
+		overflow: hidden;
+
+		&__wrap {
+			position: relative;
+			display: block;
+			color: $g-color-black;
+
+			@media ( query( min, tablet ) ) {
+				color: $g-color-white;
+			}
+		}
+
+		&__image {
+			position: relative;
+			z-index: 0; // create new stacking context
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: z('default');
+				width: 100%;
+				height: 100%;
+				background-image: linear-gradient(-117deg, rgba(15,22,30,0.00) 44%, #0F161E 100%);
+			}
+		}
+
+		&__badge {
+			position: absolute;
+			bottom: 10px;
+			left: 10px;
+			z-index: z('default');
+
+			@media ( query( min, tablet ) ) {
+				top: 30px;
+				left: 30px;
+			}
+		}
+
+		&__header {
+
+			@media ( query( min, tablet ) ) {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				padding: 30px;
+			}
+		}
+
+		&__headline {
+			font-size: 18px;
+			line-height: 1;
+			margin-top: 10px;
+			margin-bottom: 10px;
+
+			@media ( query( min, desktop ) ) {
+				font-size: 30px;
+			}
+		}
+
+		&__lead {
+			font-size: 12px;
+			line-height: 1.2;
+
+			@media ( query( min, desktop ) ) {
+				font-size: 18px;
+			}
+		}
+
+		&__headline,
+		&__lead {
+
+			@media ( query( min, tablet ) ) {
+				padding-right: 200px;
+			}
+		}
+
+		&__thumbs {
+			position: absolute;
+			bottom: 30px;
+			right: -70px;
+			display: flex;
+			justify-content: space-between;
+			width: 280px;
+			transition: transform $g-transition-transform;
+
+			@media ( query( max, tablet ) ) {
+				display: none;
+			}
+		}
+
+		&:hover &__thumbs {
+			transform: translateX(-20px);
+		}
+
+		&__thumb {
+			width: 90px;
+		}
+	}
+}

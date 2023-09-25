@@ -1,0 +1,42 @@
+@startuml
+/'
+    This file contains PlantUML (http://plantuml.com) syntax which is used to generate diagrams about the project.
+
+    Read more here: https://confluence.pmcdev.io/x/YAFUAw
+'/
+
+skinparam monochrome true
+
+title Threat Model
+
+partition "Wordpress Web" {
+  (*) --> wwd
+}
+
+partition "PMC Plugins" {
+
+    wwd --> pmc-global-functions:class-pmc-cookie
+    note on link
+        Set Cookie With Signed Value
+    endnote
+
+    wwd --> pmc-global-functions:class-pmc-cookie
+    note on link
+        Get Cookie
+    endnote
+
+    if "Valid Signed Cookie?" then
+       ->[true] wwd
+       note on link
+         Cookie Value
+       endnote
+    else
+       -->[false] "Delete Malicious Cookie"
+       --> wwd
+       note on link
+         Null
+       endnote
+
+    endif
+}
+@enduml

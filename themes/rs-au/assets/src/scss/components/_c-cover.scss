@@ -1,0 +1,113 @@
+// Magazine Cover/Subscribe
+//
+// markup:
+// <div class="c-cover t-bold t-bold--upper">
+// 	<a href="https://www.rollingstone.com/subscribe-more">
+// 		<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 			 data-src="https://placehold.it/89x110"
+// 			 data-srcset="https://placehold.it/89x110 1x, https://placehold.it/178x220 2x"
+// 			 alt=""
+// 			 class="c-cover__image">
+// 	</a>
+// 	<a href="https://www.rollingstone.com/subscribe-more" class="c-cover__cta">
+// 		Subscribe
+// 	</a>
+// </div>
+//
+// sg-wrapper:
+// <div style="max-width:300px">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.16
+
+// Cover in the Mega Menu
+//
+// markup:
+// <div class="c-cover c-cover--mega t-bold t-bold--upper">
+// 	<a href="https://www.rollingstone.com/subscribe-more">
+// 		<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+// 			 data-src="https://placehold.it/89x110"
+// 			 data-srcset="https://placehold.it/89x110 1x, https://placehold.it/178x220 2x"
+// 			 alt=""
+// 			 class="c-cover__image">
+// 	</a>
+// 	<a href="https://www.rollingstone.com/subscribe-more" class="c-cover__cta">
+// 		Subscribe Now!
+// 	</a>
+// </div>
+//
+// sg-wrapper:
+// <div style="background-color:#000;padding:20px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.16.1
+
+@include critical() {
+
+	.c-cover {
+		display: flex;
+		position: relative;
+		overflow: hidden;
+		height: 100%;
+
+		@media ( query( min, desktop ) ) {
+			padding: 10px 0 10px 5px;
+		}
+
+		&__image {
+			display: block;
+			width: 110px;
+			margin: 8px;
+			transform: rotateZ( 6deg );
+			box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+			transition: transform 0.2s cubic-bezier(0.6, -0.28, 0.74, 0.05);
+
+			&:hover{
+				transform: rotate(6deg) translateY(-10px);
+			}
+
+			@media ( query( max, desktop ) ) {
+				display: none;
+			}
+		}
+
+		&__cta {
+			align-self: center;
+			padding: 0 20px;
+			color: $g-color-red;
+			font-size: 16px;
+
+			&:hover,
+			&:focus {
+				color: $g-color-black;
+			}
+
+			@media ( query( max, desktop ) ) {
+				font-size: 12px;
+				padding: 7px 0;
+			}
+		}
+
+		//
+		// Cover in the mega menu.
+		//
+
+		&--mega {
+			padding-left: 0;
+			padding-right: 30px;
+		}
+
+		&--mega &__cta {
+			order: -1;
+			padding: 0 15px 0 0;
+			font-size: 15px;
+
+			&:hover,
+			&:focus {
+				color: $g-color-white;
+			}
+		}
+	}
+}

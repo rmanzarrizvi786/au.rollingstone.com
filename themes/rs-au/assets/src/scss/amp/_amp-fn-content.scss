@@ -1,0 +1,277 @@
+// AMP WP content.
+//
+// Since we're using non-BEM templates and `[amp]` namespacing,
+// the `selector-max-specificity` stylelint check is disabled.
+//
+// No styleguide
+
+/* stylelint-disable selector-max-specificity */
+[amp] .amp-fn-content {
+	@include g-font-family-serif;
+	font-size: 16px;
+	line-height: #{ 22px / 16px };
+	font-weight: $normal;
+	position: relative;
+
+	p {
+		padding: 5px 0;
+		margin: 0;
+	}
+
+	ul,
+	ol,
+	blockquote {
+		padding: 10px 0;
+		margin: 0;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@include g-font-family-sans;
+		font-weight: $bold;
+		color: $g-color-black;
+		padding: 10px 0;
+		margin: 0;
+	}
+
+	h1 {
+		font-size: 25px;
+		line-height: #{ 32px / 25px };
+	}
+
+	h2 {
+		font-size: 20px;
+		line-height: #{ 25px / 20px };
+	}
+
+	h3 {
+		font-size: 18px;
+		line-height: #{ 22px / 18px };
+	}
+
+	h4 {
+		font-size: 17px;
+		line-height: #{ 20px / 17px };
+	}
+
+	h5 {
+		font-size: 16px;
+		line-height: #{ 19px / 16px };
+	}
+
+	h6 {
+		font-size: 12px;
+		line-height: #{ 15px / 12px };
+	}
+
+	blockquote {
+		@include g-font-family-sans;
+		font-size: 20px;
+		line-height: #{ 25px / 20px };
+		font-weight: $bold;
+		font-style: normal;
+		text-align: center;
+		color: $g-color-black;
+		background-color: transparent;
+		border: none;
+
+		p:last-of-type {
+			margin: 0;
+		}
+
+		footer {
+			font-size: 0.5em;
+		}
+	}
+
+	ul, ol {
+		list-style-position: inside;
+	}
+
+	table {
+		display: block;
+		margin: 15px 0;
+		padding-bottom: 0.75rem;
+		width: 100%;
+		max-width: calc( 100vw - 40px );
+		overflow-x: auto;
+		border: 0;
+		border-collapse: collapse;
+		border-spacing: 0;
+		text-align: left;
+		white-space: nowrap;
+
+		td,
+		th {
+			border-bottom: 1px solid $g-color-border;
+			padding: 15px 10px;
+		}
+
+		th {
+			border-color: $g-color-copy;
+		}
+	}
+
+	embed,
+	iframe,
+	object {
+		margin: 0;
+		max-width: 100%;
+	}
+
+	p > a {
+		@include g-font-family-sans;
+		position: relative;
+		font-size: 16px;
+		font-weight: $semibold;
+		color: $g-color-link;
+		text-decoration: none;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			background: rgba(19, 137, 254, 0.15);
+			transform: scaleX(0) scaleY(0.9);
+			transform-origin: left center;
+			transition: transform 0.3s $ease-in-out-quad;
+		}
+
+		&:focus::before,
+		&:hover::before {
+			transform: scaleX(1) scaleY(0.9);
+		}
+	}
+
+	.featured-image {
+		margin-bottom: 10px;
+		padding: 10px 0 0;
+	}
+
+	.featured-image-captions {
+		@include g-font-family-sans;
+		position: static;
+		padding: 0 0 10px;
+		margin-bottom: 10px;
+		font-size: 14px;
+		line-height: #{ 20px / 14px };
+		font-weight: $bold;
+		border-bottom: 1px solid $g-color-border;
+		color: $g-color-black;
+
+		.image-credit {
+			font-size: 11px;
+			line-height: #{ 16px / 11px };
+			font-weight: $semibold;
+			color: $g-color-muted;
+		}
+	}
+
+	.alignleft {
+		display: inline;
+		float: left;
+		margin-right: 20px;
+	}
+
+	.alignright {
+		display: inline;
+		float: right;
+		margin-left: 20px;
+	}
+
+	.aligncenter {
+		clear: both;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	amp-img.aligncenter {
+		float: none;
+		margin: 15px auto;
+	}
+
+	amp-img.alignleft {
+		float: left;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		margin-right: 20px;
+		max-width: calc(50% - 40px);
+
+		@media ( query( min, tablet ) ) {
+			max-width: 66%;
+		}
+	}
+
+	amp-img.alignright {
+		float: right;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		margin-left: 20px;
+		max-width: calc(50% - 40px);
+
+		@media ( query( min, tablet ) ) {
+			max-width: 66%;
+		}
+	}
+
+	.wp-caption,
+	.gallery-caption {
+		margin-bottom: 20px;
+		padding-top: 20px;
+		max-width: 100%;
+		border-bottom: 1px solid $g-color-border;
+	}
+
+	.wp-caption {
+
+		amp-img[class*='wp-image-'] {
+			display: block;
+		}
+
+		.wp-caption-text {
+			@include g-font-family-sans;
+			padding: 10px 0;
+			font-weight: $semibold;
+			font-size: 14px;
+			line-height: 20px;
+			color: $g-color-black;
+			border-bottom: none;
+		}
+	}
+
+	.pmc-related-link {
+		padding: 10px;
+		background-color: $g-color-bg--light;
+		border-top: 4px solid $g-color-black;
+		border-bottom: 1px solid $g-color-border;
+
+		&,
+		a {
+			color: $g-color-black;
+		}
+
+		.text,
+		.pmc-related-type {
+			@include g-font-family-sans;
+			font-size: 12px;
+			font-weight: $bold;
+		}
+
+		.pmc-related-type {
+			padding-right: 5px;
+			letter-spacing: 0.6px;
+			text-align: left;
+			color: $g-color-black;
+			text-transform: uppercase;
+		}
+	}
+}
+/* stylelint-enable selector-max-specificity */

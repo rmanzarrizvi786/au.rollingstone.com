@@ -1,0 +1,147 @@
+@include critical( single, country, section-front, archive, list, video-article ) {
+	.l-rspro {
+		position: fixed;
+		top: 0;
+		left: 0;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		padding: 20px;
+		align-items: center;
+		justify-content: space-between;
+		min-height: 100vh;
+		background-image: src( '../images/_dev/bg-rspro-v2.jpg' );
+		background-size: cover;
+		color: #fff;
+		font-family: $g-font-family-sans;
+		margin-left: auto;
+		margin-right: auto;
+
+		p {
+			&.bold{
+				font-family: $g-font-family-sans-subset;
+			}
+		}
+
+		a {
+			text-decoration: none;
+			color: #1389FE;
+		}
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+
+		&__header {
+			width: 100%;
+			text-align: left;
+
+			a {
+				color: #fff;
+				font-size: 14px;
+			}
+		}
+
+		&__content {
+			text-align: center;
+		}
+
+		&__form {
+			text-align: left;
+			input[type="text"] {
+				width: 100%;
+				padding: 15px;
+			}
+
+			input[type="checkbox"] {
+				margin: 15px;
+			}
+
+			label {
+				font-size: 19px;
+				margin-bottom: 5px;
+				font-weight: 700;
+			}
+
+			&--col {
+				display: flex;
+				flex-direction: column;
+				padding: 20px;
+
+				@media ( query( max, tablet ) ) {
+					padding: 15px;
+				}
+			}
+		}
+
+		&__form--row {
+			display: flex;
+			justify-content: center;
+
+			@media ( query( max, tablet ) ) {
+				flex-direction: column;
+			}
+
+			&--form_name, &--form_email {
+				width: 40%;
+
+				@media ( query( max, tablet ) ) {
+					width: 100%;
+				}
+			}
+
+			&--form_submit {
+				width: 20%;
+				margin-top: 26px;
+
+				@media ( query( max, tablet ) ) {
+					width: 100%;
+				}
+			}
+
+			&--form_submit_input {
+				background-color: #1389FE;
+				padding: 16px;
+				color: inherit;
+				border: none;
+				font: inherit;
+				cursor: pointer;
+				outline: inherit;
+			}
+		}
+
+		&__footer ul {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+			margin: 0;
+			padding: 0;
+
+			li {
+				list-style: none;
+				padding: 0px 10px;
+				margin-bottom: 5px;
+				font-size: 12px;
+				text-align: center;
+				border-right: 1px solid white;
+
+				&:last-child {
+					border-right: none;
+				}
+			}
+		}
+
+	}
+
+	body {
+		background-color: #000;
+	}
+
+	*{
+		box-sizing: border-box;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+}

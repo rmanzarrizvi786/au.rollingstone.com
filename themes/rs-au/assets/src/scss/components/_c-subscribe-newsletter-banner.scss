@@ -1,0 +1,249 @@
+// Subscribe Newsletter Banner
+//
+// markup:
+// <div class="c-subscribe-newsletter-banner">
+// 	<div class="c-subscribe-banner">
+// 		<div class="c-subscribe-banner__wrap">
+// 			<div class="c-subscribe-banner__col">
+// 				<a href="">
+// 					<img src="/uploads/2018/12/R1322COV.jpg?width=120" />
+// 				</a>
+// 			</div><!-- .c-subscribe-banner__col -->
+// 			<div class="c-subscribe-banner__col">
+// 				<h2 class="c-subscribe-banner__title t-bold">
+// 					Get The Magazine
+// 				</h2>
+// 				<p class="c-subscribe-banner__paragraph">
+// 					Subscribe today and save over 58%
+// 				</p>
+// 				<p>
+// 					<a href="" class="c-subscribe-banner__button c-form__button">
+// 						<span class="t-bold t-bold--upper">
+// 							Subscribe Now
+// 						</span>
+// 					</a>
+// 				</p>
+// 			</div><!-- .c-subscribe-banner__col -->
+// 		</div><!-- .c-subscribe-banner__wrap -->
+// 	</div><!-- .c-subscribe-banner -->
+// 	<div class="c-newsletter-banner">
+// 		<div class="c-newsletter-banner__wrap">
+// 			<h2 class="c-newsletter-banner__title t-bold">
+// 				Newsletter Signup
+// 			</h2>
+// 			<p class="c-newsletter-banner__paragraph">
+// 				Go inside the world of music, culture and entertainment
+// 			</p>
+// 			<form class="c-newsletter-banner__form c-form">
+// 				<div class="c-form__group">
+// 					<div class="c-form__field t-semibold">
+// 						<input type="hidden" name="Editorial_RollingStone_Opted_In" value="Yes">
+// 						<input type="hidden" name="Editorial_RollingStone_Source" value="rs site">
+// 						<input name="__contextName" value="FormPost" type="hidden">
+// 						<input name="__executionContext" value="POST" type="hidden">
+// 						<input name="__successPage" class="js-newsletter-successpage" data-base-url="/signup?signup=success" value="/signup?signup=success" type="hidden">
+// 						<input type="email" name="EmailAddress" class="js-newsletter-email c-form__input" placeholder="Email Address" required="">
+// 					</div><!-- .c-form__field -->
+// 					<button class="c-newsletter-banner__button c-form__button">
+// 						<span class="t-bold t-bold--upper">Sign Up</span>
+// 					</button>
+// 				</div><!-- .c-form__group -->
+// 			</form><!-- .c-newsletter-banner__form c-form -->
+// 		</div><!-- .c-newsletter-banner__wrap -->
+// 	</div><!-- .c-newsletter-banner -->
+// </div><!-- .c-subscribe-newsletter-banner -->
+//
+// Styleguide 3.36
+
+@include critical( section-front, country, archive ) {
+	.c-subscribe-newsletter-banner {
+		display: flex;
+		flex-direction: column;
+
+		@media( query( min, tablet ) ) {
+			flex-direction: row;
+		}
+	}
+
+	.c-subscribe-banner {
+		background-color: #f0ece7;
+		margin-bottom: 20px;
+		margin-right: 0;
+		width: 100%;
+
+		@media( query( min, tablet ) ) {
+			margin-bottom: 0;
+			margin-right: 20px;
+			width: 50%;
+		}
+
+		&__wrap {
+			align-items: center;
+			display: flex;
+			flex-direction: row;
+			height: 100%;
+			padding-bottom: 35px;
+			padding-top: 35px;
+
+			// Covers small desktop size.
+			@media ( query( min, desktop ) ) and ( query( max, desktop-xl ) ) {
+				padding-bottom: 20px;
+				padding-top: 20px;
+			}
+
+			@media ( query( max, mobile ) ) {
+				padding-bottom: 20px;
+				padding-top: 20px;
+			}
+		}
+
+		&__col {
+			padding-bottom: 0;
+			padding-top: 0;
+
+			&:first-child {
+				padding-left: 20px;
+				padding-right: 10px;
+
+				// Covers small desktop size.
+				@media ( query( min, desktop ) ) and ( query( max, desktop-xl ) ) {
+					padding-left: 16px;
+					padding-right: 8px;
+
+				}
+
+				@media ( query( max, mobile ) ) {
+					padding-left: 16px;
+					padding-right: 8px;
+				}
+			}
+			&:last-child {
+				padding-left: 10px;
+				padding-right: 20px;
+
+				// Covers small desktop size.
+				@media ( query( min, desktop ) ) and ( query( max, desktop-xl ) ) {
+					padding-left: 8px;
+					padding-right: 16px;
+				}
+
+				@media ( query( max, mobile ) ) {
+					padding-left: 8px;
+					padding-right: 16px;
+				}
+			}
+		}
+
+		&__title {
+			margin-bottom: 10px;
+
+			// Covers small desktop size.
+			@media ( query( min, desktop ) ) and ( query( max, desktop-xl ) ) {
+				font-size: 21px;
+				line-height: 1;
+			}
+
+			@media ( query( max, mobile ) ) {
+				font-size: 21px;
+				line-height: 1;
+			}
+		}
+
+		&__paragraph {
+			@include g-font-family-serif;
+			font-size: 17px;
+			margin-bottom: 10px;
+		}
+
+		&__img {
+			box-shadow: $g-shadow-card;
+			width: 140px;
+		}
+
+		&__button {
+			background-color: $g-color-red;
+			color: $g-color-white;
+			display: inline-block;
+			padding: 10px 20px;
+		}
+	}
+
+	.c-newsletter-banner {
+		background-color: $g-color-black;
+		color: $g-color-white;
+		width: 100%;
+
+		@media( query( min, tablet ) ) {
+			width: 50%;
+		}
+
+		&__wrap {
+			height: 100%;
+			padding: 60px;
+
+			// Covers small desktop size.
+			@media ( query( min, desktop ) ) and ( query( max, desktop-xl ) ) {
+				padding: 25px 50px;
+			}
+
+			@media ( query( max, mobile ) ) {
+				padding: 25px 50px;
+			}
+		}
+
+		&__logo {
+			fill: $g-color-red;
+			height: 25px;
+			margin-bottom: 10px;
+			width: 140px;
+		}
+
+		&__title {
+			margin-bottom: 10px;
+
+			// Covers small desktop size.
+			@media ( query( min, desktop ) ) and ( query( max, desktop-xl ) ) {
+				font-size: 21px;
+				line-height: 1;
+			}
+
+			@media ( query( max, mobile ) ) {
+				font-size: 21px;
+				line-height: 1;
+			}
+		}
+
+		&__paragraph {
+			@include g-font-family-serif;
+			font-size: 17px;
+			margin-bottom: 10px;
+		}
+
+		&__button {
+			background-color: $g-color-red;
+			color: $g-color-white;
+
+			// Covers small desktop size.
+			@media ( query( min, desktop ) ) and ( query( max, desktop-xl ) ) {
+				padding-left: 1rem;
+				padding-right: 1rem;
+			}
+
+			@media ( query( max, mobile ) ) {
+				padding-left: 1rem;
+				padding-right: 1rem;
+			}
+
+			&:focus,
+			&:hover {
+				background-color: $g-color-black-opaque;
+			}
+		}
+
+		&__form {
+			input {
+				border-radius: 0;
+			}
+		}
+	}
+}

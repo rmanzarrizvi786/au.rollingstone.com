@@ -1,0 +1,15 @@
+// Copy
+//
+// Copy styles used inside articles, articles excerpts etc.
+//
+// markup:
+// <p class="t-copy">This is a copy</p>
+//
+// Styleguide 2.1
+
+@include critical() {
+
+	.t-copy {
+		@include g-font-family-serif;
+	}
+}

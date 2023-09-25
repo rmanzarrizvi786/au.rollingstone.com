@@ -1,0 +1,81 @@
+// Post Actions
+//
+// markup:
+// <div class="c-post-actions">
+// 	<div class="c-post-actions__newsletter">
+// 		<svg class="c-post-actions__badge">
+// 			<use xlink:href="#svg-rs-badge"></use>
+// 		</svg>
+// 		<div class="c-post-actions__text">
+// 			<p class="t-semibold">
+// 				Want more Rolling Stone? <a href="#" class="c-post-actions__link">Sign up for our newsletter.</a>
+// 			</p>
+// 		</div>
+// 	</div>
+// 	<div class="c-post-actions__comments">
+// 		<a href="#" class="c-btn c-btn--dark" data-flyout="is-sidebar-open">
+// 			<div class="c-btn__inner t-semibold t-semibold--upper">
+// 				<span class="c-btn__icon-wrap">
+// 					<svg class="c-btn__icon"><use xlink:href="#svg-icon-comments"></use></svg>
+// 				</span>
+// 				<span class="screen-reader-text">Show</span>
+// 				<span class="c-btn__main">Comments</span>
+// 				<span class="c-btn__secondary">22</span>
+// 			</div>
+// 		</a>
+// 	</div>
+// </div>
+//
+// sg-wrapper:
+// <div style="max-width:700px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.42
+
+@include critical( single, list, country, featured-article ) {
+
+	.c-post-actions {
+		@extend %flex-center;
+		flex-wrap: wrap;
+		padding: 10px 0;
+		border-top: 2px solid $g-color-black;
+		border-bottom: 1px solid $g-color-black;
+
+		&__newsletter {
+			flex-grow: 1;
+			display: flex;
+			align-items: center;
+			margin: 5px 0;
+			font-size: 14px;
+			line-height: 14px;
+			color: $g-color-black;
+
+			@media ( query( min, tablet ) ) {
+				font-size: 16px;
+				line-height: 16px;
+			}
+		}
+
+		&__badge {
+			width: 37px;
+			height: 37px;
+			fill: $g-color-red;
+		}
+
+		&__text {
+			margin-left: 10px;
+		}
+
+		&__link {
+			color: $g-color-red;
+			transition: color $g-transition-color;
+
+			&:focus,
+			&:hover {
+				color: $g-color-red--lighten;
+			}
+		}
+	}
+
+}

@@ -1,0 +1,331 @@
+// Swiftype Search Form
+//
+// markup:
+// <div data-st-search-form="small_search_form">
+//   <div class="search-input-with-autocomplete">
+//     <div class="search-form">
+//       <input type="text" autocomplete="off" placeholder="Search">
+//       <input type="submit" value="Search">
+//     </div>
+//     <div class="swiftype-widget">
+//       <div class="autocomplete inactive">
+//         <div class="autocomplete-section autocomplete-section-0 undefined"></div>
+//       </div>
+//     </div>
+//   </div>
+// </div>
+//
+// sg-wrapper:
+// <div class="t-semibold" style="width:450px;padding:25px;height: 90px;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.59
+
+// stylelint-disable selector-max-specificity
+@include critical() {
+	[data-st-search-form] {
+
+		&,
+		.search-input-with-autocomplete {
+			height: 100%;
+		}
+
+		.search-form {
+			display: flex;
+			align-items: center;
+			position: relative;
+			height: 100%;
+			color: $g-color-border;
+			border-radius: 5px;
+			transition: color $g-transition-transform;
+
+			@media ( query( min, desktop ) ) {
+				color: $g-color-copy;
+			}
+
+			.is-search-expandable & {
+				color: $g-color-muted;
+
+				&:hover,
+				&:focus {
+					color: $g-color-red;
+				}
+			}
+
+			//
+			// Magnifying glass icon.
+			//
+
+			&::before,
+			&::after {
+				content: '';
+				display: block;
+				position: absolute;
+				z-index: 1;
+				top: 50%;
+				left: 15px;
+				margin-top: -3px;
+				border: 2px solid;
+				cursor: pointer;
+				pointer-events: none;
+
+				@media ( query( min, desktop ) ) {
+					opacity: 0.6;
+				}
+
+				.is-search-expandable & {
+					opacity: 1;
+				}
+
+				.is-search-expanded & {
+					border-color: $g-color-white;
+				}
+			}
+
+			&::before {
+				margin-top: -8px;
+				width: 12px;
+				height: 12px;
+				border-radius: 99%;
+
+				.is-search-expandable & {
+					transform: scale( 1.25 );
+				}
+			}
+
+			&::after {
+				width: 8px;
+				border-width: 2px 0 0;
+				transform: translate( 8px, 6px ) rotateZ( 45deg );
+
+				.is-search-expandable & {
+					transform: scale( 1.25 ) translate( 8px, 6px ) rotateZ( 45deg );
+				}
+			}
+		}
+
+		input {
+			height: 100%;
+			border: none;
+			border-radius: 0;
+			background-color: transparent;
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		[type='text'] {
+			flex: 1 0 auto;
+			padding: 2px 10px 0 45px;
+			font-size: 15px;
+			color: $g-color-border;
+			background-color: $g-color-border--mega-dark;
+			box-shadow: inset 0 3px 6px 0 rgba( $g-color-black, 0.5 );
+
+			@media ( query( min, desktop ) ) {
+				border-radius: 5px;
+				color: $g-color-copy;
+				background-color: $g-color-white;
+			}
+
+			&::placeholder {
+				color: $g-color-border;
+
+				@media ( query( min, desktop ) ) {
+					color: $g-color-muted;
+				}
+
+				.is-search-expandable & {
+					color: $g-color-muted;
+				}
+			}
+
+			// Expandable modifications
+			.is-search-expandable & {
+				position: absolute;
+				top: 1px;
+				left: 40px;
+				width: 300px;
+				height: 43px;
+				padding: 2px 55px 0 15px;
+				font-size: 14px;
+				opacity: 0;
+				visibility: hidden;
+				transition: opacity $g-transition-transform, visibility $g-transition-transform;
+				color: $g-color-black;
+				background-color: $g-color-white;
+				border: 1px solid $g-color-border;
+				border-radius: 6px;
+				box-shadow: inset 0 2px 4px 0 rgba( $g-color-black, 0.3 );
+
+				.is-header-sticky & {
+					border-radius: 0;
+					background-color: $g-color-bg--light;
+					left: -256px;
+				}
+			}
+
+			.is-search-expanded & {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+
+		[type='submit'] {
+			position: absolute;
+			top: calc( 50% - 22px );
+			left: 0;
+			width: 45px;
+			height: 44px;
+			padding: 0;
+			overflow: hidden;
+			font-size: 0;
+			background-color: transparent;
+			cursor: pointer;
+
+			// Expandable modifications
+			.is-search-expandable & {
+				left: auto;
+				right: 0;
+				border: 1px solid $g-color-border;
+				border-radius: 6px;
+				transition: background-color $g-transition-transform;
+
+				.is-header-sticky & {
+					border-radius: 0;
+					border-top: none;
+					border-bottom: none;
+				}
+			}
+
+			.is-search-expanded & {
+				border-radius: 6px 0 0 6px;
+				background-color: $g-color-link;
+			}
+		}
+
+		// Swiftype search widget.
+		.l-header__wrap & .swiftype-widget {
+			position: absolute;
+			z-index: -1;
+			top: 100%;
+			left: 0;
+			right: 0;
+			width: 340px;
+
+			@media( query( min, desktop ) ) {
+			.is-header-sticky & {
+					left: -256px;
+				}
+			}
+		}
+
+		.autocomplete {
+			margin-top: -5px;
+			padding-top: 5px;
+			background-color: $g-color-white;
+			border: 1px solid $g-color-border;
+			border-top-color: transparent;
+			font-size: 14px;
+			line-height: 1.5;
+			box-shadow: 0 2px 4px rgba( $g-color-black, 0.2 );
+
+			@media ( query( min, desktop ) ) {
+				background-color: $g-color-black;
+				border-color: $g-color-border--mega;
+
+				.is-search-expandable & {
+					background-color: $g-color-white;
+					border-color: $g-color-border;
+				}
+			}
+
+			&.inactive {
+				display: none;
+			}
+
+			.is-header-sticky & {
+				margin-top: 0;
+				padding-top: 0;
+			}
+		}
+
+		.ac-section-title,
+		.ac-result {
+			padding: 10px;
+		}
+
+		.ac-section-title {
+			font-size: 12px;
+			text-transform: uppercase;
+			color: $g-color-red;
+		}
+
+		.ac-result {
+			border-top: 1px solid $g-color-border;
+			cursor: pointer;
+			transition: background-color $g-transition-color;
+
+			@media ( query( min, desktop ) ) {
+				border-top-color: $g-color-border--mega;
+
+				.is-search-expandable & {
+					border-top-color: $g-color-border;
+				}
+			}
+
+			&:hover,
+			&:focus {
+				background-color: $g-color-bg--light;
+
+				@media ( query( min, desktop ) ) {
+					background-color: $g-color-border--mega-dark;
+
+					.is-search-expandable & {
+						background-color: $g-color-bg--light;
+					}
+				}
+			}
+		}
+
+		.ac_title {
+			display: inline;
+			padding-right: 0.5em;
+			color: $g-color-copy;
+
+			@media ( query( min, desktop ) ) {
+				color: $g-color-bg--light;
+
+				.is-search-expandable & {
+					color: $g-color-copy;
+				}
+			}
+
+			em {
+				font-style: normal;
+				font-weight: $bold;
+				color: $g-color-black;
+
+				@media ( query( min, desktop ) ) {
+					color: $g-color-white;
+
+					.is-search-expandable & {
+						color: $g-color-black;
+					}
+				}
+			}
+		}
+
+		.ac_sub {
+			@include g-font-family-serif;
+			display: inline-block;
+			font-weight: $normal;
+			font-style: italic;
+			font-size: 12px;
+			color: $g-color-muted;
+		}
+	}
+}
+// stylelint-enable selector-max-specificity

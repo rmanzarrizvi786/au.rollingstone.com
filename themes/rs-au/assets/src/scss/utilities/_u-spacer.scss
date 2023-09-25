@@ -1,0 +1,28 @@
+// Spacer Utility
+//
+// Apply vertical and horizontal spacing to arbitrary elements that are not part
+// of existing layouts.
+//
+// Small: 15px
+// Medium: ... // Fill in as needed
+// Large: ... // Fill in as needed
+//
+
+// Small Vertical Spacer
+//
+// markup:
+//
+// <div class="u-spacer--h-small">
+//      <a href="#" class="c-btn c-btn--large c-btn--red t-bold">Back To RollingStone</a>
+// </div>
+//
+// Styleguide 6.1
+
+.u-spacer {
+
+    &--v-small {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+}
