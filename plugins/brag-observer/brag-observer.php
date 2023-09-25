@@ -411,16 +411,19 @@ class BragObserver
     register_rest_route('api/v1', '/observer/articles', array(
       'methods' => 'GET',
       'callback' => [$this, 'get_articles_for_topic'],
+      'permission_callback' => '__return_true',
     ));
 
     register_rest_route('api/v2', '/articles', array(
       'methods' => 'GET',
       'callback' => [$this, 'articles_json_func'],
+      'permission_callback' => '__return_true',
     ));
 
     register_rest_route('api/v2', '/articles/nz', array(
       'methods' => 'GET',
       'callback' => [$this, 'articles_nz_json_func'],
+      'permission_callback' => '__return_true',
     ));
   }
 

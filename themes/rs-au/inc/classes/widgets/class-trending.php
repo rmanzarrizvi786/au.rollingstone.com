@@ -3,12 +3,14 @@
 
 namespace Rolling_Stone\Inc\Widgets;
 
+
 use \PMC\Core\Inc\Widgets\Traits\Templatize;
+use FM_Widget;
 
 /**
  * Trending Now widget
  */
-class Trending extends \FM_Widget {
+class Trending extends FM_Widget {
 
 	use Templatize;
 

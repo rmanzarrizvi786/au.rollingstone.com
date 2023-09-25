@@ -8,6 +8,172 @@
  */
 
 ?>
+<footer class="l-footer">
+	<div class="l-footer__wrap">
+		<div class="l-footer__nav">
+			<nav class="l-footer__menu">
+				<div class="c-page-nav c-page-nav--footer c-page-nav--cta c-page-nav--1-column" data-dropdown="">
+					<ul class="c-page-nav__list">
+						<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+							<span class="c-page-nav__link t-bold">Get The Magazine</span>
+						</li>
+						<!-- .c-page-nav__item -->
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="/subscribe-magazine/" class="c-page-nav__link t-semibold " title="SUBSCRIBE NOW" target="_blank">SUBSCRIBE NOW</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="/subscribe-magazine/?gift=1" class="c-page-nav__link t-semibold " title="GIVE A GIFT" target="_blank">GIVE A GIFT</a>
+						</li>
+					</ul>
+					<!-- .c-page-nav__list -->
+				</div>
+				<!-- .c-page-nav--footer -->
+				<div class="c-page-nav c-page-nav--footer c-page-nav--1-column" data-dropdown="">
+					<ul class="c-page-nav__list">
+						<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+							<span class="c-page-nav__link t-bold">About</span>
+						</li>
+						<!-- .c-page-nav__item -->
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://thebrag.media/" class="c-page-nav__link t-semibold " title="Advertise" target="_blank">Advertise</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://thebrag.media/privacy-policy/" class="c-page-nav__link t-semibold " title="Privacy Policy" target="_blank">Privacy Policy</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://thebrag.media/terms-and-conditions/" class="c-page-nav__link t-semibold " title="Competition Ts &amp; Cs" target="_blank">Competition Ts &amp; Cs</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://thebrag.com/media/terms-of-use/" class="c-page-nav__link t-semibold " title="Terms of use" target="_blank">Terms of use</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://thebrag.com/media/editorial-code/" class="c-page-nav__link t-semibold " title="Editorial Code">Editorial Code</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="mailto:hello@thebrag.media" class="c-page-nav__link t-semibold " title="Contact us">Contact us</a>
+						</li>
+						<!-- <li class="c-page-nav__item" data-ripple="inverted"><a href="#" class="c-page-nav__link t-semibold privacy-consent" target="_blank"></a></li> -->
+					</ul>
+					<!-- .c-page-nav__list -->
+				</div>
+				<!-- .c-page-nav--footer -->
+			</nav>
+
+			<nav class="l-footer__menu l-footer__menu--wide">
+				<div class="c-page-nav c-page-nav--footer c-page-nav--2-columns" data-dropdown="">
+					<ul class="c-page-nav__list">
+						<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+							<span class="c-page-nav__link t-bold">Rolling Stone</span>
+						</li>
+						<!-- .c-page-nav__item -->
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/music/" class="c-page-nav__link t-semibold " title="Music">Music</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/tv/" class="c-page-nav__link t-semibold " title="TV">TV</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/movies/" class="c-page-nav__link t-semibold " title="Movies">Movies</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/politics/" class="c-page-nav__link t-semibold " title="Politics">Politics</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/culture/" class="c-page-nav__link t-semibold " title="Culture">Culture</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/sports/" class="c-page-nav__link t-semibold " title="Sports">Sports</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/rolling-stone-awards-2022/" class="c-page-nav__link t-semibold " title="RS Awards 22">RS Awards 22</a>
+						</li>
+					</ul>
+					<!-- .c-page-nav__list -->
+				</div>
+				<!-- .c-page-nav--footer -->
+				<br>
+				<div class="c-page-nav c-page-nav--footer c-page-nav--1-column" data-dropdown="">
+					<ul class="c-page-nav__list">
+						<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+							<span class="c-page-nav__link t-bold">Connect With Us</span>
+						</li>
+						<!-- .c-page-nav__item -->
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://www.facebook.com/rollingstoneaustralia/" class="c-page-nav__link t-semibold " title="Facebook" target="_blank">
+								<span class="c-page-nav__icon c-icon c-icon--inline c-icon--inverted c-icon--round">
+									<svg>
+										<use xlink:href="#svg-icon-facebook"></use>
+									</svg>
+								</span>Facebook </a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://twitter.com/rollingstoneaus" class="c-page-nav__link t-semibold " title="Twitter" target="_blank">
+								<span class="c-page-nav__icon c-icon c-icon--inline c-icon--inverted c-icon--round">
+									<svg>
+										<use xlink:href="#svg-icon-twitter"></use>
+									</svg>
+								</span>Twitter </a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://instagram.com/rollingstoneaus" class="c-page-nav__link t-semibold " title="Instagram" target="_blank">
+								<span class="c-page-nav__icon c-icon c-icon--inline c-icon--inverted c-icon--round">
+									<svg>
+										<use xlink:href="#svg-icon-instagram"></use>
+									</svg>
+								</span>Instagram </a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://www.youtube.com/channel/UC5ogXwEsy_q8_2DQHp1RU8A" class="c-page-nav__link t-semibold " title="YouTube" target="_blank">
+								<span class="c-page-nav__icon c-icon c-icon--inline c-icon--inverted c-icon--round">
+									<svg>
+										<use xlink:href="#svg-icon-youtube"></use>
+									</svg>
+								</span>YouTube </a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://thebrag.com/observer/" class="c-page-nav__link t-semibold " title="Subscribe to our Newsletters" target="_blank">
+								<span class="c-page-nav__icon c-icon c-icon--inline c-icon--inverted c-icon--round">
+									<svg>
+										<use xlink:href="#svg-icon-email"></use>
+									</svg>
+								</span>Subscribe to our Newsletters </a>
+						</li>
+					</ul>
+					<!-- .c-page-nav__list -->
+				</div>
+				<!-- .c-page-nav--footer -->
+			</nav>
+			<!-- .l-footer__menu -->
+		</div>
+		<!-- .l-footer__nav -->
+		<div class="l-footer__newsletter" style="border-bottom: 0;"></div>
+		<!-- .l-footer__newsletter -->
+		<div class="l-footer__cover">
+			<a href="https://au.rollingstone.com/subscribe-magazine/" target="_blank">
+				<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/08/014_RSAUNZ_COVER-TroyeSivan_v.jpg?w=250" data-src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/08/014_RSAUNZ_COVER-TroyeSivan_v.jpg?w=250" alt="" class="l-footer__cover-image" style="width: 250px">
+			</a>
+		</div>
+		<!-- .l-footer__cover -->
+	</div>
+	<!-- .l-footer__wrap -->
+	<div style="padding: 0 1rem;">
+		<div class="l-footer__tip">
+			<p class="l-footer__tip-heading t-bold">Have you got Tip/Op-Ed/Video?</p>
+			<div class="l-footer__tip-body"></div>
+			<a class="l-footer__tip-link t-bold" href="https://thebrag.media/submit-a-tip/" target="_blank">
+				<span>Send Us a Tip</span>
+			</a>
+			<a class="l-footer__tip-link t-bold" href="https://thebrag.media/how-to-submit-an-op-ed-essay/" target="_blank">
+				<span>Send Us an op-ed</span>
+			</a>
+			<a class="l-footer__tip-link t-bold" href="https://thebrag.media/submit/" target="_blank">
+				<span>Send Us a video</span>
+			</a>
+			<img class="l-footer__logo" src="https://cdn-r2-2.thebrag.com/assets/images/RSAUwhitewhite_WEB.png">
+		</div>
+		<!-- .l-footer__tip -->
+	</div>
+</footer>
 <div class="l-page__mega">
 	<?php get_template_part('template-parts/footer/mega'); ?>
 </div><!-- .l-page__mega -->

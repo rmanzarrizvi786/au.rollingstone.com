@@ -2297,6 +2297,7 @@ class PMC {
 	 * @since 2014-11-26 Amit Gupta - ported over from AwardsLine 2.0
 	 */
 	public static function maybe_throw_exception( $message = '', $exception = 'ErrorException', $return_on_production = false ) {
+		return $return_on_production;
 		if ( static::is_production() ) {
 			return $return_on_production;
 		}
@@ -2924,7 +2925,7 @@ class PMC {
 			 * Use the PHP method and bail out.
 			 */
 			switch ( $filter ) {
-				case FILTER_SANITIZE_STRING:
+				case FILTER_UNSAFE_RAW:
 					$sanitized_variable = sanitize_text_field( filter_input( $type, $variable_name, $filter ) );
 					break;
 				default:
