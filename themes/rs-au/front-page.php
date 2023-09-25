@@ -14,71 +14,105 @@ get_header();
 	<div class="l-home-top">
 		<div class="l-home-top__3-pack">
 			<section class="l-3-pack l-3-pack--reversed">
-				<div class="l-3-pack__item l-3-pack__item--primary">
-					<article class="c-card c-card--overlay c-card--overlay--home">
-						<a href="https://au.rollingstone.com/music/music-news/bic-runga-receives-icon-status-at-2023-panhead-rolling-stone-aotearoa-awards-50043/" class="c-card__wrap">
-							<figure class="c-card__image" id="img-article-50043">
-								<div class="c-crop c-crop--ratio-5x6">
-									<img width="725" height="800" src="https://cdn-r2-1.thebrag.com/rs/uploads/2020/09/bic-runga-1.jpg?resize=725,870&amp;w=440" data-src="https://cdn-r2-1.thebrag.com/rs/uploads/2020/09/bic-runga-1.jpg?resize=725,870&amp;w=440" class="c-crop__img wp-post-image visible" alt="Bic Runga Rolling Stone Aotearoa Awards" decoding="async" fetchpriority="high" data-srcset="https://cdn-r2-1.thebrag.com/rs/uploads/2020/09/bic-runga-1.jpg?resize=725,870&amp;w=440 440w, https://cdn-r2-1.thebrag.com/rs/uploads/2020/09/bic-runga-1.jpg?resize=725,870&amp;w=560 560w, https://cdn-r2-1.thebrag.com/rs/uploads/2020/09/bic-runga-1.jpg?resize=725,870&amp;w=660 660w, https://cdn-r2-1.thebrag.com/rs/uploads/2020/09/bic-runga-1.jpg?resize=725,870&amp;w=725 725w" sizes="(max-width: 480px) 440px, (max-width: 767px) 725px, (max-width: 959px) 660px, 560px" srcset="https://cdn-r2-1.thebrag.com/rs/uploads/2020/09/bic-runga-1.jpg?resize=725,870&amp;w=440 440w, https://cdn-r2-1.thebrag.com/rs/uploads/2020/09/bic-runga-1.jpg?resize=725,870&amp;w=560 560w, https://cdn-r2-1.thebrag.com/rs/uploads/2020/09/bic-runga-1.jpg?resize=725,870&amp;w=660 660w, https://cdn-r2-1.thebrag.com/rs/uploads/2020/09/bic-runga-1.jpg?resize=725,870&amp;w=725 725w">
-								</div>
-								<!-- .c-crop -->
-							</figure>
-							<!-- .c-card__image -->
-							<header class="c-card__header">
-								<div class="c-badge c-badge--sponsored"></div>
-								<!-- .c-badge--sponsored -->
-								<h3 class="c-card__heading t-bold"> Bic Runga Receives Icon Status at 2023 Panhead Rolling Stone Aotearoa Awards</h3>
-								<!-- .c-card__heading -->
-								<div class="c-card__tag t-bold t-bold--upper">
-									<span class="screen-reader-text">Posted in:</span>
-									<span class="c-card__featured-tag"> Music News</span>
-								</div>
-								<!-- c-card__tag -->
-								<p class="c-card__lead"> Five local acts were honoured at the 2023 Panhead Rolling Stone Aotearoa Awards on Wednesday night, but it was Bic Runga who stole the show with an incredible live performance</p>
-								<!-- c-card__lead -->
-							</header>
-							<!-- .c-card__header -->
-						</a>
-						<!-- .c-card__wrap -->
-					</article>
-					<!-- .c-card--overlay -->
-				</div>
+				<?php
+				$args = array(
+					//'category_name' => 'culture',
+					"posts_per_page" => 1,
+					//'post_type' => 'pmc_top_video',
+					"orderby"        => "date",
+					//'meta_key' => 'pmc_top_video_source',
+					//'meta_value' => '',
+					//'meta_compare' => '!=',
+					"order"          => "DESC"
+				);
+				$videoPosts = get_posts($args);
+				foreach ($videoPosts as $post) {
+				?>
+					<div class="l-3-pack__item l-3-pack__item--primary">
+						<article class="c-card c-card--overlay c-card--overlay--home">
+							<a href="<?php the_permalink(); ?>" class="c-card__wrap">
+								<figure class="c-card__image" id="img-article-50043">
+									<div class="c-crop c-crop--ratio-5x6">
+										<?php echo get_the_post_thumbnail(); ?>
+									</div>
+									<!-- .c-crop -->
+								</figure>
+								<!-- .c-card__image -->
+								<header class="c-card__header">
+									<div class="c-badge c-badge--sponsored"></div>
+									<!-- .c-badge--sponsored -->
+									<h3 class="c-card__heading t-bold">
+										<?php the_title(); ?>
+									</h3>
+									<!-- .c-card__heading -->
+									<div class="c-card__tag t-bold t-bold--upper">
+										<span class="screen-reader-text">Posted in:</span>
+										<span class="c-card__featured-tag"> Music News</span>
+									</div>
+									<!-- c-card__tag -->
+									<p class="c-card__lead">
+										<?php echo wp_trim_words($post->post_content, 20); ?>
+									</p>
+									<!-- c-card__lead -->
+								</header>
+								<!-- .c-card__header -->
+							</a>
+							<!-- .c-card__wrap -->
+						</article>
+						<!-- .c-card--overlay -->
+					</div>
+				<?php } ?>
 				<!-- .l-3-pack__item--primary -->
-				<div class="l-3-pack__item l-3-pack__item--secondary">
-					<article class="c-card c-card--featured-home" id="home-c-card-49872">
-						<a href="https://au.rollingstone.com/product-recommendations/electronics/denon-soundbar-giveaway-49872/" class="c-card__wrap">
-							<figure class="c-card__image">
-								<div class="c-crop c-crop--size-featured-home">
-									<img width="1240" height="853" src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/denon-soundbar.jpg?resize=1240,1240&amp;w=190" data-src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/denon-soundbar.jpg?resize=1240,1240&amp;w=190" class="c-crop__img wp-post-image visible" alt="Denon Soundbar" decoding="async" data-srcset="https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/denon-soundbar.jpg?resize=1240,1240&amp;w=190 190w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/denon-soundbar.jpg?resize=1240,1240&amp;w=210 210w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/denon-soundbar.jpg?resize=1240,1240&amp;w=240 240w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/denon-soundbar.jpg?resize=1240,1240&amp;w=270 270w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/denon-soundbar.jpg?resize=1240,1240&amp;w=350 350w" sizes="(max-width: 480px) 210px, (max-width: 767px) 350px, (max-width: 959px) 240px, (max-width: 1100px) 270px, 190px" srcset="https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/denon-soundbar.jpg?resize=1240,1240&amp;w=190 190w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/denon-soundbar.jpg?resize=1240,1240&amp;w=210 210w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/denon-soundbar.jpg?resize=1240,1240&amp;w=240 240w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/denon-soundbar.jpg?resize=1240,1240&amp;w=270 270w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/denon-soundbar.jpg?resize=1240,1240&amp;w=350 350w">
-								</div>
-								<!-- .c-crop -->
-							</figure>
-							<!-- .c-card__image -->
-							<header class="c-card__header">
-								<div class="c-badge c-badge--sponsored"></div>
-								<!-- .c-badge--sponsored -->
-								<h3 class="c-card__heading t-bold"> Win a Sleek Soundbar Courtesy of Denon</h3>
-								<!-- .c-card__heading -->
-								<div class="c-card__tag t-bold t-bold--upper">
-									<span class="screen-reader-text">Posted in:</span>
-									<span class="c-card__featured-tag"> Electronics</span>
-								</div>
-								<!-- c-card__tag -->
-							</header>
-							<!-- .c-card__header -->
-						</a>
-						<!-- .c-card__wrap -->
-					</article>
-					<!-- .c-card--featured -->
-				</div>
+				<?php
+				$args = array(
+					//'category_name' => 'culture',
+					"posts_per_page" => 3,
+					//'post_type' => 'pmc_top_video',
+					"orderby"        => "date",
+
+					"order"          => "DESC"
+				);
+				$videoPosts = get_posts($args);
+				foreach ($videoPosts as $post) {
+				?>
+					<div class="l-3-pack__item l-3-pack__item--secondary">
+						<article class="c-card c-card--featured-home" id="home-c-card-49872">
+							<a href="<?php the_permalink(); ?>" class="c-card__wrap">
+								<figure class="c-card__image">
+
+									<?php echo get_the_post_thumbnail(); ?>
+
+									<!-- .c-crop -->
+								</figure>
+								<!-- .c-card__image -->
+								<header class="c-card__header">
+									<div class="c-badge c-badge--sponsored"></div>
+									<!-- .c-badge--sponsored -->
+									<h3 class="c-card__heading t-bold">
+										<?php the_title(); ?>
+									</h3>
+									<!-- .c-card__heading -->
+									<div class="c-card__tag t-bold t-bold--upper">
+										<span class="screen-reader-text">Posted in:</span>
+										<span class="c-card__featured-tag"> Electronics</span>
+									</div>
+									<!-- c-card__tag -->
+								</header>
+								<!-- .c-card__header -->
+							</a>
+							<!-- .c-card__wrap -->
+						</article>
+						<!-- .c-card--featured -->
+					</div>
+				<?php } ?>
 				<!-- .l-3-pack__item--[secondary|tertiary] -->
 				<div class="l-3-pack__item l-3-pack__item--tertiary">
 					<article class="c-card c-card--featured-home" id="home-c-card-50144">
 						<a href="https://au.rollingstone.com/music/music-news/limp-bizkit-new-zealand-show-tickets-50144/" class="c-card__wrap">
 							<figure class="c-card__image">
-								<div class="c-crop c-crop--size-featured-home">
-									<img width="1080" height="1018" src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/limp-bizkit-2.jpg?resize=1240,1240&amp;w=190" data-src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/limp-bizkit-2.jpg?resize=1240,1240&amp;w=190" class="c-crop__img wp-post-image visible" alt="Limp Bizkit New Zealand headline show" decoding="async" data-srcset="https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/limp-bizkit-2.jpg?resize=1240,1240&amp;w=190 190w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/limp-bizkit-2.jpg?resize=1240,1240&amp;w=210 210w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/limp-bizkit-2.jpg?resize=1240,1240&amp;w=240 240w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/limp-bizkit-2.jpg?resize=1240,1240&amp;w=270 270w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/limp-bizkit-2.jpg?resize=1240,1240&amp;w=350 350w" sizes="(max-width: 480px) 210px, (max-width: 767px) 350px, (max-width: 959px) 240px, (max-width: 1100px) 270px, 190px" srcset="https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/limp-bizkit-2.jpg?resize=1240,1240&amp;w=190 190w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/limp-bizkit-2.jpg?resize=1240,1240&amp;w=210 210w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/limp-bizkit-2.jpg?resize=1240,1240&amp;w=240 240w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/limp-bizkit-2.jpg?resize=1240,1240&amp;w=270 270w, https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/limp-bizkit-2.jpg?resize=1240,1240&amp;w=350 350w">
-								</div>
+
+								<?php echo get_the_post_thumbnail(); ?>
+
 								<!-- .c-crop -->
 							</figure>
 							<!-- .c-card__image -->
@@ -112,17 +146,20 @@ get_header();
 				<div class="c-trending c-trending--hero">
 					<h4 class="c-trending__heading t-bold t-bold--loose"> Trending </h4>
 					<!-- .c-trending__heading -->
-					<ol class="c-trending__list"> <?php
-													$args = array(
-														//'category_name' => 'music',
-														"posts_per_page" => 3,
-														"orderby"        => "date",
-														"order"          => "DESC"
-													); ?> <?php $trendingPosts = get_posts($args);
+					<ol class="c-trending__list">
+						<?php
+						$args = array(
+							//'category_name' => 'music',
+							"posts_per_page" => 3,
+							"orderby"        => "date",
+							"order"          => "DESC"
+						);
+						$trendingPosts = get_posts($args);
 
-															foreach ($trendingPosts as $post) {
+						foreach ($trendingPosts as $post) {
 
-															?> <li class="c-trending__item">
+						?>
+							<li class="c-trending__item">
 								<a href="https://au.rollingstone.com/music/music-features/tony-cohen-nick-cave-memoir-47732/" class="c-trending__link">
 									<h5 class="c-trending__title">
 										<div class="c-trending__number">
@@ -134,7 +171,8 @@ get_header();
 								</a>
 								<!-- .c-trending__link -->
 							</li>
-							<!-- .c-trending__item --> <?php } ?> </ol>
+							<!-- .c-trending__item --> <?php } ?>
+					</ol>
 					<!-- .c-trending__list -->
 				</div>
 				<!-- .c-trending -->
@@ -162,7 +200,9 @@ get_header();
 		</script>
 		<div class="l-section__header">
 			<div class="c-section-header">
-				<h3 class="c-section-header__heading t-bold t-bold--condensed"> Music Section </h3>
+				<h3 class="c-section-header__heading t-bold t-bold--condensed">
+					Music
+				</h3>
 				<a href="https://au.rollingstone.com/music/" class="c-section-header__cta t-semibold t-semibold--upper t-semibold--loose"> View All </a>
 				<p class="c-section-header__msg"> You have set the display of this section to be hidden. <br> Click the button to the right to show it again. </p>
 				<!-- /.c-section-header__msg -->
@@ -179,25 +219,26 @@ get_header();
 		<!-- /.l-section__header -->
 		<div class="l-section__content">
 			<div class="l-section__grid">
-				<div class="c-cards-grid"> <?php
-											$args = array(
-												'category_name' => 'music',
-												"posts_per_page" => 6,
-												"orderby"        => "date",
-												"order"          => "DESC"
-											); ?> <?php $my_posts = get_posts($args);
+				<div class="c-cards-grid">
+					<?php
+					$args = array(
+						'category_name' => 'music',
+						"posts_per_page" => 6,
+						"orderby"        => "date",
+						"order"          => "DESC"
+					);
+					$posts = get_posts($args);
 
-													foreach ($my_posts as $post) {
-														$imagePath = str_replace('http://localhost/rollingstone/wp-content', S3_UPLOADS_BUCKET_URL, get_the_post_thumbnail_url($post->ID, 'full'));
-													?> <div class="c-cards-grid__item">
+					foreach ($posts as $post) {
+
+					?>
+						<div class="c-cards-grid__item">
 							<article class="c-card c-card--grid c-card--grid--primary ">
-								<a href="
-												<?php the_permalink(); ?>" class="c-card__wrap">
+								<a href="<?php the_permalink(); ?>" class="c-card__wrap">
 									<figure class="c-card__image">
-										<div class="c-crop c-crop--ratio-3x2">
-											<img width="900" height="600" src="
-															<?php echo $imagePath; ?>" class="c-crop__img wp-post-image visible" />
-										</div>
+
+										<?php echo get_the_post_thumbnail(); ?>
+
 										<!-- .c-crop -->
 									</figure>
 									<!-- .c-card__image -->
@@ -213,12 +254,13 @@ get_header();
 										<!-- c-card__tag -->
 										<div class="c-card__byline t-copy"> By: <?php echo get_the_author_meta('display_name', $post->post_author); ?> </div>
 										<!-- c-card__byline -->
-										<p class="c-card__lead"> <?php
-																	echo wp_trim_words($post->post_content, 20);
-																	//$post->post_content;
-																	//echo $content = get_the_content('Read more');
-																	//echo apply_filters('the_content', $content);
-																	?> </p>
+										<p class="c-card__lead">
+											<?php
+											echo wp_trim_words($post->post_content, 20);
+											//$post->post_content;
+											//echo $content = get_the_content('Read more');
+											//echo apply_filters('the_content', $content);
+											?> </p>
 										<!-- c-card__lead -->
 									</header>
 									<!-- .c-card__header -->
@@ -227,7 +269,8 @@ get_header();
 							</article>
 							<!-- .c-card--grid -->
 						</div>
-						<!-- /.c-cards-grid__item --> <?php } ?> </div>
+						<!-- /.c-cards-grid__item --> <?php } ?>
+				</div>
 				<!-- .c-cards-grid -->
 			</div>
 			<!-- /.l-section__grid -->
@@ -334,21 +377,19 @@ get_header();
 						"posts_per_page" => 6,
 						"orderby"        => "date",
 						"order"          => "DESC"
-					); ?>
-					<?php $my_posts = get_posts($args);
+					);
+					$posts = get_posts($args);
 
-					foreach ($my_posts as $post) {
-						$imagePath = str_replace('http://localhost/rollingstone/wp-content', S3_UPLOADS_BUCKET_URL, get_the_post_thumbnail_url($post->ID, 'full'));
+					foreach ($posts as $post) {
+
 					?>
 						<div class="c-cards-grid__item">
 							<article class="c-card c-card--grid c-card--grid--primary ">
-								<a href="
-																	<?php the_permalink(); ?>" class="c-card__wrap">
+								<a href="<?php the_permalink(); ?>" class="c-card__wrap">
 									<figure class="c-card__image">
-										<div class="c-crop c-crop--ratio-3x2">
-											<img width="900" height="600" src="
-																				<?php echo $imagePath; ?>" class="c-crop__img wp-post-image visible" />
-										</div>
+
+										<?php echo get_the_post_thumbnail(); ?>
+
 										<!-- .c-crop -->
 									</figure>
 									<!-- .c-card__image -->
@@ -364,12 +405,13 @@ get_header();
 										<!-- c-card__tag -->
 										<div class="c-card__byline t-copy"> By: <?php echo get_the_author_meta('display_name', $post->post_author); ?> </div>
 										<!-- c-card__byline -->
-										<p class="c-card__lead"> <?php
-																	echo wp_trim_words($post->post_content, 20);
-																	//$post->post_content;
-																	//echo $content = get_the_content('Read more');
-																	//echo apply_filters('the_content', $content);
-																	?> </p>
+										<p class="c-card__lead">
+											<?php
+											echo wp_trim_words($post->post_content, 20);
+											//$post->post_content;
+											//echo $content = get_the_content('Read more');
+											//echo apply_filters('the_content', $content);
+											?> </p>
 										<!-- c-card__lead -->
 									</header>
 									<!-- .c-card__header -->
@@ -429,39 +471,62 @@ get_header();
 		<div class="l-section__content">
 			<div class="c-video-gallery" data-video-gallery="">
 				<div class="c-video-gallery__main">
-					<article class="c-card c-card--video ">
-						<div class="c-card__wrap">
-							<figure class="c-card__image">
-								<div style="max-width: 678px;" class="c-crop c-crop--video c-crop--ratio-video">
-									<a href="https://au.rollingstone.com/music/music-videos/clypso-behind-the-scenes-storm-video-19589/">
-										<img width="815" height="458" src="https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/clypso.jpg?resize=815,458&amp;w=350" data-src="https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/clypso.jpg?resize=815,458&amp;w=350" class="c-crop__img wp-post-image visible" alt="Image of CLYPSO" decoding="async" data-srcset="https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/clypso.jpg?resize=815,458&amp;w=350 350w, https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/clypso.jpg?resize=815,458&amp;w=600 600w, https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/clypso.jpg?resize=815,458&amp;w=800 800w" sizes="(max-width: 959px) 92%, (max-width: 1300px) 55%, 775px" srcset="https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/clypso.jpg?resize=815,458&amp;w=350 350w, https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/clypso.jpg?resize=815,458&amp;w=600 600w, https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/clypso.jpg?resize=815,458&amp;w=800 800w">
-									</a>
-									<div data-video-crop="">
-										<div hidden="">
-											<iframe type="text/html" width="670" height="407" data-src="https://www.youtube.com/embed/9FpTb86uLDI?version=3&amp;rel=1&amp;fs=1&amp;autohide=2&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=1&amp;wmode=transparent" allowfullscreen="true" style="border:0;" data-gtm-yt-inspected-10="true" data-gtm-yt-inspected-16="true"></iframe>
+					<?php
+					$args = array(
+						//'category_name' => 'culture',
+						"posts_per_page" => 1,
+						'post_type' => 'pmc_top_video',
+						"orderby"        => "date",
+						'meta_key' => 'pmc_top_video_source',
+						'meta_value' => '',
+						'meta_compare' => '!=',
+						"order"          => "DESC"
+					);
+					$videoPosts = get_posts($args);
+					foreach ($videoPosts as $post) {
+						//echo '<pre>';
+						//echo $post->ID;
+						$videoUrl = get_post_meta($post->ID, 'pmc_top_video_source', true); //get_post_custom_values('video_url');
+						if ($videoUrl != '') {
+
+					?>
+							<article class="c-card c-card--video ">
+								<div class="c-card__wrap">
+									<figure class="c-card__image">
+
+										<a href="<?php the_permalink(); ?>">
+											<?php echo get_the_post_thumbnail(); ?>
+										</a>
+										<div data-video-crop="">
+											<div hidden="">
+												<iframe type="text/html" width="670" height="407" data-src="<?php echo $videoUrl; ?>" allowfullscreen="true" style="border:0;" data-gtm-yt-inspected-10="true" data-gtm-yt-inspected-16="true"></iframe>
+											</div>
 										</div>
-									</div>
-									<div class="jwplayer_container" hidden="">
-										<div id="jwplayer_0_div"></div>
-									</div>
+										<div class="jwplayer_container" hidden="">
+											<div id="jwplayer_0_div"></div>
+										</div>
+
+										<!-- .c-crop -->
+									</figure>
+									<!-- .c-card__image -->
+									<header class="c-card__header">
+										<h3 class="c-card__heading t-bold">
+											<a href="<?php the_permalink(); ?>" data-video-gallery-card-heading="">
+												<?php the_title(); ?>
+											</a>
+										</h3>
+										<!-- .c-card__heading -->
+										<span class="c-card__tag t-semibold t-semibold--upper t-semibold--loose" data-video-gallery-card-tag=""> Music </span>
+									</header>
+
+
+									<!-- .c-card__header -->
 								</div>
-								<!-- .c-crop -->
-							</figure>
-							<!-- .c-card__image -->
-							<header class="c-card__header">
-								<h3 class="c-card__heading t-bold">
-									<a href="https://au.rollingstone.com/music/music-videos/clypso-behind-the-scenes-storm-video-19589/" data-video-gallery-card-heading=""> CLYPSO Goes Behind the Scenes of The Making of Her ‘Storm’ Video </a>
-								</h3>
-								<!-- .c-card__heading -->
-								<span class="c-card__tag t-semibold t-semibold--upper t-semibold--loose" data-video-gallery-card-tag=""> Music </span>
-							</header>
-
-
-							<!-- .c-card__header -->
-						</div>
-						<!-- .c-card__wrap -->
-					</article>
-					<!-- .c-card -->
+								<!-- .c-card__wrap -->
+							</article>
+							<!-- .c-card -->
+					<?php }
+					} ?>
 				</div>
 				<!-- /.c-video-gallery__main -->
 				<div class="c-video-gallery__slider c-slider " data-slider="" data-slider--centered="">
@@ -494,7 +559,7 @@ get_header();
 							//echo $post->ID;
 							$videoUrl = get_post_meta($post->ID, 'pmc_top_video_source', true); //get_post_custom_values('video_url');
 							if ($videoUrl != '') {
-								$imagePath = str_replace('http://localhost/rollingstone/wp-content', S3_UPLOADS_BUCKET_URL, get_the_post_thumbnail_url($post->ID, 'full'));
+
 						?>
 								<div class="c-video-gallery__item c-slider__item" data-slider-item="">
 									<article class="c-card c-card--video-thumb  t-semibold">
@@ -517,9 +582,10 @@ get_header();
 													<!-- .c-badge--play -->
 												</div>
 												<!-- /.c-card__badge -->
-												<div class="c-crop c-crop--ratio-7x4">
-													<img width="1200" height="720" src="<?php echo $imagePath; ?>" data-src="" class="c-crop__img wp-post-image visible" alt="" decoding="async" data-srcset="" sizes="(max-width: 480px) 210px, (max-width: 767px) 350px,(max-width: 959px) 450px, 300px" srcset="">
-												</div>
+
+												<?php echo get_the_post_thumbnail(); ?>
+
+
 												<!-- .c-crop -->
 											</figure>
 											<!-- .c-card__image -->
@@ -581,18 +647,18 @@ get_header();
 						"orderby"        => "date",
 						"order"          => "DESC"
 					);
-					$my_posts = get_posts($args);
+					$posts = get_posts($args);
 
-					foreach ($my_posts as $post) {
-						$imagePath = str_replace('http://localhost/rollingstone/wp-content', S3_UPLOADS_BUCKET_URL, get_the_post_thumbnail_url($post->ID, 'full'));
+					foreach ($posts as $post) {
+
 					?>
 						<div class="c-cards-grid__item">
 							<article class="c-card c-card--grid c-card--grid--primary ">
 								<a href="<?php the_permalink(); ?>" class="c-card__wrap">
 									<figure class="c-card__image">
-										<div class="c-crop c-crop--ratio-3x2">
-											<img width="900" height="600" src="<?php echo $imagePath; ?>" class="c-crop__img wp-post-image visible" />
-										</div>
+
+										<?php echo get_the_post_thumbnail(); ?>
+
 										<!-- .c-crop -->
 									</figure>
 									<!-- .c-card__image -->
@@ -692,18 +758,18 @@ get_header();
 						"orderby"        => "date",
 						"order"          => "DESC"
 					);
-					$my_posts = get_posts($args);
+					$posts = get_posts($args);
 
-					foreach ($my_posts as $post) {
-						$imagePath = str_replace('http://localhost/rollingstone/wp-content', S3_UPLOADS_BUCKET_URL, get_the_post_thumbnail_url($post->ID, 'full'));
+					foreach ($posts as $post) {
+
 					?>
 						<div class="c-cards-grid__item">
 							<article class="c-card c-card--grid c-card--grid--primary ">
 								<a href="<?php the_permalink(); ?>" class="c-card__wrap">
 									<figure class="c-card__image">
-										<div class="c-crop c-crop--ratio-3x2">
-											<img width="900" height="600" src="<?php echo $imagePath; ?>" class="c-crop__img wp-post-image visible" />
-										</div>
+
+										<?php echo get_the_post_thumbnail(); ?>
+
 										<!-- .c-crop -->
 									</figure>
 									<!-- .c-card__image -->
@@ -772,8 +838,174 @@ get_header();
 		<!-- /.l-section__content -->
 	</div>
 	<!-- /.l-section -->
-	
+
 	<!-- .l-footer -->
 </div>
+<footer class="l-footer">
+	<div class="l-footer__wrap">
+		<div class="l-footer__nav">
+			<nav class="l-footer__menu">
+				<div class="c-page-nav c-page-nav--footer c-page-nav--cta c-page-nav--1-column" data-dropdown="">
+					<ul class="c-page-nav__list">
+						<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+							<span class="c-page-nav__link t-bold">Get The Magazine</span>
+						</li>
+						<!-- .c-page-nav__item -->
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="/subscribe-magazine/" class="c-page-nav__link t-semibold " title="SUBSCRIBE NOW" target="_blank">SUBSCRIBE NOW</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="/subscribe-magazine/?gift=1" class="c-page-nav__link t-semibold " title="GIVE A GIFT" target="_blank">GIVE A GIFT</a>
+						</li>
+					</ul>
+					<!-- .c-page-nav__list -->
+				</div>
+				<!-- .c-page-nav--footer -->
+				<div class="c-page-nav c-page-nav--footer c-page-nav--1-column" data-dropdown="">
+					<ul class="c-page-nav__list">
+						<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+							<span class="c-page-nav__link t-bold">About</span>
+						</li>
+						<!-- .c-page-nav__item -->
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://thebrag.media/" class="c-page-nav__link t-semibold " title="Advertise" target="_blank">Advertise</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://thebrag.media/privacy-policy/" class="c-page-nav__link t-semibold " title="Privacy Policy" target="_blank">Privacy Policy</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://thebrag.media/terms-and-conditions/" class="c-page-nav__link t-semibold " title="Competition Ts &amp; Cs" target="_blank">Competition Ts &amp; Cs</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://thebrag.com/media/terms-of-use/" class="c-page-nav__link t-semibold " title="Terms of use" target="_blank">Terms of use</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://thebrag.com/media/editorial-code/" class="c-page-nav__link t-semibold " title="Editorial Code">Editorial Code</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="mailto:hello@thebrag.media" class="c-page-nav__link t-semibold " title="Contact us">Contact us</a>
+						</li>
+						<!-- <li class="c-page-nav__item" data-ripple="inverted"><a href="#" class="c-page-nav__link t-semibold privacy-consent" target="_blank"></a></li> -->
+					</ul>
+					<!-- .c-page-nav__list -->
+				</div>
+				<!-- .c-page-nav--footer -->
+			</nav>
+
+			<nav class="l-footer__menu l-footer__menu--wide">
+				<div class="c-page-nav c-page-nav--footer c-page-nav--2-columns" data-dropdown="">
+					<ul class="c-page-nav__list">
+						<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+							<span class="c-page-nav__link t-bold">Rolling Stone</span>
+						</li>
+						<!-- .c-page-nav__item -->
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/music/" class="c-page-nav__link t-semibold " title="Music">Music</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/tv/" class="c-page-nav__link t-semibold " title="TV">TV</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/movies/" class="c-page-nav__link t-semibold " title="Movies">Movies</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/politics/" class="c-page-nav__link t-semibold " title="Politics">Politics</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/culture/" class="c-page-nav__link t-semibold " title="Culture">Culture</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/sports/" class="c-page-nav__link t-semibold " title="Sports">Sports</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://au.rollingstone.com/rolling-stone-awards-2022/" class="c-page-nav__link t-semibold " title="RS Awards 22">RS Awards 22</a>
+						</li>
+					</ul>
+					<!-- .c-page-nav__list -->
+				</div>
+				<!-- .c-page-nav--footer -->
+				<br>
+				<div class="c-page-nav c-page-nav--footer c-page-nav--1-column" data-dropdown="">
+					<ul class="c-page-nav__list">
+						<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+							<span class="c-page-nav__link t-bold">Connect With Us</span>
+						</li>
+						<!-- .c-page-nav__item -->
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://www.facebook.com/rollingstoneaustralia/" class="c-page-nav__link t-semibold " title="Facebook" target="_blank">
+								<span class="c-page-nav__icon c-icon c-icon--inline c-icon--inverted c-icon--round">
+									<svg>
+										<use xlink:href="#svg-icon-facebook"></use>
+									</svg>
+								</span>Facebook </a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://twitter.com/rollingstoneaus" class="c-page-nav__link t-semibold " title="Twitter" target="_blank">
+								<span class="c-page-nav__icon c-icon c-icon--inline c-icon--inverted c-icon--round">
+									<svg>
+										<use xlink:href="#svg-icon-twitter"></use>
+									</svg>
+								</span>Twitter </a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://instagram.com/rollingstoneaus" class="c-page-nav__link t-semibold " title="Instagram" target="_blank">
+								<span class="c-page-nav__icon c-icon c-icon--inline c-icon--inverted c-icon--round">
+									<svg>
+										<use xlink:href="#svg-icon-instagram"></use>
+									</svg>
+								</span>Instagram </a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://www.youtube.com/channel/UC5ogXwEsy_q8_2DQHp1RU8A" class="c-page-nav__link t-semibold " title="YouTube" target="_blank">
+								<span class="c-page-nav__icon c-icon c-icon--inline c-icon--inverted c-icon--round">
+									<svg>
+										<use xlink:href="#svg-icon-youtube"></use>
+									</svg>
+								</span>YouTube </a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="https://thebrag.com/observer/" class="c-page-nav__link t-semibold " title="Subscribe to our Newsletters" target="_blank">
+								<span class="c-page-nav__icon c-icon c-icon--inline c-icon--inverted c-icon--round">
+									<svg>
+										<use xlink:href="#svg-icon-email"></use>
+									</svg>
+								</span>Subscribe to our Newsletters </a>
+						</li>
+					</ul>
+					<!-- .c-page-nav__list -->
+				</div>
+				<!-- .c-page-nav--footer -->
+			</nav>
+			<!-- .l-footer__menu -->
+		</div>
+		<!-- .l-footer__nav -->
+		<div class="l-footer__newsletter" style="border-bottom: 0;"></div>
+		<!-- .l-footer__newsletter -->
+		<div class="l-footer__cover">
+			<a href="https://au.rollingstone.com/subscribe-magazine/" target="_blank">
+				<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/08/014_RSAUNZ_COVER-TroyeSivan_v.jpg?w=250" data-src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/08/014_RSAUNZ_COVER-TroyeSivan_v.jpg?w=250" alt="" class="l-footer__cover-image" style="width: 250px">
+			</a>
+		</div>
+		<!-- .l-footer__cover -->
+	</div>
+	<!-- .l-footer__wrap -->
+	<div style="padding: 0 1rem;">
+		<div class="l-footer__tip">
+			<p class="l-footer__tip-heading t-bold">Have you got Tip/Op-Ed/Video?</p>
+			<div class="l-footer__tip-body"></div>
+			<a class="l-footer__tip-link t-bold" href="https://thebrag.media/submit-a-tip/" target="_blank">
+				<span>Send Us a Tip</span>
+			</a>
+			<a class="l-footer__tip-link t-bold" href="https://thebrag.media/how-to-submit-an-op-ed-essay/" target="_blank">
+				<span>Send Us an op-ed</span>
+			</a>
+			<a class="l-footer__tip-link t-bold" href="https://thebrag.media/submit/" target="_blank">
+				<span>Send Us a video</span>
+			</a>
+			<img class="l-footer__logo" src="https://cdn-r2-2.thebrag.com/assets/images/RSAUwhitewhite_WEB.png">
+		</div>
+		<!-- .l-footer__tip -->
+	</div>
+</footer>
 <?php
 get_footer();

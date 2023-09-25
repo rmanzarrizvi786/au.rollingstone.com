@@ -582,3 +582,17 @@ function tbm_the_excerpt( $excerpt ) {
 
     return $excerpt . '.';
 }
+
+add_filter( 'post_thumbnail_html', 'my_post_image_html', 10, 5 );
+
+function my_post_image_html( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+
+  $upload_dir = wp_upload_dir();
+  $base_url = $upload_dir['baseurl'];
+
+  // Change the default upload directory to AWS Bucket link
+  $AWSBucket = 'https://cdn-r2-1.thebrag.com/rs/uploads';
+  $html = str_replace($base_url, $AWSBucket, $html);
+
+  return $html;
+}
