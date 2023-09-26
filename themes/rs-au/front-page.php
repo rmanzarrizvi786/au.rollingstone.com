@@ -10,8 +10,8 @@
 get_header();
 ?>
 <div class="l-page__content">
-	<div class="l-home-top">
-		<div class="l-home-top__3-pack">
+	<div class="l-home-top" style="max-height: 650px !important;">
+		<div class="l-home-top__3-pack ">
 			<section class="l-3-pack l-3-pack--reversed">
 				<?php
 				$args = array(
@@ -26,38 +26,41 @@ get_header();
 				);
 				$videoPosts = get_posts($args);
 				foreach ($videoPosts as $post) {
+					//echo get_home_url();
+					//exit;
+					$imageURL = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail');
+					$imageURL = str_replace(get_home_url() . '/wp-content', S3_UPLOADS_BUCKET_URL, $imageURL);
 				?>
 					<div class="l-3-pack__item l-3-pack__item--primary">
 						<article class="c-card c-card--overlay c-card--overlay--home">
 							<a href="<?php the_permalink(); ?>" class="c-card__wrap">
-								<figure class="c-card__image" id="img-article-50043">
+								<figure class="c-card__image" id="img-article-<?php $post->ID; ?>">
+
 									<div class="c-crop c-crop--ratio-5x6">
-										<?php echo get_the_post_thumbnail(); ?>
-									</div>
-									<!-- .c-crop -->
-								</figure>
-								<!-- .c-card__image -->
+										<img width="725" height="810" src="<?php echo $imageURL; ?>?resize=725,870&amp;w=440" data-src="<?php echo $imageURL; ?>?resize=725,870&amp;w=440" class="c-crop__img wp-post-image visible" alt="" decoding="async" fetchpriority="high" data-srcset="<?php echo $imageURL; ?>?resize=725,870&amp;w=440 440w, <?php echo $imageURL; ?>?resize=725,870&amp;w=560 560w, <?php echo $imageURL; ?>?resize=725,870&amp;w=660 660w, <?php echo $imageURL; ?>?resize=725,870&amp;w=725 725w" sizes="(max-width: 480px) 440px, (max-width: 767px) 725px, (max-width: 959px) 660px, 560px" srcset="<?php echo $imageURL; ?>?resize=725,870&amp;w=440 440w, <?php echo $imageURL; ?>?resize=725,870&amp;w=560 560w, <?php echo $imageURL; ?>?resize=725,870&amp;w=660 660w, <?php echo $imageURL; ?>?resize=725,870&amp;w=725 725w">
+									</div><!-- .c-crop -->
+								</figure><!-- .c-card__image -->
 								<header class="c-card__header">
-									<div class="c-badge c-badge--sponsored"></div>
-									<!-- .c-badge--sponsored -->
+									<div class="c-badge c-badge--sponsored">
+									</div><!-- .c-badge--sponsored -->
 									<h3 class="c-card__heading t-bold">
-										<?php the_title(); ?>
-									</h3>
-									<!-- .c-card__heading -->
+										“<?php the_title(); ?>”
+									</h3><!-- .c-card__heading -->
 									<div class="c-card__tag t-bold t-bold--upper">
 										<span class="screen-reader-text">Posted in:</span>
-										<span class="c-card__featured-tag"> Music News</span>
-									</div>
-									<!-- c-card__tag -->
+										<span class="c-card__featured-tag"> <?php echo get_the_category()[0]->name; ?> News</span>
+									</div><!-- c-card__tag -->
+
 									<p class="c-card__lead">
-										<?php echo wp_trim_words($post->post_content, 20); ?>
-									</p>
-									<!-- c-card__lead -->
-								</header>
-								<!-- .c-card__header -->
-							</a>
-							<!-- .c-card__wrap -->
+
+										<?php echo wp_trim_words($post->post_content, 12); ?>
+									</p><!-- c-card__lead -->
+
+
+								</header><!-- .c-card__header -->
+							</a><!-- .c-card__wrap -->
 						</article>
+
 						<!-- .c-card--overlay -->
 					</div>
 				<?php } ?>
@@ -202,7 +205,7 @@ get_header();
 				<h3 class="c-section-header__heading t-bold t-bold--condensed">
 					Music
 				</h3>
-				<a href="https://au.rollingstone.com/music/" class="c-section-header__cta t-semibold t-semibold--upper t-semibold--loose"> View All </a>
+				<a href="<?php echo get_home_url(); ?>/music/" class="c-section-header__cta t-semibold t-semibold--upper t-semibold--loose"> View All </a>
 				<p class="c-section-header__msg"> You have set the display of this section to be hidden. <br> Click the button to the right to show it again. </p>
 				<!-- /.c-section-header__msg -->
 				<a href="#" class="c-section-header__btn" data-section-toggle="">
@@ -229,17 +232,19 @@ get_header();
 					$posts = get_posts($args);
 
 					foreach ($posts as $post) {
+						$imageURL = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail');
+						$imageURL = str_replace(get_home_url() . '/wp-content', S3_UPLOADS_BUCKET_URL, $imageURL);
 
 					?>
 						<div class="c-cards-grid__item">
 							<article class="c-card c-card--grid c-card--grid--primary ">
 								<a href="<?php the_permalink(); ?>" class="c-card__wrap">
 									<figure class="c-card__image">
-
-										<?php echo get_the_post_thumbnail(); ?>
-
-										<!-- .c-crop -->
+										<div class="c-crop c-crop--ratio-3x2">
+											<img width="900" height="600" src="<?php echo $imageURL; ?>?resize=900,600&amp;w=160" data-src="<?php echo $imageURL; ?>?resize=900,600&amp;w=160" class="c-crop__img wp-post-image visible" alt="Nirvana's In Utero" decoding="async" data-srcset="<?php echo $imageURL; ?>?resize=900,600&amp;w=160 160w, <?php echo $imageURL; ?>?resize=900,600&amp;w=285 285w, <?php echo $imageURL; ?>?resize=900,600&amp;w=335 335w, <?php echo $imageURL; ?>?resize=900,600&amp;w=730 730w" sizes="(max-width: 767px) 730px, (max-width: 380px) 345px, 285px" srcset="<?php echo $imageURL; ?>?resize=900,600&amp;w=160 160w, <?php echo $imageURL; ?>?resize=900,600&amp;w=285 285w, <?php echo $imageURL; ?>?resize=900,600&amp;w=335 335w, <?php echo $imageURL; ?>?resize=900,600&amp;w=730 730w">
+										</div><!-- .c-crop -->
 									</figure>
+
 									<!-- .c-card__image -->
 									<header class="c-card__header">
 										<div class="c-badge c-badge--sponsored"></div>
@@ -248,7 +253,7 @@ get_header();
 										<!-- .c-card__heading -->
 										<div class="c-card__tag t-bold t-bold--upper">
 											<span class="screen-reader-text">Posted in:</span>
-											<span class="c-card__featured-tag"> Music News</span>
+											<span class="c-card__featured-tag"> <?php echo get_the_category()[0]->name; ?> News</span>
 										</div>
 										<!-- c-card__tag -->
 										<div class="c-card__byline t-copy"> By: <?php echo get_the_author_meta('display_name', $post->post_author); ?> </div>
@@ -380,16 +385,16 @@ get_header();
 					$posts = get_posts($args);
 
 					foreach ($posts as $post) {
-
+						$imageURL = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail');
+						$imageURL = str_replace(get_home_url() . '/wp-content', S3_UPLOADS_BUCKET_URL, $imageURL);
 					?>
 						<div class="c-cards-grid__item">
 							<article class="c-card c-card--grid c-card--grid--primary ">
 								<a href="<?php the_permalink(); ?>" class="c-card__wrap">
 									<figure class="c-card__image">
-
-										<?php echo get_the_post_thumbnail(); ?>
-
-										<!-- .c-crop -->
+										<div class="c-crop c-crop--ratio-3x2">
+											<img width="900" height="600" src="<?php echo $imageURL; ?>?resize=900,600&amp;w=160" data-src="<?php echo $imageURL; ?>?resize=900,600&amp;w=160" class="c-crop__img wp-post-image visible" alt="Nirvana's In Utero" decoding="async" data-srcset="<?php echo $imageURL; ?>?resize=900,600&amp;w=160 160w, <?php echo $imageURL; ?>?resize=900,600&amp;w=285 285w, <?php echo $imageURL; ?>?resize=900,600&amp;w=335 335w, <?php echo $imageURL; ?>?resize=900,600&amp;w=730 730w" sizes="(max-width: 767px) 730px, (max-width: 380px) 345px, 285px" srcset="<?php echo $imageURL; ?>?resize=900,600&amp;w=160 160w, <?php echo $imageURL; ?>?resize=900,600&amp;w=285 285w, <?php echo $imageURL; ?>?resize=900,600&amp;w=335 335w, <?php echo $imageURL; ?>?resize=900,600&amp;w=730 730w">
+										</div><!-- .c-crop -->
 									</figure>
 									<!-- .c-card__image -->
 									<header class="c-card__header">
@@ -399,7 +404,7 @@ get_header();
 										<!-- .c-card__heading -->
 										<div class="c-card__tag t-bold t-bold--upper">
 											<span class="screen-reader-text">Posted in:</span>
-											<span class="c-card__featured-tag"> Music News</span>
+											<span class="c-card__featured-tag"> <?php echo get_the_category()[0]->name; ?> News</span>
 										</div>
 										<!-- c-card__tag -->
 										<div class="c-card__byline t-copy"> By: <?php echo get_the_author_meta('display_name', $post->post_author); ?> </div>
@@ -472,7 +477,7 @@ get_header();
 				<div class="c-video-gallery__main">
 					<?php
 					$args = array(
-						//'category_name' => 'culture',
+
 						"posts_per_page" => 1,
 						'post_type' => 'pmc_top_video',
 						"orderby"        => "date",
@@ -543,7 +548,7 @@ get_header();
 						<!-- /.c-video-gallery__item c-slider__item -->
 						<?php
 						$args = array(
-							//'category_name' => 'culture',
+
 							"posts_per_page" => 10,
 							'post_type' => 'pmc_top_video',
 							"orderby"        => "date",
@@ -554,8 +559,8 @@ get_header();
 						);
 						$videoPosts = get_posts($args);
 						foreach ($videoPosts as $post) {
-							//echo '<pre>';
-							//echo $post->ID;
+							$imageURL = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail');
+							$imageURL = str_replace(get_home_url() . '/wp-content', S3_UPLOADS_BUCKET_URL, $imageURL);
 							$videoUrl = get_post_meta($post->ID, 'pmc_top_video_source', true); //get_post_custom_values('video_url');
 							if ($videoUrl != '') {
 
@@ -582,7 +587,9 @@ get_header();
 												</div>
 												<!-- /.c-card__badge -->
 
-												<?php echo get_the_post_thumbnail(); ?>
+												<div class="c-crop c-crop--ratio-7x4">
+													<img width="1260" height="720" src="<?php echo $imageURL; ?>?resize=1260,720&amp;w=300" data-src="<?php echo $imageURL; ?>?resize=1260,720&amp;w=300" class="c-crop__img wp-post-image visible" alt="Image of E^ST" decoding="async" data-srcset="<?php echo $imageURL; ?>?resize=1260,720&amp;w=300 300w, <?php echo $imageURL; ?>?resize=1260,720&amp;w=450 450w, <?php echo $imageURL; ?>?resize=1260,720&amp;w=350 350w, <?php echo $imageURL; ?>?resize=1260,720&amp;w=210 210w" sizes="(max-width: 480px) 210px, (max-width: 767px) 350px,(max-width: 959px) 450px, 300px" srcset="<?php echo $imageURL; ?>?resize=1260,720&amp;w=300 300w, <?php echo $imageURL; ?>?resize=1260,720&amp;w=450 450w, <?php echo $imageURL; ?>?resize=1260,720&amp;w=350 350w, <?php echo $imageURL; ?>?resize=1260,720&amp;w=210 210w">
+												</div>
 
 
 												<!-- .c-crop -->
@@ -649,16 +656,17 @@ get_header();
 					$posts = get_posts($args);
 
 					foreach ($posts as $post) {
+						$imageURL = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail');
+						$imageURL = str_replace(get_home_url() . '/wp-content', S3_UPLOADS_BUCKET_URL, $imageURL);
 
 					?>
 						<div class="c-cards-grid__item">
 							<article class="c-card c-card--grid c-card--grid--primary ">
 								<a href="<?php the_permalink(); ?>" class="c-card__wrap">
 									<figure class="c-card__image">
-
-										<?php echo get_the_post_thumbnail(); ?>
-
-										<!-- .c-crop -->
+										<div class="c-crop c-crop--ratio-3x2">
+											<img width="900" height="600" src="<?php echo $imageURL; ?>?resize=900,600&amp;w=160" data-src="<?php echo $imageURL; ?>?resize=900,600&amp;w=160" class="c-crop__img wp-post-image visible" alt="Nirvana's In Utero" decoding="async" data-srcset="<?php echo $imageURL; ?>?resize=900,600&amp;w=160 160w, <?php echo $imageURL; ?>?resize=900,600&amp;w=285 285w, <?php echo $imageURL; ?>?resize=900,600&amp;w=335 335w, <?php echo $imageURL; ?>?resize=900,600&amp;w=730 730w" sizes="(max-width: 767px) 730px, (max-width: 380px) 345px, 285px" srcset="<?php echo $imageURL; ?>?resize=900,600&amp;w=160 160w, <?php echo $imageURL; ?>?resize=900,600&amp;w=285 285w, <?php echo $imageURL; ?>?resize=900,600&amp;w=335 335w, <?php echo $imageURL; ?>?resize=900,600&amp;w=730 730w">
+										</div><!-- .c-crop -->
 									</figure>
 									<!-- .c-card__image -->
 									<header class="c-card__header">
@@ -668,7 +676,7 @@ get_header();
 										<!-- .c-card__heading -->
 										<div class="c-card__tag t-bold t-bold--upper">
 											<span class="screen-reader-text">Posted in:</span>
-											<span class="c-card__featured-tag"> Music News</span>
+											<span class="c-card__featured-tag"> <?php echo get_the_category()[0]->name; ?> News</span>
 										</div>
 										<!-- c-card__tag -->
 										<div class="c-card__byline t-copy"> By: <?php echo get_the_author_meta('display_name', $post->post_author); ?> </div>
@@ -760,16 +768,17 @@ get_header();
 					$posts = get_posts($args);
 
 					foreach ($posts as $post) {
+						$imageURL = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail');
+						$imageURL = str_replace(get_home_url() . '/wp-content', S3_UPLOADS_BUCKET_URL, $imageURL);
 
 					?>
 						<div class="c-cards-grid__item">
 							<article class="c-card c-card--grid c-card--grid--primary ">
 								<a href="<?php the_permalink(); ?>" class="c-card__wrap">
 									<figure class="c-card__image">
-
-										<?php echo get_the_post_thumbnail(); ?>
-
-										<!-- .c-crop -->
+										<div class="c-crop c-crop--ratio-3x2">
+											<img width="900" height="600" src="<?php echo $imageURL; ?>?resize=900,600&amp;w=160" data-src="<?php echo $imageURL; ?>?resize=900,600&amp;w=160" class="c-crop__img wp-post-image visible" alt="Nirvana's In Utero" decoding="async" data-srcset="<?php echo $imageURL; ?>?resize=900,600&amp;w=160 160w, <?php echo $imageURL; ?>?resize=900,600&amp;w=285 285w, <?php echo $imageURL; ?>?resize=900,600&amp;w=335 335w, <?php echo $imageURL; ?>?resize=900,600&amp;w=730 730w" sizes="(max-width: 767px) 730px, (max-width: 380px) 345px, 285px" srcset="<?php echo $imageURL; ?>?resize=900,600&amp;w=160 160w, <?php echo $imageURL; ?>?resize=900,600&amp;w=285 285w, <?php echo $imageURL; ?>?resize=900,600&amp;w=335 335w, <?php echo $imageURL; ?>?resize=900,600&amp;w=730 730w">
+										</div><!-- .c-crop -->
 									</figure>
 									<!-- .c-card__image -->
 									<header class="c-card__header">
@@ -779,7 +788,7 @@ get_header();
 										<!-- .c-card__heading -->
 										<div class="c-card__tag t-bold t-bold--upper">
 											<span class="screen-reader-text">Posted in:</span>
-											<span class="c-card__featured-tag"> Music News</span>
+											<span class="c-card__featured-tag"> <?php echo get_the_category()[0]->name; ?> News</span>
 										</div>
 										<!-- c-card__tag -->
 										<div class="c-card__byline t-copy"> By: <?php echo get_the_author_meta('display_name', $post->post_author); ?> </div>
