@@ -1,0 +1,11 @@
+name: tbm-git-actions
+run-name: ${{ github.actor }} is running GitHub Actions
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: editorconfig-checker-action
+        # You may pin to the exact commit or the version.
+        # uses: editorconfig-checker/action-editorconfig-checker@0527b11555ed46afd00df746f35b79cb7f7b68c2
+        uses: editorconfig-checker/action-editorconfig-checker@v1.0.0
