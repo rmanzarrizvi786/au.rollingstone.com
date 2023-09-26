@@ -66,7 +66,7 @@ class MediaHelper
         $type = @exif_imagetype($url);
 
         if ($type != false && ($type == (IMAGETYPE_PNG || IMAGETYPE_JPEG))) {
-            return ("https://app.thebrag.com/img-socl/?url={$url}&nologo=1");
+            return "https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/$url";
         }
 
         return $url;
