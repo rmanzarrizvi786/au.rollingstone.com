@@ -2176,7 +2176,7 @@ class ThemeSetup
 
 new ThemeSetup();
 
-class TBMAds
+class TBMAdsA
 {
 
 	protected $plugin_title;
