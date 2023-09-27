@@ -1187,7 +1187,7 @@ class TBMMagSub {
         require_once __DIR__ . '/classes/coupon.class.php';
 
         $coupon_obj = new Coupon();
-        $coupon = $coupon_obj->validateCoupon($coupon_code, $email);
+        $coupon = $coupon_obj->validateCoupon($coupon_code, $email, $is_providoor);
 
         $price = 0;
 
