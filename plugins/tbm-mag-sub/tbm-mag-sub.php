@@ -31,6 +31,7 @@ class TBMMagSub {
     protected $is_promotion_running;
     protected $promotion_amount_off;
 
+    protected $rest_api_keys; // Keys for API to RS AU Endpoints
 
     protected $api_brag_user; // Array to hold API info for Brag's API (key, url)
 

@@ -48,6 +48,7 @@ class RSAU_MailChimp {
         register_rest_route( 'tbm_mailchimp/v1', '/adlinks', array(
           'methods' => 'GET',
           'callback' => array( $this,  'tbm_edm_adlinks_func' ),
+          'permission_callback' => '__return_true',
         ) );
       } );
 
