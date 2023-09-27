@@ -136,7 +136,13 @@ class TBMMagSub {
         add_action('wp_ajax_process_subscription', array($this, 'process_subscription'));
         add_action('wp_ajax_nopriv_process_subscription', array($this, 'process_subscription'));
 
+        add_action('wp_ajax_pprocess_subscription_providoor', array($this, 'process_subscription_providoor'));
+        add_action('wp_ajax_nopriv_process_subscription_providoor', array($this, 'process_subscription_providoor'));
+
         /* Salesforce - Order complete */
+        add_action('wp_ajax_order_complete_providoor', array($this, 'order_complete_providoor'));
+        add_action('wp_ajax_nopriv_order_complete_providoor', array($this, 'order_complete_providoor'));
+
         add_action('wp_ajax_order_complete', array($this, 'order_complete'));
         add_action('wp_ajax_nopriv_order_complete', array($this, 'order_complete'));
 
@@ -197,6 +203,125 @@ class TBMMagSub {
             'client_secret' => $payment_intent->client_secret
         ));
 
+        wp_die();
+    }
+
+    public function process_subscription_providoor() {
+        // Check the nonce
+        if (!check_ajax_referer($this->plugin_name . '_nonce', 'nonce')) {
+            wp_send_json_error(['error' => ['message' => 'Whoops, like something unexpected happened on our side of things. Feel free to refresh your browser and give it another shot!']]);
+            wp_die();
+        }
+
+        require_once __DIR__ . '/classes/payment.class.php';
+        require_once __DIR__ . '/classes/coupon.class.php';
+        require_once __DIR__ . '/classes/subscription.class.php';
+
+        $post = $_POST;
+
+        foreach ($post as $key => $value) {
+            if ('v' == $key) {
+                continue;
+            }
+
+            $_SESSION[$key] = $value;
+        }
+
+        $required_fields = [
+            'buyer_full_name',
+            'sub_email',
+            'sub_full_name',
+            'sub_address_1',
+            'sub_email_reciever',
+            'sub_city',
+            'sub_state',
+            'sub_postcode',
+            'sub_country',
+            'shipping_address_1',
+            'shipping_city',
+            'shipping_state',
+            'shipping_postcode',
+            'shipping_country',
+            'buy_option',
+            'coupon_code',
+            'sub_phone',
+            'sub_dob'
+        ];
+
+        $post['buyer_full_name'] = $post['buyer_full_name'];
+        $post['sub_email'] = $post['sub_email'];
+        $post['sub_full_name'] = $post['buyer_full_name'];
+        $post['sub_address_1'] = $post['sub_address_1'];
+        $post['sub_email_reciever'] = $post['sub_email'];
+        $post['sub_city'] = $post['sub_city'];
+        $post['sub_state'] = $post['sub_state'];
+        $post['sub_postcode'] = $post['sub_postcode'];
+        $post['sub_country'] = $post['sub_country'];
+        $post['shipping_address_1'] = $post['sub_address_1'];
+        $post['shipping_address_2'] = $post['sub_address_2'];
+        $post['shipping_city'] = $post['sub_city'];
+        $post['shipping_state'] = $post['sub_state'];
+        $post['shipping_postcode'] = $post['sub_postcode'];
+        $post['shipping_country'] = $post['sub_country'];
+        $post['buy_option'] = $post['buy_option'];
+        $post['coupon_code'] = $post['coupon_code'];
+        $post['sub_phone'] = $post['sub_phone'];
+        $post['sub_dob'] = $post['sub_dob'];
+        $post['is_gift'] = 'no';
+        $post['is_providoor'] = 'yes';
+
+        # Fields validation
+
+        foreach ($required_fields as $required_field) {
+            if (!isset($post[$required_field]) || '' == trim($post[$required_field])) {
+                wp_send_json_error(['error' => ['message' => 'Whoops, looks like you have forgotten to fill out all the necessary fields. Make sure you go back and give us all the info we need!', 'elem' => $required_field]]);
+                wp_die();
+            }
+        }
+
+        if (!is_email($post['sub_email'])) {
+            wp_send_json_error(['error' => ['message' => 'Whoops, looks like you have entered invalid email address! - Billing email']]);
+            wp_die();
+        }
+
+        if (!array_search($post['shipping_country'], Payment::getCountries()) || '0' == array_search($post['shipping_country'], Payment::getCountries())) {
+            wp_send_json_error(['error' => ['message' => 'Looks like you forgot to select your country. Make sure you press the drop down list and pick the correct one!']]);
+            wp_die();
+        }
+
+        # Coupon code + Validation
+
+        $discount = 0;
+
+        $coupon = [];
+        $post['coupon_id'] = null;
+        $coupon_code = isset($post['coupon_code']) && '' != trim($post['coupon_code']) ? trim($post['coupon_code']) : '';
+
+        if (isset($post['coupon_code']) && '' != trim($post['coupon_code'])) {
+            $coupon_code = trim($post['coupon_code']);
+            $coupon_obj = new Coupon();
+            $coupon = $coupon_obj->validateCoupon($coupon_code, $post['sub_email'], true);
+        }
+
+        if (isset($coupon['error'])) {
+            wp_send_json_error(['error' => ['message' => $coupon['error']]]);
+            // 'Looks like that coupon code is invalid. If you are sure you are entering it correctly, send us an email at subscribe@thebrag.media to sort out the issue.']]);
+            wp_die();
+        } elseif (is_null($coupon)) {
+            wp_send_json_error(['error' => ['Looks like that coupon code is invalid. If you are sure you are entering it correctly, send us an email at subscribe@thebrag.media to sort out the issue.']]);
+            wp_die();
+        } elseif (isset($coupon['success'])) {
+            $discount = $coupon['amount_off'];
+            $post['coupon_id'] = $coupon['id'];
+            $post['coupon_code'] = '';
+        } else {
+            $post['coupon_code'] = '';
+        }
+    
+        $subscription = new Subscription();
+        $subscription->create( $post );
+
+        wp_send_json_success(array('subscription' => $subscription, 'invoice' => []));
         wp_die();
     }
 
@@ -713,6 +838,192 @@ class TBMMagSub {
         return \Stripe\Plan::retrieve($self->stripe['plan_id']);
     }
 
+    public function order_complete_providoor() {
+        if (!check_ajax_referer($this->plugin_name . '_nonce', 'nonce')) {
+            error_log('--Subscription Error | Invalid Nonce');
+            wp_mail('dev@thebrag.media', 'RS Mag Error: Invalid Nonce', 'Invalid Nonce');
+            wp_send_json_error(['error' => ['message' => 'Whoops, like something unexpected happened on our side of things. Feel free to refresh your browser and give it another shot!']]);
+            wp_die();
+        }
+        
+        // Nonce is valid at this stage, so proceeding
+
+        require_once __DIR__ . '/classes/subscription.class.php';
+        require_once __DIR__ . '/classes/coupon.class.php';
+        require_once __DIR__ . '/classes/crm.class.php';
+
+        $post = $_POST;
+
+        # Get Subscription
+        $subscription = new Subscription();
+        $subscriber = $subscription->get($post['subscription_id']);
+        $subscriber->update(
+            ['status' => 'active']
+        );
+
+        $TBM_Coupon_code__c = '';
+
+        # Disable coupon
+
+        if (!is_null($subscriber->coupon_id) && $subscriber->coupon_id > 0) {
+            $coupon_obj = new Coupon();
+            $tbm_coupon = $coupon_obj->get($subscriber->coupon_id);
+                
+            if ($tbm_coupon) {
+                $TBM_Coupon_code__c = $tbm_coupon->coupon_code;
+
+                $tbm_coupon->update([
+                    'status' => 'inactive',
+                    'used_at' => current_time('mysql')
+                ]);
+            }
+        }
+
+        # Add to CRM
+
+        $crm = new CRM();
+        $crm_record = $crm->createSubscription($subscriber, $TBM_Coupon_code__c);
+            
+        if (isset($crm_record->error)) {
+            $subscriber->update([
+                'crm_error' => $crm_record->error,
+            ]);
+                    
+            wp_send_json_error(['error' => ['message' => $crm_record['error']]]);
+            wp_die();
+        } else {
+            $subscriber->update([
+                'salesforce_id' => $crm_record->id,
+            ]);
+        }
+
+        unset($_SESSION);
+
+        # Create user on thebrag.com
+
+        $auth0_user = $this->get_or_create_user( ['email' => $subscriber->email], false );
+        $user_id = isset( $auth0_user['user_id'] ) ? $auth0_user['user_id'] : false;
+
+        # Create digital subscription
+
+        require_once __DIR__ . '/classes/digital.class.php';
+
+        if($subscriber->buy_option == 'digitalonly') {
+            $digital = new Digital();
+
+            $digital_subsciber_latest = $digital->createSubscriptionLatest($subscriber);
+
+            if (isset($digital_subsciber['error'])) {
+                $subscriber->update([
+                    'crm_error' => $digital_subsciber['error'],
+                ]);
+                        
+                wp_send_json_error(['error' => ['message' => $digital_subsciber['error']]]);
+                wp_die();
+            } else {
+                $subscriber->update([
+                    'latest_issue_link' => $digital_subsciber_latest['latest_issue_link'],
+                    'express_library_link' => $digital_subsciber_latest['express_library_link'],
+                    'library_link' => $digital_subsciber_latest['library_link'],
+                    'entitlement_link' => $digital_subsciber_latest['entitlement_link'],
+                ]);
+
+                $digital->createSubscriptionLibrary($subscriber);
+            }
+        }
+
+        // Track event in Braze
+        if ($user_id !== false) {
+            require __DIR__ . '/classes/braze.class.php';
+
+            $braze = new Braze();
+            $braze->setMethod('POST');
+
+            $attributes = [
+                'external_id' => $user_id,
+                'email' => $subscriber->email,
+                'email_reciever' => $subscriber->email_reciever,
+                'rs_mag_subscriber' => true,
+                'rs_mag_active' => true
+            ];
+
+            if ($subscriber->is_gift == 'yes') {
+                $attributes['rs_mag_gift_subscriber'] = true;
+            }
+
+            $braze_purchase_properties = [
+                // 'amount_paid' => $subscriber->amount_paid / 100,
+                'is_gift' => $subscriber->is_gift == 'yes',
+                'buy_option' => $subscriber->buy_option,
+                'buyer_name' => isset($subscriber) && !is_null($subscriber) ? $subscriber->full_name : 'Subscriber',
+            ];
+
+            if (isset($auth0_user['new_user']) && $auth0_user['new_user']) {
+                $braze_purchase_properties['email'] = $auth0_user['email'];
+                $braze_purchase_properties['password'] = $auth0_user['password'];
+            }
+
+            $braze->setPayload([
+                'attributes' => [$attributes],
+                'purchases' => [
+                    [
+                        'external_id' => $user_id,
+                        'name' => 'rs_mag_subscribed',
+                        'time' => date('c'),
+                        'product_id' => 'rs_au_magazine',
+                        'product_type' => $subscriber->buy_option,
+                        'currency' => 'AUD',
+                        'price' => $subscriber->amount_paid / 100,
+                        'quantity' => 1,
+                        'properties' => $braze_purchase_properties
+                    ]
+                ]
+            ]);
+            
+            $braze->request('/users/track');
+        }
+
+        // FB Track Event Conversion
+        require_once __DIR__ . '/vendor/autoload.php';
+
+        $fb_access_token = 'EAAJOvrJXAH4BAIawH2P6lZCWt07ZBDhr2WNiplolpjVElDSZAgHZArh7u4ddPtiZC2FYMgRTOQllQt7Y0YAXnmO9ZCEW37nNjXvKV1XFu6bRYLJ6EZBZApIlmpWlFgNV8ecM5qRXZA4gN4syurBZBG0gNyFi3A1KmQpTlUt3FUfpgbuLIMK0kiuHQbLS9FTKHOsVoZD';
+        $fb_pixel_id = '243859349395737';
+        $fb_api = \FacebookAds\Api::init(null, null, $fb_access_token);
+
+        $fb_user_data = (new \FacebookAds\Object\ServerSide\UserData())
+            ->setEmails([$subscriber->email])
+            ->setClientIpAddress($_SERVER['REMOTE_ADDR'])
+            ->setClientUserAgent($_SERVER['HTTP_USER_AGENT']);
+
+        $fb_content = (new \FacebookAds\Object\ServerSide\Content())
+            ->setProductId('RS_AU_Mag')
+            ->setQuantity(1)
+            ->setDeliveryCategory(\FacebookAds\Object\ServerSide\DeliveryCategory::HOME_DELIVERY);
+
+        $fb_custom_data = (new \FacebookAds\Object\ServerSide\CustomData())
+            ->setContents(array($fb_content))
+            ->setCurrency('AUD')
+            ->setValue($subscriber->amount_paid / 100);
+
+        $fb_event = (new \FacebookAds\Object\ServerSide\Event())
+            ->setEventName('Purchase')
+            ->setEventTime(time())
+            ->setEventSourceUrl('https://au.rollingstone.com/subscribe-magazine/')
+            ->setUserData($fb_user_data)
+            ->setCustomData($fb_custom_data)
+            ->setActionSource(\FacebookAds\Object\ServerSide\ActionSource::WEBSITE);
+
+        $fb_events = array();
+        array_push($fb_events, $fb_event);
+
+        $fb_request = (new \FacebookAds\Object\ServerSide\EventRequest($fb_pixel_id))
+            ->setEvents($fb_events);
+        $fb_response = $fb_request->execute();
+
+        wp_send_json_success($user_id);
+        wp_die();
+    }
+
     /*
     * Stripe order successful: Deactivate Coupon + Create Salesforce record
     */
@@ -1178,6 +1489,7 @@ class TBMMagSub {
 
         $coupon_code = $_POST['coupon_code'];
         $buy_option = $_POST['buy_option'];
+        $is_providoor = $_POST['is_providoor'];
 
         $email = null;
         if (isset($_POST['sub_email'])) {
@@ -1313,6 +1625,12 @@ class TBMMagSub {
             'permission_callback' => '__return_true',
         ));
 
+        register_rest_route($this->plugin_name . '/v1', '/next_issue_details', array(
+            'methods' => 'GET',
+            'callback' => [$this, 'rest_next_issue_details'],
+            'permission_callback' => '__return_true',
+        ));
+
         register_rest_route($this->plugin_name . '/v1', '/create_new', array(
             'methods' => 'POST',
             'callback' => [$this, 'rest_create_new'],
@@ -1330,6 +1648,21 @@ class TBMMagSub {
             'callback' => [$this, 'rest_get_buy_options'],
             'permission_callback' => '__return_true',
         ));
+    }
+
+    public function rest_next_issue_details() {
+        $next_issue = get_option('tbm_next_issue_heading');
+        $next_issue_cover = get_option('tbm_next_issue_cover');
+        $next_issue_cover_thumb = get_option('tbm_next_issue_cover_thumb');
+
+        $next_issue_details = [
+            'issue' => $next_issue,
+            'cover' => $next_issue_cover,
+            'cover_thumb' => $next_issue_cover_thumb,
+        ];
+
+        wp_send_json_success($next_issue_details);
+        wp_die();
     }
 
     public function rest_get_buy_options() {
