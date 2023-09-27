@@ -93,6 +93,8 @@ require_once CHILD_THEME_PATH . '/inc-core/classes/widgets/traits/trait-templati
 
 require_once CHILD_THEME_PATH . '/inc-core/classes/class-top-posts.php';
 
+require_once CHILD_THEME_PATH . '/pmc-plugins/fm-widgets/inc/class-fm-widget.php';
+
 require_once CHILD_THEME_PATH . '/pmc-plugins/pmc-options/pmc-options.php';
 require_once CHILD_THEME_PATH . '/pmc-plugins/fm-widgets/fm-widgets.php';
 require_once CHILD_THEME_PATH . '/pmc-plugins/pmc-carousel/pmc-carousel.php';
@@ -100,7 +102,16 @@ require_once CHILD_THEME_PATH . '/pmc-plugins/pmc-linkcontent/pmc-linkcontent.ph
 require_once CHILD_THEME_PATH . '/pmc-plugins/pmc-carousel-widget/pmc-carousel-widget.php';
 require_once CHILD_THEME_PATH . '/pmc-plugins/pmc-primary-taxonomy/pmc-primary-taxonomy.php';
 require_once CHILD_THEME_PATH . '/pmc-plugins/pmc-styled-heading/pmc-styled-heading.php';
+
+require_once CHILD_THEME_PATH . '/inc/classes/widgets/class-video-featured.php';
 require_once CHILD_THEME_PATH . '/pmc-plugins/pmc-top-videos-v2/pmc-top-videos-v2.php';
+
+
+
+
+
+
+
 
 require_once CHILD_THEME_PATH . '/pmc-plugins/pmc-google-tagmanager/pmc-google-tagmanager.php';
 
@@ -546,14 +557,15 @@ function prefix_exclude_password_protected_posts( $query ) {
 function tbm_the_excerpt( $excerpt ) {
     $excerpt = str_replace( ' [&hellip;]', '', $excerpt );
     $excerpt = str_replace( 'St. ', 'St*& ', $excerpt );
+
     $excerpt = str_replace( 'aka. ', 'aka*& ', $excerpt );
     $excerpt = str_replace( 'a.k.a. ', 'a*&a*&a ', $excerpt );
     $excerpt = str_replace( 'a.k.a ', 'a*&a*&a ', $excerpt );
+
     $excerpt = str_replace( 'M.I.A. ', 'm*&i*&a ', $excerpt );
     $excerpt = str_replace( 'M.I.A ', 'm*&i*&a ', $excerpt );
+
     $excerpt = str_replace( 'Dr. ', 'Dr*& ', $excerpt );
-    $excerpt = str_replace( 'L.A.B ', 'L*&A*&B ', $excerpt ); 
-    $excerpt = str_replace( 'L.A.B. ', 'L*&A*&B*& ', $excerpt ); 
 
     $excerpt = explode('// ', $excerpt);
     $excerpt = count( $excerpt ) > 1 ? $excerpt[1] : $excerpt[0];
@@ -567,8 +579,20 @@ function tbm_the_excerpt( $excerpt ) {
     $excerpt = str_replace( 'a*&a*&a ', 'a.k.a. ', $excerpt );
     $excerpt = str_replace( 'm*&i*&a ', 'M.I.A. ', $excerpt );
     $excerpt = str_replace( 'Dr*& ', 'Dr. ', $excerpt );
-    $excerpt = str_replace( 'L*&A*&B ', 'L.A.B ', $excerpt );
-    $excerpt = str_replace( 'L*&A*&B*& ', 'L.A.B. ', $excerpt );
 
     return $excerpt . '.';
+}
+
+add_filter( 'post_thumbnail_html', 'my_post_image_html', 10, 5 );
+
+function my_post_image_html( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+
+  $upload_dir = wp_upload_dir();
+  $base_url = $upload_dir['baseurl'];
+
+  // Change the default upload directory to AWS Bucket link
+  $AWSBucket = 'https://cdn-r2-1.thebrag.com/rs/uploads';
+  $html = str_replace($base_url, $AWSBucket, $html);
+
+  return $html;
 }

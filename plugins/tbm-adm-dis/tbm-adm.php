@@ -15,6 +15,7 @@ class TBMAds
   protected $plugin_title;
   protected $plugin_name;
   protected $plugin_slug;
+  //protected $category;
 
   protected static $_instance;
 
@@ -24,6 +25,7 @@ class TBMAds
     $this->plugin_title = 'TBM Ads';
     $this->plugin_name = 'tbm_ads';
     $this->plugin_slug = 'tbm-ads';
+    //$this->category = 'culture';
 
     add_action('wp_enqueue_scripts', [$this, 'action_wp_enqueue_scripts']);
     add_action('wp_head', [$this, 'action_wp_head']);
@@ -153,7 +155,12 @@ class TBMAds
 
 
       if (isset($section)) {
+        //$fuse_id = $fuse_tags[$ad_location];
+        
         $fuse_id = $fuse_tags[$section][$ad_location];
+        //echo '<pre>';
+        //print_r($fuse_tags[$section]);
+        //exit;
       } else {
         $fuse_id = $fuse_tags[$ad_location];
       }
@@ -167,6 +174,7 @@ class TBMAds
        });
        </script>';
       } else {
+        $category = 'culture';
         $html .= '<script type="text/javascript">
         fusetag.setTargeting("fuse_category", ["' . $category . '"]);
         fusetag.setTargeting("pagepath", ["' . $pagepath . '"]);

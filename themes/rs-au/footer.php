@@ -8,6 +8,140 @@
  */
 
 ?>
+<footer class="l-footer">
+	<div class="l-footer__wrap">
+		<div class="l-footer__nav">
+			<nav class="l-footer__menu">
+				<div class="c-page-nav c-page-nav--footer c-page-nav--cta c-page-nav--1-column" data-dropdown="">
+					<ul class="c-page-nav__list">
+						<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+							<span class="c-page-nav__link t-bold">Get The Magazine</span>
+						</li>
+						<!-- .c-page-nav__item -->
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="<?php echo get_site_url(); ?>/subscribe-magazine/" class="c-page-nav__link t-semibold " title="SUBSCRIBE NOW" target="_blank">SUBSCRIBE NOW</a>
+						</li>
+						<li class="c-page-nav__item" data-ripple="inverted">
+							<a href="<?php echo get_site_url(); ?>/subscribe-magazine/?gift=1" class="c-page-nav__link t-semibold " title="GIVE A GIFT" target="_blank">GIVE A GIFT</a>
+						</li>
+					</ul>
+					<!-- .c-page-nav__list -->
+				</div>
+				<!-- .c-page-nav--footer -->
+				<div class="c-page-nav c-page-nav--footer c-page-nav--1-column" data-dropdown="">
+					<ul class="c-page-nav__list">
+						<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+							<span class="c-page-nav__link t-bold">About</span>
+						</li>
+						<!-- .c-page-nav__item -->
+						<?php
+						$socialNav = wp_get_nav_menu_items(5);
+						foreach ($socialNav as $navItem) {
+
+						?>
+							<li class="c-page-nav__item" data-ripple="inverted">
+								<a href="<?php echo $navItem->url; ?>" class="c-page-nav__link t-semibold " title="<?php echo $navItem->title; ?>"><?php echo $navItem->title; ?></a>
+							</li>
+						<?php
+						}
+						?>
+
+
+						<!-- <li class="c-page-nav__item" data-ripple="inverted"><a href="#" class="c-page-nav__link t-semibold privacy-consent" target="_blank"></a></li> -->
+					</ul>
+					<!-- .c-page-nav__list -->
+				</div>
+				<!-- .c-page-nav--footer -->
+			</nav>
+
+			<nav class="l-footer__menu l-footer__menu--wide">
+				<div class="c-page-nav c-page-nav--footer c-page-nav--2-columns" data-dropdown="">
+					<ul class="c-page-nav__list">
+						<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+							<span class="c-page-nav__link t-bold">Rolling Stone</span>
+						</li>
+						<!-- .c-page-nav__item -->
+						<?php
+						$socialNav = wp_get_nav_menu_items(7);
+						foreach ($socialNav as $navItem) {
+						?>
+							<li class="c-page-nav__item" data-ripple="inverted">
+								<a href="<?php echo $navItem->url; ?>" class="c-page-nav__link t-semibold " title="<?php echo $navItem->title; ?>"><?php echo $navItem->title; ?></a>
+							</li>
+						<?php
+						}
+						?>
+					</ul>
+					<!-- .c-page-nav__list -->
+				</div>
+				<!-- .c-page-nav--footer -->
+				<br>
+				<div class="c-page-nav c-page-nav--footer c-page-nav--1-column" data-dropdown="">
+					<ul class="c-page-nav__list">
+						<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
+							<span class="c-page-nav__link t-bold"><?php esc_html_e('Connect With Us', 'pmc-rollingstone'); ?></span>
+						</li>
+						<?php
+						$socialNav = wp_get_nav_menu_items(6);
+						foreach ($socialNav as $navItem) {
+							if (str_contains($navItem->title, 'ubscribe')) {
+								$iconName = 'email';
+							} else {
+								$iconName = strtolower($navItem->title);
+							}
+						?>
+							<li class="c-page-nav__item" data-ripple="inverted">
+								<a href="<?php echo $navItem->url; ?>" class="c-page-nav__link t-semibold " title="<?php echo $navItem->title; ?>" target="_blank">
+									<span class="c-page-nav__icon c-icon c-icon--inline c-icon--inverted c-icon--round">
+										<!-- <i class="fa-brands fa-facebook-f"></i> -->
+
+										<img src="<?php echo TBM_CDN; ?>/assets/images/icon-<?php echo $iconName; ?>.svg" class="img-responsive" style="width:10px; height:12px;" />
+									</span>
+									<?php echo $navItem->title; ?>
+								</a>
+							</li>
+						<?php
+						}
+						?>
+
+						<!-- .c-page-nav__item -->
+
+					</ul>
+					<!-- .c-page-nav__list -->
+				</div>
+				<!-- .c-page-nav--footer -->
+			</nav>
+			<!-- .l-footer__menu -->
+		</div>
+		<!-- .l-footer__nav -->
+		<div class="l-footer__newsletter" style="border-bottom: 0;"></div>
+		<!-- .l-footer__newsletter -->
+		<div class="l-footer__cover">
+			<a href="https://au.rollingstone.com/subscribe-magazine/" target="_blank">
+				<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/08/014_RSAUNZ_COVER-TroyeSivan_v.jpg?w=250" data-src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/08/014_RSAUNZ_COVER-TroyeSivan_v.jpg?w=250" alt="" class="l-footer__cover-image" style="width: 250px">
+			</a>
+		</div>
+		<!-- .l-footer__cover -->
+	</div>
+	<!-- .l-footer__wrap -->
+	<div style="padding: 0 1rem;">
+		<div class="l-footer__tip">
+			<p class="l-footer__tip-heading t-bold">Have you got Tip/Op-Ed/Video?</p>
+			<div class="l-footer__tip-body"></div>
+			<a class="l-footer__tip-link t-bold" href="https://thebrag.media/submit-a-tip/" target="_blank">
+				<span>Send Us a Tip</span>
+			</a>
+			<a class="l-footer__tip-link t-bold" href="https://thebrag.media/how-to-submit-an-op-ed-essay/" target="_blank">
+				<span>Send Us an op-ed</span>
+			</a>
+			<a class="l-footer__tip-link t-bold" href="https://thebrag.media/submit/" target="_blank">
+				<span>Send Us a video</span>
+			</a>
+			<img class="l-footer__logo" src="https://cdn-r2-2.thebrag.com/assets/images/RSAUwhitewhite_WEB.png">
+		</div>
+		<!-- .l-footer__tip -->
+	</div>
+</footer>
 <div class="l-page__mega">
 	<?php get_template_part('template-parts/footer/mega'); ?>
 </div><!-- .l-page__mega -->

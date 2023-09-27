@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Footer - Social.
  *
@@ -10,8 +11,16 @@
 
 <div class="c-page-nav c-page-nav--footer c-page-nav--1-column" data-dropdown>
 	<ul class="c-page-nav__list">
+		<?php
+		
+		$primaryNav = wp_get_nav_menu_items(6);
+		foreach ($primaryNav as $navItem) {
+
+			echo '<li><a href="' . $navItem->url . '" title="' . $navItem->title . '">' . $navItem->title . '</a></li>';
+		}
+		?>
 		<li class="c-page-nav__item c-page-nav__item--heading is-active" data-ripple="inverted">
-			<span class="c-page-nav__link t-bold"><?php esc_html_e( 'Connect With Us', 'pmc-rollingstone' ); ?></span>
+			<span class="c-page-nav__link t-bold"><?php esc_html_e('Connect With Us aaa', 'pmc-rollingstone'); ?></span>
 		</li><!-- .c-page-nav__item -->
 
 		<?php

@@ -32,7 +32,7 @@ class Coupon {
         }
     }
 
-    public function validateCoupon($coupon_code = null, $email = null, $is_providoor = false) {
+    public function validateCoupon($coupon_code = null, $email = null) {
         if (is_null($coupon_code) || '' == trim($coupon_code)) :
             return;
         endif; // If $coupon_code is NULL
@@ -54,18 +54,6 @@ class Coupon {
                 'error' => 'Looks like that coupon code is invalid. If you are sure you are entering it correctly, send us an email at subscribe@thebrag.media to sort out the issue.'
             ];
         endif; // If $coupon is not found
-
-        if('providoor' != $coupon->type && $is_providoor) :
-            return [
-                'error' => 'Looks like that coupon code is not valid for this promotion. If you are sure you are entering it correctly, send us an email at subscribe@thebrag.media to sort out the issue.'
-            ];
-        endif;
-
-        if('providoor' == $coupon->type && !$is_providoor) :
-            return [
-                'error' => 'Looks like that coupon code is not valid for this promotion. If you are sure you are entering it correctly, send us an email at subscribe@thebrag.media to sort out the issue.'
-            ];
-        endif;
 
         if ('limited_emails' == $coupon->type) {
             if (is_null($email) || '' == trim($email)) :

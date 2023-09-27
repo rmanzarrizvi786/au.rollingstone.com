@@ -46,6 +46,7 @@ class BragObserverFeed {
     register_rest_route( 'api/v1', '/observer/articles', array(
       'methods' => 'GET',
       'callback' => [ $this, 'get_articles_for_topic' ],
+      'permission_callback' => '__return_true',
     ) );
   }
 
