@@ -809,7 +809,7 @@ class ThemeSetup
 			// \PMC::render_template( CHILD_THEME_PATH . '/assets/src/images/_dev/logo-rs-live-media.svg', [], true );
 			// } theses were commented out
 
-			//\PMC::render_template(CHILD_THEME_PATH . '/assets/src/images/_dev/icon-instagram.svg', [], true);
+			\PMC::render_template(CHILD_THEME_PATH . '/assets/src/images/_dev/icon-instagram.svg', [], true);
 			?>
 		</div>
 	<?php
