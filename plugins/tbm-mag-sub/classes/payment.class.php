@@ -282,6 +282,8 @@ class Payment {
                 ]);
             endif;
 
+            return $this->stripe->invoiceItems;
+
             $stripe_data = [
                 'customer' => $customer_id,
                 'default_tax_rates' => [

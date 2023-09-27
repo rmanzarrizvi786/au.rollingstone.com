@@ -26,7 +26,7 @@ if ($is_sandbox) {
     $salesforce['client_secret'] = '7797CE14DAE7115F01F5670ACE23E6BF63165B23A0CD344B4A14F84A6CD3CD76';
     $salesforce['login_uri'] = 'https://thebragmedia--tbmsandbox.sandbox.my.salesforce.com';
     $salesforce['username'] = 'dev@thebrag.media.tbmsandbox';
-    $salesforce['password'] = 'deTbm99!#';
+    $salesforce['password'] = 'deTbm99!#6GmJvWE3LIQ9uMDBDG7EZ7cv';
 
     $digital['api_url'] = 'https://dfapi.emagazines.com';
     $digital['api_key'] = '796EEE3C-C967-42C1-83B9-0D4A73A84DE2';

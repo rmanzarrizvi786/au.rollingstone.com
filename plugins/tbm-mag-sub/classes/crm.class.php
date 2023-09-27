@@ -37,60 +37,61 @@ class CRM {
         $access_token = $this->salesforce_login();
         $url = $this->salesforce['login_uri'] . '/services/data/v47.0/sobjects/Magazine_Subscription__c/';
         $content = [
-                'Name' => $subscriber->sub_full_name,
-                'Buyer__c' => $subscriber->full_name,
-                'Email__c' => $subscriber->email,
-                'Email_Reciever__c' => $subscriber->email_reciever,
+            'Name' => $subscriber->sub_full_name,
+            'Buyer__c' => $subscriber->full_name,
+            'Email__c' => $subscriber->email,
+            'Email_Reciever__c' => $subscriber->email_reciever,
 
-                'Address_1__c' => $subscriber->address_1,
-                'Address_2__c' => $subscriber->address_2,
-                'City__c' => $subscriber->city,
-                'Postcode__c' => $subscriber->postcode,
-                'State__c' => $subscriber->state,
-                'Country__c' => $subscriber->country,
+            'Address_1__c' => $subscriber->address_1,
+            'Address_2__c' => $subscriber->address_2,
+            'City__c' => $subscriber->city,
+            'Postcode__c' => $subscriber->postcode,
+            'State__c' => $subscriber->state,
+            'Country__c' => $subscriber->country,
+            'Is_Providoor__c' => $subscriber->is_providoor == 'yes' ? true : false,
 
-                'Shipping_Address_1__c' => $subscriber->shipping_address_1,
-                'Shipping_Address_2__c' => $subscriber->shipping_address_2,
-                'Shipping_City__c' => $subscriber->shipping_city,
-                'Shipping_Postcode__c' => $subscriber->shipping_postcode,
-                'Shipping_State__c' => $subscriber->shipping_state,
-                'Shipping_Country__c' => $subscriber->shipping_country,
+            'Shipping_Address_1__c' => $subscriber->shipping_address_1,
+            'Shipping_Address_2__c' => $subscriber->shipping_address_2,
+            'Shipping_City__c' => $subscriber->shipping_city,
+            'Shipping_Postcode__c' => $subscriber->shipping_postcode,
+            'Shipping_State__c' => $subscriber->shipping_state,
+            'Shipping_Country__c' => $subscriber->shipping_country,
 
-                'T_shirt_size__c' =>  $subscriber->tshirt_size,
+            'T_shirt_size__c' =>  $subscriber->tshirt_size,
 
-                'Is_Gift__c' => $subscriber->is_gift == 'yes' ? true : false,
-                'Coupon_code__c' => $subscriber->coupon_code,
-                'TBM_Coupon_code__c' => $TBM_Coupon_code__c,
+            'Is_Gift__c' => $subscriber->is_gift == 'yes' ? true : false,
+            'Coupon_code__c' => $subscriber->coupon_code,
+            'TBM_Coupon_code__c' => $TBM_Coupon_code__c,
 
-                'Created_At__c' => date('Y-m-d\Th:i:s'),
+            'Created_At__c' => date('Y-m-d\Th:i:s'),
 
-                'subscriptionID__c' => $subscriber->stripe_subscription_id,
-                // 'orderID__c' => $subscriber->orderID,
-                // 'facilitatorAccessToken__c' => $subscriber->facilitatorAccessToken,
+            'subscriptionID__c' => $subscriber->stripe_subscription_id,
+            // 'orderID__c' => $subscriber->orderID,
+            // 'facilitatorAccessToken__c' => $subscriber->facilitatorAccessToken,
 
-                'IP_Address__c' => $subscriber->ip_address,
+            'IP_Address__c' => $subscriber->ip_address,
 
-                'Amount_Paid__c' => round($subscriber->amount_paid / 100, 2),
+            'Amount_Paid__c' => round($subscriber->amount_paid / 100, 2),
 
-                'Promotion_Response__c' => $subscriber->promotion_response,
+            'Promotion_Response__c' => $subscriber->promotion_response,
 
-                'Buy_Option__c' => $subscriber->buy_option,
+            'Buy_Option__c' => $subscriber->buy_option
         ];
 
         $content['Subscription_Package__c'] = $subscriber->buy_option == 'printonly' ? 'Print' : ($subscriber->buy_option == 'digitalonly' ? 'Digital' : 'Combo');
 
         if ($subscriber->buy_option == 'printonly') {
-                $content['Digital_Issues_Remaining__c'] = 0;
-                $content['Remaining_Issues__c'] = 4;
+            $content['Digital_Issues_Remaining__c'] = 0;
+            $content['Remaining_Issues__c'] = 4;
         } else if ($subscriber->buy_option == 'digitalonly') {
-                $content['Digital_Issues_Remaining__c'] = 3; // 4 on sub but assume first issue has been auto sent on purchase
-                $content['Remaining_Issues__c'] = 0;
+            $content['Digital_Issues_Remaining__c'] = 3; // 4 on sub but assume first issue has been auto sent on purchase
+            $content['Remaining_Issues__c'] = 0;
         } else if ($subscriber->buy_option == 'printdigital') {
-                $content['Digital_Issues_Remaining__c'] = 3; // 4 on sub but assume first issue has been auto sent on purchase
-                $content['Remaining_Issues__c'] = 4;
+            $content['Digital_Issues_Remaining__c'] = 3; // 4 on sub but assume first issue has been auto sent on purchase
+            $content['Remaining_Issues__c'] = 4;
         } else {
-                $content['Digital_Issues_Remaining__c'] = 0;
-                $content['Remaining_Issues__c'] = 0;
+            $content['Digital_Issues_Remaining__c'] = 0;
+            $content['Remaining_Issues__c'] = 0;
         }
 
         $content = json_encode($content);
@@ -108,13 +109,13 @@ class CRM {
         curl_close($curl);
 
         if ($status != 201) {
-                error_log('--Salesforce Error: ' . $json_response);
-                wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Create Sub', $json_response);
-                return ['error' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.'];
-                wp_die();
+            error_log('--Salesforce Error: ' . $json_response);
+            wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Create Sub', $json_response);
+            return ['error' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.'];
+            wp_die();
         } else {
-                $response = json_decode($json_response);
-                return $response;
+            $response = json_decode($json_response);
+            return $response;
         }
     }
 
@@ -926,32 +927,31 @@ class CRM {
    *
    * @return void
    */
-        protected function salesforce_login()
-        {
-                $params = 'grant_type=password' .
-                        '&client_id=' . $this->salesforce['client_id'] .
-                        '&client_secret=' . $this->salesforce['client_secret'] .
-                        '&username=' . urlencode($this->salesforce['username']) .
-                        '&password=' . urlencode($this->salesforce['password']);
+    protected function salesforce_login() {
+        $params = 'grant_type=password' .
+            '&client_id=' . $this->salesforce['client_id'] .
+            '&client_secret=' . $this->salesforce['client_secret'] .
+            '&username=' . urlencode($this->salesforce['username']) .
+            '&password=' . urlencode($this->salesforce['password']);
 
-                $token_url = $this->salesforce['login_uri'] . "/services/oauth2/token";
+        $token_url = $this->salesforce['login_uri'] . "/services/oauth2/token";
 
-                $curl = curl_init($token_url);
-                curl_setopt($curl, CURLOPT_HEADER, false);
-                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl, CURLOPT_POST, true);
-                curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
-                $json_response = curl_exec($curl);
-                $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $curl = curl_init($token_url);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
+        $json_response = curl_exec($curl);
+        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-                if ($status != 200) {
-                        error_log('--Salesforce Error Login: ' . $json_response);
-                }
-
-                curl_close($curl);
-
-                $response = json_decode($json_response);
-
-                return $response->access_token;
+        if ($status != 200) {
+            error_log('--Salesforce Error Login: ' . $json_response);
         }
+
+        curl_close($curl);
+
+        $response = json_decode($json_response);
+
+        return $response->access_token;
+    }
 }
