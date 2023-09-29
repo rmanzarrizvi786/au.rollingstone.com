@@ -17,8 +17,8 @@ if (post_password_required($post)) {
 
 get_template_part('page-templates/scu-scholarship-2020/header');
 
-$submissions_active = time() < strtotime('2024-09-29');
-// $submissions_active = false;
+// $submissions_active = time() < strtotime('2024-09-29');
+$submissions_active = false;
 
 wp_enqueue_script('scu-scholarship-2023', get_template_directory_uri() . '/page-templates/scu-scholarship-2020/js/scripts-2023.js', ['jquery'], time(), true);
 
