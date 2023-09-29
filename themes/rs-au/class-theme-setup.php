@@ -9,6 +9,8 @@ class ThemeSetup
 	 */
 	public function __construct()
 	{
+		
+		//define("TBM_CDN",     "http://localhost/rollingstone/wp-content/themes/rs-au");
 
 		// Register Menus
 		add_action('init', [$this, 'register_nav_menus']);
@@ -672,7 +674,7 @@ class ThemeSetup
 		<script>
 			<?php
 			// Note that the non-minified resource is available for code review in assets/src/js/vendor/cssrelpreload.js
-			\PMC::render_template(CHILD_THEME_PATH . '/assets/build/js/vendor/cssrelpreload.js', [], true);
+			\PMC::render_template(CHILD_THEME_PATH . '/assets/js/vendor/cssrelpreload.js', [], true);
 			?>
 		</script>
 	<?php
@@ -807,7 +809,7 @@ class ThemeSetup
 			// \PMC::render_template( CHILD_THEME_PATH . '/assets/src/images/_dev/logo-rs-live-media.svg', [], true );
 			// } theses were commented out
 
-			//\PMC::render_template(CHILD_THEME_PATH . '/assets/src/images/_dev/icon-instagram.svg', [], true);
+			\PMC::render_template(CHILD_THEME_PATH . '/assets/src/images/_dev/icon-instagram.svg', [], true);
 			?>
 		</div>
 	<?php
@@ -820,7 +822,7 @@ class ThemeSetup
 	 */
 	public function inline_web_fonts()
 	{
-		$fonts_url = RS_THEME_URL . '/assets/build/fonts';
+		$fonts_url = RS_THEME_URL . '/assets/fonts';
 	?>
 		<style type="text/css" id="web-fonts-css">
 			@font-face {
@@ -905,7 +907,7 @@ class ThemeSetup
 	 */
 	public function hint_web_fonts()
 	{
-		$fonts_url = RS_THEME_URL . '/assets/build/fonts';
+		$fonts_url = RS_THEME_URL . '/assets/fonts';
 
 		$fonts = [
 			'/Graphik/Graphik-Regular',

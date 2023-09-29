@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Category Header.
  *
@@ -7,27 +8,36 @@
  */
 
 ?>
-
 <div class="l-section-top">
 	<h1 class="l-section-top__heading">
-		<span class="t-super"><?php single_term_title( '' ); ?></span>
+		<span class="t-super"><?php echo single_term_title('', false); ?></span>
 	</h1><!-- .l-section-top__heading -->
 
 	<nav class="l-section-top__menu">
-		<div class="c-page-nav c-page-nav--header" data-dropdown data-line-menu>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => sanitize_title( single_term_title( '', false ) ) . '-category-menu',
-					'container'      => false,
-					'items_wrap'     => '<ul id="%1$s" class="c-page-nav__list %2$s">%3$s</ul>',
-					'menu_class'     => '',
-					'depth'          => 0,
-					'walker'         => new \Rolling_Stone\Inc\Menus\Category_Nav_Walker(),
-					'menu_id'        => 'category-header-menu',
-				)
-			);
-			?>
+		<div class="c-page-nav c-page-nav--header" data-dropdown="" data-line-menu="">
+			<ul id="category-header-menu" class="c-page-nav__list ">
+				<?php
+				$menu_obj = wp_get_nav_menu_object('Category Menu - ' . single_term_title('', false));
+				$menu_id  = $menu_obj ? $menu_obj->term_id : 0;
+
+				$socialNav = wp_get_nav_menu_items($menu_id);
+				foreach ($socialNav as $navItem) {
+
+				?>
+					<li class="c-page-nav__item is-active" data-ripple="">
+						<a href="<?php echo $navItem->url; ?>" class="c-page-nav__link" data-line-menu-left=""><?php echo $navItem->title; ?></a>
+					</li>
+
+				<?php
+				}
+				?>
+
+
+
+
+			</ul>
+			<div class="line-menu-indicator" style="transform: translateX(23px);"></div>
 		</div><!-- .c-page-nav--header -->
 	</nav><!-- .l-section-top__menu -->
-</div><!-- .l-section-top -->
+</div>
+
