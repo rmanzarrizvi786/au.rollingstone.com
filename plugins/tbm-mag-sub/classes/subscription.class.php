@@ -77,7 +77,7 @@ class Subscription {
             'is_gift' => $post['is_gift'],
             'is_providoor' => isset($post['is_providoor']) ? $post['is_providoor'] : false,
             'phone_number' => isset($post['sub_phone']) ? $post['sub_phone'] : '',
-            'dob' =>  isset($post['dob']) ? $post['sub_pdobhone'] : '',
+            'dob' =>  isset($post['dob']) ? $post['sub_phone'] : '',
             'sub_full_name' => $post['sub_full_name'],
             'shipping_address_1' => $post['shipping_address_1'],
             'shipping_address_2' => $post['shipping_address_2'],

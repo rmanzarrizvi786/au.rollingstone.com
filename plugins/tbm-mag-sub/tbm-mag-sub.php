@@ -523,7 +523,6 @@ class TBMMagSub {
         $amount_off = $amount_off > $price ? $price : $amount_off;
         $amount_off = $amount_off > 0 ? $amount_off * -1 : $amount_off;
 
-
         $invoice = $payment->createInvoice(
             $post['buy_option'],
             $product_description,
@@ -531,7 +530,7 @@ class TBMMagSub {
             (int) ($this->shipping_cost * 100),
             $this->number_of_issues,
             $coupon_code,
-            $$amount_off,
+            $amount_off,
             $post['payment_method'],
             $post['sub_email'],
             $post['sub_full_name'],
