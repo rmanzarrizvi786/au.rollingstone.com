@@ -75,7 +75,7 @@ class Subscription {
             'country' => !is_null($post['sub_country']) ? $post['sub_country'] : 'Australia',
             'coupon_id' => $post['coupon_id'],
             'is_gift' => $post['is_gift'],
-            'is_providoor' => $post['is_providoor'],
+            'is_providoor' => isset($post['is_providoor']) ? $post['is_providoor'] : false,
             'phone_number' => $post['sub_phone'],
             'dob' => $post['sub_dob'],
             'sub_full_name' => $post['sub_full_name'],
