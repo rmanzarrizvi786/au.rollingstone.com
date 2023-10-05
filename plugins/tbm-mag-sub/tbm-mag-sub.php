@@ -1489,7 +1489,11 @@ class TBMMagSub {
 
         $coupon_code = $_POST['coupon_code'];
         $buy_option = $_POST['buy_option'];
-        $is_providoor = $_POST['is_providoor'];
+        $is_providoor = false;
+
+        if( isset( $_POST['is_providoor'] ) ) {
+            $is_providoor = $_POST['is_providoor'];
+        }
 
         $email = null;
         if (isset($_POST['sub_email'])) {
