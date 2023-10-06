@@ -54,6 +54,8 @@ use PMC\Lists\List_Post;
 	<meta name="description" content="<?php echo esc_attr(get_bloginfo('description')); ?>">
 	<!-- Titles:end -->
 
+    <meta name='impact-site-verification' value='1335992589'>
+
 	<meta property="fb:pages" content="203538151294" />
 
 	<?php if (is_single()) {
