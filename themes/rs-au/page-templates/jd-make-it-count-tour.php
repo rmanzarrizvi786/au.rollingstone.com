@@ -212,7 +212,7 @@ if (have_posts()) :
 						<div class="d-flex flex-wrap flex-column flex-md-row">
 							<div class="col-12 col-md-4">
 								<div class="my-3 mx-3 previous-events">
-									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2022/12/StandAtlantic_ChrisFrape-264.jpg&#038;nologo=1"></div>
+									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/12/StandAtlantic_ChrisFrape-264.jpg&#038;nologo=1"></div>
 									<div style="color: #fff; margin-top: 15px; text-align: center;">
 										<h3 style="font-weight: bold;">STAND ATLANTIC with special guests Redhook</h3>
 										<p>
@@ -229,7 +229,7 @@ if (have_posts()) :
 
 							<div class="col-12 col-md-4">
 								<div class="my-3 mx-3 previous-events">
-									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2022/11/ktunbridge-140.jpg&#038;nologo=1"></div>
+									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/11/ktunbridge-140.jpg&#038;nologo=1"></div>
 									<div style="color: #fff; margin-top: 15px; text-align: center;">
 										<h3 style="font-weight: bold;">DUNE RATS with special guests Beddy Rays & VOIID</h3>
 										<p>
@@ -263,7 +263,7 @@ if (have_posts()) :
 
 							<div class="col-12 col-md-4">
 								<div class="my-3 mx-3 previous-events">
-									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/04/rollingstoneXJackDaniel-146.jpg&nologo=1"></div>
+									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/04/rollingstoneXJackDaniel-146.jpg&nologo=1"></div>
 									<div style="color: #fff; margin-top: 15px; text-align: center;">
 										<h3 style="font-weight: bold;">TOUCH SENSITIVE with special guests Nyxen, Juno Mamba & Foura (DJ Set)</h3>
 										<p>
@@ -280,7 +280,7 @@ if (have_posts()) :
 
 							<div class="col-12 col-md-4">
 								<div class="my-3 mx-3 previous-events">
-									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/05/RSMakeItCount_PERTH-62.jpg&nologo=1"></div>
+									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/05/RSMakeItCount_PERTH-62.jpg&nologo=1"></div>
 									<div style="color: #fff; margin-top: 15px; text-align: center;">
 										<h3 style="font-weight: bold;">SLY WITHERS with special guests Mal De Mar</h3>
 										<p>
@@ -305,7 +305,7 @@ if (have_posts()) :
 								<div class="col-12 col-md-8 d-flex align-items-stretch">
 									<div class="mb-2 mr-0 mr-md-1 d-flex align-items-stretch">
 										<a href="https://au.rollingstone.com/music/music-news/jack-daniels-make-it-count-brisbane-43844/" target="_blank" class="news">
-											<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/dune.jpg?resize=900,600&w=1200">
+											<img src="https://images-r2.thebrag.com/rs/uploads/2020/11/dune.jpg?resize=900,600&w=1200">
 											<h4>Dune Rats Bring The Chaos to Jack Daniel’s Make It Count Brisbane Show</h4>
 											<p>Kicking off the seventh stop in the Make It Count tour, Dune Rats brought their trademark chaotic and energetic stage presence, which has made them one of the country’s most exciting and talked-about live acts of the past decade.</p>
 										</a>
@@ -315,7 +315,7 @@ if (have_posts()) :
 									<div class="d-flex align-items-stretch">
 										<div class="d-flex flex-column justify-content-between">
 											<a href="https://au.rollingstone.com/music/music-live-reviews/stand-atlantic-and-redhook-jack-daniels-make-it-count-tour-44394/" target="_blank" class="news mb-2 ml-0 ml-md-2">
-												<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2022/12/jack-daniels.jpg?resize=900,600&w=1200">
+												<img src="https://images-r2.thebrag.com/rs/uploads/2022/12/jack-daniels.jpg?resize=900,600&w=1200">
 												<h4 class="side">Stand Atlantic and RedHook Tear It Up At Sydney’s Crowbar for Jack Daniel’s Make It Count Tour</h4>
 											</a>
 										</div>
@@ -323,7 +323,7 @@ if (have_posts()) :
 									<div class="d-flex align-items-stretch">
 										<div class="d-flex flex-column justify-content-between">
 											<a href="https://au.rollingstone.com/music/music-live-reviews/jack-daniels-make-it-count-rolling-blackouts-coastal-fevel-hatchie-46095/" target="_blank" class="news mb-2 ml-0 ml-md-2">
-												<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/03/jack-daniels.jpg?resize=1400,700&w=1400">
+												<img src="https://images-r2.thebrag.com/rs/uploads/2023/03/jack-daniels.jpg?resize=1400,700&w=1400">
 												<h4 class="side">Rolling Blackouts Coastal Fever and Hatchie ‘Make It Count’ at One of The Cambridge Hotel’s Final Shows</h4>
 											</a>
 										</div>
@@ -334,7 +334,7 @@ if (have_posts()) :
 									<div class="d-flex align-items-stretch">
 										<div class="d-flex flex-column justify-content-between">
 											<a href="https://au.rollingstone.com/music/music-features/the-great-australian-songs-written-by-musicians-who-trusted-their-spirit-44188/" target="_blank" class="news mb-2 ml-0 ml-md-2">
-												<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2022/01/gotye-1.jpg?resize=900,600&w=1200">
+												<img src="https://images-r2.thebrag.com/rs/uploads/2022/01/gotye-1.jpg?resize=900,600&w=1200">
 												<h4 class="side">The Great Australian Songs Written by Musicians Who Trusted Their Spirit</h4>
 											</a>
 										</div>
@@ -342,7 +342,7 @@ if (have_posts()) :
 									<div class="d-flex align-items-stretch">
 										<div class="d-flex flex-column justify-content-between">
 											<a href="https://au.rollingstone.com/music/music-news/jack-daniels-make-it-count-brisbane-43844/" target="_blank" class="news mb-2 ml-0 ml-md-2">
-												<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/dune.jpg?resize=900,600&w=1200">
+												<img src="https://images-r2.thebrag.com/rs/uploads/2020/11/dune.jpg?resize=900,600&w=1200">
 												<h4 class="side">Dune Rats Bring The Chaos to Jack Daniel’s Make It Count Brisbane Show</h4>
 											</a>
 										</div>

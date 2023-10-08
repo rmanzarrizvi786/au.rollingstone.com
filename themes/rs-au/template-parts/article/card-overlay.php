@@ -24,9 +24,9 @@ $srcset = (is_front_page() || is_page_template('page-templates/page-nz.php')) ? 
 			<div class="c-crop c-crop--<?php echo (is_front_page() || is_page_template('page-templates/page-nz.php')) ? 'ratio-5x6' : 'ratio-1x1'; ?>">
 				<?php
 				if (get_the_ID() ===  19276) : ?>
-					<img width="431" height="615" src="https://cdn-r2-1.thebrag.com/rs/uploads/2020/11/SJRSAwardsNominateHero-Vert.jpg" class="c-crop__img wp-post-image visible" alt="">
+					<img width="431" height="615" src="https://images-r2.thebrag.com/rs/uploads/2020/11/SJRSAwardsNominateHero-Vert.jpg" class="c-crop__img wp-post-image visible" alt="">
 				<?php elseif (get_the_ID() ===  21893) : ?>
-					<img width="431" height="615" src="https://cdn-r2-1.thebrag.com/rs/uploads/2021/01/SJRSAwardsNominateHero-Vert.png" class="c-crop__img wp-post-image visible" alt="">
+					<img width="431" height="615" src="https://images-r2.thebrag.com/rs/uploads/2021/01/SJRSAwardsNominateHero-Vert.png" class="c-crop__img wp-post-image visible" alt="">
 				<?php else :
 					rollingstone_the_post_thumbnail(
 						$img_size,

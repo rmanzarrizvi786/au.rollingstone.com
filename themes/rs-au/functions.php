@@ -595,7 +595,7 @@ function my_post_image_html( $html, $post_id, $post_thumbnail_id, $size, $attr )
   $base_url = $upload_dir['baseurl'];
 
   // Change the default upload directory to AWS Bucket link
-  $AWSBucket = 'https://cdn-r2-1.thebrag.com/rs/uploads';
+  $AWSBucket = 'https://images-r2.thebrag.com/rs/uploads';
   $html = str_replace($base_url, $AWSBucket, $html);
 
   return $html;

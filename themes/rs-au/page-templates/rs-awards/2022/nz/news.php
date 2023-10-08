@@ -18,7 +18,7 @@
     <div class="col-12 col-md-6 px-2">
         <a href="https://au.rollingstone.com/music/music-news/six60-lorde-lead-rolling-stone-new-zealand-awards-winners-42531/" target="_blank" class="d-flex my-2">
             <div class="img-wrap">
-                <img src="https://cdn-r2-1.thebrag.com/rs/uploads/2022/08/RS-NZ-awards-2022.jpg?resize=900,600&w=1200">
+                <img src="https://images-r2.thebrag.com/rs/uploads/2022/08/RS-NZ-awards-2022.jpg?resize=900,600&w=1200">
             </div>
             <h3>Six60, Lorde Lead 2022 Rolling Stone New Zealand Awards Winners</h3>
         </a>
@@ -27,7 +27,7 @@
     <div class="col-12 col-md-6 px-2">
         <a href="https://au.rollingstone.com/music/music-news/six60-confirmed-to-headline-2022-rolling-stone-new-zealand-awards-42111/" target="_blank" class="d-flex my-2">
             <div class="img-wrap">
-                <img src="https://cdn-r2-1.thebrag.com/rs/uploads/2022/08/six-60-rs-nz-awards.jpg?resize=900,600&w=1200">
+                <img src="https://images-r2.thebrag.com/rs/uploads/2022/08/six-60-rs-nz-awards.jpg?resize=900,600&w=1200">
             </div>
             <h3>Six60 Confirmed to Headline 2022 Rolling Stone New Zealand Awards</h3>
         </a>
@@ -36,7 +36,7 @@
     <div class="col-12 col-md-6 px-2">
         <a href="https://au.rollingstone.com/music/music-news/2022-nz-awards-nominees-41485/" target="_blank" class="d-flex my-2">
             <div class="img-wrap">
-                <img src="https://cdn-r2-1.thebrag.com/rs/uploads/2022/05/2022-Panhead-Rolling-Stone-New-Zealand-Awards.png?resize=900,600&w=1200">
+                <img src="https://images-r2.thebrag.com/rs/uploads/2022/05/2022-Panhead-Rolling-Stone-New-Zealand-Awards.png?resize=900,600&w=1200">
             </div>
             <h3>Revealed: 2022 Rolling Stone New Zealand Awards Nominees</h3>
         </a>
@@ -45,7 +45,7 @@
     <div class="col-12 col-md-6 px-2">
         <a href="https://au.rollingstone.com/music/music-news/rolling-stone-new-zealand-awards-confirmed-40550/" target="_blank" class="d-flex my-2">
             <div class="img-wrap">
-                <img src="https://cdn-r2-1.thebrag.com/rs/uploads/2022/05/2022-Panhead-Rolling-Stone-New-Zealand-Awards.png?resize=900,600&w=1200">
+                <img src="https://images-r2.thebrag.com/rs/uploads/2022/05/2022-Panhead-Rolling-Stone-New-Zealand-Awards.png?resize=900,600&w=1200">
             </div>
             <h3>Rolling Stone New Zealand Awards Confirmed for August</h3>
         </a>

@@ -49,7 +49,7 @@ $show = isset($_GET['show']) ? trim(strtolower($_GET['show'])) : 'news';
 					<img src="https://cdn-r2-2.thebrag.com/pages/rolling-stone-awards-2023-nz/awards6.png" width="120">
 				</div>
 				<div style="flex: 1; text-align: center; padding: 1rem; padding-bottom: 0;">
-					<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/08/RSNZ23_PH_logoLock.png">
+					<img src="https://images-r2.thebrag.com/rs/uploads/2023/08/RSNZ23_PH_logoLock.png">
 					<img src="https://cdn-r2-2.thebrag.com/pages/rolling-stone-awards-2023-nz/LogoStrip-black.png" style="width: 100%;">
 				</div>
 				<div class="rsa-header-right">
@@ -59,7 +59,7 @@ $show = isset($_GET['show']) ? trim(strtolower($_GET['show'])) : 'news';
 
 		<?php else : ?>
 			<div class="content-wrap d-flex">
-				<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2023/08/RSNZ23_PH_logoLock.png" width="500">
+				<img src="https://images-r2.thebrag.com/rs/uploads/2023/08/RSNZ23_PH_logoLock.png" width="500">
 			</div>
 			<!-- <div class="d-flex d-none d-md-flex" style="margin-top: 1rem;">
 				<img src="<?php echo get_template_directory_uri(); ?>/images/rsa2023/sponsors.png" style="width: 500px; filter: invert(100%);">

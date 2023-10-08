@@ -952,6 +952,9 @@ class CRM {
 
         $response = json_decode($json_response);
 
+        var_dump($response);
+        die();
+
         return $response->access_token;
     }
 }

@@ -5,7 +5,7 @@
     <div class="col-12 col-md-6 px-2">
         <a href="https://au.rollingstone.com/music/music-news/bic-runga-receives-icon-status-at-2023-panhead-rolling-stone-aotearoa-awards-50043/" target="_blank" class="d-flex my-2">
             <div class="img-wrap">
-                <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2020/09/bic-runga-1.jpg">
+                <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2020/09/bic-runga-1.jpg">
             </div>
             <h3>Bic Runga Receives Icon Status at 2023 Panhead Rolling Stone Aotearoa Awards</h3><br />
         </a>
@@ -14,7 +14,7 @@
     <div class="col-12 col-md-6 px-2">
         <a href="https://au.rollingstone.com/music/music-news/2023-panhead-rolling-stone-aotearoa-awards-performers-bic-runga-coterie-49875/" target="_blank" class="d-flex my-2">
             <div class="img-wrap">
-                <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2023/09/bic-runga-1.jpg">
+                <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/09/bic-runga-1.jpg">
             </div>
             <h3>Bic Runga & Coterie to Perform at 2023 Panhead Rolling Stone Aotearoa Awards</h3><br />
         </a>
@@ -23,7 +23,7 @@
     <div class="col-12 col-md-6 px-2">
         <a href="https://au.rollingstone.com/music/music-news/2023-rolling-stone-aotearoa-awards-nominees-revealed-six-60-the-beths-fazerdaze-48604/" target="_blank" class="d-flex my-2">
             <div class="img-wrap">
-                <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2022/08/six60-album-single.jpg">
+                <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/08/six60-album-single.jpg">
             </div>
             <h3>Six60, The Beths & Fazerdaze Among 2023 Panhead Rolling Stone Aotearoa Awards Nominees</h3>
         </a>
@@ -32,7 +32,7 @@
     <div class="col-12 col-md-6 px-2">
         <a href="https://au.rollingstone.com/music/music-news/panhead-rolling-stone-aotearoa-awards-2023-nominations-48376/" target="_blank" class="d-flex my-2">
             <div class="img-wrap">
-                <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2022/08/ROLLINGSTONE_AWARDS_AKL-30.jpg">
+                <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/08/ROLLINGSTONE_AWARDS_AKL-30.jpg">
             </div>
             <h3>Last Chance to Nominate for the Panhead Rolling Stone Aotearoa Awards 2023!</h3><br />
         </a>
@@ -41,7 +41,7 @@
     <div class="col-12 col-md-6 px-2">
         <a href="https://au.rollingstone.com/music/music-news/rolling-stone-aotearoa-awards-2023-nominate-now-47758/" target="_blank" class="d-flex my-2">
             <div class="img-wrap">
-                <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-1.thebrag.com/rs/uploads/2022/08/ROLLINGSTONE_AWARDS_AKL-30.jpg">
+                <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/08/ROLLINGSTONE_AWARDS_AKL-30.jpg">
             </div>
             <h3>Panhead Rolling Stone Aotearoa Awards 2023: Nominate Now!</h3><br />
         </a>

@@ -201,7 +201,7 @@ if (have_posts()) :
 									<div class="mb-4 mb-md-2 mr-0 mr-md-1">
 										<h2>Latest News</h2>
 										<a href="https://au.rollingstone.com/music/music-live-reviews/san-cisco-live-at-last-2022-review-40369/" target="_blank" class="news">
-											<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2022/04/Jack-Daniels-Live-At-Last-Pond-by-Kieran-Tunbridge-174.jpg?resize=900,600&w=1200">
+											<img src="https://images-r2.thebrag.com/rs/uploads/2022/04/Jack-Daniels-Live-At-Last-Pond-by-Kieran-Tunbridge-174.jpg?resize=900,600&w=1200">
 											<h4>Jack Daniel’s brings San Cisco, Wafia, and merci, mercy to Live at Last in Brisbane</h4>
 											<p>San Cisco ensured that the Brisbane leg of the Jack Daniel’s Live At Last series was one that fans would remember forever.</p>
 											<!-- <p>Read the full story on Rolling Stone Australia</p> -->
@@ -211,12 +211,12 @@ if (have_posts()) :
 								<div class="col-12 col-md-4 d-flex align-items-stretch">
 									<div class="d-flex flex-column justify-content-between">
 										<a href="https://au.rollingstone.com/music/music-features/psychedelic-porn-crumpets-39712/" target="_blank" class="news mb-2 mb-md-2 ml-0 ml-md-2">
-											<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2021/11/ppc.jpg?resize=900,600&w=1200">
+											<img src="https://images-r2.thebrag.com/rs/uploads/2021/11/ppc.jpg?resize=900,600&w=1200">
 											<h4>&quot;We’re just such a better band in terms of musicianship&quot;: Psychedelic Porn Crumpets Are Finally Coming Back to the East Coast</h4>
 											<!-- <p>Read the full story on Rolling Stone Australia</p> -->
 										</a>
 										<a href="https://au.rollingstone.com/music/music-features/san-cisco-are-growing-up-and-taking-pop-music-with-them-39699/" target="_blank" class="news mb-2 mb-md-2 ml-0 ml-md-2">
-											<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2021/04/san-cisco.jpeg?resize=1400,700&w=1400">
+											<img src="https://images-r2.thebrag.com/rs/uploads/2021/04/san-cisco.jpeg?resize=1400,700&w=1400">
 											<h4>San Cisco Are Growing Up and Taking Pop Music with Them</h4>
 										</a>
 									</div>
@@ -226,21 +226,21 @@ if (have_posts()) :
 							<div class="d-flex flex-wrap flex-column flex-md-row align-items-start justify-content-start">
 								<a href="https://au.rollingstone.com/music/music-live-reviews/psychedelic-porn-crumpets-live-at-last-2022-review-2-40373/" target="_blank" class="col-12 col-md-4 mt-2 mb-md-2 mr-0">
 									<div class="mr-0 mr-md-2 news">
-										<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2022/05/ppc.jpg?resize=900,600&w=1200">
+										<img src="https://images-r2.thebrag.com/rs/uploads/2022/05/ppc.jpg?resize=900,600&w=1200">
 										<h4>Psychedelic Porn Crumpets Mark Their Return to Live Shows with One Hell of A Good Time</h4>
 									</div>
 								</a>
 
 								<a href="https://au.rollingstone.com/music/music-features/pond-evolve-as-songwriters-without-losing-their-core-effervescence-39349/" target="_blank" class="col-12 col-md-4 mt-2 mb-md-2 mx-0">
 									<div class="mx-0 mx-md-1 news">
-										<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2022/03/pond.jpg?resize=1400,700&w=1400">
+										<img src="https://images-r2.thebrag.com/rs/uploads/2022/03/pond.jpg?resize=1400,700&w=1400">
 										<h4>Pond Evolve as Songwriters Without Losing Their Core Effervescence</h4>
 									</div>
 								</a>
 
 								<a href="https://au.rollingstone.com/music/music-live-reviews/ruby-fields-live-at-last-2022-review-40441/" target="_blank" class="col-12 col-md-4 mt-2 mb-md-2 ml-0">
 									<div class="ml-0 ml-md-2 news">
-										<img src="https://cdn-r2-1.thebrag.com/rs/uploads/2022/05/Jack-Daniels-Live-At-Last-Ruby-Fields-by-Nathan-Goldsworthy-38.jpg?resize=900,600&w=1200">
+										<img src="https://images-r2.thebrag.com/rs/uploads/2022/05/Jack-Daniels-Live-At-Last-Ruby-Fields-by-Nathan-Goldsworthy-38.jpg?resize=900,600&w=1200">
 										<h4>Ruby Fields Capped Off a Stellar Jack Daniel’s Live at Last Tour in Melbourne</h4>
 									</div>
 								</a>
