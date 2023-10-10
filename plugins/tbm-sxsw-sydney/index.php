@@ -29,19 +29,27 @@ class TBM_SxSw_Sydney_Entries {
 	public function sxsw_sydney_entries_2023($req) {
 		# do required checks
 
-		if (empty($req['name']))
+		if ( empty( $req['name'] ) )
             return wp_send_json_error('Please enter your name.');
 
-		if (empty($req['email']))
+		if ( empty( $req['email'] ) )
             return wp_send_json_error('Please enter your email.');
 
-        if (empty($req['day']))
+        if ( empty( $req['postcode'] ) )
+            return wp_send_json_error('Please enter a postcode.');
+
+        if ( empty( $req['day'] ) )
             return wp_send_json_error('Please select a day.');
 
-		# sanitise fields
+        if( !filter_var( $req['email'], FILTER_VALIDATE_EMAIL ) )
+            return wp_send_json_error('Please enter a valid email address.');
+
+        if( !filter_var( $req['postcode'], FILTER_VALIDATE_INT ) )
+            return wp_send_json_error('Please enter a valid postcode.');
 
 		$name = sanitize_text_field($req['name']);
 		$email = sanitize_text_field($req['email']);
+		$postcode = sanitize_text_field($req['email']);
 		$day = sanitize_text_field($req['day']);
 
 		# add to DB
@@ -53,9 +61,10 @@ class TBM_SxSw_Sydney_Entries {
 			[
 				'name' =>$name,
 				'email' => $email,
+				'postcode' => $postcode,
 				'day' => $day,
 			],
-			['%s', '%s', '%s']
+			['%s', '%s', '%s', '%s']
 		);
 
 		return wp_send_json_success('Your entry has been received.');
