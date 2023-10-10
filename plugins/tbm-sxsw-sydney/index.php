@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * Plugin Name: SXSW Sydney Entries
+ * Plugin URI: https://thebrag.com/media/
+ * Description:
+ * Version: 1.0.0
+ * Author: Toby Smith
+ */
+
+class TBM_SxSw_Sydney_Entries {
+    protected $plugin_name;
+	protected $plugin_slug;
+
+	public function __construct() {
+		$this->plugin_name = 'tbm_sxsw_sydney_entries';
+		$this->plugin_slug = 'tbm-sxsw-sydney-entries';
+
+		// add_action('admin_menu', [$this, '_admin_menu']);
+
+        add_action( 'rest_api_init', function () {
+            register_rest_route( $this->plugin_name . '/v1', '/entries', array(
+                'methods' => 'POST',
+                'callback' => [$this, 'sxsw_sydney_entries_2023' ]
+            ) );
+        } );
+	}
+
+	public function sxsw_sydney_entries_2023($req) {
+		# do required checks
+
+		if (empty($req['name']))
+            return wp_send_json_error('Please enter your name.');
+
+		if (empty($req['email']))
+            return wp_send_json_error('Please enter your email.');
+
+        if (empty($req['day']))
+            return wp_send_json_error('Please select a day.');
+
+		# sanitise fields
+
+		$name = sanitize_text_field($req['name']);
+		$email = sanitize_text_field($req['email']);
+		$day = sanitize_text_field($req['day']);
+
+		# add to DB
+
+		global $wpdb;
+
+		$wpdb->insert(
+			$wpdb->prefix . 'sxsw_sydney_entries_2023',
+			[
+				'name' =>$name,
+				'email' => $email,
+				'day' => $day,
+			],
+			['%s', '%s', '%s']
+		);
+
+		return wp_send_json_success('Your entry has been received.');
+	}
+}
+
+new TBM_SxSw_Sydney_Entries();
