@@ -49,7 +49,7 @@ class TBM_SxSw_Sydney_Entries {
 
 		$name = sanitize_text_field($req['name']);
 		$email = sanitize_text_field($req['email']);
-		$postcode = sanitize_text_field($req['email']);
+		$postcode = sanitize_text_field($req['postcode']);
 		$day = sanitize_text_field($req['day']);
 
 		# add to DB
