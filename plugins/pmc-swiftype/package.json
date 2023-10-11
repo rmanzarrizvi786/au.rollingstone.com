@@ -7,6 +7,12 @@
     "grunt-contrib-uglify": "latest",
     "grunt-sass": "latest",
     "grunt-contrib-compass": "latest",
-    "grunt-contrib-clean": "latest"
-  }
+    "grunt-contrib-clean": "latest",
+    "@snyk/protect": "latest"
+  },
+  "scripts": {
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
+  },
+  "snyk": true
 }
