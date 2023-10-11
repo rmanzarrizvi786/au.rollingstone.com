@@ -15,7 +15,7 @@
 		"jquery": "^3.3.1",
 		"lodash": "^4.17.11",
 		"lodash.throttle": "^4.1.1",
-		"luxon": "^1.12.0",
+		"luxon": "^1.28.1",
 		"npm-ci-meta": "git+ssh://git@bitbucket.org/penskemediacorp/npm-ci-meta.git",
 		"scss-query": "^1.0.1",
 		"tether": "^1.4.5"
