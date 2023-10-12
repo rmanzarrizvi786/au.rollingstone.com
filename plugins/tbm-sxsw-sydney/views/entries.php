@@ -10,7 +10,7 @@
 ?>
 <div class="wrap">
     <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
-        <div style="margin-right: 1rem;">
+        <div style="margin-right: 1rem; margin-bottom: 1rem;">
             <strong>Total unique emails: <?php echo $total_unique_email; ?></strong>
             <br>
             <strong>Total entries: <?php echo $total_entries; ?></strong>
