@@ -16,7 +16,7 @@ class TBM_SxSw_Sydney_Entries {
 		$this->plugin_name = 'tbm_sxsw_sydney_entries';
 		$this->plugin_slug = 'tbm-sxsw-sydney-entries';
 
-		// add_action('admin_menu', [$this, '_admin_menu']);
+		add_action( 'admin_menu', [ $this, '_admin_menu' ] );
 
         add_action( 'rest_api_init', function () {
             register_rest_route( $this->plugin_name . '/v1', '/entries', array(
@@ -70,11 +70,27 @@ class TBM_SxSw_Sydney_Entries {
 				'day3' => $day3,
 				'day4' => $day4,
 			],
-			['%s', '%s', '%s', '%s', '%s', '%s', '%s']
+			[ '%s', '%s', '%s', '%s', '%s', '%s', '%s' ]
 		);
 
 		return wp_send_json_success('Your entry has been received.');
 	}
+
+    public function _admin_menu() {
+        add_menu_page(
+            'SXSW Sydney 2023',
+            'SXSW Sydney 2023',
+            'edit_posts',
+            $this->plugin_slug,
+            [ $this, 'index' ],
+            'dashicons-calendar',
+            11
+        );
+    }
+
+    public function index() {
+        include_once plugin_dir_path( __FILE__ ) . 'views/entries.php';
+    }
 }
 
 new TBM_SxSw_Sydney_Entries();
