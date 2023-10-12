@@ -38,7 +38,7 @@ class TBM_SxSw_Sydney_Entries {
         if ( empty( $req['postcode'] ) )
             return wp_send_json_error('Please enter a postcode.');
 
-        if ( empty( $req['day1'] ) && empty( $req['day2'] ) && empty( $req['day3'] ) && empty( $req['day4'] ) ) {
+        if ( empty( $req['day1'] ) && empty( $req['day2'] ) && empty( $req['day3'] ) && empty( $req['day4'] ) )
             return wp_send_json_error('Please select a day.');
 
         if( !filter_var( $req['email'], FILTER_VALIDATE_EMAIL ) )
