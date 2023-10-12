@@ -38,7 +38,7 @@ class TBM_SxSw_Sydney_Entries {
         if ( empty( $req['postcode'] ) )
             return wp_send_json_error('Please enter a postcode.');
 
-        if ( empty( $req['day'] ) )
+        if ( empty( $req['day1'] ) && empty( $req['day2'] ) && empty( $req['day3'] ) && empty( $req['day4'] ) ) {
             return wp_send_json_error('Please select a day.');
 
         if( !filter_var( $req['email'], FILTER_VALIDATE_EMAIL ) )
@@ -50,7 +50,10 @@ class TBM_SxSw_Sydney_Entries {
 		$name = sanitize_text_field($req['name']);
 		$email = sanitize_text_field($req['email']);
 		$postcode = sanitize_text_field($req['postcode']);
-		$day = sanitize_text_field($req['day']);
+		$day1 = sanitize_text_field($req['day1']);
+		$day2 = sanitize_text_field($req['day2']);
+		$day3 = sanitize_text_field($req['day3']);
+		$day4 = sanitize_text_field($req['day4']);
 
 		# add to DB
 
@@ -62,9 +65,12 @@ class TBM_SxSw_Sydney_Entries {
 				'name' =>$name,
 				'email' => $email,
 				'postcode' => $postcode,
-				'day' => $day,
+				'day1' => $day1,
+				'day2' => $day2,
+				'day3' => $day3,
+				'day4' => $day4,
 			],
-			['%s', '%s', '%s', '%s']
+			['%s', '%s', '%s', '%s', '%s', '%s', '%s']
 		);
 
 		return wp_send_json_success('Your entry has been received.');
