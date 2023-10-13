@@ -5,20 +5,31 @@
 
     $total_unique_email = $wpdb->get_var( "SELECT COUNT(DISTINCT email) FROM {$table}");
     $total_entries = $wpdb->get_var("SELECT COUNT(id) FROM {$table}");
+    $total_day_1 = $wpdb->get_var("SELECT COUNT(id) FROM {$table} WHERE day1 = 1");
+    $total_day_2 = $wpdb->get_var("SELECT COUNT(id) FROM {$table} WHERE day2 = 1");
+    $total_day_3 = $wpdb->get_var("SELECT COUNT(id) FROM {$table} WHERE day3 = 1");
+    $total_day_4 = $wpdb->get_var("SELECT COUNT(id) FROM {$table} WHERE day4 = 1");
 
     $entries = $wpdb->get_results("SELECT * FROM {$table}");
 ?>
 <div class="wrap">
-    <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
-        <div style="margin-right: 1rem; margin-bottom: 1rem;">
-            <strong>Total unique emails: <?php echo $total_unique_email; ?></strong>
-            <br>
-            <strong>Total entries: <?php echo $total_entries; ?></strong>
+    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+        <div>
+            <div style="margin-right: 1rem; margin-bottom: 1rem;">
+                <strong>Total entries:</strong> <?php echo $total_entries; ?>
+                <strong>Total unique entries:</strong> <?php echo $total_unique_email; ?><br>
+            </div>
+            <div style="margin-right: 1rem; margin-bottom: 1rem;">
+                <strong>Day 1 count:</strong> <?php echo $total_day_1; ?><br>
+                <strong>Day 2 count:</strong> <?php echo $total_day_2; ?><br>
+                <strong>Day 3 count:</strong> <?php echo $total_day_3; ?><br>
+                <strong>Day 4 count:</strong> <?php echo $total_day_4; ?>
+            </div>
         </div>
-        <!-- <form method="post" action="<?php echo admin_url('admin.php'); ?>">
-            <input type="hidden" name="action" value="tbm_export_sxsw_sydney_entries_2023">
-            <?php submit_button('Export'); ?>
-        </form> -->
+        <form method="POST" action="<?php echo admin_url('admin.php'); ?>">
+            <input type="hidden" name="action" value="tbm_sxsw_sydney_export_entries_2023">
+            <input type="submit" value="Export Data" class="button button-primary">
+        </form>
     </div>
     <table class="widefat">
         <tr>
