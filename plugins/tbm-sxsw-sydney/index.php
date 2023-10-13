@@ -24,7 +24,7 @@ class TBM_SxSw_Sydney_Entries {
         } );
 
 		add_action( 'admin_menu', [ $this, '_admin_menu' ] );
-        add_action(' admin_action_sxsw_sydney_2023_export', [ $this, 'export' ] );
+        add_action( 'admin_action_sxsw_sydney_2023_export', [ $this, 'export' ] );
 	}
 
 	public function sxsw_sydney_entries_2023($req) {
