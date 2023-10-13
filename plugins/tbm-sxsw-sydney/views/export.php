@@ -31,7 +31,6 @@ if ($entries) {
 
 
 
-
 // $entries = $wpdb->get_results("
 //           SELECT
 //             *

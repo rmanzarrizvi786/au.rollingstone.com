@@ -27,7 +27,7 @@
             </div>
         </div>
         <!-- <form method="POST" action="<?php echo admin_url('admin.php'); ?>">
-            <input type="hidden" name="action" value="tbm_sxsw_sydney_export_entries_2023">
+            <input type="hidden" name="action" value="sxsw_sydney_2023_export">
             <input type="submit" value="Export Data" class="button button-primary">
         </form> -->
     </div>
@@ -49,6 +49,7 @@
                             <th style="text-align:center;">Day 2</th>
                             <th style="text-align:center;">Day 3</th>
                             <th style="text-align:center;">Day 4</th>
+                            <th style="text-align:center;">Created</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,6 +78,9 @@
                             </td>
                             <td style="text-align: center;">
                                 <?php echo $entry->day4; ?>
+                            </td>
+                            <td style="text-align: center;">
+                                <?php echo $entry->created_at; ?>
                             </td>
                         </tr>
                     <?php 
