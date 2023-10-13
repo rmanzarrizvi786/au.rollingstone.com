@@ -26,10 +26,10 @@
                 <strong>Day 4 count:</strong> <?php echo $total_day_4; ?>
             </div>
         </div>
-        <form method="POST" action="<?php echo admin_url('admin.php'); ?>">
+        <!-- <form method="POST" action="<?php echo admin_url('admin.php'); ?>">
             <input type="hidden" name="action" value="tbm_sxsw_sydney_export_entries_2023">
             <input type="submit" value="Export Data" class="button button-primary">
-        </form>
+        </form> -->
     </div>
     <table class="widefat">
         <tr>
