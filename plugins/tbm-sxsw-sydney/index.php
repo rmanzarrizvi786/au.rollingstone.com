@@ -28,6 +28,10 @@ class TBM_SxSw_Sydney_Entries {
 	}
 
 	public function sxsw_sydney_entries_2023($req) {
+        # close off entries
+
+        return wp_send_json_error("We're no longer taking guest list entries.");
+
 		# do required checks
 
 		if ( empty( $req['name'] ) )
@@ -55,6 +59,7 @@ class TBM_SxSw_Sydney_Entries {
 		$day2 = sanitize_text_field($req['day2']);
 		$day3 = sanitize_text_field($req['day3']);
 		$day4 = sanitize_text_field($req['day4']);
+        $day4 = sanitize_text_field($req['iagree']);
 
 		# add to DB
 
