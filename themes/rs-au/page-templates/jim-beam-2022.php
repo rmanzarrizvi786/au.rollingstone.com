@@ -481,7 +481,7 @@ if (have_posts()) :
                                         <div class="event-wrap event-01">
                                             <div class="event event-sydney">
                                                 <a href="https://au.rollingstone.com/music/music-pictures/gallery-jim-beam-welcome-sessions-with-the-jungle-giants-47397/" target="_blank" arget="_blank">
-                                                    <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/05/2.JungleGiants_Performance57.jpg?resize=1400,700&w=1400&nologo=1">
+                                                    <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/05/2.JungleGiants_Performance57.jpg?resize=1400,700&w=1400&nologo=1">
                                                 </a>
                                             </div>
                                             <div class="info">
@@ -496,7 +496,7 @@ if (have_posts()) :
                                         <div class="event-wrap event-01">
                                             <div class="event event-sydney">
                                                 <a href="https://au.rollingstone.com/music/music-pictures/gallery-jim-beam-welcome-sessions-with-wafia-46833/" target="_blank" arget="_blank">
-                                                    <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/04/2.Wafia_Performance45.jpg?resize=1400,700&w=1400&nologo=1">
+                                                    <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/04/2.Wafia_Performance45.jpg?resize=1400,700&w=1400&nologo=1">
                                                 </a>
                                             </div>
                                             <div class="info">
@@ -511,7 +511,7 @@ if (have_posts()) :
                                         <div class="event-wrap event-01">
                                             <div class="event event-sydney">
                                                 <a href="https://au.rollingstone.com/music/music-pictures/gallery-jim-beam-welcome-sessions-with-bag-raiders-dj-set-46783/" target="_blank" arget="_blank">
-                                                    <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/04/2.BagRaiders_Performance14.jpg?resize=1400,700&w=1400&nologo=1">
+                                                    <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/04/2.BagRaiders_Performance14.jpg?resize=1400,700&w=1400&nologo=1">
                                                 </a>
                                             </div>
                                             <div class="info">
@@ -526,7 +526,7 @@ if (have_posts()) :
                                         <div class="event-wrap event-01">
                                             <div class="event event-sydney">
                                                 <a href="https://au.rollingstone.com/music/music-pictures/gallery-jim-beam-welcome-sessions-with-drapht-45958/" target="_blank" arget="_blank">
-                                                    <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/03/2.Drapht_Performance15_2.jpg?resize=1400,700&w=1400&nologo=1">
+                                                    <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/03/2.Drapht_Performance15_2.jpg?resize=1400,700&w=1400&nologo=1">
                                                 </a>
                                             </div>
                                             <div class="info">
@@ -541,7 +541,7 @@ if (have_posts()) :
                                         <div class="event-wrap event-01">
                                             <div class="event event-sydney">
                                                 <a href="https://au.rollingstone.com/music/music-pictures/gallery-jim-beam-welcome-sessions-with-lime-cordiale-dj-set-45616/" target="_blank" arget="_blank">
-                                                    <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/03/2.LimeCordiale_Performance10.jpg?resize=1400,700&w=1400&nologo=1">
+                                                    <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/03/2.LimeCordiale_Performance10.jpg?resize=1400,700&w=1400&nologo=1">
                                                 </a>
                                             </div>
                                             <div class="info">
@@ -577,49 +577,49 @@ if (have_posts()) :
                                 <div class="d-flex flex-column flex-md-row align-items-stretch mb-3">
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/jim-beam-welcome-sessions-wrap-47499/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/05/Jim-Beam-Welcome-Sessions-Lime-Cordiale.jpg?resize=1400,700&w=1400">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/05/Jim-Beam-Welcome-Sessions-Lime-Cordiale.jpg?resize=1400,700&w=1400">
                                             <h4>One-of-a-Kind Live Music Experiences: Jim Beam Welcome Sessions Comes to a Close</h4>
                                             <p>A look back at this year's edition of Jim Beam Welcome Sessions, featuring performances from Lime Cordiale, Drapht, Bag Raiders, Wafia and The Jungle Giants.</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-news/jungle-giants-jim-beam-welcome-sessions-47244/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/05/2.JungleGiants_Performance60.jpg?resize=1400,700&w=1400">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/05/2.JungleGiants_Performance60.jpg?resize=1400,700&w=1400">
                                             <h4>The Jungle Giants Wrap Up Jim Beam Welcome Sessions In Fine Fashion</h4>
                                             <p>After almost three months of events, Jim Beam Welcome Sessions has come to a close.</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-news/the-jungle-giants-praise-fans-ahead-of-jim-beam-welcome-sessions-46371/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/04/jungle-giants.jpg?resize=900,600&w=1200">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/04/jungle-giants.jpg?resize=900,600&w=1200">
                                             <h4>“We Change Together”: The Jungle Giants Praise Fans Ahead Of Jim Beam Welcome Sessions Gig</h4>
                                             <p>The Jungle Giants are set to kick off the final stop of Jim Beam Welcome Sessions gigs that’s set to be a performance to remember.</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-news/jim-beam-welcome-sessions-the-jungle-giants-46250/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/03/jungle-giants-2.jpg?resize=1400,700&w=1400">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/03/jungle-giants-2.jpg?resize=1400,700&w=1400">
                                             <h4>The Jungle Giants Head to Melbourne to Wrap Up Jim Beam Welcome Sessions With a Bang</h4>
                                             <p>Jim Beam Welcome Sessions are set to wrap up their festivities with one last event for the series, this time thanks to Queensland indie rock icons The Jungle Giants.</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/wafia-dazzles-the-gold-coast-with-a-hometown-set-for-jim-beam-welcome-sessions-46772/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/04/Wafia-hero.jpg?resize=1400,700&w=1400">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/04/Wafia-hero.jpg?resize=1400,700&w=1400">
                                             <h4>Wafia Dazzles The Gold Coast With A Hometown Set For Jim Beam Welcome Sessions</h4>
                                             <p>Wafia took over for an eclectic set of classics and favourites as part of the 2023 edition of Jim Beam Welcome Sessions on the Gold Coast.</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/wafia-fans-jim-beam-welcome-sessions-performance-45873/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/03/2303-Wafia-Supplied-2.jpg?resize=900,600&w=1200">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/03/2303-Wafia-Supplied-2.jpg?resize=900,600&w=1200">
                                             <h4>“I’d Be An Entirely Different Person”: Wafia On Fan Support Ahead Of Jim Beam Welcome Sessions Performance</h4>
                                             <p>“I wouldn’t have this career if it wasn’t for my fans and community and their continued support.”</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/wafia-jim-beam-welcome-sessions-45767/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/03/wafia-1.jpg">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/03/wafia-1.jpg">
                                             <h4>Wafia Brings the Heat to the Gold Coast for Jim Beam Welcome Sessions</h4>
                                             <p>Things are set to heat up again when the festivities move north with a special performance set from none other than Wafia.</p>
                                         </a>
@@ -627,7 +627,7 @@ if (have_posts()) :
 
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-news/bag-raiders-jim-beam-welcome-sessions-adelaide-46406/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/04/bag-raiders-1.jpg">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/04/bag-raiders-1.jpg">
                                             <h4>Bag Raiders Continued Jim Beam Welcome Sessions With a Vibrant Adelaide Performance</h4>
                                             <p>Superstar producers Bag Raiders headed to South Australia for a massive DJ set as part of the 2023 edition of Jim Beam Welcome Sessions.</p>
                                         </a>
@@ -636,49 +636,49 @@ if (have_posts()) :
 
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/bag-raiders-jim-beam-welcome-sessions-45192/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2020/02/bag-raiders.jpg?resize=1400,700&w=1400&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2020/02/bag-raiders.jpg?resize=1400,700&w=1400&nologo=1">
                                             <h4>Jim Beam Welcome Sessions Head To Adelaide With Bag Raiders</h4>
                                             <p>Jim Beam Welcome Sessions are undoubtedly some of the biggest celebrations of local music going around the country right now.</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-news/lime-cordiale-jim-beam-welcome-sessions-2-45188/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2020/02/lime-cordiale-1.jpg?resize=1400,700&w=1400&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2020/02/lime-cordiale-1.jpg?resize=1400,700&w=1400&nologo=1">
                                             <h4>Lime Cordiale Kicked Off Jim Beam Welcome Sessions In Style With A Massive Hometown DJ Set</h4>
                                             <p>This year’s high-profile musical events are well underway, with Sydney’s own Lime Cordiale helping to kick off the 2023 edition of the Jim Beam Welcome Sessions in February.</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/drapht-jim-beam-welcome-sessions-45117/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/02/drapht-1.jpg?resize=1400,700&w=1400&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/02/drapht-1.jpg?resize=1400,700&w=1400&nologo=1">
                                             <h4>Perth Emcee Drapht Reflects on his Epic Career Ahead of Jim Beam Welcome Sessions Gig</h4>
                                             <p>Perth rapper Drapht set to return to his hometown for an epic gig.</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/jim-beam-welcome-sessions-drapht-44829/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/02/drapht-jim-beam.jpg?resize=1400,700&w=1400&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/02/drapht-jim-beam.jpg?resize=1400,700&w=1400&nologo=1">
                                             <h4>Get Ready for an Unforgettable Afternoon with Hip Hop Artist Drapht Thanks to Jim Beam Welcome Sessions</h4>
                                             <p>Get Ready for an Unforgettable Afternoon with Hip Hop Artist Drapht Thanks to Jim Beam Welcome Session.</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/lime-cordiale-jim-beam-welcome-sessions-44652/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/01/lime-cordiale.jpg?resize=1400,700&w=1400?resize=1400,700&w=1400&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/01/lime-cordiale.jpg?resize=1400,700&w=1400?resize=1400,700&w=1400&nologo=1">
                                             <h4>“It’s Special Playing at Home” – Lime Cordiale Return to Sydney for Jim Beam Welcome Sessions</h4>
                                             <p>After having spent more than a decade making a name for themselves as one of the country’s hardest-working exports, Sydney locals Lime Cordiale know how to work a crowd.</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-news/lime-cordiale-in-a-one-of-a-kind-music-experience-44530/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2021/04/lc.jpg?resize=900,600&w=1200&w=1200&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2021/04/lc.jpg?resize=900,600&w=1200&w=1200&nologo=1">
                                             <h4>See Lime Cordiale (DJ Set) in a One-Of-A-Kind Music Experience All Thanks to Jim Beam</h4>
                                             <p>At long last, Jim Beam Welcome Sessions are back for another year.</p>
                                         </a>
                                     </div>
                                     <div class="col col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-news/jim-beam-is-taking-welcome-sessions-to-the-next-level-in-2023-44528/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/01/jim-beam.jpg?resize=900,600&w=1200&w=1200&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/01/jim-beam.jpg?resize=900,600&w=1200&w=1200&nologo=1">
                                             <h4>Jim Beam Is Taking Welcome Sessions to the Next Level in 2023</h4>
                                             <p>Jim Beam Welcome Sessions are back for 2023, creating one-of-a-kind live music experiences that unite Aussie music fans.</p>
                                         </a>
@@ -745,7 +745,7 @@ if (have_posts()) :
                                 <div class="d-flex flex-column flex-md-row align-items-stretch mb-3">
                                     <div class="col-12 col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/jim-beam-welcome-sessions-creates-one-of-a-kind-live-music-experiences-42953/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/09/JBWS-local-2022.jpg?resize=900,600&w=1200&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/09/JBWS-local-2022.jpg?resize=900,600&w=1200&nologo=1">
                                             <h4>Jim Beam Welcome Sessions Creates One of a Kind Live Music Experiences</h4>
                                             <p>TA look back at the Australia leg of Jim Beam Welcome Sessions 2023, featuring intimate performances from Flight Facilities, Client Liaison, and The Veronicas.</p>
                                         </a>
@@ -753,7 +753,7 @@ if (have_posts()) :
 
                                     <div class="col-12 col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-live-reviews/the-veronicas-jim-beam-welcome-sessions-review-42345/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/08/Jim-Beam-Welcome-Sessions-Melbourne-3.jpg?resize=900,600&w=1200&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/08/Jim-Beam-Welcome-Sessions-Melbourne-3.jpg?resize=900,600&w=1200&nologo=1">
                                             <h4>The Veronicas Light Up the Room During the Final Jim Beam Welcome Sessions</h4>
                                             <p>The Jim Beam Welcome Sessions have concluded with an intimate, love-filled gig with pop duo The Veronicas at the helm.</p>
                                         </a>
@@ -761,7 +761,7 @@ if (have_posts()) :
 
                                     <div class="col-12 col-md-4 mb-4 px-0 px-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/the-veronicas-jim-beam-welcome-sessions-interview-41499/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/07/veronicas.jpg?resize=900,600&w=1200?resize=900,600&w=1200&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/07/veronicas.jpg?resize=900,600&w=1200?resize=900,600&w=1200&nologo=1">
                                             <h4>‘Music Can Be So Healing’</h4>
                                             <p>The Veronicas Look Forward to Intimate Jim Beam Welcome Sessions Gig.</p>
                                         </a>
@@ -769,7 +769,7 @@ if (have_posts()) :
 
                                     <div class="col-12 col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-news/win-tickets-to-see-the-veronicas-41491/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/07/veronicas.jpg?resize=900,600&w=1200?resize=900,600&w=1200&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/07/veronicas.jpg?resize=900,600&w=1200?resize=900,600&w=1200&nologo=1">
                                             <h4>Win Tickets to See The Veronicas at Jim Beam’s Welcome Sessions Event in Melbourne</h4>
                                             <p>Seventy-five double passes are up for grabs to see The Veronicas perform as part of the Jim Beam Welcome Sessions in Melbourne.</p>
                                         </a>
@@ -777,7 +777,7 @@ if (have_posts()) :
 
                                     <div class="col-12 col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-live-reviews/client-liaison-jim-beam-welcome-sessions-review-41544/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/07/Welcome-Sessions-x-Client-Liason-Mitch-Lowe-Photo-1-47.jpg?resize=900,600&w=1200&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/07/Welcome-Sessions-x-Client-Liason-Mitch-Lowe-Photo-1-47.jpg?resize=900,600&w=1200&nologo=1">
                                             <h4>Client Liaison Continue the Jim Beam Welcome Sessions with An Iconic Brisbane Show</h4>
                                             <p>Client Liaison took to the stage in Brisbane for a massive DJ set as part of the ongoing Jim Beam Welcome Sessions.</p>
                                         </a>
@@ -785,7 +785,7 @@ if (have_posts()) :
 
                                     <div class="col-12 col-md-4 mb-4 px-0 px-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/client-liaison-interview-jim-beam-welcome-sessions-41480/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2021/08/client-liaison.jpg?resize=900,600&w=1200&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2021/08/client-liaison.jpg?resize=900,600&w=1200&nologo=1">
                                             <h4>‘We’re Going to Pump It Up’: Client Liaison Promise to Bring the Heat for Jim Beam Welcome Sessions</h4>
                                             <p>Client Liaison will be performing a DJ set on Saturday July 16th at Buffalo Bar, Brisbane.</p>
                                         </a>
@@ -793,7 +793,7 @@ if (have_posts()) :
 
                                     <div class="col-12 col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://tonedeaf.thebrag.com/client-liaison-at-jim-beam-welcome-sessions-brisbane/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images.thebrag.com/td/uploads/2022/06/client-liaison.jpg?resize=900,600&w=1200&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images.thebrag.com/td/uploads/2022/06/client-liaison.jpg?resize=900,600&w=1200&nologo=1">
                                             <h4>Win tickets to see Client Liaison at Jim Beam's Welcome Sessions event in Brisbane</h4>
                                             <p>Win tickets to see Flight Facilities and Client Liaison in Jim Beam's Welcome Sessions 2022.</p>
                                         </a>
@@ -801,7 +801,7 @@ if (have_posts()) :
 
                                     <div class="col-12 col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/flight-facilities-jim-beam-welcome-sessions-40687/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2021/05/flight-facilities.jpg?resize=900,600&w=1200&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2021/05/flight-facilities.jpg?resize=900,600&w=1200&nologo=1">
                                             <h4>Flight Facilities Get Back To Their Roots For An Early Afternoon DJ Set For Jim Beam Welcome Sessions</h4>
                                             <p>Courtesy of Jim Beam Welcome Sessions, Flight Facilities are heading back to the city that birthed them for an early afternoon DJ set on Saturday, June 11th at The Rooftop Sydney.</p>
                                         </a>
@@ -809,7 +809,7 @@ if (have_posts()) :
 
                                     <div class="col-12 col-md-4 mb-4 px-0 px-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-news/win-tickets-to-see-flight-facilities-at-jim-beams-welcome-sessions-event-in-sydney-40529/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2021/05/flight-facilities.jpg?resize=900,600&w=1200&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2021/05/flight-facilities.jpg?resize=900,600&w=1200&nologo=1">
                                             <h4>Win tickets to see Flight Facilities at Jim Beam’s Welcome Sessions event in Sydney</h4>
                                             <p>Jim Beam gives you the chance to win tickets to attend an intimate Welcome Sessions DJ Set performance by Flight Facilities in Sydney.</p>
                                         </a>
@@ -817,7 +817,7 @@ if (have_posts()) :
                                     
                                     <div class="col-12 col-md-4 mb-4 pl-0 pl-md-2 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/culture/culture-news/jim-beam-welcome-sessions-returns-in-2022-40385/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2021/05/Rolling-stone-jim-beam-welcome-sessions-2022-1.jpg&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2021/05/Rolling-stone-jim-beam-welcome-sessions-2022-1.jpg&nologo=1">
                                             <h4>Jim Beam Welcome Sessions returns with a bang in 2022</h4>
                                             <p>Jim Beam has announced the lineup of Australian acts that will join their 2022 Welcome Sessions</p>
                                         </a>
@@ -904,14 +904,14 @@ if (have_posts()) :
                                 <div class="col-12 col-md-8 d-flex flex-column flex-md-row align-items-stretch my-3">
                                     <div class="col-12 col-md-8 mb-2 px-0 px-md-1 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/more-than-just-the-music-how-muse-inspire-unity-among-their-most-dedicated-fans-42377/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2021/08/muse-JBWS-Sam-Grant.jpg&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2021/08/muse-JBWS-Sam-Grant.jpg&nologo=1">
                                             <h4 class="text-center mt-1 mt-md-2 mt-lg-3">More Than Just the Music:</h4>
                                             <p class="text-center">How Muse Inspire Unity Among Their Most Dedicated Fans.</p>
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-6 mb-2 px-0 px-md-1 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/muse-return-to-the-venue-where-it-all-started-42355/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/05/muse-jim-beam-welcome-sessions.jpg&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/05/muse-jim-beam-welcome-sessions.jpg&nologo=1">
                                             <h4 class="text-center mt-1 mt-md-2 mt-lg-3">‘It Was Like Time Travel’:</h4>
                                             <p class="text-center">Muse Return to the Venue Where It All Started.</p>
                                         </a>
@@ -919,7 +919,7 @@ if (have_posts()) :
                                     <div class="col-12 col-md-6 mb-2 px-0 px-md-1 d-flex align-items-stretch">
                                         <div class="news">
                                             <div class="video-placehoder-wrap mb-4 d-flex flex-column">
-                                                <img src="https://app.thebrag.com/img-socl/?url=https://cdn-r2-2.thebrag.com/pages/jim-beam-2022/images/video-1.1.jpg&nologo=1">
+                                                <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://cdn-r2-2.thebrag.com/pages/jim-beam-2022/images/video-1.1.jpg&nologo=1">
                                                 <div class="my-2 text-center">
                                                     <div class="" style="border-bottom: 2px solid rgb(213, 30, 41)">
                                                         <p class="ls-1">WATCH THE FULL PERFORMANCE</span></p>
@@ -932,14 +932,14 @@ if (have_posts()) :
                                     </div>
                                     <div class="col-12 col-md-6 mb-2 px-0 px-md-1 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/jim-beam-reconnects-muse-to-the-community-that-raised-them-40650/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/05/muse-jim-beam-welcome-sessions.jpg&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/05/muse-jim-beam-welcome-sessions.jpg&nologo=1">
                                             <h4 class="text-center mt-1 mt-md-2 mt-lg-3">Jim Beam Reconnects Muse to the Community that Raised Them</h4>
                                             <p class="text-center">Jim Beam brings Muse home to a tiny stage in the South West of England, reuniting them to the early community that created the global band we know today.</p>
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-6 mb-2 px-0 px-md-1 d-flex align-items-stretch">
                                         <a href="https://au.rollingstone.com/music/music-features/muse-fosters-community-between-the-lines-of-your-favourite-song-41487/" target="_blank" class="news">
-                                            <img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/07/SamGrant_220608_JBWS_Muse_ViennaBerlin_Day3_4643-3-1.jpg&nologo=1">
+                                            <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/07/SamGrant_220608_JBWS_Muse_ViennaBerlin_Day3_4643-3-1.jpg&nologo=1">
                                             <h4 class="text-center mt-1 mt-md-2 mt-lg-3">Muse Fosters Community Between the Lines of Your Favourite Song</h4>
                                         </a>
                                     </div>

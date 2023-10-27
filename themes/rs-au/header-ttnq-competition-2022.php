@@ -49,7 +49,7 @@
 				$type = exif_imagetype($src[0]);
 
 				if ($type != false && ($type == (IMAGETYPE_PNG || IMAGETYPE_JPEG))) {
-					echo ("https://app.thebrag.com/img-socl/?url={$src[0]}&nologo=1");
+					echo ("https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/{$src[0]}&nologo=1");
 				} else {
 					echo $src[0];
 				}
