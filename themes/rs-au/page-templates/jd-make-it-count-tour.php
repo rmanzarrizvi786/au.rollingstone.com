@@ -212,7 +212,7 @@ if (have_posts()) :
 						<div class="d-flex flex-wrap flex-column flex-md-row">
 							<div class="col-12 col-md-4">
 								<div class="my-3 mx-3 previous-events">
-									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/12/StandAtlantic_ChrisFrape-264.jpg&#038;nologo=1"></div>
+									<div class="mx-0 mx-md-2 img-wrap"><img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/12/StandAtlantic_ChrisFrape-264.jpg&#038;nologo=1"></div>
 									<div style="color: #fff; margin-top: 15px; text-align: center;">
 										<h3 style="font-weight: bold;">STAND ATLANTIC with special guests Redhook</h3>
 										<p>
@@ -229,7 +229,7 @@ if (have_posts()) :
 
 							<div class="col-12 col-md-4">
 								<div class="my-3 mx-3 previous-events">
-									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/11/ktunbridge-140.jpg&#038;nologo=1"></div>
+									<div class="mx-0 mx-md-2 img-wrap"><img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/11/ktunbridge-140.jpg&#038;nologo=1"></div>
 									<div style="color: #fff; margin-top: 15px; text-align: center;">
 										<h3 style="font-weight: bold;">DUNE RATS with special guests Beddy Rays & VOIID</h3>
 										<p>
@@ -263,7 +263,7 @@ if (have_posts()) :
 
 							<div class="col-12 col-md-4">
 								<div class="my-3 mx-3 previous-events">
-									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/04/rollingstoneXJackDaniel-146.jpg&nologo=1"></div>
+									<div class="mx-0 mx-md-2 img-wrap"><img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/04/rollingstoneXJackDaniel-146.jpg&nologo=1"></div>
 									<div style="color: #fff; margin-top: 15px; text-align: center;">
 										<h3 style="font-weight: bold;">TOUCH SENSITIVE with special guests Nyxen, Juno Mamba & Foura (DJ Set)</h3>
 										<p>
@@ -280,7 +280,7 @@ if (have_posts()) :
 
 							<div class="col-12 col-md-4">
 								<div class="my-3 mx-3 previous-events">
-									<div class="mx-0 mx-md-2 img-wrap"><img src="https://app.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2023/05/RSMakeItCount_PERTH-62.jpg&nologo=1"></div>
+									<div class="mx-0 mx-md-2 img-wrap"><img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2023/05/RSMakeItCount_PERTH-62.jpg&nologo=1"></div>
 									<div style="color: #fff; margin-top: 15px; text-align: center;">
 										<h3 style="font-weight: bold;">SLY WITHERS with special guests Mal De Mar</h3>
 										<p>
