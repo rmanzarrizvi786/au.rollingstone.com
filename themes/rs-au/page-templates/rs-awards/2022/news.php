@@ -25,7 +25,7 @@
     <div class="col-12 col-md-6">
         <a href="https://theindustryobserver.thebrag.com/sailor-jerry-rolling-stone-australia-awards-labels-leaderboard/" target="_blank">
             <div class="img-wrap">
-                <img src="https://images.thebrag.com/tio/uploads/2022/01/RS-nominees-2022-1-768x512.jpeg">
+                <img src="https://images-r2.thebrag.com/tio/uploads/2022/01/RS-nominees-2022-1-768x512.jpeg">
             </div>
             <h3>
                 Sailor Jerry Rolling Stone Australia Awards labels leaderboard
@@ -35,7 +35,7 @@
     <div class="col-12 col-md-6">
         <a href="https://theindustryobserver.thebrag.com/rolling-stone-australia-awards-2022-nominees/" target="_blank">
             <div class="img-wrap">
-                <img src="https://images.thebrag.com/tio/uploads/2022/01/RS-nominees-2022-1-768x512.jpeg">
+                <img src="https://images-r2.thebrag.com/tio/uploads/2022/01/RS-nominees-2022-1-768x512.jpeg">
             </div>
             <h3>
                 Rolling Stone Australia Awards announces its 2022 nominees
@@ -46,7 +46,7 @@
     <div class="col-12 col-md-6">
         <a href="https://tonedeaf.thebrag.com/rolling-stone-awards-nominees-2022/" target="_blank">
             <div class="img-wrap">
-                <img src="https://images.thebrag.com/td/uploads/2022/01/RS-nominees-2022-1-768x512.jpg">
+                <img src="https://images-r2.thebrag.com/td/uploads/2022/01/RS-nominees-2022-1-768x512.jpg">
             </div>
             <h3>
                 Genesis Owusu, Amy Shark among 2022 Rolling Stone Australia Awards nominees
@@ -70,7 +70,7 @@
     <div class="col-12 col-md-6">
         <a href="https://theindustryobserver.thebrag.com/nominations-2022-rolling-stone-australia-awards/" target="_blank">
             <div class="img-wrap">
-                <img src="https://images.thebrag.com/tio/uploads/2021/10/rolling-stone-awards-tash-sultana-768x435.jpg">
+                <img src="https://images-r2.thebrag.com/tio/uploads/2021/10/rolling-stone-awards-tash-sultana-768x435.jpg">
             </div>
             <h3>
                 Nominations open now for 2022 Sailor Jerry Rolling Stone Australia Awards

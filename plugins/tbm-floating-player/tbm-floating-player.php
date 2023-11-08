@@ -12,10 +12,10 @@
 namespace TBM;
 
 class FloatingPlayer {
-
     protected $playerId;
     protected $playlistId;
     protected $playerTitle;
+    protected $adId;
 
     public function __construct() {
         $this->playerId = get_option('tbm_floating_dm_player_id', '');
@@ -23,12 +23,16 @@ class FloatingPlayer {
         $this->adId = get_option('tbm_gam_ad_unit_id', '');
         $this->playerTitle = "Editor's Picks";
 
-        add_action('wp_footer', [$this, 'wp_footer']);
+        add_action( 'wp_footer', [ $this, 'wp_footer' ] );
     }
 
     public function wp_footer() {
         global $post;
 
+        // if is gallery post type return
+        if (get_post_type() == 'pmc-gallery') {
+            return;
+        }
         if (!is_single()) {
             return;
         }

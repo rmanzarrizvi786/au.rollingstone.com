@@ -470,7 +470,7 @@ $body = [
 	  'title' => 'Jack Harlow says he lost his virginity not once but twice',
 	  'message' => 'Jack Harlow got very honest about his sexual history with the crowd at his Nashville concert.',
 	  'url' => 'https://thebrag.com/this-wonderful-tiktok-account-finds-romance-in-everyday-melbourne/',
-	  'image_url' => 'https://tonedeaf.thebrag.com/img-socl/?url=https://images.thebrag.com/td/uploads/2022/05/Drake-Jack-Harlow-Kentucky-Derby-e1662958117888.jpg',
+	  'image_url' => 'https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/td/uploads/2022/05/Drake-Jack-Harlow-Kentucky-Derby-e1662958117888.jpg',
 	  'category' => 'HIP HOP'
 	]
   ];
