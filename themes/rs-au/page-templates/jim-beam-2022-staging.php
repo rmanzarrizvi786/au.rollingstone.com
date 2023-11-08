@@ -374,7 +374,7 @@ if (have_posts()) :
 								<div class="d-flex flex-column flex-md-row align-items-stretch mb-3">
 									<div class="col-12 col-md-6 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
 										<a href="https://au.rollingstone.com/music/music-live-reviews/client-liaison-jim-beam-welcome-sessions-review-41544/" target="_blank" class="news">
-											<img src="https://tonedeaf.thebrag.com/img-socl/?url=https://images-r2.thebrag.com/rs/uploads/2022/07/Welcome-Sessions-x-Client-Liason-Mitch-Lowe-Photo-1-47.jpg?resize=900,600&w=1200&nologo=1">
+											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/07/Welcome-Sessions-x-Client-Liason-Mitch-Lowe-Photo-1-47.jpg?resize=900,600&w=1200&nologo=1">
 											<h4>Client Liaison Continue the Jim Beam Welcome Sessions with An Iconic Brisbane Show</h4>
 											<p>Client Liaison took to the stage in Brisbane for a massive DJ set as part of the ongoing Jim Beam Welcome Sessions.</p>
 										</a>
@@ -382,7 +382,7 @@ if (have_posts()) :
 
 									<div class="col-12 col-md-6 mb-4 pl-0 pl-md-2 d-flex align-items-stretch">
 										<a href="https://tonedeaf.thebrag.com/client-liaison-at-jim-beam-welcome-sessions-brisbane/" target="_blank" class="news">
-											<img src="https://tonedeaf.thebrag.com/img-socl/?url=https://images.thebrag.com/td/uploads/2022/06/client-liaison.jpg&nologo=1">
+											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/td/uploads/2022/06/client-liaison.jpg&nologo=1">
 											<h4>Win tickets to see Client Liaison at Jim Beam's Welcome Sessions event in Brisbane</h4>
 											<p>Win tickets to see Flight Facilities and Client Liaison in Jim Beam's Welcome Sessions 2022</p>
 										</a>

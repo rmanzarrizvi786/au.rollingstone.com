@@ -355,7 +355,7 @@ if (have_posts()) :
 											<span class="text-kuunari-condensed" style="font-size: 300%; line-height: 100%;">SESSIONS</span>
 										</h2>
 										<a href="https://tonedeaf.thebrag.com/client-liaison-at-jim-beam-welcome-sessions-brisbane/" target="_blank" class="news">
-											<img src="https://images.thebrag.com/td/uploads/2022/06/client-liaison.jpg">
+											<img src="https://images-r2.thebrag.com/td/uploads/2022/06/client-liaison.jpg">
 											<h4>Win tickets to see Client Liaison at Jim Beam's Welcome Sessions event in Brisbane</h4>
 											<p class="mt-3 pt-3">Win tickets to see Flight Facilities and Client Liaison in Jim Beam's Welcome Sessions 2022</p>
 										</a>

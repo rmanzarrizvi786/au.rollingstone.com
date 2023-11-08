@@ -32,7 +32,7 @@
     <div class="col-12 col-md-6 px-2">
         <a href="hhttps://themusicnetwork.com/rolling-stone-australia-awards-nominees-vance-joy-the-wiggles/" target="_blank" class="d-flex my-2">
             <div class="img-wrap">
-                <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images.thebrag.com/tmn/uploads/2021/11/Vance-Joy-Lead-Photo-1.jpg">
+                <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/tmn/uploads/2021/11/Vance-Joy-Lead-Photo-1.jpg">
             </div>
             <h3>Vance Joy, The Wiggles & Amy Shark Lead 2023 Shure Rolling Stone Australia Awards Nominees</h3>
         </a>
@@ -41,7 +41,7 @@
     <div class="col-12 col-md-6 px-2">
         <a href="https://themusicnetwork.com/rolling-stone-australia-awards-2023-last-chance/" target="_blank" class="d-flex my-2">
             <div class="img-wrap">
-                <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images.thebrag.com/tmn/uploads/2021/10/rolling-stone-awards-tash-sultana.jpg">
+                <img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/tmn/uploads/2021/10/rolling-stone-awards-tash-sultana.jpg">
             </div>
             <h3>Rolling Stone Australia Awards 2023: Last Chance to Nominate!</h3>
         </a>
