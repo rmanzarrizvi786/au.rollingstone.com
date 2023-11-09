@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "description": "Swiftype integration for searching PMC WordPress sites.",
   "dependencies": {
-    "grunt": "latest",
+    "grunt": "1.6.1",
     "grunt-contrib-uglify": "latest",
     "grunt-sass": "latest",
     "grunt-contrib-compass": "latest",
-    "grunt-contrib-clean": "latest"
-  }
+    "grunt-contrib-clean": "2.0.1"
+    "@snyk/protect": "latest"
+  },
+  "scripts": {
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
+  },
+  "snyk": true
 }
