@@ -258,6 +258,10 @@ class Byline {
 
 		$post_author = get_userdata( $wpdb->get_var( $wpdb->prepare( "SELECT post_author FROM $wpdb->posts WHERE ID = %d", $post_id ) ) );
 
+        if ( empty( $post_author ) ) {
+            return $authors;
+        }
+
 		$authors = array( $post_author );
 		return apply_filters( self::FILTER_COAUTHORS, $authors );
 	}
