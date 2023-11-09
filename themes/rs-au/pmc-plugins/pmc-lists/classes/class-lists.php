@@ -196,6 +196,10 @@ class Lists {
 	public function reorder_menu( $menu_order ) {
 		global $submenu;
 
+        if( is_null( $submenu ) ) {
+            return $menu_order;
+        }
+
 		$menu = 'edit.php?post_type=pmc_list';
 
 		foreach ( $submenu[ $menu ] as $key => $item ) {
