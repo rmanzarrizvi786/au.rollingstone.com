@@ -196,7 +196,7 @@ class Lists {
 	public function reorder_menu( $menu_order ) {
 		global $submenu;
 
-        if( is_null( $submenu ) ) {
+        if( is_null( $submenu ) || empty( $submenu ) ||! isset( $submenu['edit.php?post_type=pmc_list'] ) ) { {
             return $menu_order;
         }
 
