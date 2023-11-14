@@ -46,7 +46,7 @@ class Subscription {
             sub_full_name, shipping_address_1, shipping_address_2, shipping_city, shipping_state, shipping_postcode, shipping_country, status,
             stripe_customer_id,
             digital_user_id,
-            digital_library_id
+            digital_library_id,
             salesforce_id
         FROM
             {$this->table}

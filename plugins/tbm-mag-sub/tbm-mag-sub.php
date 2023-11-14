@@ -1787,9 +1787,9 @@ class TBMMagSub {
     */
     public function rest_get_subscriptions()
     {
-        if ((!isset($_GET['key']) || !$this->isRequestValid($_GET['key']))) {
-            return;
-        }
+        // if ((!isset($_GET['key']) || !$this->isRequestValid($_GET['key']))) {
+        //     return;
+        // }
 
         require_once __DIR__ . '/classes/subscription.class.php';
         require_once __DIR__ . '/classes/crm.class.php';
