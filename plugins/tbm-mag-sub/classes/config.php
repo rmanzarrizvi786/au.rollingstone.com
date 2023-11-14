@@ -22,8 +22,8 @@ if ($is_sandbox) {
     // $stripe['current_coupon_code'] = '93YgiA4h';
 
     // Salesforce
-    $salesforce['client_id'] = '3MVG9qvlreg8bJAA05oteL_WJJiYgwC90P4Mtc2FwAx6Xtn8v9_pIop7ZVRPO1GqzuRuhLwLyoflsFBc4oJ0I';
-    $salesforce['client_secret'] = '7797CE14DAE7115F01F5670ACE23E6BF63165B23A0CD344B4A14F84A6CD3CD76';
+    $salesforce['client_id'] = '3MVG9rZSDEiGkwu85DoFx27ZO8sJkSr9G4hVAYUcyqMO9p8_p3RMPy.z_I7F0pHXUgiD3m5CHVD0DIa0ZwYGD';
+    $salesforce['client_secret'] = '397DCD1ED807D21DC5B71B3943C04695A8FFADBBD1EE9B3D2D06852A9166D471';
     $salesforce['login_uri'] = 'https://thebragmedia--tbmsandbox.sandbox.my.salesforce.com';
     $salesforce['username'] = 'dev@thebrag.media.tbmsandbox';
     $salesforce['password'] = 'deTbm99!#6GmJvWE3LIQ9uMDBDG7EZ7cv';

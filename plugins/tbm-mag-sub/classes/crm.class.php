@@ -126,36 +126,35 @@ class CRM {
    * @return void
    */
         public function getSubscription($id) {
-                $access_token = $this->salesforce_login();
-                $url = $this->salesforce['login_uri'] . '/services/data/v47.0/sobjects/Magazine_Subscription__c/' . $id;
-                // $content = json_encode(
-                //   [
-                //     'fields' => 'Remaining_Issues__c',
-                //   ]
-                // );
-                $curl = curl_init($url);
-                curl_setopt($curl, CURLOPT_HEADER, false);
-                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Bearer {$access_token}", "Content-type: application/json"));
-                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
-                // curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+            $access_token = $this->salesforce_login();
+            $url = $this->salesforce['login_uri'] . '/services/data/v47.0/sobjects/Magazine_Subscription__c/' . $id;
+            // $content = json_encode(
+            //   [
+            //     'fields' => 'Remaining_Issues__c',
+            //   ]
+            // );
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Bearer {$access_token}", "Content-type: application/json"));
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
+            // curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
 
-                $json_response = curl_exec($curl);
-                $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+            $json_response = curl_exec($curl);
+            $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-                // return ( $status ); exit;
+            // return ( $status ); exit;
 
-                curl_close($curl);
+            curl_close($curl);
 
-                if ($status != 200) {
-                        error_log('--Salesforce Error: ' . $json_response);
-                        wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Get Sub', "Method: " . __METHOD__ . "\n Line: " . __LINE__ . "\n Id: {$id}\n" . $json_response);
-                        return ['error' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.'];
-                        wp_die();
-                } else {
-                        $response = json_decode($json_response);
-                        return $response;
-                }
+            if ($status != 200) {
+                error_log('--Salesforce Error: ' . $json_response);
+                wp_mail('dev@thebrag.media', 'RS Mag Error: Salesforce Get Sub', "Method: " . __METHOD__ . "\n Line: " . __LINE__ . "\n Id: {$id}\n" . $json_response);
+                return ['error' => 'Whoops, like something there was an unexpected error, please contact subscribe@thebrag.media with the details you submitted.'];
+            } else {
+                $response = json_decode($json_response);
+                return $response;
+            }
         } // getSubscription
 
         /**
@@ -951,9 +950,6 @@ class CRM {
         curl_close($curl);
 
         $response = json_decode($json_response);
-
-        var_dump($response);
-        die();
 
         return $response->access_token;
     }
