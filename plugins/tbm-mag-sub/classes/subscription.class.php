@@ -45,8 +45,10 @@ class Subscription {
             full_name, address_1, address_2, city, state, postcode, country,
             sub_full_name, shipping_address_1, shipping_address_2, shipping_city, shipping_state, shipping_postcode, shipping_country, status,
             stripe_customer_id,
-            digital_user_id,
-            digital_library_id,
+            latest_issue_link,
+            express_library_link,
+            library_link,
+            entitlement_link,
             salesforce_id
         FROM
             {$this->table}
