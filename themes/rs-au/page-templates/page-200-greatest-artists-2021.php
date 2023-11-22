@@ -30,7 +30,7 @@ $no_pages = ceil(($total - $release_upto) / $per_page);
 ?>
 <?php
 add_action('wp_footer', function () {
-?>
+  ?>
   <style>
     @media (min-width: 78.75rem) {
       .c-list--albums .c-list__picture2 {
@@ -92,27 +92,30 @@ add_action('wp_footer', function () {
   </style>
   <script>
     var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
-    jQuery(document).ready(function($) {
+    jQuery(document).ready(function ($) {
 
     });
   </script>
   <?php
 }); // wp_footer
 
-if (have_posts()) :
-  while (have_posts()) :
+if (have_posts()):
+  while (have_posts()):
     the_post();
 
-    if (!post_password_required($post)) :
-  ?>
+    if (!post_password_required($post)):
+      ?>
       <div class="l-page__content">
         <div class="logo-wrap">
           <div class="l-section l-section--no-separator">
             <figure class="c-picture2" style="margin: auto;">
               <div class="c-picture__frame2">
                 <div class="c-crop2 c-crop--ratio-3x2-2 logo">
-                  <img src="<?php echo RS_THEME_URL; ?>/images/goat-2021/RSAU200logo.jpg" style="width: 450px; max-width: 100%;">
-                  <div style="font-family: Graphik,sans-serif; margin-top: 2rem; font-size: 175%; line-height: 130%; display: none;"></div>
+                  <img src="<?php echo RS_THEME_URL; ?>/images/goat-2021/RSAU200logo.jpg"
+                    style="width: 450px; max-width: 100%;">
+                  <div
+                    style="font-family: Graphik,sans-serif; margin-top: 2rem; font-size: 175%; line-height: 130%; display: none;">
+                  </div>
                 </div><!-- .c-crop -->
               </div>
 
@@ -125,39 +128,47 @@ if (have_posts()) :
 
             <article class="top-list-wrap" data-id="<?php echo get_the_ID(); ?>" data-premium="false">
 
-              <h1 data-href="<?php the_permalink(); ?>" style="line-height: 2.5rem; text-align: center; color: #d32531;"><?php the_title(); ?></h1>
+              <h1 data-href="<?php the_permalink(); ?>" style="line-height: 2.5rem; text-align: center; color: #d32531;">
+                <?php the_title(); ?>
+              </h1>
 
               <?php the_content(); ?>
 
-              <nav class="l-header__block l-header__block--list-nav" style="position: sticky; background: white; z-index: 30001; padding-top: .5rem; padding-bottom: .5rem;">
+              <nav class="l-header__block l-header__block--list-nav"
+                style="position: sticky; background: white; z-index: 30001; padding-top: .5rem; padding-bottom: .5rem;">
                 <ul class="l-header__menu l-header__menu--list t-semibold t-semibold--upper" data-list-nav>
 
                   <?php
                   // for ($page = 1; $page <= $no_pages; $page++) :
                   $page = 0;
-                  for ($i = $total; $i >= 1; $i -= $per_page) :
+                  for ($i = $total; $i >= 1; $i -= $per_page):
                     $page++;
                     $range_start = $i;
                     $range_end = $i - $per_page + 1;
                     if ($range_end <= 1)
                       $range_end = 1;
-                  ?>
+                    ?>
                     <li class="l-header__menu-item">
-                      <?php if ($range_start > $release_upto) :
-                      ?>
-                        <a href="<?php echo get_permalink(); ?>page/<?php echo $page; ?>/" class="l-header__menu-link" data-list-nav-item data-list-range-start="<?php echo $range_start; ?>" data-list-range-end="<?php echo $range_end; ?>">
-                          <?php echo $range_start; ?>-<?php echo $range_end; ?>
+                      <?php if ($range_start > $release_upto):
+                        ?>
+                        <a href="<?php echo get_permalink(); ?>page/<?php echo $page; ?>/" class="l-header__menu-link"
+                          data-list-nav-item data-list-range-start="<?php echo $range_start; ?>"
+                          data-list-range-end="<?php echo $range_end; ?>">
+                          <?php echo $range_start; ?>-
+                          <?php echo $range_end; ?>
                         </a>
-                      <?php else :
-                      ?>
-                        <span class="l-header__menu-link" data-list-nav-item data-list-range-start="<?php echo $range_start; ?>" data-list-range-end="<?php echo $range_end; ?>" style="color: #ccc;">
-                          <?php echo $range_start; ?>-<?php echo $range_end; ?>
+                      <?php else:
+                        ?>
+                        <span class="l-header__menu-link" data-list-nav-item data-list-range-start="<?php echo $range_start; ?>"
+                          data-list-range-end="<?php echo $range_end; ?>" style="color: #ccc;">
+                          <?php echo $range_start; ?>-
+                          <?php echo $range_end; ?>
                         </span>
                       <?php endif; ?>
                     </li><!-- .l-header__menu-item -->
                     <?php //endfor; 
-                    ?>
-                  <?php
+                            ?>
+                    <?php
                   endfor;
                   // $per_page = 15;
                   ?>
@@ -175,44 +186,65 @@ if (have_posts()) :
                 $to = $start - $per_page;
                 if ($to <= 0)
                   $to = 0;
-                if ($start > 0) :
+                if ($start > 0):
 
-                  if ($start < $release_upto) :
+                  if ($start < $release_upto):
                     $will_be_released = $release_date->modify(($paged) . ' days');
-                ?>
-                    <article class="c-list__item" id="list-item-<?php echo $start; ?>" data-list-item="<?php echo $start; ?>" data-list-title="Artist at <?php echo $start; ?>" data-list-item-id="<?php echo $start; ?>" style="margin: 0; border: none;">
+                    ?>
+                    <article class="c-list__item" id="list-item-<?php echo $start; ?>" data-list-item="<?php echo $start; ?>"
+                      data-list-title="Artist at <?php echo $start; ?>" data-list-item-id="<?php echo $start; ?>"
+                      style="margin: 0; border: none;">
                       <div style="margin: 1rem auto; text-align: center; font-size: 120%; background: #f3f3f3; padding: 1rem;">
-                        Numbers <?php echo $start . '-' . ($to + 1); ?> will be announced <?php echo $will_be_released->format('l'); ?> the <?php echo $will_be_released->format('jS'); ?>
+                        Numbers
+                        <?php echo $start . '-' . ($to + 1); ?> will be announced
+                        <?php echo $will_be_released->format('l'); ?> the
+                        <?php echo $will_be_released->format('jS'); ?>
                       </div>
                     </article>
                     <?php
-                  else :
+                  else:
                     $query = "SELECT * FROM {$wpdb->prefix}200_greatest_artists_2021 WHERE position <= {$start} AND position > {$to} ORDER BY position DESC ";
                     // echo $query;
                     $artists = $wpdb->get_results($query);
 
-                    if ($artists) :
-                      foreach ($artists as $artist) : ?>
-                        <article class="c-list__item" id="list-item-<?php echo $artist->position; ?>" data-list-item="<?php echo $artist->position; ?>" data-list-title="Artist at <?php echo $artist->position; ?>" data-list-permalink="<?php echo get_permalink(); ?>page/<?php echo $paged; ?>/<?php echo $artist->slug; ?>/" data-list-item-id="<?php echo $artist->position; ?>">
-                          <div class="list-content" data-href="<?php echo get_permalink(); ?>page/<?php echo $paged; ?>/<?php echo $artist->slug; ?>/">
-                            <?php if (!is_null($artist->image_url) && '' != trim($artist->image_url)) : ?>
+                    if ($artists):
+                      foreach ($artists as $artist): ?>
+                        <article class="c-list__item" id="list-item-<?php echo $artist->position; ?>"
+                          data-list-item="<?php echo $artist->position; ?>"
+                          data-list-title="Artist at <?php echo $artist->position; ?>"
+                          data-list-permalink="<?php echo get_permalink(); ?>page/<?php echo $paged; ?>/<?php echo $artist->slug; ?>/"
+                          data-list-item-id="<?php echo $artist->position; ?>">
+                          <div class="list-content"
+                            data-href="<?php echo get_permalink(); ?>page/<?php echo $paged; ?>/<?php echo $artist->slug; ?>/">
+                            <?php if (!is_null($artist->image_url) && '' != trim($artist->image_url)): ?>
                               <figure class="c-list__picture2">
                                 <div>
-                                  <img width="900" src="<?php echo $artist->image_url; ?>" data-src="<?php echo $artist->image_url; ?>" alt="<?php echo $artist->title; ?>">
+                                  <img width="900" src="<?php echo $artist->image_url; ?>" data-src="<?php echo $artist->image_url; ?>"
+                                    alt="<?php echo $artist->title; ?>">
                                 </div><!-- .c-crop -->
-                                <?php if (!is_null($artist->image_credit) && '' != trim($artist->image_credit)) : ?>
-                                  <div style="position: absolute; bottom: 0.45rem; right: 0; background: rgba(0,0,0,.75); color: #fff; padding: .5rem; font-size: 80%;"><em>Image credit: <?php echo trim($artist->image_credit); ?></em></div>
+                                <?php if (!is_null($artist->image_credit) && '' != trim($artist->image_credit)): ?>
+                                  <div
+                                    style="position: absolute; bottom: 0.45rem; right: 0; background: rgba(0,0,0,.75); color: #fff; padding: .5rem; font-size: 80%;">
+                                    <em>Image credit:
+                                      <?php echo trim($artist->image_credit); ?>
+                                    </em></div>
                                 <?php endif; ?>
                               </figure><!-- /.c-list__picture -->
-                            <?php else : ?>
+                            <?php else: ?>
                               <div style="height: 50px;"></div>
                             <?php endif; ?>
 
                             <header class="c-list__header">
-                              <span class="c-list__number t-bold"><?php echo $artist->position; ?></span>
+                              <span class="c-list__number t-bold">
+                                <?php echo $artist->position; ?>
+                              </span>
 
-                              <h3 class="c-list__title t-bold" style="margin-bottom: .5rem;"><?php echo stripslashes($artist->title); ?></h3><!-- /.c-list__title -->
-                              <div class="c-album__subtitle"><?php echo isset($artist->subheading) && !is_null($artist->subheading) ? $artist->subheading : ''; ?></div>
+                              <h3 class="c-list__title t-bold" style="margin-bottom: .5rem;">
+                                <?php echo stripslashes($artist->title); ?>
+                              </h3><!-- /.c-list__title -->
+                              <div class="c-album__subtitle">
+                                <?php echo isset($artist->subheading) && !is_null($artist->subheading) ? $artist->subheading : ''; ?>
+                              </div>
                             </header><!-- /.c-list__header -->
 
                             <main class="c-list__main">
@@ -224,17 +256,25 @@ if (have_posts()) :
                           </div>
                           <div class="author-content">
                             <div class="author-wrap">
-                              <?php if (!is_null($artist->author_image_url) && '' != trim($artist->author_image_url)) : ?>
+                              <?php
+                              $artist_author_image_url = isset($artist->author_image_url) ? $artist->author_image_url : '';
+                              ?>
+                              <?php if (!is_null($artist_author_image_url) && '' != trim($artist_author_image_url)): ?>
                                 <figure class="c-list__picture2" style="float: none; margin: auto;">
                                   <div>
-                                    <img width="900" src="<?php echo $artist->author_image_url; ?>" data-src="<?php echo $artist->author_image_url; ?>" class="" alt="<?php echo $artist->author; ?>">
+                                    <img width="900" src="<?php echo $artist->author_image_url; ?>"
+                                      data-src="<?php echo $artist->author_image_url; ?>" class="" alt="<?php echo $artist->author; ?>">
                                   </div><!-- .c-crop -->
                                 </figure><!-- /.c-list__picture -->
                               <?php endif; ?>
                               <header class="c-list__header">
-                                <h4 class="c-list__title author-name t-bold">By <?php echo stripslashes($artist->author); ?></h4><!-- /.c-list__title -->
-                                <?php if (!is_null($artist->author_bio) && '' != trim($artist->author_bio)) : ?>
-                                  <div style="margin-top: .5rem;"><em><?php echo trim($artist->author_bio); ?></em></div>
+                                <h4 class="c-list__title author-name t-bold">By
+                                  <?php echo stripslashes($artist->author); ?>
+                                </h4><!-- /.c-list__title -->
+                                <?php if (!is_null($artist->author_bio) && '' != trim($artist->author_bio)): ?>
+                                  <div style="margin-top: .5rem;"><em>
+                                      <?php echo trim($artist->author_bio); ?>
+                                    </em></div>
                                 <?php endif; ?>
                               </header><!-- /.c-list__header -->
                             </div>
@@ -242,7 +282,7 @@ if (have_posts()) :
                         </article>
 
 
-                <?php endforeach; // For Each $artist in $artists
+                      <?php endforeach; // For Each $artist in $artists
                     endif; // If $artists 
                   endif; // If $to < $release_upto
                 endif;
@@ -254,8 +294,8 @@ if (have_posts()) :
         </div><!-- /.l-section -->
 
 
-      <?php
-    else :
+        <?php
+    else:
       ?>
         <div class="l-page__content">
           <div class="l-section l-section--no-separator">
@@ -266,13 +306,13 @@ if (have_posts()) :
             </div>
           </div>
         </div>
-  <?php
+        <?php
     endif; // Pasword protected
   endwhile;
 endif;
-  ?>
+?>
 
   <?php get_template_part('template-parts/footer/footer'); ?>
-      </div><!-- .l-page__content -->
-      <?php
-      get_footer();
+</div><!-- .l-page__content -->
+<?php
+get_footer();
