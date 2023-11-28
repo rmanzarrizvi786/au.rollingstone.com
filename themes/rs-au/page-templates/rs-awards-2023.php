@@ -10,15 +10,16 @@ $award_categories = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}rsawards_ca
 $action = isset($_GET['a']) && in_array(trim($_GET['a']), ['add', 'edit', 'ty']) ? trim($_GET['a']) : NULL;
 
 get_header('rsawards-custom-menu-2023');
+$noms_open_at = isset($noms_open_at) ? $noms_open_at : '';
 ?>
 
 <?php
-if (have_posts()) :
-  while (have_posts()) :
+if (have_posts()):
+  while (have_posts()):
     the_post();
 
-    if (!post_password_required($post)) :
-?>
+    if (!post_password_required($post)):
+      ?>
       <div id="content-wrap">
 
         <!-- <div class="container rsa-header" style="background-color: #fff;">
@@ -63,9 +64,9 @@ if (have_posts()) :
           </div>
         </section>
       </div><!-- #content-wrap -->
-    <?php
-    else :
-    ?>
+      <?php
+    else:
+      ?>
       <div class="l-page__content">
         <div class="l-section l-section--no-separator">
           <div class="c-content c-content--no-sidebar t-copy" style="width: 100%;">
@@ -75,7 +76,7 @@ if (have_posts()) :
           </div>
         </div>
       </div>
-<?php
+      <?php
     endif; // Password protected
   endwhile;
   wp_reset_query();
