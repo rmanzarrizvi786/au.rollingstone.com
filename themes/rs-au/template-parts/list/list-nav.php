@@ -9,8 +9,13 @@
 use Rolling_Stone\Inc\List_Nav;
 use PMC\Lists\List_Post;
 
-$list_nav = new List_Nav(List_Post::get_instance()->get_list()->ID);
-$list_nav = isset($list_nav) ? $list_nav : [];
+$getNavList = isset(List_Post::get_instance()->get_list()->ID) ? List_Post::get_instance()->get_list()->ID : 0;
+if ($getNavList == 0) {
+	$list_nav = [];
+} else {
+	$list_nav = new List_Nav(List_Post::get_instance()->get_list()->ID);
+}
+
 
 ?>
 
