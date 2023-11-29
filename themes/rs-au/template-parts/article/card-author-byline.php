@@ -36,7 +36,7 @@ endif;
 							<?php echo esc_html($author->display_name); ?>
 						</a>
 					<?php } else {
-						$author_name = $author->display_name;
+						$author_name = isset($author->display_name) ? $author->display_name : $author->user_nicename;
 						?>
 						<a href="<?php echo esc_url(get_author_posts_url($author->ID, $author->user_nicename)); ?>"
 							class="c-byline__link t-bold t-bold--upper author" rel="author"
