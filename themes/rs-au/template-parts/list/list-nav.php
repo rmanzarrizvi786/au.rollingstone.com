@@ -21,7 +21,11 @@ if ($getNavList == 0) {
 
 <nav class="l-header__block l-header__block--list-nav">
 	<ul class="l-header__menu l-header__menu--list t-semibold t-semibold--upper" data-list-nav>
-		<?php $list_nav->render(); ?>
+		<?php
+		if ($getNavList != 0) {
+			$list_nav->render();
+		}
+		?>
 	</ul><!-- .l-header__menu -->
 	<div class="l-header__progress-bar" data-list-progress-bar></div>
 </nav>
