@@ -196,7 +196,7 @@ if (have_posts()) :
 									<div class="col-12 col-md-6 d-flex align-items-stretch">
 										<div class="mb-2 mr-0 mr-md-2 d-flex align-items-stretch">
 											<a href="https://au.rollingstone.com/music/music-features/the-headline-worthy-acts-we-found-on-the-muso-40789/" target="_blank" class="news">
-												<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/06/muso-header.jpg&nologo=1">
+												<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/06/muso-header.jpg">
 												<h4>The Headline Worthy Acts We Found On Muso</h4>
 												<p>We scrolled through pages of artists on Muso and found some of Australia's best up and coming independent artists.</p>
 											</a>
@@ -205,7 +205,7 @@ if (have_posts()) :
 									<div class="col-12 col-md-6 d-flex align-items-stretch">
 										<div class="mb-2 ml-0 ml-md-1 d-flex align-items-stretch">
 											<a href="https://au.rollingstone.com/culture/culture-news/headline-acts-40672/" target="_blank" class="news">
-												<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/05/headline-acts-hero.jpg&nologo=1">
+												<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/05/headline-acts-hero.jpg">
 												<h4>Meet the Music Infused Wine That's Backing Local Gigs</h4>
 												<p>Headline Acts, a new wine brand with music in its vines, is set to become an integral part of Australia's live music landscape.</p>
 											</a>

@@ -374,7 +374,7 @@ if (have_posts()) :
 								<div class="d-flex flex-column flex-md-row align-items-stretch mb-3">
 									<div class="col-12 col-md-6 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
 										<a href="https://au.rollingstone.com/music/music-live-reviews/client-liaison-jim-beam-welcome-sessions-review-41544/" target="_blank" class="news">
-											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/07/Welcome-Sessions-x-Client-Liason-Mitch-Lowe-Photo-1-47.jpg?resize=900,600&w=1200&nologo=1">
+											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/07/Welcome-Sessions-x-Client-Liason-Mitch-Lowe-Photo-1-47.jpg?resize=900,600&w=1200">
 											<h4>Client Liaison Continue the Jim Beam Welcome Sessions with An Iconic Brisbane Show</h4>
 											<p>Client Liaison took to the stage in Brisbane for a massive DJ set as part of the ongoing Jim Beam Welcome Sessions.</p>
 										</a>
@@ -382,7 +382,7 @@ if (have_posts()) :
 
 									<div class="col-12 col-md-6 mb-4 pl-0 pl-md-2 d-flex align-items-stretch">
 										<a href="https://tonedeaf.thebrag.com/client-liaison-at-jim-beam-welcome-sessions-brisbane/" target="_blank" class="news">
-											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/td/uploads/2022/06/client-liaison.jpg&nologo=1">
+											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/td/uploads/2022/06/client-liaison.jpg">
 											<h4>Win tickets to see Client Liaison at Jim Beam's Welcome Sessions event in Brisbane</h4>
 											<p>Win tickets to see Flight Facilities and Client Liaison in Jim Beam's Welcome Sessions 2022</p>
 										</a>
@@ -390,21 +390,21 @@ if (have_posts()) :
 
 									<div class="col-12 col-md-4 mb-4 pr-0 pr-md-2 d-flex align-items-stretch">
 										<a href="https://au.rollingstone.com/music/music-features/flight-facilities-jim-beam-welcome-sessions-40687/" target="_blank" class="news">
-											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2021/05/flight-facilities.jpg&nologo=1">
+											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2021/05/flight-facilities.jpg">
 											<h4>Flight Facilities Get Back To Their Roots For An Early Afternoon DJ Set For Jim Beam Welcome Sessions</h4>
 											<p>Courtesy of Jim Beam Welcome Sessions, Flight Facilities are heading back to the city that birthed them for an early afternoon DJ set on Saturday, June 11th at The Rooftop Sydney.</p>
 										</a>
 									</div>
 									<div class="col-12 col-md-4 mb-4 px-0 px-md-2 d-flex align-items-stretch">
 										<a href="https://au.rollingstone.com/music/music-news/win-tickets-to-see-flight-facilities-at-jim-beams-welcome-sessions-event-in-sydney-40529/" target="_blank" class="news">
-											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2021/05/flight-facilities.jpg&nologo=1">
+											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2021/05/flight-facilities.jpg">
 											<h4>Win tickets to see Flight Facilities at Jim Beam’s Welcome Sessions event in Sydney</h4>
 											<p>Jim Beam gives you the chance to win tickets to attend an intimate Welcome Sessions DJ Set performance by Flight Facilities in Sydney.</p>
 										</a>
 									</div>
 									<div class="col-12 col-md-4 mb-4 pl-0 pl-md-2 d-flex align-items-stretch">
 										<a href="https://au.rollingstone.com/culture/culture-news/jim-beam-welcome-sessions-returns-in-2022-40385/" target="_blank" class="news">
-											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2021/05/Rolling-stone-jim-beam-welcome-sessions-2022-1.jpg&nologo=1">
+											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2021/05/Rolling-stone-jim-beam-welcome-sessions-2022-1.jpg">
 											<h4>Jim Beam Welcome Sessions returns with a bang in 2022</h4>
 											<p>Jim Beam has announced the lineup of Australian acts that will join their 2022 Welcome Sessions</p>
 										</a>
@@ -477,7 +477,7 @@ if (have_posts()) :
 										<div class="news">
 											<div class="video-placehoder-wrap mb-4 d-flex flex-column">
 												<!-- <img src="<?php echo get_template_directory_uri(); ?>/images/jim-beam-2022/video-1.1.jpg"> -->
-												<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://cdn-r2-2.thebrag.com/pages/jim-beam-2022/images/video-1.1.jpg&nologo=1">
+												<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://cdn-r2-2.thebrag.com/pages/jim-beam-2022/images/video-1.1.jpg">
 												<div class="my-2 text-center">
 													<div class="" style="border-bottom: 2px solid rgb(213, 30, 41)">
 														<p class="ls-1">WATCH THE FULL PERFORMANCE</span></p>
@@ -490,14 +490,14 @@ if (have_posts()) :
 									</div>
 									<div class="col-12 col-md-4 mb-2 px-0 px-md-1 d-flex align-items-stretch">
 										<a href="https://au.rollingstone.com/music/music-features/jim-beam-reconnects-muse-to-the-community-that-raised-them-40650/" target="_blank" class="news">
-											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/05/muse-jim-beam-welcome-sessions.jpg&nologo=1">
+											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/05/muse-jim-beam-welcome-sessions.jpg">
 											<h4 class="text-center mt-1 mt-md-2 mt-lg-3">Jim Beam Reconnects Muse to the Community that Raised Them</h4>
 											<!-- <p>Jim Beam brings Muse home to a tiny stage in the South West of England, reuniting them to the early community that created the global band we know today.</p> -->
 										</a>
 									</div>
 									<div class="col-12 col-md-4 mb-2 pl-0 pl-md-2 d-flex align-items-stretch">
 										<a href="https://au.rollingstone.com/music/music-features/jim-beam-reconnects-muse-to-the-community-that-raised-them-40650/" target="_blank" class="news">
-											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/07/SamGrant_220608_JBWS_Muse_ViennaBerlin_Day3_4643-3-1.jpg&nologo=1">
+											<img src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/https://images-r2.thebrag.com/rs/uploads/2022/07/SamGrant_220608_JBWS_Muse_ViennaBerlin_Day3_4643-3-1.jpg">
 											<h4 class="text-center mt-1 mt-md-2 mt-lg-3">Muse Fosters Community Between the Lines of Your Favourite Song</h4>
 										</a>
 									</div>
