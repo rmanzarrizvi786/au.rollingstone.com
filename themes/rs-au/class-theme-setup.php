@@ -319,14 +319,24 @@ class ThemeSetup
 
 	public function phpmailer_init($phpmailer)
 	{
+		// $phpmailer->isSMTP();
+		// $phpmailer->Host       = 'smtp.gmail.com';
+		// $phpmailer->SMTPAuth   = true;
+		// $phpmailer->Port       = 587;
+		// $phpmailer->Username   = 'noreply@thebrag.media';
+		// $phpmailer->Password   = '<%QA5hXy1';
+		// $phpmailer->SMTPSecure = 'tls';
+		// $phpmailer->From       = 'noreply@thebrag.media';
+		// $phpmailer->FromName   = 'Rolling Stone Australia';
+
 		$phpmailer->isSMTP();
-		$phpmailer->Host       = 'smtp.gmail.com';
+		$phpmailer->Host       = 'smtp.sparkpostmail.com';
 		$phpmailer->SMTPAuth   = true;
 		$phpmailer->Port       = 587;
-		$phpmailer->Username   = 'noreply@thebrag.media';
-		$phpmailer->Password   = '<%QA5hXy1';
+		$phpmailer->Username   = 'SMTP_Injection';
+		$phpmailer->Password   = 'c97eebc796a51f2c58469455ee6b49a0956eb765';
 		$phpmailer->SMTPSecure = 'tls';
-		$phpmailer->From       = 'noreply@thebrag.media';
+		$phpmailer->From       = 'noreply@mail.thebrag.media';
 		$phpmailer->FromName   = 'Rolling Stone Australia';
 
 		$phpmailer->IsSMTP();
