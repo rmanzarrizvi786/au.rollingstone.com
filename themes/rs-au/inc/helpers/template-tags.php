@@ -18,11 +18,10 @@ use Rolling_Stone\Inc\Media;
  * @param array $args Callback arguments.
  * @return string
  */
-function rollingstone_render_footer_feed($args)
-{
+function rollingstone_render_footer_feed($args) {
 
 	return \PMC::render_template(
-		CHILD_THEME_PATH . '/template-parts/footer/newswire-item.php',
+		CHILD_THEME_PATH.'/template-parts/footer/newswire-item.php',
 		[
 			'item' => \Rolling_Stone\Inc\Footer_Feed::build_footer_feed($args),
 		]
@@ -32,8 +31,7 @@ function rollingstone_render_footer_feed($args)
 /**
  * The title (curated titles can be overwritten).
  */
-function rollingstone_the_title()
-{
+function rollingstone_the_title() {
 	echo esc_html(rollingstone_get_the_title());
 }
 
@@ -42,12 +40,11 @@ function rollingstone_the_title()
  *
  * @return string
  */
-function rollingstone_get_the_title()
-{
+function rollingstone_get_the_title() {
 
 	global $post;
 
-	if (!empty($post->custom_title)) {
+	if(!empty($post->custom_title)) {
 		return $post->custom_title;
 	}
 
@@ -57,8 +54,7 @@ function rollingstone_get_the_title()
 /**
  * The excerpt (curated excerpts can be overwritten).
  */
-function rollingstone_the_excerpt()
-{
+function rollingstone_the_excerpt() {
 	echo esc_html(wp_strip_all_tags(rollingstone_get_the_excerpt()));
 }
 
@@ -67,12 +63,11 @@ function rollingstone_the_excerpt()
  *
  * @return string
  */
-function rollingstone_get_the_excerpt()
-{
+function rollingstone_get_the_excerpt() {
 
 	global $post;
 
-	if (!empty($post->custom_excerpt)) {
+	if(!empty($post->custom_excerpt)) {
 		return $post->custom_excerpt;
 	}
 
@@ -81,11 +76,11 @@ function rollingstone_get_the_excerpt()
 	 *
 	 * @since 2018-07-24 Amit Gupta PMCP-717
 	 */
-	if (!empty($post->ID) && !is_single()) {
+	if(!empty($post->ID) && !is_single()) {
 
 		$dek = get_post_meta($post->ID, 'override_post_excerpt', true);
 
-		if (!empty($dek) && is_string($dek)) {
+		if(!empty($dek) && is_string($dek)) {
 			return $dek;
 		}
 	}
@@ -97,7 +92,7 @@ function rollingstone_get_the_excerpt()
 	 *
 	 * @since 2018-07-24 Amit Gupta PMCP-717
 	 */
-	if (is_single() && empty($post->post_excerpt)) {
+	if(is_single() && empty($post->post_excerpt)) {
 		return '';
 	}
 
@@ -110,8 +105,7 @@ function rollingstone_get_the_excerpt()
  * @param string|array $size Image size to use. Default is 'thumbnail'.
  * @param string|array $attr Query string or array of attributes. Default empty.
  */
-function rollingstone_the_post_thumbnail($size = 'thumbnail', $attr = '')
-{
+function rollingstone_the_post_thumbnail($size = 'thumbnail', $attr = '') {
 
 	$thumbnail = rollingstone_get_the_post_thumbnail(null, $size, $attr);
 	// wp_kses(
@@ -132,14 +126,13 @@ function rollingstone_the_post_thumbnail($size = 'thumbnail', $attr = '')
  * @param string|array $attr Query string or array of attributes. Default empty.
  * @return string
  */
-function rollingstone_get_the_post_thumbnail($post = null, $size = 'thumbnail', $attr = '')
-{
+function rollingstone_get_the_post_thumbnail($post = null, $size = 'thumbnail', $attr = '') {
 	$post = get_post($post);
-	if (!$post) {
+	if(!$post) {
 		return '';
 	}
 
-	if (!empty($post->custom_thumbnail_id)) {
+	if(!empty($post->custom_thumbnail_id)) {
 		return get_the_post_thumbnail($post->custom_thumbnail_id, $size, $attr);
 	}
 
@@ -154,8 +147,7 @@ function rollingstone_get_the_post_thumbnail($post = null, $size = 'thumbnail', 
  * @param boolean $icon Whether the image should be treated as an icon.
  * @param array $attr Attributes for the image markup.
  */
-function rollingstone_get_attachment_image($image, $size = 'thumbnail', $icon = false, $attr = [])
-{
+function rollingstone_get_attachment_image($image, $size = 'thumbnail', $icon = false, $attr = []) {
 
 	$image = wp_kses(
 		wp_get_attachment_image($image, $size, $icon, $attr),
@@ -175,8 +167,7 @@ function rollingstone_get_attachment_image($image, $size = 'thumbnail', $icon = 
  * @param boolean $icon Whether the image should be treated as an icon.
  * @param array $attr Attributes for the image markup.
  */
-function rollingstone_attachment_image($image, $size = 'thumbnail', $icon = false, $attr = [])
-{
+function rollingstone_attachment_image($image, $size = 'thumbnail', $icon = false, $attr = []) {
 
 	// The image is sanitized in rollingstone_get_attachment_image.
 	echo rollingstone_get_attachment_image($image, $size, $icon, $attr); // WPCS: XSS okay.
@@ -188,26 +179,25 @@ function rollingstone_attachment_image($image, $size = 'thumbnail', $icon = fals
  *
  * @return void
  */
-function rollingstone_video_playlist_pagination()
-{
+function rollingstone_video_playlist_pagination() {
 
 	global $wp_query;
 
 	$paged = get_query_var('paged') ? absint(get_query_var('paged')) : 1;
-	$max   = intval($wp_query->max_num_pages);
+	$max = intval($wp_query->max_num_pages);
 
 	// Add current page to the array.
-	if ($paged >= 1) {
+	if($paged >= 1) {
 		$links[] = $paged;
 	}
 
 	// Add the pages around the current page to the array.
-	if ($paged >= 3) {
+	if($paged >= 3) {
 		$links[] = $paged - 1;
 		$links[] = $paged - 2;
 	}
 
-	if (($paged + 2) <= $max) {
+	if(($paged + 2) <= $max) {
 		$links[] = $paged + 2;
 		$links[] = $paged + 1;
 	}
@@ -221,7 +211,7 @@ function rollingstone_video_playlist_pagination()
 	echo '<div class="c-large-pagination__numbers">';
 
 	sort($links);
-	foreach ((array) $links as $link) {
+	foreach((array)$links as $link) {
 		$class = ($paged === $link) ? 'c-large-pagination__number t-semibold is-active' : 'c-large-pagination__number t-semibold';
 		printf('<a href="%s" class="%s">%s</a>', esc_url(get_pagenum_link($link)), $class, $link); // WPCS: XSS ok.
 	}
@@ -229,7 +219,7 @@ function rollingstone_video_playlist_pagination()
 	echo '</div>';
 
 	// Next Post Link.
-	if (get_next_posts_link()) {
+	if(get_next_posts_link()) {
 		printf(
 			'<a href="%s" class="c-large-pagination__nav"><svg class="c-large-pagination__icon c-large-pagination__icon--right"><use xlink:href="#svg-icon-chevron"></use></svg></a>',
 			esc_url(get_next_posts_page_link())
@@ -247,27 +237,26 @@ function rollingstone_video_playlist_pagination()
  *
  * @return string
  */
-function rollingstone_filter_youtube_url($url)
-{
+function rollingstone_filter_youtube_url($url) {
 
-	if (!empty($url)) {
+	if(!empty($url)) {
 		$url_parts = wp_parse_url($url);
-		$host      = !empty($url_parts['host']) ? $url_parts['host'] : '';
+		$host = !empty($url_parts['host']) ? $url_parts['host'] : '';
 
-		if (
+		if(
 			'www.youtube.com' === $host
 			|| 'youtube.com' === $host
 			|| 'www.youtu.be' === $host
 			|| 'youtu.be' === $host
 		) {
 
-			if (!empty($url_parts['query'])) {
+			if(!empty($url_parts['query'])) {
 				parse_str($url_parts['query'], $query_params);
 			}
 
 			$url = sprintf('%1$s://%2$s%3$s', $url_parts['scheme'], $host, $url_parts['path']);
 
-			if (!empty($query_params['v']) && false === strpos($host, 'youtu.be')) {
+			if(!empty($query_params['v']) && false === strpos($host, 'youtu.be')) {
 				$url = add_query_arg(array('v' => $query_params['v']), $url);
 			}
 		}
@@ -282,9 +271,8 @@ function rollingstone_filter_youtube_url($url)
  * @param $echo bool To outout the source or not.
  * @return string
  */
-function rollingstone_get_video_source($echo = true, $post_id = NULL)
-{
-	if (is_null($post_id)) {
+function rollingstone_get_video_source($echo = true, $post_id = NULL) {
+	if(is_null($post_id)) {
 		global $post;
 	} else {
 		$post = get_post($post_id);
@@ -294,63 +282,64 @@ function rollingstone_get_video_source($echo = true, $post_id = NULL)
 
 	// Fetch the video source.
 	// $video_source = get_post_meta( $post->ID, PMC_Featured_Video_Override::META_KEY, true );
+	$postID = isset($post->ID) ? $post->ID : $post_id;
 
-	$video_source = get_post_meta($post->ID, 'pmc_top_video_source', true);
+	$video_source = get_post_meta($postID, 'pmc_top_video_source', true);
 
 	// if ( empty( $video_source ) ) {
 	// 	$video_source = get_post_meta( $post->ID, 'pmc_top_video_source', true );
 	// }
 
-	if (empty($video_source)) {
+	if(empty($video_source)) {
 		return '';
 	}
 
 	$video_source = rollingstone_filter_youtube_url($video_source);
 
 	// For YouTube, apply an iFrame. Caters for youtu.be links.
-	if (rollingstone_is_youtube_url($video_source)) {
+	if(rollingstone_is_youtube_url($video_source)) {
 		$video_source = str_replace('www.', '', $video_source);
 
-		if (strpos($video_source, 'youtu.be')) {
+		if(strpos($video_source, 'youtu.be')) {
 			$video_source = preg_replace('~^https?://youtu\.be/([a-z-\d_]+)$~i', 'https://www.youtube.com/embed/$1', $video_source);
-		} elseif (strpos($video_source, 'youtube.com/watch')) {
+		} elseif(strpos($video_source, 'youtube.com/watch')) {
 			$video_source = preg_replace('~^https?://youtube\.com\/watch\?v=([a-z-\d_]+)$~i', 'https://www.youtube.com/embed/$1', $video_source);
 		}
 
 		$video_source .= '?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent';
 
-		if (is_singular('post')) {
+		if(is_singular('post')) {
 			$video_html = '<iframe type="text/html" width="670" height="407" src="%1$s" data-src="%1$s" allowfullscreen="true" style="border:0;"></iframe>';
 		} else {
 			$video_html = '<iframe type="text/html" width="670" height="407" data-src="%1$s" allowfullscreen="true" style="border:0;"></iframe>';
 		}
 
 		$video_source = sprintf($video_html, esc_url($video_source));
-	} elseif (rollingstone_is_dailymotion_url($video_source)) {
+	} elseif(rollingstone_is_dailymotion_url($video_source)) {
 
 		$category_details = get_the_category($post_id);
 
 		$ads_params = '';
-		if (isset($category_details) && isset($category_details[0])) {
-			$ads_params = '?autoplay=true&ads_params=' . $category_details[0]->slug;
+		if(isset($category_details) && isset($category_details[0])) {
+			$ads_params = '?autoplay=true&ads_params='.$category_details[0]->slug;
 		}
 
 		$video_source = str_replace('www.', '', $video_source);
 
-		if (strpos($video_source, 'dailymotion.com/video')) {
-			$video_source = preg_replace('~^https?://dailymotion\.com\/video\/([a-z-\d_]+)$~i', 'https://www.dailymotion.com/embed/video/$1' . $ads_params, $video_source);
+		if(strpos($video_source, 'dailymotion.com/video')) {
+			$video_source = preg_replace('~^https?://dailymotion\.com\/video\/([a-z-\d_]+)$~i', 'https://www.dailymotion.com/embed/video/$1'.$ads_params, $video_source);
 		}
 
 		// $video_source .= '?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent';
 
-		if (is_singular('post')) {
+		if(is_singular('post')) {
 			$video_html = '<iframe type="text/html" width="670" height="407" src="%1$s" data-src="%1$s" allowfullscreen="true" style="border:0;"></iframe>';
 		} else {
 			$video_html = '<iframe type="text/html" width="670" height="407" data-src="%1$s" allowfullscreen="true" allow="autoplay" style="border:0;"></iframe>';
 		}
 
 		$video_source = sprintf($video_html, esc_url($video_source));
-	} elseif (!empty(wp_parse_url($video_source, PHP_URL_HOST))) {    // phpcs:ignore
+	} elseif(!empty(wp_parse_url($video_source, PHP_URL_HOST))) {    // phpcs:ignore
 
 		// Run it via oEmbed parser to parse any embeds in there
 		// $video_source = wpcom_vip_wp_oembed_get( $video_source );
@@ -361,7 +350,7 @@ function rollingstone_get_video_source($echo = true, $post_id = NULL)
 		$video_source = do_shortcode($video_source);
 	}
 
-	if ($echo) {
+	if($echo) {
 		echo $video_source; // WPCS: XSS okay. Cleaned above already depending on the source.
 	} else {
 		return $video_source;
@@ -373,8 +362,7 @@ function rollingstone_get_video_source($echo = true, $post_id = NULL)
  *
  * @return void
  */
-function rollingstone_render_carousal_jwplayer()
-{
+function rollingstone_render_carousal_jwplayer() {
 	global $post;
 
 	// Fetch the video source.
@@ -387,22 +375,22 @@ function rollingstone_render_carousal_jwplayer()
 	// }
 
 	// Check if it's JW Video.
-	if (false !== strpos($video_source, 'jwplayer')) {
+	if(false !== strpos($video_source, 'jwplayer')) {
 		global $jwplayer_shortcode_embedded_players;
 
 		$regex = '/\[jwplayer (?P<media>[0-9a-z]{8})(?:[-_])?(?P<player>[0-9a-z]{8})?\]/i';
 		preg_match($regex, $video_source, $matches, null, 0);
 
 		$player = (!empty($matches['player'])) ? $matches['player'] : false;
-		$media  = (!empty($matches['media'])) ? $matches['media'] : false;
+		$media = (!empty($matches['media'])) ? $matches['media'] : false;
 		$player = (false === $player) ? get_option('jwplayer_player') : $player;
 
 		$content_mask = jwplayer_get_content_mask();
-		$protocol     = (is_ssl() && defined('JWPLAYER_CONTENT_MASK') && JWPLAYER_CONTENT_MASK === $content_mask) ? 'https' : 'http';
+		$protocol = (is_ssl() && defined('JWPLAYER_CONTENT_MASK') && JWPLAYER_CONTENT_MASK === $content_mask) ? 'https' : 'http';
 
 		$json_feed = "$protocol://$content_mask/feeds/$media.json";
 
-		if (false !== $player && !in_array($player, (array) $jwplayer_shortcode_embedded_players, true)) {
+		if(false !== $player && !in_array($player, (array)$jwplayer_shortcode_embedded_players, true)) {
 			$js_lib = "$protocol://$content_mask/libraries/$player.js";
 
 			$jwplayer_shortcode_embedded_players[] = $player;
@@ -420,18 +408,17 @@ function rollingstone_render_carousal_jwplayer()
  *
  * @param int|null $post_id A WP_Post ID.
  */
-function rollingstone_review_stars($post_id = null)
-{
+function rollingstone_review_stars($post_id = null) {
 
 	$post_id = null !== $post_id ? $post_id : get_the_ID();
 	/*
-	$rating  = Fields::get_instance()->get( Fields::RATING, $post_id );
-	$out_of  = Fields::get_instance()->get( Fields::RATING_OUT_OF, $post_id );
-	*/
-	$rating  = get_field('rating', $post_id);
-	$out_of  = get_field('rating_out_of', $post_id);
+			 $rating  = Fields::get_instance()->get( Fields::RATING, $post_id );
+			 $out_of  = Fields::get_instance()->get( Fields::RATING_OUT_OF, $post_id );
+			 */
+	$rating = get_field('rating', $post_id);
+	$out_of = get_field('rating_out_of', $post_id);
 
-	if (empty($rating) || empty($out_of)) {
+	if(empty($rating) || empty($out_of)) {
 		return;
 	}
 
@@ -439,17 +426,17 @@ function rollingstone_review_stars($post_id = null)
 	$out_of = intval($out_of);
 
 	// Make sure $out_of is an acceptable value.
-	if ($out_of <= 0 || $out_of > 5) {
+	if($out_of <= 0 || $out_of > 5) {
 		return;
 	}
 
 	// Make sure $rating is in the correct range.
-	if ($rating < 0 || $rating > $out_of) {
+	if($rating < 0 || $rating > $out_of) {
 		return;
 	}
 
 	\PMC::render_template(
-		CHILD_THEME_PATH . '/template-parts/article/card-rating.php',
+		CHILD_THEME_PATH.'/template-parts/article/card-rating.php',
 		compact('rating', 'out_of'),
 		true
 	);
@@ -460,8 +447,7 @@ function rollingstone_review_stars($post_id = null)
  *
  * @return bool
  */
-function rollingstone_is_country()
-{
+function rollingstone_is_country() {
 
 	$country_categories = [
 		'music-country',
@@ -470,7 +456,7 @@ function rollingstone_is_country()
 		'music-country-videos',
 	];
 
-	if (is_single()) {
+	if(is_single()) {
 		return has_category($country_categories);
 	}
 
@@ -482,13 +468,12 @@ function rollingstone_is_country()
  *
  * @param int $post_id A WP_Post ID.
  */
-function rollingstone_review_title($post_id = null, $is_attr = false)
-{
+function rollingstone_review_title($post_id = null, $is_attr = false) {
 
 	$post_id = null !== $post_id ? $post_id : get_the_ID();
-	$title   = Fields::get_instance()->get(Fields::TITLE, $post_id);
+	$title = Fields::get_instance()->get(Fields::TITLE, $post_id);
 
-	if (!empty($title)) {
+	if(!empty($title)) {
 		echo $is_attr ? esc_attr($title) : wp_kses_post($title);
 	}
 }
@@ -498,13 +483,12 @@ function rollingstone_review_title($post_id = null, $is_attr = false)
  *
  * @param int $post_id A WP_Post ID.
  */
-function rollingstone_review_artist($post_id = null)
-{
+function rollingstone_review_artist($post_id = null) {
 
 	$post_id = null !== $post_id ? $post_id : get_the_ID();
-	$artist  = Fields::get_instance()->get(Fields::ARTIST, $post_id);
+	$artist = Fields::get_instance()->get(Fields::ARTIST, $post_id);
 
-	if (!empty($artist)) {
+	if(!empty($artist)) {
 		echo wp_kses_post($artist);
 	}
 }
@@ -514,22 +498,21 @@ function rollingstone_review_artist($post_id = null)
  *
  * @param int $post_id A WP_Post ID.
  */
-function rollingstone_review_image($post_id = null)
-{
+function rollingstone_review_image($post_id = null) {
 
 	$post_id = null !== $post_id ? $post_id : get_the_ID();
-	$image   = Fields::get_instance()->get(Fields::IMAGE, $post_id);
+	$image = Fields::get_instance()->get(Fields::IMAGE, $post_id);
 
-	if (!empty($image)) {
+	if(!empty($image)) {
 		$thumbnail_ratio = has_category('music-album-reviews', $post_id) ? '1:1' : '2:3';
-		$image_height    = has_category('music-album-reviews', $post_id) ? '200' : '300';
-		$image_src       = $image . '?crop=' . $thumbnail_ratio . ',smart&w=225';
-		$image_src_2x    = $image . '?crop=' . $thumbnail_ratio . ',smart&w=400';
-		echo '<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="' .
-			'data-src="' . esc_url($image_src) . '" ' .
-			'data-srcset="' . esc_url($image_src) . ' 225w, ' . esc_url($image_src_2x) . ' 400w"' .
-			'sizes="(max-width: 1259px) 200px, 225px"' .
-			'class="c-crop__img" alt width="200" height="' . esc_attr($image_height) . '" />';
+		$image_height = has_category('music-album-reviews', $post_id) ? '200' : '300';
+		$image_src = $image.'?crop='.$thumbnail_ratio.',smart&w=225';
+		$image_src_2x = $image.'?crop='.$thumbnail_ratio.',smart&w=400';
+		echo '<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="'.
+			'data-src="'.esc_url($image_src).'" '.
+			'data-srcset="'.esc_url($image_src).' 225w, '.esc_url($image_src_2x).' 400w"'.
+			'sizes="(max-width: 1259px) 200px, 225px"'.
+			'class="c-crop__img" alt width="200" height="'.esc_attr($image_height).'" />';
 	}
 }
 
@@ -540,8 +523,7 @@ function rollingstone_review_image($post_id = null)
  * @param array $attr Attributes to add to the IMG tag. Default is empty array.
  * @param int   $issue_id Specific Issue ID which cover should be displayed. Default is null.
  */
-function rollingstone_the_issue_cover($width = 120, $attr = [], $issue_id = null)
-{
+function rollingstone_the_issue_cover($width = 120, $attr = [], $issue_id = null) {
 	// if ( null === $issue_id ) {
 	// 	$issue_id = ''; //Issues::get_instance()->get_current_issue_id();
 	// }
@@ -556,16 +538,16 @@ function rollingstone_the_issue_cover($width = 120, $attr = [], $issue_id = null
 
 	// var_dump( $url );
 
-	if (empty($url)) {
+	if(empty($url)) {
 		return rollingstone_next_issue_cover($width, $attr, $issue_id);
 		// return;
 	}
 
-	$src         = sprintf('%s?w=%d', $url, $width);
-	$srcset      = sprintf('%1$s?w=%2$d 1x, %1$s?w=%3$d 2x', $url, $width, $width * 2);
+	$src = sprintf('%s?w=%d', $url, $width);
+	$srcset = sprintf('%1$s?w=%2$d 1x, %1$s?w=%3$d 2x', $url, $width, $width * 2);
 	$placeholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-	$class       = !empty($attr['class']) ? $attr['class'] : '';
-	$alt         = ''; // ! empty( $attr['alt'] ) ? $attr['alt'] : get_the_title( $issue_id );
+	$class = !empty($attr['class']) ? $attr['class'] : '';
+	$alt = ''; // ! empty( $attr['alt'] ) ? $attr['alt'] : get_the_title( $issue_id );
 
 	printf(
 		'<img src="%s" data-src="%s" alt="%s" class="%s" style="width: %spx" />',
@@ -578,24 +560,23 @@ function rollingstone_the_issue_cover($width = 120, $attr = [], $issue_id = null
 	);
 }
 
-function rollingstone_next_issue_cover($width = 120, $attr = [], $issue_id = null)
-{
+function rollingstone_next_issue_cover($width = 120, $attr = [], $issue_id = null) {
 
 	$url = get_option('tbm_next_issue_cover');
 
-	if (!$url) {
+	if(!$url) {
 		return rollingstone_the_issue_cover($width, $attr, $issue_id);
 	}
 
-	if (empty($url)) {
+	if(empty($url)) {
 		return;
 	}
 
-	$src         = sprintf('%s?w=%d', $url, $width);
-	$srcset      = sprintf('%1$s?w=%2$d 1x, %1$s?w=%3$d 2x', $url, $width, $width * 2);
+	$src = sprintf('%s?w=%d', $url, $width);
+	$srcset = sprintf('%1$s?w=%2$d 1x, %1$s?w=%3$d 2x', $url, $width, $width * 2);
 	$placeholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-	$class       = !empty($attr['class']) ? $attr['class'] : '';
-	$alt         = ''; // ! empty( $attr['alt'] ) ? $attr['alt'] : get_the_title( $issue_id );
+	$class = !empty($attr['class']) ? $attr['class'] : '';
+	$alt = ''; // ! empty( $attr['alt'] ) ? $attr['alt'] : get_the_title( $issue_id );
 
 	printf(
 		'<img src="%s" data-src="%s" alt="%s" class="%s" style="width: %spx" />',
@@ -608,24 +589,23 @@ function rollingstone_next_issue_cover($width = 120, $attr = [], $issue_id = nul
 	);
 }
 
-function rollingstone_last_issue_cover($width = 120, $attr = [], $issue_id = null)
-{
+function rollingstone_last_issue_cover($width = 120, $attr = [], $issue_id = null) {
 
 	$url = get_option('tbm_last_issue_cover');
 
-	if (!$url) {
+	if(!$url) {
 		return rollingstone_the_issue_cover($width, $attr, $issue_id);
 	}
 
-	if (empty($url)) {
+	if(empty($url)) {
 		return;
 	}
 
-	$src         = sprintf('%s?w=%d', $url, $width);
-	$srcset      = sprintf('%1$s?w=%2$d 1x, %1$s?w=%3$d 2x', $url, $width, $width * 2);
+	$src = sprintf('%s?w=%d', $url, $width);
+	$srcset = sprintf('%1$s?w=%2$d 1x, %1$s?w=%3$d 2x', $url, $width, $width * 2);
 	$placeholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-	$class       = !empty($attr['class']) ? $attr['class'] : '';
-	$alt         = ''; // ! empty( $attr['alt'] ) ? $attr['alt'] : get_the_title( $issue_id );
+	$class = !empty($attr['class']) ? $attr['class'] : '';
+	$alt = ''; // ! empty( $attr['alt'] ) ? $attr['alt'] : get_the_title( $issue_id );
 
 	printf(
 		'<img src="%s" data-src="%s" alt="%s" class="%s" style="width: %spx" />',
@@ -645,25 +625,24 @@ function rollingstone_last_issue_cover($width = 120, $attr = [], $issue_id = nul
  * @param array $attr Attributes to add to the IMG tag. Default is empty array.
  * @param int   $width A width of the avatar. Default is 92.
  */
-function rollingstone_the_author_avatar($author_id, $attr = [], $width = 92)
-{
+function rollingstone_the_author_avatar($author_id, $attr = [], $width = 92) {
 	return;
 
-	if (!$author_id) {
+	if(!$author_id) {
 		return;
 	}
 
 	$url = get_the_post_thumbnail_url($author_id, 'full');
 
-	if (empty($url)) {
+	if(empty($url)) {
 		return;
 	}
 
-	$src         = sprintf('%s?w=%d&crop=1:1', $url, $width);
-	$srcset      = sprintf('%1$s?w=%2$d&crop=1:1 1x, %1$s?w=%3$d&crop=1:1 2x', $url, $width, $width * 2);
+	$src = sprintf('%s?w=%d&crop=1:1', $url, $width);
+	$srcset = sprintf('%1$s?w=%2$d&crop=1:1 1x, %1$s?w=%3$d&crop=1:1 2x', $url, $width, $width * 2);
 	$placeholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-	$class       = !empty($attr['class']) ? $attr['class'] : '';
-	$alt         = !empty($attr['alt']) ? $attr['alt'] : get_the_title($author_id);
+	$class = !empty($attr['class']) ? $attr['class'] : '';
+	$alt = !empty($attr['alt']) ? $attr['alt'] : get_the_title($author_id);
 
 	printf(
 		'<img src="%s" data-src="%s" data-srcset="%s" alt="%s" class="%s" />',
@@ -680,7 +659,6 @@ function rollingstone_the_author_avatar($author_id, $attr = [], $width = 92)
  *
  * @return bool
  */
-function rollingstone_is_list()
-{
+function rollingstone_is_list() {
 	return is_singular(['pmc_list', 'pmc_list_item']);
 }
