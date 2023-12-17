@@ -182,9 +182,9 @@ if (have_posts()):
                                                         <?php endif; ?>
 
                                                         <header class="c-list__header">
-                                                            <span class="c-list__number t-bold">
+                                                            <!-- <span class="c-list__number t-bold">
                                                                 <?php echo $artist->position; ?>
-                                                            </span>
+                                                            </span> -->
 
                                                             <h3 class="c-list__title t-bold" style="margin-bottom: 1rem;">
                                                                 <?php echo stripslashes($artist->title); ?>
