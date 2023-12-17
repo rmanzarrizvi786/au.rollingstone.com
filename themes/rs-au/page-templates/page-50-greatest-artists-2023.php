@@ -165,7 +165,7 @@ if (have_posts()):
                                                             <figure class="c-list__picture2" style="float: none; margin: auto; position: relative;">
                                                                 <div>
                                                                     <img width="900" src="<?php echo $artist->image_url; ?>"
-                                                                        data-src="https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1366,height=910/https://images-r2.thebrag.com/rs/uploads/2023/12/<?php echo $artist->image_url; ?>"
+                                                                        data-src="https://images.thebrag.com/cdn-cgi/image/fit=contain,width=1366,height=910/https://images-r2.thebrag.com/rs/uploads/2023/12/<?php echo $artist->image_url; ?>"
                                                                         alt="<?php echo $artist->title; ?>">
                                                                 </div><!-- .c-crop -->
                                                                 <?php if (!is_null($artist->image_credit) && '' != trim($artist->image_credit)): ?>
