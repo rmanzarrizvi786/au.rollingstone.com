@@ -79,51 +79,6 @@ if (have_posts()):
                             <?php the_content(); ?>
                             <!-- <h3>WILL COME SHORTLY</h3> -->
 
-                            <nav class="l-header__block l-header__block--list-nav"
-                                style="position: sticky; background: white; z-index: 30001; padding-top: .5rem; padding-bottom: .5rem;">
-                                <ul class="l-header__menu l-header__menu--list t-semibold t-semibold--upper" data-list-nav>
-
-                                    <?php
-                                    // for ($page = 1; $page <= $no_pages; $page++) :
-                                    $page = 0;
-                                    for ($i = $total; $i >= 1; $i -= $per_page):
-                                        $page++;
-                                        $range_start = $i;
-                                        $range_end = $i - $per_page + 1;
-                                        if ($range_end <= 1)
-                                            $range_end = 1;
-                                        ?>
-                                        <li class="l-header__menu-item">
-                                            <?php if ($range_start > $release_upto):
-                                                ?>
-                                                <a href="<?php echo get_permalink(); ?>page/<?php echo $page; ?>/"
-                                                    class="l-header__menu-link" data-list-nav-item
-                                                    data-list-range-start="<?php echo $range_start; ?>"
-                                                    data-list-range-end="<?php echo $range_end; ?>">
-                                                    <?php echo $range_start; ?>-
-                                                    <?php echo $range_end; ?>
-                                                </a>
-                                            <?php else:
-                                                ?>
-                                                <span class="l-header__menu-link" data-list-nav-item
-                                                    data-list-range-start="<?php echo $range_start; ?>"
-                                                    data-list-range-end="<?php echo $range_end; ?>" style="color: #ccc;">
-                                                    <?php echo $range_start; ?>-
-                                                    <?php echo $range_end; ?>
-                                                </span>
-                                            <?php endif; ?>
-                                        </li><!-- .l-header__menu-item -->
-                                        <?php //endfor; 
-                                                        ?>
-                                        <?php
-                                    endfor;
-                                    // $per_page = 15;
-                                    ?>
-
-                                </ul>
-                                <div class="l-header__progress-bar" data-list-progress-bar></div>
-                            </nav>
-
                             <div class="c-list c-list--albums">
                                 <?php
                                 $start = $total - ($paged - 1) * $per_page;
