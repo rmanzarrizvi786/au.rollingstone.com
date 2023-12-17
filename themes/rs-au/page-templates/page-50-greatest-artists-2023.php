@@ -155,6 +155,7 @@ if (have_posts()):
                                         if ($artists):
                                             foreach ($artists as $artist): ?>
                                                 <article class="c-list__item" id="list-item-<?php echo $artist->position; ?>"
+                                                    style="margin: auto;"
                                                     data-list-item="<?php echo $artist->position; ?>"
                                                     data-list-title="Artist at <?php echo $artist->position; ?>"
                                                     data-list-permalink="<?php echo get_permalink(); ?>page/<?php echo $paged; ?>/<?php echo $artist->slug; ?>/"
@@ -196,30 +197,6 @@ if (have_posts()):
                                                             </div><!-- /.c-list__lead -->
 
                                                         </main><!-- /.c-list__main -->
-                                                    </div>
-                                                    <div class="author-content">
-                                                        <div class="author-wrap">
-                                                            <?php if (!is_null($artist->author_image_url) && '' != trim($artist->author_image_url)): ?>
-                                                                <figure class="c-list__picture2" style="float: none; margin: auto;">
-                                                                    <div>
-                                                                        <img width="900" src="<?php echo $artist->author_image_url; ?>"
-                                                                            data-src="<?php echo $artist->author_image_url; ?>" class=""
-                                                                            alt="<?php echo $artist->author; ?>">
-                                                                    </div><!-- .c-crop -->
-
-                                                                </figure><!-- /.c-list__picture -->
-                                                                <header class="c-list__header">
-                                                                    <h4 class="c-list__title t-bold">By
-                                                                        <?php echo stripslashes($artist->author); ?>
-                                                                    </h4><!-- /.c-list__title -->
-                                                                    <?php if (!is_null($artist->author_bio) && '' != trim($artist->author_bio)): ?>
-                                                                        <div style="margin-top: .5rem;"><em>
-                                                                                <?php echo trim($artist->author_bio); ?>
-                                                                            </em></div>
-                                                                    <?php endif; ?>
-                                                                </header><!-- /.c-list__header -->
-                                                            <?php endif; ?>
-                                                        </div>
                                                     </div>
                                                 </article>
 
