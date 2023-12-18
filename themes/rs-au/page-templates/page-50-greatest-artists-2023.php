@@ -192,7 +192,6 @@ if (have_posts()):
 
                                                         </main><!-- /.c-list__main -->
                                                     </div>
-                                                    <div class="navigation"><p><?php posts_nav_link(); ?></p></div>
                                                 </article>
 
 
