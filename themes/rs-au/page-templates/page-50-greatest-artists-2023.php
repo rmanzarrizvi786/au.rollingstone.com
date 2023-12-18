@@ -47,14 +47,14 @@ if (have_posts()):
         if (!post_password_required($post)):
             ?>
             <div class="l-page__content">
-                <div class="logo-wrap">
-                    <div class="l-section l-section--no-separator">
+                <div>
+                    <div>
                         <figure class="c-picture2" style="margin: auto;">
                             <div class="c-picture__frame2">
 
                                 <div class="c-crop2">
                                     <img src="https://images-r2.thebrag.com/rs/uploads/2023/12/015_RSAUNZ_cover-web-banner-logo-1-1200x800px.jpg"
-                                        style="width: 60%; max-width: 100%;">
+                                        style="width: 50%; max-width: 100%;">
                                     <div
                                         style="font-family: Graphik,sans-serif; margin-top: 2rem; font-size: 175%; line-height: 130%; display: none;">
                                     </div>
