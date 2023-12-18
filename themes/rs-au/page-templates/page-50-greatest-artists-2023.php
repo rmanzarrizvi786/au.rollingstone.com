@@ -52,8 +52,8 @@ if (have_posts()):
                         <figure class="c-picture2" style="margin: auto;">
                             <div class="c-picture__frame2">
 
-                                <div class="c-crop2 c-crop--ratio-3x2-2 logo">
-                                    <img src="https://cdn-r2-2.thebrag.com/assets/images/RSAUNZ_PrimaryRGB_HEXe00019_1@2x.png"
+                                <div class="c-crop2">
+                                    <img src="https://images-r2.thebrag.com/rs/uploads/2023/12/015_RSAUNZ_cover-web-banner-logo-1-1200x800px.jpg"
                                         style="width: 60%; max-width: 100%;">
                                     <div
                                         style="font-family: Graphik,sans-serif; margin-top: 2rem; font-size: 175%; line-height: 130%; display: none;">
@@ -70,7 +70,7 @@ if (have_posts()):
 
                         <article class="top-list-wrap" data-id="<?php echo get_the_ID(); ?>" data-premium="true">
 
-                            <h1 data-href="<?php the_permalink(); ?>" style="line-height: 2.5rem; text-align: center;">
+                            <h1 data-href="<?php the_permalink(); ?>" style="line-height: 3rem; text-align: center; font-size: 3rem; font-family: 'Publico Bold Subset',sans-serif;">
                                 <?php the_title(); ?>
                             </h1>
 
