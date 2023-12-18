@@ -68,9 +68,9 @@ if (have_posts()):
                 <div class="l-section l-section--no-separator" style="margin: 2rem auto; max-width: 65rem;">
                     <div class="c-content c-content--no-sidebar t-copy" style="width: 100%;">
 
-                        <article class="top-list-wrap" data-id="<?php echo get_the_ID(); ?>" data-premium="true">
+                        <article class="top-list-wrap" data-id="<?php echo get_the_ID(); ?>" data-premium="true" style="max-width: 39.6875rem; margin-left: auto; margin-right: auto;">
 
-                            <h1 data-href="<?php the_permalink(); ?>" style="line-height: 3rem; text-align: center; font-size: 3rem; font-family: Graphik,sans-serif;">
+                            <h1 data-href="<?php the_permalink(); ?>" class="l-article-header__row l-article-header__row--title t-bold t-bold--condensed" style="text-align: center;">
                                 <?php the_title(); ?>
                             </h1>
 
