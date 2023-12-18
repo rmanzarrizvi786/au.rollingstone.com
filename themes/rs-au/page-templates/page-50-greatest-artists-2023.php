@@ -122,7 +122,7 @@ if (have_posts()):
                                 <div class="l-header__progress-bar" data-list-progress-bar></div>
                             </nav>
 
-                            <div class="c-list c-list--albums">
+                            <div class="c-list">
                                 <?php
                                 $start = $total - ($paged - 1) * $per_page;
                                 $to = $start - $per_page;
