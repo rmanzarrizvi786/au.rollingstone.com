@@ -1,6 +1,4 @@
 <?php
-//fopen("wp-content/themes/rs-au/page-templates/page-50-greatest-artists-2023AA.php", "w");
-//exit;
 /**
  * Template Name: 50 Greatest Artists 2023
  */
@@ -189,7 +187,9 @@ if (have_posts()):
                                                                 <?php echo stripslashes($artist->title); ?>
                                                             </h3><!-- /.c-list__title -->
                                                         </header><!-- /.c-list__header -->
-
+                                                        <p class="t-bold">
+                                                            <i> By: <?php echo stripslashes($artist->author); ?> Dani Here</i>
+                                                        </p>
                                                         <main class="c-list__main">
                                                             <div class="c-list__lead c-content">
                                                                 <?php echo wpautop(stripslashes($artist->description)); ?>
