@@ -70,7 +70,7 @@ if (have_posts()):
 
                         <article class="top-list-wrap" data-id="<?php echo get_the_ID(); ?>" data-premium="true">
 
-                            <h1 data-href="<?php the_permalink(); ?>" style="line-height: 3rem; text-align: center; font-size: 3rem; font-family: 'Publico Bold Subset',sans-serif;">
+                            <h1 data-href="<?php the_permalink(); ?>" style="line-height: 3rem; text-align: center; font-size: 4.5rem; font-family: 'Publico Banner Ultra Web', 'Publico Bold Subset',sans-serif;">
                                 <?php the_title(); ?>
                             </h1>
 
