@@ -70,7 +70,7 @@ if (have_posts()):
 
                         <article class="top-list-wrap" data-id="<?php echo get_the_ID(); ?>" data-premium="true">
 
-                            <h1 data-href="<?php the_permalink(); ?>" style="line-height: 2.5rem;">
+                            <h1 data-href="<?php the_permalink(); ?>" style="line-height: 2.5rem; text-align: center;">
                                 <?php the_title(); ?>
                             </h1>
 
