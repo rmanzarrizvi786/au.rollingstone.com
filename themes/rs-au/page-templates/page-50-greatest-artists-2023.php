@@ -152,12 +152,7 @@ if (have_posts()):
 
                                         if ($artists):
                                             foreach ($artists as $artist): ?>
-                                                <article class="c-list__item" id="list-item-<?php echo $artist->position; ?>"
-                                                    data-list-item="<?php echo $artist->position; ?>"
-                                                    data-list-title="Artist at <?php echo $artist->position; ?>"
-                                                    data-list-permalink="<?php echo get_permalink(); ?>page/<?php echo $paged; ?>/<?php echo $artist->slug; ?>/"
-                                                    data-list-item-id="<?php echo $artist->position; ?>"
-                                                    data-href="<?php echo get_permalink(); ?>page/<?php echo $paged; ?>/<?php echo $artist->slug; ?>/">
+                                                <article class="c-list__item" id="list-item-<?php echo $artist->position; ?>">
                                                     <div class="list-content" style="margin: auto;">
                                                         <?php if (!is_null($artist->image_url) && '' != trim($artist->image_url)): ?>
                                                             <figure class="c-list__picture2" style="float: none; margin: auto; position: relative;">
