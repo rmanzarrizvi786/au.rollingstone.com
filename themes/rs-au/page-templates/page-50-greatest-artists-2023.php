@@ -189,7 +189,7 @@ if ($start > 0):
                                                             </h3><!-- /.c-list__title -->
                                                         </header><!-- /.c-list__header -->
                                                         <p class="t-bold">
-                                                            <i> By: <?php echo stripslashes($artist->author); ?> Dani Here</i>
+                                                            <i> By: <?php echo stripslashes($artist->author); ?></i>
                                                         </p>
                                                         <main class="c-list__main">
                                                             <div class="c-list__lead c-content">
