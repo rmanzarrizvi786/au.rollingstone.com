@@ -1,8 +1,11 @@
 <?php
 
-class PMC {
+class PMC
+{
 
-	private function __construct() {}
+	private function __construct()
+	{
+	}
 
 	/**
 	 * Truncates a string and puts an ellipse at the end.
@@ -15,12 +18,13 @@ class PMC {
 	 * @version 2013-03-21 Miles Johnson - Replaced with a modified Titon.Utility/String::truncate()
 	 * @version 2014-12-09 Gabriel Koen
 	 */
-	public static function truncate( $string, $limit = 20, $append_type = 'ellipsis', $strip_html = false ) {
+	public static function truncate($string, $limit = 20, $append_type = 'ellipsis', $strip_html = false)
+	{
 		if ($strip_html) {
 			$string = strip_tags($string);
 		}
 
-		$string = self::untexturize( $string, 'html' );
+		$string = self::untexturize($string, 'html');
 
 		$length = mb_strlen($string);
 
@@ -28,7 +32,7 @@ class PMC {
 			return $string;
 		}
 
-		switch ( $append_type ) {
+		switch ($append_type) {
 			// This is the actual default
 			case 'ellipsis':
 				$append = '&hellip;';
@@ -80,12 +84,12 @@ class PMC {
 				$current++;
 				$output .= $token;
 
-			// Increase limit by 0 for HTML tags but check for tag boundaries
+				// Increase limit by 0 for HTML tags but check for tag boundaries
 			} else if (preg_match($htmlPattern, $token, $matches)) {
 				$inHtml = (mb_substr($token, 0, 2) !== $open . '/');
 				$output .= $token;
 
-			// Regular string
+				// Regular string
 			} else {
 				$length = mb_strlen($token);
 
@@ -116,7 +120,7 @@ class PMC {
 		if ($lastChar !== ' ' && $lastChar !== $close && $lastChar !== ';') {
 			$output = mb_substr($string, 0, mb_strrpos($output, ' '));
 
-		// Remove the last HTML tag so we can still process
+			// Remove the last HTML tag so we can still process
 		} else if ($lastChar === $close) {
 			$pos = mb_strrpos($output, $open);
 			$lastTag = mb_substr($output, $pos, mb_strlen($output));
@@ -133,19 +137,19 @@ class PMC {
 
 		$output = trim($output);
 
-		for ( $i=0; $i < count($punctuations); $i++ ) {
-			$position = mb_strripos( $output, $punctuations[$i] );
+		for ($i = 0; $i < count($punctuations); $i++) {
+			$position = mb_strripos($output, $punctuations[$i]);
 
 			// detecting punctuations at the end of string
-			if ( $position !== false && ($position == mb_strlen($output) - mb_strlen( $punctuations[$i] ) ) ) {
-				$output = mb_substr( $output, 0, -1 * mb_strlen( $punctuations[$i] ) );
+			if ($position !== false && ($position == mb_strlen($output) - mb_strlen($punctuations[$i]))) {
+				$output = mb_substr($output, 0, -1 * mb_strlen($punctuations[$i]));
 
 			}
 
-			unset( $position );
+			unset($position);
 		}
 
-		return force_balance_tags( trim($output) . $append . $lastTag );
+		return force_balance_tags(trim($output) . $append . $lastTag);
 	}
 
 	/**
@@ -169,8 +173,9 @@ class PMC {
 	 * @version 2014-06-06 Corey Gilmore Add additional documentation, mandatory SSL opt-in (#30102)
 	 *
 	 */
-	public static function load_custom_cdn( $cdn_options = array() ) {
-		if ( ! function_exists( 'wpcom_vip_load_custom_cdn' ) ) {
+	public static function load_custom_cdn($cdn_options = array())
+	{
+		if (!function_exists('wpcom_vip_load_custom_cdn')) {
 			return false;
 		}
 
@@ -178,21 +183,21 @@ class PMC {
 		// Sites must explicitly opt-in for a custom SSL CDN domain.
 		// You probably shouldn't be doing this, and you need to talk with Corey.
 		// Opt-in can be done with: add_filter( 'pmc_custom_cdn_ssl_opt_in', '__return_true' );
-		if( PMC::is_https() && ! apply_filters( 'pmc_custom_cdn_ssl_opt_in', '__return_false' ) ) {
+		if (PMC::is_https() && !apply_filters('pmc_custom_cdn_ssl_opt_in', '__return_false')) {
 			return false;
 		}
 
 		// Default options from wpcom_vip_load_custom_cdn()
 		$default_cdn_options = array(
-			'cdn_host_media'   => '',
-			'cdn_host_static'  => '',
-			'include_admin'    => false,
+			'cdn_host_media' => '',
+			'cdn_host_static' => '',
+			'include_admin' => false,
 		);
 
-		$cdn_options = wp_parse_args( $cdn_options, $default_cdn_options );
-		$cdn_options = apply_filters( 'pmc_custom_cdn_options', $cdn_options );
+		$cdn_options = wp_parse_args($cdn_options, $default_cdn_options);
+		$cdn_options = apply_filters('pmc_custom_cdn_options', $cdn_options);
 
-		wpcom_vip_load_custom_cdn( $cdn_options );
+		wpcom_vip_load_custom_cdn($cdn_options);
 	}
 
 	/**
@@ -204,13 +209,14 @@ class PMC {
 	 * @since 2012-08-29 Amit Gupta
 	 * @version 2013-10-04 Amit Gupta - added '&quot;' to conversion list in text mode in untexturize()
 	 */
-	public static function untexturize( $text, $type = 'text' ) {
-		if( empty($text) ) {
+	public static function untexturize($text, $type = 'text')
+	{
+		if (empty($text)) {
 			return $text;
 		}
 
 		//type can be either HTML or TEXT
-		$type = ( strtolower($type) == 'html' ) ? 'html' : 'text';
+		$type = (strtolower($type) == 'html') ? 'html' : 'text';
 
 		$utf8_find = array(
 			"\xe2\x80\x98", // single left curved quote
@@ -221,24 +227,24 @@ class PMC {
 			"\xe2\x80\x94", // emdash
 			"\xe2\x80\xa6", // ellipsis
 		);
-		$char_find = array( chr(145), chr(146), chr(147), chr(148), chr(150), chr(151), chr(133) );
+		$char_find = array(chr(145), chr(146), chr(147), chr(148), chr(150), chr(151), chr(133));
 
-		$text_replace = array( "'", "'", '"', '"', '-', '--', '...' );
-		if( 'html' === $type ) {
-			$text_replace = array( "'", "'", '"', '"', "&ndash;", "&mdash;", "&hellip;" );
+		$text_replace = array("'", "'", '"', '"', '-', '--', '...');
+		if ('html' === $type) {
+			$text_replace = array("'", "'", '"', '"', "&ndash;", "&mdash;", "&hellip;");
 		}
 
 		//do uft-8 replace
-		$text = str_replace( $utf8_find, $text_replace, $text );
+		$text = str_replace($utf8_find, $text_replace, $text);
 
 		//do char replace
-		$text = str_replace( $char_find, $text_replace, $text );
+		$text = str_replace($char_find, $text_replace, $text);
 
-		if( 'text' === $type ) {
-			$text = str_replace( "&nbsp;", " ", $text );	//convert html char for space
-			$text = str_replace( array( '&#8216;', '&#8217;', '&lsquo;', '&rsquo;', '&#x2019;' ), "'", $text );	//convert html entity for single quotes and apostrophe
+		if ('text' === $type) {
+			$text = str_replace("&nbsp;", " ", $text);	//convert html char for space
+			$text = str_replace(array('&#8216;', '&#8217;', '&lsquo;', '&rsquo;', '&#x2019;'), "'", $text);	//convert html entity for single quotes and apostrophe
 
-			$text = html_entity_decode( $text );	//convert html entities to text
+			$text = html_entity_decode($text);	//convert html entities to text
 		}
 
 		return $text;
@@ -254,11 +260,12 @@ class PMC {
 	 *
 	 * @return array
 	 */
-	public static function array_inject( $value, $position, $array ) {
-		$position = ( $position - 1 );
-		$top_half = array_slice( $array, 0, $position, true );
-		$bottom_half = array_slice( $array, $position, count($array), true );
-		$array = array_merge( $top_half, (array) $value, $bottom_half );
+	public static function array_inject($value, $position, $array)
+	{
+		$position = ($position - 1);
+		$top_half = array_slice($array, 0, $position, true);
+		$bottom_half = array_slice($array, $position, count($array), true);
+		$array = array_merge($top_half, (array) $value, $bottom_half);
 
 		return $array;
 	}
@@ -273,15 +280,16 @@ class PMC {
 	 * @param int $slot Maps to utm_content, automatically prepended with "slot", e.g., "slot1"
 	 * @param bool $echo Whether to output the anchor or just return it (defaults to false)
 	 */
-	function heatmap( $url, $primary, $secondary, $tertiary, $slot, $echo = false ) {
-		$utm_campaign = sanitize_key( $primary );
-		$utm_medium = sanitize_key( $secondary );
-		$utm_source = sanitize_key( $tertiary );
-		$utm_content = ( ! empty( $slot ) ) ? 'slot' . (int) $slot : '';
+	function heatmap($url, $primary, $secondary, $tertiary, $slot, $echo = false)
+	{
+		$utm_campaign = sanitize_key($primary);
+		$utm_medium = sanitize_key($secondary);
+		$utm_source = sanitize_key($tertiary);
+		$utm_content = (!empty($slot)) ? 'slot' . (int) $slot : '';
 
-		$url = apply_filters( 'pmc_heatmap', $url . '#utm_campaign=' . $utm_campaign . '&utm_source=' . $utm_source . '&utm_medium=' . $utm_medium . '&utm_content=' . $utm_content, $url, $primary, $secondary, $tertiary, $slot, $echo );
+		$url = apply_filters('pmc_heatmap', $url . '#utm_campaign=' . $utm_campaign . '&utm_source=' . $utm_source . '&utm_medium=' . $utm_medium . '&utm_content=' . $utm_content, $url, $primary, $secondary, $tertiary, $slot, $echo);
 
-		if ( $echo )
+		if ($echo)
 			echo $url;
 
 		return $url;
@@ -294,59 +302,60 @@ class PMC {
 	 *
 	 * @return string
 	 */
-	public static function where_am_i() {
+	public static function where_am_i()
+	{
 		global $wp_query;
 
-		if ( ! isset( $wp_query ) ) {
-			_doing_it_wrong( __FUNCTION__, __( 'Conditional query tags do not work before the query is run. Before then, they always return false.' ), '3.5' );
+		if (!isset($wp_query)) {
+			_doing_it_wrong(__FUNCTION__, __('Conditional query tags do not work before the query is run. Before then, they always return false.'), '3.5');
 			return null;
 		}
 
 		// Maintain an in-memory cache
-		if ( isset($GLOBALS['where_am_i']) ) {
+		if (isset($GLOBALS['where_am_i'])) {
 			return $GLOBALS['where_am_i'];
 		}
 
 		$GLOBALS['where_am_i'] = null;
 
 		// Tried to maintain the hierarchy from query.php
-		if ( true === $wp_query->is_robots ) {
+		if (true === $wp_query->is_robots) {
 			$GLOBALS['where_am_i'] = 'robots';
-		} elseif ( true === $wp_query->is_attachment ) {
+		} elseif (true === $wp_query->is_attachment) {
 			$GLOBALS['where_am_i'] = 'attachment';
-		} elseif ( true === $wp_query->is_page ) {
+		} elseif (true === $wp_query->is_page) {
 			$GLOBALS['where_am_i'] = 'page';
-		} elseif ( true === $wp_query->is_single ) {
+		} elseif (true === $wp_query->is_single) {
 			$GLOBALS['where_am_i'] = 'single';
-		} elseif ( true === $wp_query->is_search ) {
+		} elseif (true === $wp_query->is_search) {
 			$GLOBALS['where_am_i'] = 'search';
-		} elseif ( true === $wp_query->is_time ) {
+		} elseif (true === $wp_query->is_time) {
 			$GLOBALS['where_am_i'] = 'time';
-		} elseif ( true === $wp_query->is_date ) {
+		} elseif (true === $wp_query->is_date) {
 			$GLOBALS['where_am_i'] = 'date';
-		} elseif ( true === $wp_query->is_category ) {
+		} elseif (true === $wp_query->is_category) {
 			$GLOBALS['where_am_i'] = 'category';
-		} elseif ( true === $wp_query->is_tag ) {
+		} elseif (true === $wp_query->is_tag) {
 			$GLOBALS['where_am_i'] = 'tag';
-		} elseif ( true === $wp_query->is_tax ) {
+		} elseif (true === $wp_query->is_tax) {
 			$GLOBALS['where_am_i'] = 'custom_taxonomy';
-		} elseif ( true === $wp_query->is_author ) {
+		} elseif (true === $wp_query->is_author) {
 			$GLOBALS['where_am_i'] = 'author';
-		} elseif ( true === $wp_query->is_post_type_archive ) {
+		} elseif (true === $wp_query->is_post_type_archive) {
 			$GLOBALS['where_am_i'] = 'post_type';
-		} elseif ( true === $wp_query->is_feed ) {
+		} elseif (true === $wp_query->is_feed) {
 			$GLOBALS['where_am_i'] = 'feed';
-		} elseif ( true === $wp_query->is_trackback ) {
+		} elseif (true === $wp_query->is_trackback) {
 			$GLOBALS['where_am_i'] = 'trackback';
-		} elseif ( true === $wp_query->is_admin ) {
+		} elseif (true === $wp_query->is_admin) {
 			$GLOBALS['where_am_i'] = 'admin';
-		} elseif ( true === $wp_query->is_404 ) {
+		} elseif (true === $wp_query->is_404) {
 			$GLOBALS['where_am_i'] = '404';
-		} elseif ( true === $wp_query->is_home ) {
+		} elseif (true === $wp_query->is_home) {
 			$GLOBALS['where_am_i'] = 'home';
 		}
 
-		$GLOBALS['where_am_i'] = apply_filters( 'pmc_where_am_i', $GLOBALS['where_am_i'] );
+		$GLOBALS['where_am_i'] = apply_filters('pmc_where_am_i', $GLOBALS['where_am_i']);
 
 		return $GLOBALS['where_am_i'];
 	}
@@ -356,15 +365,16 @@ class PMC {
 	 *
 	 * @return string
 	 */
-	public static function get_pagezone() {
+	public static function get_pagezone()
+	{
 		global $wp_query;
 
 		$pagezone = '';
 
-		if ( is_home() ) {
+		if (is_home()) {
 			$pagezone = 'home';
-		} elseif ( is_single() ) {
-			switch ( get_post_type() ) {
+		} elseif (is_single()) {
+			switch (get_post_type()) {
 				case 'gallery':
 				case 'pmc-gallery':
 					$pagezone = 'gallery';
@@ -376,8 +386,8 @@ class PMC {
 					$pagezone = 'single-' . get_post_type();
 					break;
 			}
-		} elseif ( is_post_type_archive() ) {
-			switch ( get_post_type() ) {
+		} elseif (is_post_type_archive()) {
+			switch (get_post_type()) {
 				case 'gallery':
 				case 'pmc-gallery':
 					$pagezone = 'archive-gallery';
@@ -389,10 +399,10 @@ class PMC {
 					$pagezone = 'archive-' . get_post_type();
 					break;
 			}
-		} elseif ( is_archive() ) {
+		} elseif (is_archive()) {
 			$queried_object = get_queried_object();
-			if ( !empty( $queried_object ) && !empty( $queried_object->taxonomy ) ) {
-				switch ( $queried_object->taxonomy ) {
+			if (!empty($queried_object) && !empty($queried_object->taxonomy)) {
+				switch ($queried_object->taxonomy) {
 					case 'post_tag':
 						$pagezone = 'tag';
 						break;
@@ -406,16 +416,15 @@ class PMC {
 						$pagezone = 'tax-' . $queried_object->taxonomy;
 						break;
 				}
-			}
-			elseif ( is_author() ) {
+			} elseif (is_author()) {
 				$pagezone = 'author';
 			}
 		}
 
-		if ( empty( $pagezone ) ) {
+		if (empty($pagezone)) {
 			$pagezone = PMC::where_am_i();
 		}
-		return apply_filters( 'pmc_pagezone', $pagezone );
+		return apply_filters('pmc_pagezone', $pagezone);
 	}
 
 
@@ -424,37 +433,40 @@ class PMC {
 	 *
 	 * @since 2014-06-03 Corey Gilmore
 	 */
-	public static function is_desktop() {
+	public static function is_desktop()
+	{
 		return !PMC::is_mobile() && !PMC::is_tablet();
 	}
 
 	/*
-	* Modified by TBM 2019/11/25
-	*/
-	public static function is_mobile( $kind = 'any', $caller = '' ) {
+	 * Modified by TBM 2019/11/25
+	 */
+	public static function is_mobile($kind = 'any', $caller = '')
+	{
 		static $is_mobile;
 
-    if ( isset($is_mobile) )
-        return $is_mobile;
+		if (isset($is_mobile))
+			return $is_mobile;
 
-    if ( empty($_SERVER['HTTP_USER_AGENT']) ) {
-        $is_mobile = false;
-    } elseif (
-        strpos($_SERVER['HTTP_USER_AGENT'], 'Android') !== false
-        || strpos($_SERVER['HTTP_USER_AGENT'], 'Silk/') !== false
-        || strpos($_SERVER['HTTP_USER_AGENT'], 'Kindle') !== false
-        || strpos($_SERVER['HTTP_USER_AGENT'], 'BlackBerry') !== false
-        || strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mini') !== false ) {
-            $is_mobile = true;
-    } elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false && strpos($_SERVER['HTTP_USER_AGENT'], 'iPad') == false) {
-            $is_mobile = true;
-    } elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'iPad') !== false) {
-        $is_mobile = false;
-    } else {
-        $is_mobile = false;
-    }
+		if (empty($_SERVER['HTTP_USER_AGENT'])) {
+			$is_mobile = false;
+		} elseif (
+			strpos($_SERVER['HTTP_USER_AGENT'], 'Android') !== false
+			|| strpos($_SERVER['HTTP_USER_AGENT'], 'Silk/') !== false
+			|| strpos($_SERVER['HTTP_USER_AGENT'], 'Kindle') !== false
+			|| strpos($_SERVER['HTTP_USER_AGENT'], 'BlackBerry') !== false
+			|| strpos($_SERVER['HTTP_USER_AGENT'], 'Opera Mini') !== false
+		) {
+			$is_mobile = true;
+		} elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false && strpos($_SERVER['HTTP_USER_AGENT'], 'iPad') == false) {
+			$is_mobile = true;
+		} elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'iPad') !== false) {
+			$is_mobile = false;
+		} else {
+			$is_mobile = false;
+		}
 
-    return $is_mobile;
+		return $is_mobile;
 	}
 
 	/**
@@ -462,29 +474,30 @@ class PMC {
 	 *
 	 * @since 2012-12-21 Amit Gupta
 	 */
-	public static function is_tablet() {
+	public static function is_tablet()
+	{
 		// we call this function a lot, we only need to use Jetpack once
 		static $is_tablet = null;
 
 		// Use the static variable to protect against something modifying $_SERVER['HTTP_X_MOBILE_CLASS'] on VIP Go
-		if( $is_tablet !== null ) {
+		if ($is_tablet !== null) {
 			return $is_tablet;
 		}
 
 		// @since 2016-05-31: We'll need to revisit this
-		if ( defined( 'PMC_IS_VIP_GO_SITE' ) && PMC_IS_VIP_GO_SITE ) {
-			if ( isset( $_SERVER['HTTP_X_MOBILE_CLASS'] ) ) {
+		if (defined('PMC_IS_VIP_GO_SITE') && PMC_IS_VIP_GO_SITE) {
+			if (isset($_SERVER['HTTP_X_MOBILE_CLASS'])) {
 				$is_tablet = 'tablet' === $_SERVER['HTTP_X_MOBILE_CLASS'];
 				return $is_tablet;
 			}
 		}
 
-		if( !class_exists( 'Jetpack_User_Agent_Info' ) ) {
+		if (!class_exists('Jetpack_User_Agent_Info')) {
 			return false;
 		}
 
-		if( $is_tablet === null ) {
-			if ( is_callable('Jetpack_User_Agent_Info::is_tablet') ) {
+		if ($is_tablet === null) {
+			if (is_callable('Jetpack_User_Agent_Info::is_tablet')) {
 				$is_tablet = Jetpack_User_Agent_Info::is_tablet() ? true : false;
 			}
 		}
@@ -497,14 +510,15 @@ class PMC {
 	 * @return bool
 	 * Check if the current device is an ipad.
 	 */
-	public static function is_ipad() {
+	public static function is_ipad()
+	{
 		static $is_ipad = null;
 
-		if( !class_exists( 'Jetpack_User_Agent_Info' ) ) {
+		if (!class_exists('Jetpack_User_Agent_Info')) {
 			return false;
 		}
 
-		if( $is_ipad === null ) {
+		if ($is_ipad === null) {
 			$ua = new Jetpack_User_Agent_Info();
 			return $ua->is_ipad();
 			$is_ipad = $ua->is_ipad() ? true : false; // ensure we never have null;
@@ -518,9 +532,10 @@ class PMC {
 	 *
 	 * @return boolean Returns TRUE if current request is for an AMP URL else FALSE
 	 */
-	public static function is_amp() {
+	public static function is_amp()
+	{
 
-		if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+		if (function_exists('is_amp_endpoint') && is_amp_endpoint()) {
 			return true;
 		}
 
@@ -535,40 +550,41 @@ class PMC {
 	 *
 	 * @since 2013-01-07 Vicky Biswas
 	 */
-	public static function gallery_menu_order_fix( $post_id ) {
-		if ( !isset($_POST['post_content']) ) {
+	public static function gallery_menu_order_fix($post_id)
+	{
+		if (!isset($_POST['post_content'])) {
 			return false;
 		}
-		$post = get_post( $post_id );
+		$post = get_post($post_id);
 		$regex_pattern = get_shortcode_regex();
-		preg_match ('/'.$regex_pattern.'/s', stripslashes($_POST['post_content']), $regex_matches);
-		if ( ! $regex_matches ) {
+		preg_match('/' . $regex_pattern . '/s', stripslashes($_POST['post_content']), $regex_matches);
+		if (!$regex_matches) {
 			return false;
 		}
 		if ($regex_matches[2] == 'gallery') {
-			$attribure_str = str_replace(" ", "&", trim ($regex_matches[3]));
+			$attribure_str = str_replace(" ", "&", trim($regex_matches[3]));
 			$attribure_str = str_replace('"', '', $attribure_str);
 			$attributes = wp_parse_args($attribure_str);
 		}
 
-		if ( empty( $attributes['ids'] ) )
+		if (empty($attributes['ids']))
 			return;
 
 		$ids = explode(',', $attributes['ids']);
-		$images = get_posts( array(
+		$images = get_posts(array(
 			'post_parent' => $post->ID,
 			'numberposts' => '-1',
 			'post_status' => 'inherit',
 			'post_type' => 'attachment',
 			'post_mime_type' => 'image',
 			'post__in' => $ids,
-		) );
-		if ( $images ) {
-			foreach ( $images as $attachment_id => $attachment ) {
+		));
+		if ($images) {
+			foreach ($images as $attachment_id => $attachment) {
 				$update_post = array();
 				$update_post['ID'] = $attachment->ID;
 				$update_post['menu_order'] = array_search($attachment->ID, $ids);
-				wp_update_post( $update_post );
+				wp_update_post($update_post);
 			}
 		}
 	}
@@ -579,12 +595,13 @@ class PMC {
 	 * @param null|WP_Post $the_post Post object whose excerpt is to be checked else NULL if global post object is to be checked
 	 * @return string Returns a CSS class name if excerpt found on post object else empty string
 	 */
-	public static function get_excerpt_class( $the_post = null ) {
-		if ( empty( $the_post ) ) {
+	public static function get_excerpt_class($the_post = null)
+	{
+		if (empty($the_post)) {
 			$the_post = $GLOBALS['post'];
 		}
 
-		if ( ! empty( $the_post->post_excerpt ) ) {
+		if (!empty($the_post->post_excerpt)) {
 			return 'has-excerpt';
 		}
 
@@ -602,55 +619,56 @@ class PMC {
 	 * @since 2013-01-18 Amit Gupta
 	 * @version 2014-12-10 Gabriel Koen
 	 */
-	public static function get_the_excerpt( $post_id = 0 ) {
-		$post_id = intval( $post_id );
-		if( $post_id < 1 ) {
-			if( ! isset( $GLOBALS['post'] ) || ! isset( $GLOBALS['post']->ID ) || intval( $GLOBALS['post']->ID ) < 1 ) {
+	public static function get_the_excerpt($post_id = 0)
+	{
+		$post_id = intval($post_id);
+		if ($post_id < 1) {
+			if (!isset($GLOBALS['post']) || !isset($GLOBALS['post']->ID) || intval($GLOBALS['post']->ID) < 1) {
 				//no post ID passed as parameter and this function wasnt called on a post page or in loop, cant do anything
 				return;
 			}
-			$post_id = intval( $GLOBALS['post']->ID );
+			$post_id = intval($GLOBALS['post']->ID);
 		}
 
-		$the_post = get_post( $post_id );
-		if( empty( $the_post ) ) {
+		$the_post = get_post($post_id);
+		if (empty($the_post)) {
 			return;
 		}
 
 		//if there's an excerpt already then return that
-		$excerpt = trim( apply_filters( 'get_the_excerpt', $the_post->post_excerpt ) );
+		$excerpt = trim(apply_filters('get_the_excerpt', $the_post->post_excerpt));
 
-		if( ! empty( $excerpt ) ) {
+		if (!empty($excerpt)) {
 			return $excerpt;
 		}
 
-		if ( $the_post->post_type !== 'attachment' ) {
+		if ($the_post->post_type !== 'attachment') {
 			//no excerpt, so we do it the hard way
 			$excerpt = $the_post->post_content;
 		}
 
-		if( empty( $excerpt ) ) {
+		if (empty($excerpt)) {
 			//post content is also empty so we cant do anything further here, bail out
 			return;
 		}
 
 		//strip out all shortcode tags, no use of them in excerpts
 		//and apply the_content filter afterwards to catch any changes, beautification etc
-		$excerpt = str_replace( ']]>', ']]&gt;', apply_filters( 'the_content', strip_shortcodes( $excerpt ) ) );
-		$excerpt_length = apply_filters( 'excerpt_length', 55 );	//get the allowed length (in words) for excerpt
+		$excerpt = str_replace(']]>', ']]&gt;', apply_filters('the_content', strip_shortcodes($excerpt)));
+		$excerpt_length = apply_filters('excerpt_length', 55);	//get the allowed length (in words) for excerpt
 
 		//if excerpt is longer than allowed length then snip it (no suffix added)
 		//and untexturize it
-		$excerpt = self::untexturize( wp_trim_words( $excerpt, $excerpt_length, '' ) );
+		$excerpt = self::untexturize(wp_trim_words($excerpt, $excerpt_length, ''));
 
 		//use this custom stripper to strip unregistered & escaped shortcode tags if any
-		$excerpt = preg_replace( '/\[(\w*)(\s*)(.*)\](.*)\[\/\1\]/s', '-tag-stripped-', $excerpt );
+		$excerpt = preg_replace('/\[(\w*)(\s*)(.*)\](.*)\[\/\1\]/s', '-tag-stripped-', $excerpt);
 		//second pass to catch leftovers of escaped tags
-		$excerpt = str_replace( array( '[-tag-stripped-]', '-tag-stripped-' ), '', $excerpt );
+		$excerpt = str_replace(array('[-tag-stripped-]', '-tag-stripped-'), '', $excerpt);
 
-		unset( $excerpt_length, $the_post );	//cleanup
+		unset($excerpt_length, $the_post);	//cleanup
 
-		return trim( apply_filters( 'get_the_excerpt', $excerpt ) );
+		return trim(apply_filters('get_the_excerpt', $excerpt));
 	}
 
 	/**
@@ -727,29 +745,30 @@ class PMC {
 	 * @return string Sanitized excerpt, passed through wp_kses
 	 *
 	 */
-	public static function get_the_sanitized_excerpt( $args = array() ) {
+	public static function get_the_sanitized_excerpt($args = array())
+	{
 		$default_args = array(
-			'post'            => 0,
-			'more_link_text'  => apply_filters( 'excerpt_more', '&hellip;Read More' ),
-			'excerpt_length'  => apply_filters( 'excerpt_length', 55 ),
-			'excerpt_wrap'    => '<p class="%1$s">%2$s</p>',
-			'excerpt_class'   => '',
-			'allowed_html'    => 'pmc-excerpt',
-			'strip_teaser'    => false,
+			'post' => 0,
+			'more_link_text' => apply_filters('excerpt_more', '&hellip;Read More'),
+			'excerpt_length' => apply_filters('excerpt_length', 55),
+			'excerpt_wrap' => '<p class="%1$s">%2$s</p>',
+			'excerpt_class' => '',
+			'allowed_html' => 'pmc-excerpt',
+			'strip_teaser' => false,
 		);
 
 		// For get_the_excerpt filter compat, we want to ignore the excerpt passed to this function because we're building our own from scratch.
-		if ( ! is_array( $args ) ) {
-			_doing_it_wrong( 'PMC::get_the_sanitized_excerpt()', 'This method overrides the default excerpt functionality. See PMC::get_the_sanitized_excerpt() for documentation.', '4.1' );
+		if (!is_array($args)) {
+			_doing_it_wrong('PMC::get_the_sanitized_excerpt()', 'This method overrides the default excerpt functionality. See PMC::get_the_sanitized_excerpt() for documentation.', '4.1');
 			$args = array();
 		}
 
-		$args = wp_parse_args( $args, $default_args );
+		$args = wp_parse_args($args, $default_args);
 
 		// get_post() returns a WP_Post object, or null if the post doesnt exist or an error occurred.
-		$the_post = get_post( $args['post'] );
+		$the_post = get_post($args['post']);
 
-		if ( empty( $the_post ) ) {
+		if (empty($the_post)) {
 			return '';
 		}
 
@@ -762,129 +781,129 @@ class PMC {
 		$has_teaser = false;
 		$more_link_text = $args['more_link_text'];
 
-		$excerpt_text = trim( $the_post->post_excerpt );
+		$excerpt_text = trim($the_post->post_excerpt);
 
-		if ( ! empty( $excerpt_text ) ) {
+		if (!empty($excerpt_text)) {
 			$has_teaser = true;
 		}
 
 		// Based on get_the_content()
-		$_page = ( isset($GLOBALS['page']) ) ? $GLOBALS['page'] : 1;
-		$_pages = ( isset($GLOBALS['pages']) ) ? $GLOBALS['pages'] : array( $the_post->post_content );
-		$_multipage = ( isset($GLOBALS['multipage']) ) ? $GLOBALS['multipage'] : 0;
-		$_more = ( isset($GLOBALS['more']) ) ? $GLOBALS['more'] : false;
+		$_page = (isset($GLOBALS['page'])) ? $GLOBALS['page'] : 1;
+		$_pages = (isset($GLOBALS['pages'])) ? $GLOBALS['pages'] : array($the_post->post_content);
+		$_multipage = (isset($GLOBALS['multipage'])) ? $GLOBALS['multipage'] : 0;
+		$_more = (isset($GLOBALS['more'])) ? $GLOBALS['more'] : false;
 
 		// if the requested page doesn't exist
 		// give them the highest numbered page that DOES exist
-		if ( $_page > count( $_pages ) ) {
-			$_page = count( $_pages );
+		if ($_page > count($_pages)) {
+			$_page = count($_pages);
 		}
 
 		// Use post_content for the excerpt if no post_excerpt
-		if ( empty( $excerpt_text ) ) {
-			$page_to_fetch = absint( $_page - 1 );
+		if (empty($excerpt_text)) {
+			$page_to_fetch = absint($_page - 1);
 
-			$excerpt_text = ( ! empty( $_pages[ $page_to_fetch ] ) ) ? trim( $_pages[ $page_to_fetch ] ) : '';
+			$excerpt_text = (!empty($_pages[$page_to_fetch])) ? trim($_pages[$page_to_fetch]) : '';
 
 			/*
 			 * This would be set to FALSE if excerpt is not empty as we are creating excerpt from post content
 			 * here and so the excerpt was probably not crafted by post author/editor.
 			 */
-			$has_teaser = ( empty( $excerpt_text ) );
+			$has_teaser = (empty($excerpt_text));
 
-			unset( $page_to_fetch );
+			unset($page_to_fetch);
 		}
 
 		// Look for <!--more--> tag and use that
-		if ( ! $has_teaser && preg_match( '/<!--more(.*?)?-->/', $excerpt_text, $matches ) ) {
-			$excerpt_text = explode( $matches[0], $excerpt_text, 2 );
-			$excerpt_text = trim( array_shift( $excerpt_text ) );
+		if (!$has_teaser && preg_match('/<!--more(.*?)?-->/', $excerpt_text, $matches)) {
+			$excerpt_text = explode($matches[0], $excerpt_text, 2);
+			$excerpt_text = trim(array_shift($excerpt_text));
 
-			if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) ) {
-				$more_link_text = trim( $matches[1] );
+			if (!empty($matches[1]) && !empty($more_link_text)) {
+				$more_link_text = trim($matches[1]);
 			}
 
 			/*
 			 * This would be set to TRUE if excerpt is not empty as post author/editor
 			 * set the marker for excerpt in post content.
 			 */
-			$has_teaser = ( ! empty( $excerpt_text ) );
+			$has_teaser = (!empty($excerpt_text));
 		}
 
-		if ( false !== strpos( $excerpt_text, '<!--noteaser-->' ) && ( ! $_multipage || $_page == 1 ) ) {
+		if (false !== strpos($excerpt_text, '<!--noteaser-->') && (!$_multipage || $_page == 1)) {
 			$args['strip_teaser'] = true;
 		}
 
-		if ( $_more && $args['strip_teaser'] && $has_teaser ) {
+		if ($_more && $args['strip_teaser'] && $has_teaser) {
 			$excerpt_text = '';
 		}
 
-		if ( ! empty( $excerpt_text ) ) {
+		if (!empty($excerpt_text)) {
 			// strip out all shortcode tags, no use of them in excerpts
 			// and apply the_content filter afterwards to catch any changes,
 			// beautification etc
-			$excerpt_text = strip_shortcodes( $excerpt_text );
+			$excerpt_text = strip_shortcodes($excerpt_text);
 
 			// use this custom stripper to strip unregistered & escaped shortcode tags (if any). Only works on shortcodes with a closing tag.
-			$excerpt_text = preg_replace( '/\[(\w*)(\s*)(.*)\](.*)\[\/\1\]/s', '-tag-stripped-', $excerpt_text );
+			$excerpt_text = preg_replace('/\[(\w*)(\s*)(.*)\](.*)\[\/\1\]/s', '-tag-stripped-', $excerpt_text);
 
 			// second pass to catch leftovers of escaped tags
-			$excerpt_text = str_replace( array( '[-tag-stripped-]', '-tag-stripped-' ), '', $excerpt_text );
+			$excerpt_text = str_replace(array('[-tag-stripped-]', '-tag-stripped-'), '', $excerpt_text);
 
-			$excerpt_text = apply_filters( 'the_content', $excerpt_text );
-			$excerpt_text = str_replace( ']]>', ']]&gt;', $excerpt_text );
+			$excerpt_text = apply_filters('the_content', $excerpt_text);
+			$excerpt_text = str_replace(']]>', ']]&gt;', $excerpt_text);
 
 			// if excerpt is longer than allowed length then snip it (no suffix added)
 			// and untexturize it
-			if ( ! $has_teaser ) {
+			if (!$has_teaser) {
 				// Convert excerpt_length (which is based on word count) to max character count (which is what PMC::truncate() expects).
-				$clean_text = strip_tags( $excerpt_text );
-				$word_count_parts = str_word_count( $clean_text, 2 );
-				$word_count = count( $word_count_parts );
+				$clean_text = strip_tags($excerpt_text);
+				$word_count_parts = str_word_count($clean_text, 2);
+				$word_count = count($word_count_parts);
 
-				if ( $word_count > intval( $args['excerpt_length'] ) ) {
-					$slice_offset = min( intval( $args['excerpt_length'] ), $word_count );
-					$last_word_position = array_keys( array_slice( $word_count_parts, $slice_offset, 1, true ) );
-					$last_word_position = array_shift( $last_word_position );
+				if ($word_count > intval($args['excerpt_length'])) {
+					$slice_offset = min(intval($args['excerpt_length']), $word_count);
+					$last_word_position = array_keys(array_slice($word_count_parts, $slice_offset, 1, true));
+					$last_word_position = array_shift($last_word_position);
 
-					$excerpt_text = self::truncate( $excerpt_text, $last_word_position, null );
+					$excerpt_text = self::truncate($excerpt_text, $last_word_position, null);
 				}
 			} else {
-				$excerpt_text = force_balance_tags( $excerpt_text );
+				$excerpt_text = force_balance_tags($excerpt_text);
 			}
 
-			$excerpt_text = wp_kses( $excerpt_text, $args['allowed_html'] );
+			$excerpt_text = wp_kses($excerpt_text, $args['allowed_html']);
 
 			// Collapse new lines - also prevents other filters from inserted unwanted <p> tags
-			$excerpt_text = str_replace( array( "\n", "\r" ), ' ', $excerpt_text );
+			$excerpt_text = str_replace(array("\n", "\r"), ' ', $excerpt_text);
 		}
 
 		// If post password required, and a custom excerpt hasn't been crafted.
-		if ( ! $has_teaser && post_password_required( $the_post ) ) {
-			$excerpt_text .= apply_filters( 'pmc-excerpt-password-required-text', 'This post is password protected. Enter the password to read the article.' );
+		if (!$has_teaser && post_password_required($the_post)) {
+			$excerpt_text .= apply_filters('pmc-excerpt-password-required-text', 'This post is password protected. Enter the password to read the article.');
 		}
 
 		// Append the "more" link. If for some reason the excerpt is empty, this will still append the "more" link. This lets us know our function is still working without looking at the code. It's up to the editors to make sure the post has a proper excerpt.
-		if ( ! empty( $more_link_text ) ) {
+		if (!empty($more_link_text)) {
 			// No jump link in our default more_link_text
 			// No opening space (if you want one, override more_link_text)
-			$default_more_link_text = sprintf( '<a href="%s" class="more-link">%s</a>', esc_url( get_permalink( $the_post->ID ) ), wp_kses_post( $more_link_text ) );
+			$default_more_link_text = sprintf('<a href="%s" class="more-link">%s</a>', esc_url(get_permalink($the_post->ID)), wp_kses_post($more_link_text));
 
-			$excerpt_text .= apply_filters( 'the_content_more_link', $default_more_link_text, $args['more_link_text'], $the_post->ID );
+			$excerpt_text .= apply_filters('the_content_more_link', $default_more_link_text, $args['more_link_text'], $the_post->ID);
 		}
 
-		$excerpt_class = 'entry-summary ' . trim( $args['excerpt_class'] );
+		$excerpt_class = 'entry-summary ' . trim($args['excerpt_class']);
 
-		$excerpt_text = sprintf( $args['excerpt_wrap'],
-			esc_attr( trim( $excerpt_class ) ),
-			trim( $excerpt_text ),
+		$excerpt_text = sprintf($args['excerpt_wrap'],
+			esc_attr(trim($excerpt_class)),
+			trim($excerpt_text),
 			$the_post->ID
 		);
 
 		// preview fix for javascript bug with foreign languages
 		// not sure exactly what bug this fixes but it's in the_content() in core
-		if ( isset( $GLOBALS['preview'] ) && $GLOBALS['preview'] ) {
-			$excerpt_text = preg_replace_callback( '/\%u([0-9A-F]{4})/', '_convert_urlencoded_to_entities', $excerpt_text );
+		if (isset($GLOBALS['preview']) && $GLOBALS['preview']) {
+			$excerpt_text = preg_replace_callback('/\%u([0-9A-F]{4})/', '_convert_urlencoded_to_entities', $excerpt_text);
 		}
 
 		return $excerpt_text;
@@ -903,12 +922,13 @@ class PMC {
 	 * @see wp_kses_allowed_html()
 	 *
 	 */
-	public static function _kses_excerpt_allowed_html( $allowed_html, $context ) {
+	public static function _kses_excerpt_allowed_html($allowed_html, $context)
+	{
 
-		if ( 'pmc-excerpt' === $context ) {
+		if ('pmc-excerpt' === $context) {
 			$allowed_html = static::allowed_html(
 				'post',
-				[ 'a', 'b', 'em', 'i', 's', 'strike', 'strong' ]
+				['a', 'b', 'em', 'i', 's', 'strike', 'strong']
 			);
 		}
 
@@ -926,25 +946,26 @@ class PMC {
 	 *
 	 * @return array
 	 */
-	public static function parse_whitelisted_args( array $args, array $defaults = [] ) {
+	public static function parse_whitelisted_args(array $args, array $defaults = [])
+	{
 
-		if ( empty( $defaults ) ) {
+		if (empty($defaults)) {
 			return [];
 		}
 
 		$updated_args = $defaults;	//lets use defaults as starting point
 
-		$whitelisted_keys = array_keys( $defaults );
+		$whitelisted_keys = array_keys($defaults);
 
-		for ( $i = 0; $i < count( $whitelisted_keys ); $i++ ) {
+		for ($i = 0; $i < count($whitelisted_keys); $i++) {
 
-			$key = $whitelisted_keys[ $i ];
+			$key = $whitelisted_keys[$i];
 
-			if ( isset( $args[ $key ] ) ) {
-				$updated_args[ $key ] = $args[ $key ];
+			if (isset($args[$key])) {
+				$updated_args[$key] = $args[$key];
 			}
 
-			unset( $key );
+			unset($key);
 
 		}
 
@@ -968,7 +989,8 @@ class PMC {
 	 * @version 2017-09-21 Amit Gupta - added 3rd parameter to allow the method to output template instead of returning HTML
 	 * @version 2018-01-24 Amit Gupta - added 4th parameter to specify options and added search and loading of templates from parent theme if not in current theme
 	 */
-	public static function render_template( $path, array $variables = [], $echo = false, array $options = [] ) {
+	public static function render_template($path, array $variables = [], $echo = false, array $options = [])
+	{
 
 		/*
 		 * Parse the options with the whitelist so that only
@@ -978,21 +1000,21 @@ class PMC {
 		 * discarded. This is an inclusive behaviour which
 		 * wp_parse_args() does not support.
 		 */
-		$options = static::parse_whitelisted_args( $options, [
+		$options = static::parse_whitelisted_args($options, [
 			'is_relative_path' => false,
-		] );
+		]);
 
 		// Set options into individual vars
-		$is_relative_path = ( true === $options['is_relative_path'] );
+		$is_relative_path = (true === $options['is_relative_path']);
 
-		if ( true !== $is_relative_path && ( ! file_exists( $path ) || 0 !== validate_file( $path ) ) ) {
+		if (true !== $is_relative_path && (!file_exists($path) || 0 !== validate_file($path))) {
 
 			/*
 			 * Invalid template path
 			 * Throw an exception if current env is not production
 			 * else silently bail out on production
 			 */
-			return static::maybe_throw_exception( sprintf( 'Template %s doesn\'t exist', basename( $path ) ) );
+			return static::maybe_throw_exception(sprintf('Template %s doesn\'t exist', basename($path)));
 
 		}
 
@@ -1000,32 +1022,32 @@ class PMC {
 		 * If relative path to template has been passed then
 		 * we will look for template in child theme and parent theme
 		 */
-		if ( true === $is_relative_path ) {
+		if (true === $is_relative_path) {
 
-			$template_path = locate_template( [ static::unleadingslashit( $path ) ], false );
+			$template_path = locate_template([static::unleadingslashit($path)], false);
 
-			if ( empty( $template_path ) ) {
+			if (empty($template_path)) {
 
 				/*
 				 * Can't find template in child theme & parent theme
 				 * Throw an exception if current env is not production
 				 * else silently bail out on production
 				 */
-				return static::maybe_throw_exception( sprintf( 'Template %s doesn\'t exist', basename( $path ) ) );
+				return static::maybe_throw_exception(sprintf('Template %s doesn\'t exist', basename($path)));
 
 			}
 
 			$path = $template_path;
 
-			unset( $template_path );
+			unset($template_path);
 
 		}
 
-		if ( ! empty( $variables ) ) {
-			extract( $variables, EXTR_SKIP );
+		if (!empty($variables)) {
+			extract($variables, EXTR_SKIP);
 		}
 
-		if ( true === $echo ) {
+		if (true === $echo) {
 			// load template and output the data
 			require $path;
 			return '';	//job done, bail out
@@ -1048,10 +1070,11 @@ class PMC {
 	 *
 	 * @since 2013-02-07 Corey Gilmore
 	 */
-	public static function numeric_range($num, $min, $max) {
+	public static function numeric_range($num, $min, $max)
+	{
 		$num = intval($num);
-		$num = max( intval($min), $num ); // make sure we're larger than the minimum value
-		$num = min( $num, intval($max) ); // and make sure we're smaller than the max
+		$num = max(intval($min), $num); // make sure we're larger than the minimum value
+		$num = min($num, intval($max)); // and make sure we're smaller than the max
 
 		return $num;
 	}
@@ -1062,13 +1085,14 @@ class PMC {
 	 *
 	 * @since 2013-02-08 Amit Sannad
 	 */
-	public static function add_ordinal_suffix( $number='' ) {
+	public static function add_ordinal_suffix($number = '')
+	{
 
-		$ends = array('th','st','nd','rd','th','th','th','th','th','th');
-		if (($number %100) >= 11 && ($number%100) <= 13)
-		   $abbreviation = $number. 'th';
+		$ends = array('th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th');
+		if (($number % 100) >= 11 && ($number % 100) <= 13)
+			$abbreviation = $number . 'th';
 		else
-		   $abbreviation = $number. $ends[$number % 10];
+			$abbreviation = $number . $ends[$number % 10];
 
 		return $abbreviation;
 	}
@@ -1077,9 +1101,10 @@ class PMC {
 	 * Set IE to always render in standard mode.
 	 * Hides the compatibility view button in the browser as well.
 	 */
-	public static function set_ie_standard_compatibility( $headers ){
+	public static function set_ie_standard_compatibility($headers)
+	{
 
-		if( !is_admin() ) {
+		if (!is_admin()) {
 			$headers["X-UA-Compatible"] = "IE=Edge";
 		}
 
@@ -1098,21 +1123,22 @@ class PMC {
 	 * @since 2013-03-13 Amit Gupta
 	 * @version 2013-03-13 Amit Gupta
 	 */
-	public static function sanitize_title( $title ) {
-		if( empty( $title ) ) {
+	public static function sanitize_title($title)
+	{
+		if (empty($title)) {
 			return;
 		}
 
 		$original_title = $title;
 
-		$title = preg_replace( '/[^a-zA-Z0-9 \-_]/m', '', $title );	//strip out undesired chars
-		$title = preg_replace( '/\s\-/m', '-', preg_replace( '/\-\s/m', '-', $title ) );		//strip out spaces preceding/succeeding hyphens
-		$title = preg_replace( '/\s/m', '-', $title );		//convert spaces to hyphens
-		$title = preg_replace( '/\-_/m', '-', preg_replace( '/_\-/m', '-', $title ) );	//convert all instances of _- and -_ into single hyphens
-		$title = preg_replace( '/\-{2,}/m', '-', $title );	//convert all instances of multiple successive hyphens into single hyphens
-		$title = trim( $title, '-' );	//strip out any hyphens from beginning/end of title
+		$title = preg_replace('/[^a-zA-Z0-9 \-_]/m', '', $title);	//strip out undesired chars
+		$title = preg_replace('/\s\-/m', '-', preg_replace('/\-\s/m', '-', $title));		//strip out spaces preceding/succeeding hyphens
+		$title = preg_replace('/\s/m', '-', $title);		//convert spaces to hyphens
+		$title = preg_replace('/\-_/m', '-', preg_replace('/_\-/m', '-', $title));	//convert all instances of _- and -_ into single hyphens
+		$title = preg_replace('/\-{2,}/m', '-', $title);	//convert all instances of multiple successive hyphens into single hyphens
+		$title = trim($title, '-');	//strip out any hyphens from beginning/end of title
 
-		return strtolower( $title );		//return lowercase string
+		return strtolower($title);		//return lowercase string
 	}
 
 	/**
@@ -1127,27 +1153,28 @@ class PMC {
 	 * @version 2013-03-20 Corey Gilmore
 	 *
 	 */
-	public static function to_sentence( $array, $words_connector=', ', $last_word_connector = ' and ', $two_words_connector = ' and ' ) {
-		if( !is_array( $array ) )
+	public static function to_sentence($array, $words_connector = ', ', $last_word_connector = ' and ', $two_words_connector = ' and ')
+	{
+		if (!is_array($array))
 			return $array;
 
-		switch( count($array) ) {
+		switch (count($array)) {
 			case 0:
 				$str = '';
-			break;
+				break;
 
 			case 1:
-				$str = array_shift( $array );
-			break;
+				$str = array_shift($array);
+				break;
 
 			case 2:
-				$str = implode( $two_words_connector, $array  );
-			break;
+				$str = implode($two_words_connector, $array);
+				break;
 
 			default:
-				$last_item = array_pop( $array );
-				$str = implode( $words_connector, $array  ) . $last_word_connector . $last_item;
-			break;
+				$last_item = array_pop($array);
+				$str = implode($words_connector, $array) . $last_word_connector . $last_item;
+				break;
 
 		}
 
@@ -1163,14 +1190,15 @@ class PMC {
 	 * @return string
 	 * returns white is color is close to white, returns black if color is close to black
 	 */
-	public static function get_color_contrast( $hex_color, $white_compare = 128 ) {
+	public static function get_color_contrast($hex_color, $white_compare = 128)
+	{
 
-		$r   = hexdec( substr( $hex_color, 0, 2 ) );
-		$g   = hexdec( substr( $hex_color, 2, 2 ) );
-		$b   = hexdec( substr( $hex_color, 4, 2 ) );
-		$yiq = ( ( $r * 299 ) + ( $g * 587 ) + ( $b * 114 ) ) / 1000;
+		$r = hexdec(substr($hex_color, 0, 2));
+		$g = hexdec(substr($hex_color, 2, 2));
+		$b = hexdec(substr($hex_color, 4, 2));
+		$yiq = (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
 
-		return ( $yiq >= $white_compare ) ? 'white' : 'black';
+		return ($yiq >= $white_compare) ? 'white' : 'black';
 	}
 
 	/**
@@ -1186,14 +1214,15 @@ class PMC {
 	 * @since 2013-06-14 Amit Gupta
 	 * @version 2013-06-17 Amit Gupta
 	 */
-	public static function get_post_authors( $post_id = 0, $authors_to_return = 'all', $fields = array() ) {
-		$post_id = ( intval( $post_id ) < 1 ) ? 0 : intval( $post_id );
+	public static function get_post_authors($post_id = 0, $authors_to_return = 'all', $fields = array())
+	{
+		$post_id = (intval($post_id) < 1) ? 0 : intval($post_id);
 
-		if( $post_id < 1 ) {
+		if ($post_id < 1) {
 			return;
 		}
 
-		if( ! is_array( $fields ) && ! is_string( $fields ) ) {
+		if (!is_array($fields) && !is_string($fields)) {
 			return;
 		}
 
@@ -1201,69 +1230,69 @@ class PMC {
 			'ID', 'display_name', 'user_login', 'user_nicename',
 		);
 
-		if( empty( $fields ) ) {
+		if (empty($fields)) {
 			$fields = $default_fields;
-		} elseif( is_string( $fields ) ) {
-			$fields = array( $fields );
+		} elseif (is_string($fields)) {
+			$fields = array($fields);
 		}
 
-		$fields = array_filter( array_unique( $fields ) );
+		$fields = array_filter(array_unique($fields));
 
 		$post_authors = array();
 
-		if( function_exists( 'get_coauthors' ) ) {
-			$authors = get_coauthors( $post_id );
+		if (function_exists('get_coauthors')) {
+			$authors = get_coauthors($post_id);
 
-			$fields_count = count( $fields );
+			$fields_count = count($fields);
 
-			foreach( $authors as $author ) {
+			foreach ($authors as $author) {
 				$post_author = array();
 
-				for( $i = 0; $i < $fields_count; $i++ ) {
-					if( isset( $author->{$fields[$i]} ) && ! empty( $author->{$fields[$i]} ) ) {
-						$post_author[ $fields[$i] ] = str_replace( ',', '', $author->{$fields[$i]} );
+				for ($i = 0; $i < $fields_count; $i++) {
+					if (isset($author->{$fields[$i]}) && !empty($author->{$fields[$i]})) {
+						$post_author[$fields[$i]] = str_replace(',', '', $author->{$fields[$i]});
 					}
 				}
 
-				$post_authors[ $author->ID ] = $post_author;
+				$post_authors[$author->ID] = $post_author;
 
-				unset( $post_author );
+				unset($post_author);
 			}
 		} else {	//CA+ not in use, get post author using regular WP API
-			$post = get_post( $post_id );
-			if( empty( $post ) ) {
+			$post = get_post($post_id);
+			if (empty($post)) {
 				return;
 			}
 
-			if( isset( $post->post_author ) && ! empty( $post->post_author ) ) {
+			if (isset($post->post_author) && !empty($post->post_author)) {
 				$post_author = array();
-				$fields_count = count( $fields );
+				$fields_count = count($fields);
 
-				for( $i = 0; $i < $fields_count; $i++ ) {
-					$author = get_the_author_meta( $fields[$i], $post->post_author );
+				for ($i = 0; $i < $fields_count; $i++) {
+					$author = get_the_author_meta($fields[$i], $post->post_author);
 
-					if( ! empty( $author ) ) {
-						$post_author[ $fields[$i] ] = str_replace( ',', '', $author );
+					if (!empty($author)) {
+						$post_author[$fields[$i]] = str_replace(',', '', $author);
 					}
 				}
 
-				$post_authors[ $post->post_author ] = $post_author;
+				$post_authors[$post->post_author] = $post_author;
 
-				unset( $post_author, $fields_count );
+				unset($post_author, $fields_count);
 			}
 
-			unset( $post );
+			unset($post);
 		}
 
-		if( $authors_to_return !== 'all' ) {
-			$authors_to_return = intval( $authors_to_return );
+		if ($authors_to_return !== 'all') {
+			$authors_to_return = intval($authors_to_return);
 
-			if( $authors_to_return > 0 ) {
-				$post_authors = array_slice( $post_authors, 0, $authors_to_return );
+			if ($authors_to_return > 0) {
+				$post_authors = array_slice($post_authors, 0, $authors_to_return);
 			}
 		}
 
-		if( empty( $post_authors ) ) {
+		if (empty($post_authors)) {
 			return;
 		}
 
@@ -1284,44 +1313,45 @@ class PMC {
 	 * @since 2013-05-16 Amit Gupta
 	 * @version 2013-06-17 Amit Gupta
 	 */
-	public static function get_post_authors_list( $post_id = 0, $authors_to_return = 'all', $field = 'user_login', $backup_field = 'user_nicename' ) {
-		$backup_field = ( empty( $backup_field ) ) ? 'user_nicename' : $backup_field;
-		$field = ( empty( $field ) ) ? $backup_field : $field;
-		$post_id = ( intval( $post_id ) < 1 ) ? 0 : intval( $post_id );
+	public static function get_post_authors_list($post_id = 0, $authors_to_return = 'all', $field = 'user_login', $backup_field = 'user_nicename')
+	{
+		$backup_field = (empty($backup_field)) ? 'user_nicename' : $backup_field;
+		$field = (empty($field)) ? $backup_field : $field;
+		$post_id = (intval($post_id) < 1) ? 0 : intval($post_id);
 
-		if( $post_id < 1 ) {
+		if ($post_id < 1) {
 			return;
 		}
 
 		$arr_fields = array();
 
-		if( ! empty( $field ) ) {
+		if (!empty($field)) {
 			$arr_fields[] = $field;
 		}
 
-		if( ! empty( $backup_field ) ) {
+		if (!empty($backup_field)) {
 			$arr_fields[] = $backup_field;
 		}
 
-		$arr_fields = array_filter( array_unique( $arr_fields ) );
+		$arr_fields = array_filter(array_unique($arr_fields));
 
 		$post_authors = array();
 
-		$authors = self::get_post_authors( $post_id, $authors_to_return, $arr_fields );
+		$authors = self::get_post_authors($post_id, $authors_to_return, $arr_fields);
 
-		if( empty( $authors ) ) {
+		if (empty($authors)) {
 			return;
 		}
 
-		foreach( $authors as $author_id => $author ) {
-			if( isset( $author[ $field ] ) && ! empty( $author[ $field ] ) && ! in_array( $author[ $field ], $post_authors ) ) {
-				$post_authors[] = $author[ $field ];
-			} elseif( isset( $author[ $backup_field ] ) && ! empty( $author[ $backup_field ] ) && ! in_array( $author[ $backup_field ], $post_authors ) ) {
-				$post_authors[] = $author[ $backup_field ];
+		foreach ($authors as $author_id => $author) {
+			if (isset($author[$field]) && !empty($author[$field]) && !in_array($author[$field], $post_authors)) {
+				$post_authors[] = $author[$field];
+			} elseif (isset($author[$backup_field]) && !empty($author[$backup_field]) && !in_array($author[$backup_field], $post_authors)) {
+				$post_authors[] = $author[$backup_field];
 			}
 		}
 
-		return implode( ',', $post_authors );
+		return implode(',', $post_authors);
 	}
 
 	/**
@@ -1337,23 +1367,24 @@ class PMC {
 	 *
 	 * @since 2013-05-23 Amit Gupta
 	 */
-	public static function array_search_partial( $needle, $haystack ) {
-		if( empty( $needle ) || ( ! is_string( $needle ) && ! is_numeric( $needle ) ) ) {
-			trigger_error( 'PMC::array_search_partial(): Needle must be a non-empty string or a number', E_USER_WARNING );
+	public static function array_search_partial($needle, $haystack)
+	{
+		if (empty($needle) || (!is_string($needle) && !is_numeric($needle))) {
+			trigger_error('PMC::array_search_partial(): Needle must be a non-empty string or a number', E_USER_WARNING);
 			return false;
 		}
 
-		if( empty( $haystack ) || ! is_array( $haystack ) ) {
-			trigger_error( 'PMC::array_search_partial(): Haystack cannot be empty and must be an array', E_USER_WARNING );
+		if (empty($haystack) || !is_array($haystack)) {
+			trigger_error('PMC::array_search_partial(): Haystack cannot be empty and must be an array', E_USER_WARNING);
 			return false;
 		}
 
-		foreach( $haystack as $key => $value ) {
-			if( ! is_string( $value ) ) {
+		foreach ($haystack as $key => $value) {
+			if (!is_string($value)) {
 				continue;	//we'll search only on strings, skip to next iteration
 			}
 
-			if( strpos( $value, $needle ) !== false ) {
+			if (strpos($value, $needle) !== false) {
 				return $key;	//found it. return key & bail out
 			}
 		}
@@ -1375,66 +1406,67 @@ class PMC {
 	 * @since 2013-06-02 Amit Gupta
 	 * @version 2013-06-03 Amit Gupta
 	 */
-	public static function str_replace_once( $search, $replace, $subject ) {
-		if( empty( $search ) || empty( $subject ) ) {
+	public static function str_replace_once($search, $replace, $subject)
+	{
+		if (empty($search) || empty($subject)) {
 			return $subject;
 		}
 
-		if( ! is_array( $search ) ) {
-			if( ! is_string( $search ) && ! is_numeric( $search ) ) {
+		if (!is_array($search)) {
+			if (!is_string($search) && !is_numeric($search)) {
 				return $subject;
 			}
 
-			$search = array( (string) $search );
+			$search = array((string) $search);
 		}
 
-		if( ! is_array( $replace ) ) {
-			if( ! empty( $replace ) && ! is_string( $replace ) && ! is_numeric( $replace ) ) {
+		if (!is_array($replace)) {
+			if (!empty($replace) && !is_string($replace) && !is_numeric($replace)) {
 				return $subject;
 			}
 
-			$replace = array( (string) $replace );
+			$replace = array((string) $replace);
 		}
 
-		if( ! is_array( $subject ) ) {
-			if( ! is_string( $subject ) && ! is_numeric( $subject ) ) {
+		if (!is_array($subject)) {
+			if (!is_string($subject) && !is_numeric($subject)) {
 				return $subject;
 			}
 
-			$subject = array( (string) $subject );
+			$subject = array((string) $subject);
 		}
 
-		$search_count = count( $search );
-		$replace_count = count( $replace );
-		$subject_count = count( $subject );
+		$search_count = count($search);
+		$replace_count = count($replace);
+		$subject_count = count($subject);
 
-		for( $j = 0; $j < $subject_count; $j++ ) {
-			for( $i = 0; $i < $search_count; $i++ ) {
-				if( empty( $search[$i] ) ) {
+		for ($j = 0; $j < $subject_count; $j++) {
+			for ($i = 0; $i < $search_count; $i++) {
+				if (empty($search[$i])) {
 					continue;
 				}
 
-				$pos = strpos( $subject[$j], $search[$i] );
+				$pos = strpos($subject[$j], $search[$i]);
 
-				if( isset( $replace[$i] ) ) {
+				if (isset($replace[$i])) {
 					$replace_with = $replace[$i];
-				} elseif( $replace_count == 1 ) {
+				} elseif ($replace_count == 1) {
 					$replace_with = $replace[0];
 				} else {
 					$replace_with = '';
 				}
 
-				if( $pos !== false ) {
-					$subject[$j] = substr_replace( $subject[$j], $replace_with, $pos, strlen( $search[$i] ) );
+				if ($pos !== false) {
+					$subject[$j] = substr_replace($subject[$j], $replace_with, $pos, strlen($search[$i]));
 				}
 
-				unset( $replace_with, $pos );
+				unset($replace_with, $pos);
 			}
 		}
 
-		$subject = ( $subject_count == 1 ) ? array_pop( $subject ) : $subject;
+		$subject = ($subject_count == 1) ? array_pop($subject) : $subject;
 
-		unset( $subject_count, $replace_count, $search_count );
+		unset($subject_count, $replace_count, $search_count);
 
 		return $subject;
 	}
@@ -1442,16 +1474,17 @@ class PMC {
 	/*
 	 * Helper function to generate html image
 	 */
-	public static function get_image_html ( $attrs ) {
-		if ( empty( $attrs ) ) {
+	public static function get_image_html($attrs)
+	{
+		if (empty($attrs)) {
 			return '';
 		}
 
 		$html = "<img";
 
-		foreach ( $attrs as $name => $value ) {
-			if ( !empty( $value ) ) {
-				$html .= " $name=" . '"' . ( $name == 'src' ? esc_url( $value ) : esc_attr( $value ) ) . '"';
+		foreach ($attrs as $name => $value) {
+			if (!empty($value)) {
+				$html .= " $name=" . '"' . ($name == 'src' ? esc_url($value) : esc_attr($value)) . '"';
 			}
 		}
 		$html .= ' />';
@@ -1462,23 +1495,26 @@ class PMC {
 	/*
 	 * Helper function to generate lazy load html image
 	 */
-	public static function get_image_html_lazy_load( $attrs, $class = 'full lazy', $lazy_src = false ) {
+	public static function get_image_html_lazy_load($attrs, $class = 'full lazy', $lazy_src = false)
+	{
 		$attrs['data-original'] = $attrs['src'];
-		$attrs['src'] = $lazy_src ? $lazy_src : get_template_directory_uri() .'/library/images/global/blank.png';
+		$attrs['src'] = $lazy_src ? $lazy_src : get_template_directory_uri() . '/library/images/global/blank.png';
 		$attrs['class'] = $class;
-		return self::get_image_html( $attrs );
+		return self::get_image_html($attrs);
 	}
 
 	/*
 	 * Helper function to generate lazy load html image from attachment
 	 */
-	public static function get_attachment_image_lazy_load ( $attachment_id, $size = 'thumbnail', $class = 'full lazy', $lazy_src = false ) {
-		return self::get_image_html_lazy_load( self::get_attachment_attributes( $attachment_id, $size ) );
+	public static function get_attachment_image_lazy_load($attachment_id, $size = 'thumbnail', $class = 'full lazy', $lazy_src = false)
+	{
+		return self::get_image_html_lazy_load(self::get_attachment_attributes($attachment_id, $size));
 	}
 
-	public static function get_attachment_image( $attachment_id, $size = 'thumbnail', $icon = false, $attr = '' ) {
-		$attr = self::get_attachment_attributes( $attachment_id, $size, $icon, $attr );
-		return self::get_image_html( $attr );
+	public static function get_attachment_image($attachment_id, $size = 'thumbnail', $icon = false, $attr = '')
+	{
+		$attr = self::get_attachment_attributes($attachment_id, $size, $icon, $attr);
+		return self::get_image_html($attr);
 	}
 
 
@@ -1488,57 +1524,59 @@ class PMC {
 	 * Remove the following prepositions from the article title but not SEO or manual alt text: "a", "an", "as", "at", "but", "by", "for", "in", "to", "via"
 	 * Limit to 6 words
 	 */
-	public static function get_attachment_image_alt_text ( $attachment_id, $post = null ) {
-		if ( !empty( $attachment_id ) ) {
-			$alt_text = trim( strip_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true) ) );
+	public static function get_attachment_image_alt_text($attachment_id, $post = null)
+	{
+		if (!empty($attachment_id)) {
+			$alt_text = trim(strip_tags(get_post_meta($attachment_id, '_wp_attachment_image_alt', true)));
 		}
 
-		if ( empty ( $alt_text ) ) {
-			$post = get_post( $post );
+		if (empty($alt_text)) {
+			$post = get_post($post);
 
-			if ( is_object(  $post ) ) {
-				$alt_text = trim( strip_tags( get_post_meta( $post->ID, 'mt_seo_title', true ) ) );
+			if (is_object($post)) {
+				$alt_text = trim(strip_tags(get_post_meta($post->ID, 'mt_seo_title', true)));
 
-				if ( empty( $alt_text ) ) {
-					$alt_text = strip_tags( $post->post_title );
+				if (empty($alt_text)) {
+					$alt_text = strip_tags($post->post_title);
 					// strip prepositions
-					$alt_text = preg_replace( '/\b(a|an|as|at|but|by|for|in|to|via)\b/i', '', " {$alt_text} " );
-					$alt_text = trim( preg_replace( '/\s+/',' ', $alt_text ) );
+					$alt_text = preg_replace('/\b(a|an|as|at|but|by|for|in|to|via)\b/i', '', " {$alt_text} ");
+					$alt_text = trim(preg_replace('/\s+/', ' ', $alt_text));
 				}
 			}
 		}
 
-		if ( !empty ( $alt_text ) ) {
+		if (!empty($alt_text)) {
 			// limit to 6 words only
-			$text = preg_split( '/[\s\t]+/', $alt_text, 0, PREG_SPLIT_NO_EMPTY );
-			$words = array_splice( $text, 0, 6 );
-			$alt_text = implode(' ', $words );
+			$text = preg_split('/[\s\t]+/', $alt_text, 0, PREG_SPLIT_NO_EMPTY);
+			$words = array_splice($text, 0, 6);
+			$alt_text = implode(' ', $words);
 		}
 
 		return $alt_text;
 	}
 
-	public static function get_attachment_attributes ( $attachment_id, $size = 'thumbnail', $post = 0 ) {
+	public static function get_attachment_attributes($attachment_id, $size = 'thumbnail', $post = 0)
+	{
 
-		$image = wp_get_attachment_image_src($attachment_id, $size );
+		$image = wp_get_attachment_image_src($attachment_id, $size);
 
-		if ( $image ) {
+		if ($image) {
 			list($src, $width, $height) = $image;
 
-			if ( is_array($size) ) {
+			if (is_array($size)) {
 				$size = join('x', $size);
 			}
 
-			$attachment = get_post( $attachment_id );
+			$attachment = get_post($attachment_id);
 			$attrs = array(
-				'width'  => $width,
+				'width' => $width,
 				'height' => $height,
-				'src'    => $src,
-				'class'  => "attachment-$size",
-				'alt'    => self::get_attachment_image_alt_text( $attachment_id, $post ),
+				'src' => $src,
+				'class' => "attachment-$size",
+				'alt' => self::get_attachment_image_alt_text($attachment_id, $post),
 			);
 
-			$attrs = apply_filters( 'wp_get_attachment_image_attributes', $attrs, $attachment );
+			$attrs = apply_filters('wp_get_attachment_image_attributes', $attrs, $attachment);
 			return $attrs;
 		}
 
@@ -1548,19 +1586,20 @@ class PMC {
 	/*
 	 * Helper function to generate <a> link or <span> label.
 	 */
-	public static function get_html_link_or_label ( $url, $label, $attrs = false ) {
-		if ( !empty( $url) ) {
-			$html = '<a href="' . esc_url( $url ) .'"';
+	public static function get_html_link_or_label($url, $label, $attrs = false)
+	{
+		if (!empty($url)) {
+			$html = '<a href="' . esc_url($url) . '"';
 		} else {
 			$html = '<span ';
 		}
-		if ( !empty( $attrs ) ) {
-			foreach ( $attrs as $name => $value ) {
-				$html .= ' ' . sanitize_text_field( $name ) . '="'. esc_attr( $value ) .'"';
+		if (!empty($attrs)) {
+			foreach ($attrs as $name => $value) {
+				$html .= ' ' . sanitize_text_field($name) . '="' . esc_attr($value) . '"';
 			}
 		}
-		$html .= '>'. esc_html( $label );
-		if ( !empty( $url ) ) {
+		$html .= '>' . esc_html($label);
+		if (!empty($url)) {
 			$html .= '</a>';
 		} else {
 			$html .= '</span>';
@@ -1568,22 +1607,26 @@ class PMC {
 		return $html;
 	}
 
-	public static function enqueue_ab_test_js() {
-		wp_enqueue_script('pmc-ab-test', pmc_global_functions_url( '/js/pmc-ab-test.js' ), array( 'jquery' ) );
+	public static function enqueue_ab_test_js()
+	{
+		wp_enqueue_script('pmc-ab-test', pmc_global_functions_url('/js/pmc-ab-test.js'), array('jquery'));
 	}
 
-	public static function enqueue_socialite_js() {
-		wp_enqueue_script('socialite', pmc_global_functions_url( '/js/socialite.js' ), array(), false, true );
-		wp_enqueue_script('pmc-socialite-plugin', pmc_global_functions_url( '/js/pmc-socialite-plugin.js' ), array('socialite','jquery'), false, true );
+	public static function enqueue_socialite_js()
+	{
+		wp_enqueue_script('socialite', pmc_global_functions_url('/js/socialite.js'), array(), false, true);
+		wp_enqueue_script('pmc-socialite-plugin', pmc_global_functions_url('/js/pmc-socialite-plugin.js'), array('socialite', 'jquery'), false, true);
 	}
 
-	public static function enqueue_chosen() {
-		wp_enqueue_script( 'chosen-jquery', pmc_global_functions_url( '/chosen/chosen.jquery.js' ), array('jquery'), false, true );
-		wp_enqueue_style( 'chosen-css', pmc_global_functions_url( '/chosen/chosen.css' ) );
+	public static function enqueue_chosen()
+	{
+		wp_enqueue_script('chosen-jquery', pmc_global_functions_url('/chosen/chosen.jquery.js'), array('jquery'), false, true);
+		wp_enqueue_style('chosen-css', pmc_global_functions_url('/chosen/chosen.css'));
 	}
 
-	public static function enqueue_sticky_rightrail(){
-		wp_enqueue_script('pmc-sticky-rightrail', pmc_global_functions_url( '/js/pmc-sticky-rightrail.js' ), array(), false, true );
+	public static function enqueue_sticky_rightrail()
+	{
+		wp_enqueue_script('pmc-sticky-rightrail', pmc_global_functions_url('/js/pmc-sticky-rightrail.js'), array(), false, true);
 	}
 
 	/**
@@ -1592,41 +1635,42 @@ class PMC {
 	 * @param array $args
 	 * @return mixed This function return a string with paragraphs data injected into content
 	 */
-	public static function inject_paragraph_content( array $paragraphs, $content, $args = array()  ) {
+	public static function inject_paragraph_content(array $paragraphs, $content, $args = array())
+	{
 		$default_args = array(
 			'append' => true, // Whether to append this content if there are not enough paragraphs
 			'minimum_characters' => false, // Minumum number of characters before a new paragraph is injected, so that we don't break layout or formatting
 		);
-		$args = wp_parse_args( $args, $default_args );
-		$content = wpautop( $content );
+		$args = wp_parse_args($args, $default_args);
+		$content = wpautop($content);
 
 		// Sometimes the content dictates a minimum number of characters before a new paragraph is injected, so that we don't break layout or formatting.
 		// To do this we have to count the number of characters in each paragraph, not counting HTML, until we reach the minimum character count.
 		// We have to re-order the $paragraphs array based on this new minimum, and sometimes shift subsequent paragraphs to avoid collisions.
-		if ( $args['minimum_characters'] ) {
-			$clean_content = strip_tags( $content, '<p>' );
-			$clean_tokens = explode( '</p>', $clean_content );
+		if ($args['minimum_characters']) {
+			$clean_content = strip_tags($content, '<p>');
+			$clean_tokens = explode('</p>', $clean_content);
 			$character_count = 0;
 			$minimum_injection_point = 0;
-			for ( $i = 0; $i < count($clean_tokens); $i++ ) {
+			for ($i = 0; $i < count($clean_tokens); $i++) {
 				// There's no telling what the short code contains. For example, if it's [flv] or [gist] the amount of characters has nothing to do with the size of the content.  I think the best solution is to acknowledge there's a short code, and count it in the # of paragraphs, but ignore the size of it.
-				if ( ! preg_match( '~' . get_shortcode_regex() . '~', $clean_tokens[$i] ) ) {
-					$character_count += mb_strlen( $clean_tokens[$i] );
+				if (!preg_match('~' . get_shortcode_regex() . '~', $clean_tokens[$i])) {
+					$character_count += mb_strlen($clean_tokens[$i]);
 				}
-				if ( $character_count >= $args['minimum_characters'] ) {
-					$minimum_injection_point = ( $i + 1 );
+				if ($character_count >= $args['minimum_characters']) {
+					$minimum_injection_point = ($i + 1);
 					break;
 				}
 			}
 
-			$injection_points = array_keys( $paragraphs );
+			$injection_points = array_keys($paragraphs);
 			$new_injection_point = 0;
 			$new_paragraphs = array();
-			foreach ( $injection_points as $injection_point ) {
-				if ( $injection_point < $minimum_injection_point ) {
+			foreach ($injection_points as $injection_point) {
+				if ($injection_point < $minimum_injection_point) {
 					$new_injection_point = $minimum_injection_point;
-				} elseif ( isset($new_paragraphs[$injection_point]) ) {
-					$new_injection_point = ( $injection_point + 1 );
+				} elseif (isset($new_paragraphs[$injection_point])) {
+					$new_injection_point = ($injection_point + 1);
 				} else {
 					$new_injection_point = $injection_point;
 				}
@@ -1636,17 +1680,16 @@ class PMC {
 			$paragraphs = $new_paragraphs;
 		}
 
-		$tokens = explode( '</p>', wpautop( $content ) );
+		$tokens = explode('</p>', wpautop($content));
 		$extras = array();
-		foreach ( $paragraphs as $pos => $value ) {
-			if ( isset ( $tokens[ $pos ] ) ) {
+		foreach ($paragraphs as $pos => $value) {
+			if (isset($tokens[$pos])) {
 				$tokens[$pos] = $value . $tokens[$pos];
-			}
-			else if ( $args['append'] ) {
+			} else if ($args['append']) {
 				$extras[] = $value;
 			}
 		}
-		return implode( '</p>', $tokens ) . implode( '', $extras );
+		return implode('</p>', $tokens) . implode('', $extras);
 	}
 
 	/**
@@ -1663,10 +1706,11 @@ class PMC {
 	 *
 	 * @return string The content with the added insertion
 	 */
-	public static function insert_in_content( $content = '', $insertion = '', $html_tag_name = 'p', $insert_at_position = 1 ) {
+	public static function insert_in_content($content = '', $insertion = '', $html_tag_name = 'p', $insert_at_position = 1)
+	{
 
 		// Position should never be 0, 1 is the earliest position possible
-		if ( 0 === $insert_at_position )
+		if (0 === $insert_at_position)
 			$insert_at_position = 1;
 
 		// We explode the content on the closing tags because
@@ -1679,25 +1723,25 @@ class PMC {
 		// ..an index for each $html_closing_tag found..
 		// e.g. If $html_tag = 'p', we'll get an array of paragraphs
 		// minus their closing tags..
-		$content_pieces = explode( $html_closing_tag, $content );
+		$content_pieces = explode($html_closing_tag, $content);
 
 		// Add the html closing tags back onto each array item
-		$content_pieces = preg_filter( '/$/', $html_closing_tag, $content_pieces );
+		$content_pieces = preg_filter('/$/', $html_closing_tag, $content_pieces);
 
 		// Is the given content long enough for the desired insert position?
-		if ( isset( $content_pieces[ $insert_at_position - 1 ] ) ) {
+		if (isset($content_pieces[$insert_at_position - 1])) {
 
 			// ..yes it is, let's insert the insertion at the desired position
-			array_splice( $content_pieces, $insert_at_position, 0, $insertion );
+			array_splice($content_pieces, $insert_at_position, 0, $insertion);
 		} else {
 
 			// ..no, the content is shorter than the desired length/position
 			// append the insertion onto the end
-			array_push( $content_pieces, $insertion );
+			array_push($content_pieces, $insertion);
 		}
 
 		// Return the reassembled content with the insertion
-		return implode( '', $content_pieces );
+		return implode('', $content_pieces);
 	}
 
 	/**
@@ -1709,19 +1753,20 @@ class PMC {
 	 *
 	 * @return string
 	 */
-	public static function convert_date_timezone( $date, $to_time_zone = "default_tz", $from_time_zone = "UTC" ) {
+	public static function convert_date_timezone($date, $to_time_zone = "default_tz", $from_time_zone = "UTC")
+	{
 
-		if ( empty( $to_time_zone ) ) {
+		if (empty($to_time_zone)) {
 			return;
 		}
 
-		if ( 'default_tz' == $to_time_zone ) {
-			$to_time_zone = get_option( "timezone_string" );
+		if ('default_tz' == $to_time_zone) {
+			$to_time_zone = get_option("timezone_string");
 		}
 
-		$dt = new DateTime( $date, new DateTimeZone( $from_time_zone ) );
+		$dt = new DateTime($date, new DateTimeZone($from_time_zone));
 
-		$dt->setTimezone( new DateTimeZone( $to_time_zone ) );
+		$dt->setTimezone(new DateTimeZone($to_time_zone));
 
 		return $dt;
 
@@ -1748,64 +1793,65 @@ class PMC {
 	 * @version 2013-09-18 Corey Gilmore
 	 *
 	 */
-	public static function check_dependencies( $feature, $opts = array(), &$missing = array()  ) {
+	public static function check_dependencies($feature, $opts = array(), &$missing = array())
+	{
 		$default_opts = array(
-			'print_notice'        => true,
-			'required_classes'    => array(),
-			'required_functions'  => array(),
+			'print_notice' => true,
+			'required_classes' => array(),
+			'required_functions' => array(),
 		);
 
 		$missing = array(
-			'classes'    => array(),
-			'functions'  => array(),
+			'classes' => array(),
+			'functions' => array(),
 		);
 
-		$opts = wp_parse_args( $opts, $default_opts );
+		$opts = wp_parse_args($opts, $default_opts);
 
-		if( is_array($opts['required_classes'] ) ) {
-			foreach( $opts['required_classes'] as $dep ) {
-				if( !class_exists($dep) )
+		if (is_array($opts['required_classes'])) {
+			foreach ($opts['required_classes'] as $dep) {
+				if (!class_exists($dep))
 					$missing['classes'][] = $dep;
 			}
 		}
 
-		if( is_array($opts['required_functions'] ) ) {
-			foreach( $opts['required_functions'] as $dep ) {
-				if( !function_exists($dep) )
+		if (is_array($opts['required_functions'])) {
+			foreach ($opts['required_functions'] as $dep) {
+				if (!function_exists($dep))
 					$missing['functions'][] = $dep;
 			}
 		}
 
-		if( empty($missing['classes']) && empty($missing['functions']) ) {
+		if (empty($missing['classes']) && empty($missing['functions'])) {
 			return true;
 		} else {
-			if( $opts['print_notice'] ) {
+			if ($opts['print_notice']) {
 				$missing_objects_text = array();
-				if( !class_exists('PMC_Admin_Notice') ) {
+				if (!class_exists('PMC_Admin_Notice')) {
 					$missing['classes'][] = 'PMC_Admin_Notice';
 				}
 
-				if( !empty($missing['classes']) ) {
-					$missing_classes = PMC::to_sentence( $missing['classes'] );
-					$missing_objects_text[] = sprintf('Missing %s: %s', _n('class', 'classes', sizeof($missing['classes']), 'pmc' ), esc_html( $missing_classes ) );
+				if (!empty($missing['classes'])) {
+					$missing_classes = PMC::to_sentence($missing['classes']);
+					$missing_objects_text[] = sprintf('Missing %s: %s', _n('class', 'classes', sizeof($missing['classes']), 'pmc'), esc_html($missing_classes));
 				}
 
-				if( !empty($missing['functions']) ) {
-					$missing_functions = PMC::to_sentence( $missing['functions'] );
-					$missing_objects_text[] = sprintf('Missing %s: %s', _n('function', 'functions', sizeof($missing['functions']), 'pmc' ), esc_html( $missing_functions ) );
+				if (!empty($missing['functions'])) {
+					$missing_functions = PMC::to_sentence($missing['functions']);
+					$missing_objects_text[] = sprintf('Missing %s: %s', _n('function', 'functions', sizeof($missing['functions']), 'pmc'), esc_html($missing_functions));
 				}
 
-				$message = sprintf('%s is disabled. %s', esc_html($feature), esc_html( PMC::to_sentence( $missing_objects_text, '. ', '. ', '. ' ) ) );
+				$message = sprintf('%s is disabled. %s', esc_html($feature), esc_html(PMC::to_sentence($missing_objects_text, '. ', '. ', '. ')));
 
-				if( !class_exists('PMC_Admin_Notice') ) {
-					add_action('admin_notices', function() use ($message) {
+				if (!class_exists('PMC_Admin_Notice')) {
+					add_action('admin_notices', function () use ($message) {
 						echo '<div class="error"><p>' . $message . '</p></div>';
 					});
 				} else {
-					PMC_Admin_Notice::add_admin_notice( $message, array(
-						'dismissible'      => true,
-						'snooze_time'      => 3*HOUR_IN_SECONDS,
-						'notice_classes'   => array('error'),
+					PMC_Admin_Notice::add_admin_notice($message, array(
+						'dismissible' => true,
+						'snooze_time' => 3 * HOUR_IN_SECONDS,
+						'notice_classes' => array('error'),
 					));
 				}
 			}
@@ -1825,34 +1871,35 @@ class PMC {
 	 * Ignoring this for code coverage since unit tests for this method are not possible at present
 	 * @codeCoverageIgnore
 	 */
-	public static function is_production() : bool {
+	public static function is_production(): bool
+	{
 
 		// run this only in unit tests
 		if (
-			( defined( 'IS_UNIT_TEST' ) && true === IS_UNIT_TEST )
-			|| class_exists( '\WP_UnitTestCase', false )
+			(defined('IS_UNIT_TEST') && true === IS_UNIT_TEST)
+			|| class_exists('\WP_UnitTestCase', false)
 		) {
 
-			$mock_production_env = apply_filters( 'pmc_is_production_mock_env', false );
+			$mock_production_env = apply_filters('pmc_is_production_mock_env', false);
 
-			if ( true === $mock_production_env ) {
+			if (true === $mock_production_env) {
 				return true;
 			}
 
 		}
 
 		// Check if site is on WPCOM VIP
-		if ( static::is_classic_vip_production() ) {
+		if (static::is_classic_vip_production()) {
 			return true;
 		}
 
 		// Check if site is self-hosted
-		if ( defined( 'PMC_IS_PRODUCTION' ) && true === PMC_IS_PRODUCTION ) {
+		if (defined('PMC_IS_PRODUCTION') && true === PMC_IS_PRODUCTION) {
 			return true;
 		}
 
 		// Check if site is on WPCOM VIP Go
-		if ( static::is_vip_go_production() ) {
+		if (static::is_vip_go_production()) {
 			return true;
 		}
 
@@ -1868,24 +1915,25 @@ class PMC {
 	 * Ignoring this for code coverage since unit tests for this method are not possible at present
 	 * @codeCoverageIgnore
 	 */
-	public static function is_classic_vip_production() : bool {
+	public static function is_classic_vip_production(): bool
+	{
 
 		// run this only in unit tests
 		if (
-			( defined( 'IS_UNIT_TEST' ) && true === IS_UNIT_TEST )
-			|| class_exists( '\WP_UnitTestCase', false )
+			(defined('IS_UNIT_TEST') && true === IS_UNIT_TEST)
+			|| class_exists('\WP_UnitTestCase', false)
 		) {
 
-			$mock_production_env = apply_filters( 'pmc_is_production_mock_env', false );
+			$mock_production_env = apply_filters('pmc_is_production_mock_env', false);
 
-			if ( true === $mock_production_env ) {
+			if (true === $mock_production_env) {
 				return true;
 			}
 
 		}
 
 		// Check if site is on WPCOM VIP
-		if ( defined( 'WPCOM_IS_VIP_ENV' ) && true === WPCOM_IS_VIP_ENV ) {
+		if (defined('WPCOM_IS_VIP_ENV') && true === WPCOM_IS_VIP_ENV) {
 			return true;
 		}
 
@@ -1901,24 +1949,25 @@ class PMC {
 	 * Ignoring this for code coverage since unit tests for this method are not possible at present
 	 * @codeCoverageIgnore
 	 */
-	public static function is_vip_go_production() : bool {
+	public static function is_vip_go_production(): bool
+	{
 
 		// run this only in unit tests
 		if (
-			( defined( 'IS_UNIT_TEST' ) && true === IS_UNIT_TEST )
-			|| class_exists( '\WP_UnitTestCase', false )
+			(defined('IS_UNIT_TEST') && true === IS_UNIT_TEST)
+			|| class_exists('\WP_UnitTestCase', false)
 		) {
 
-			$mock_production_env = apply_filters( 'pmc_is_production_mock_env', false );
+			$mock_production_env = apply_filters('pmc_is_production_mock_env', false);
 
-			if ( true === $mock_production_env ) {
+			if (true === $mock_production_env) {
 				return true;
 			}
 
 		}
 
 		// Check if site is on WPCOM VIP Go
-		if ( defined( 'VIP_GO_ENV' ) && ( 'production' === VIP_GO_ENV || true === VIP_GO_ENV ) ) {
+		if (defined('VIP_GO_ENV') && ('production' === VIP_GO_ENV || true === VIP_GO_ENV)) {
 			return true;
 		}
 
@@ -1937,7 +1986,8 @@ class PMC {
 	 *
 	 * @see http://stackoverflow.com/questions/1497885/remove-control-characters-from-php-string
 	 */
-	public static function strip_control_characters( $input ) {
+	public static function strip_control_characters($input)
+	{
 		return preg_replace('/[\x00-\x09\x0B\x0C\x0E-\x1F\x7F]/', '', $input);
 	}
 
@@ -1951,23 +2001,24 @@ class PMC {
 	 * @version 2015-10-26 - Javier Martinez - PMCVIP-459
 	 *
 	 */
-	public static function replace_control_characters( $content ){
+	public static function replace_control_characters($content)
+	{
 		static $replace = null;
 		static $search = null;
 
 		// Use a static var to save a few CPU cycles when this is called multiple times
-		if( is_null( $search ) ) {
+		if (is_null($search)) {
 			$char_cleanup = array(
 				// array of $match_string => $replace_string patterns
 				'\xA0' => '&nbsp;', // replace hidden hex-encoded &nbsp; characters - see PMCVIP-458
 				'\x00' => '', // Strip null
 			);
 
-			$search = array_keys( $char_cleanup );
-			$replace = array_values( $char_cleanup );
+			$search = array_keys($char_cleanup);
+			$replace = array_values($char_cleanup);
 		}
 
-		$text = str_replace( $search, $replace, $content );
+		$text = str_replace($search, $replace, $content);
 
 		return $text;
 	}
@@ -1984,16 +2035,17 @@ class PMC {
 	 * @version 2014-06-06 Corey Gilmore
 	 *
 	 */
-	public static function is_https() {
+	public static function is_https()
+	{
 		$https = false;
 
-		if( !empty( $_SERVER['HTTPS'] ) ) {
-			if( $_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1 ) {
+		if (!empty($_SERVER['HTTPS'])) {
+			if ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) {
 				$https = true;
 			}
-		} elseif( !empty( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ) {
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
 			$https = true;
-		} elseif( !empty( $_SERVER['HTTP_X_FORWARDED_SSL'] ) && ( $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on' || $_SERVER['HTTP_X_FORWARDED_SSL'] == 1) ) {
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && ($_SERVER['HTTP_X_FORWARDED_SSL'] == 'on' || $_SERVER['HTTP_X_FORWARDED_SSL'] == 1)) {
 			$https = true;
 		}
 
@@ -2012,36 +2064,37 @@ class PMC {
 	 *
 	 * @since 2014-06-06 Amit Gupta
 	 */
-	public static function locate_template( $template_name ) {
-		if ( empty( $template_name ) || ! is_string( $template_name ) ) {
+	public static function locate_template($template_name)
+	{
+		if (empty($template_name) || !is_string($template_name)) {
 			return false;
 		}
 
-		if ( strpos( $template_name, '/' ) === false ) {
-			$template_name = '%s/' . sanitize_file_name( $template_name );
+		if (strpos($template_name, '/') === false) {
+			$template_name = '%s/' . sanitize_file_name($template_name);
 		} else {
-			$path_parts = explode( '/', $template_name );
-			$path_parts = array_map( 'sanitize_file_name', $path_parts );
-			$template_name = implode( '/', $path_parts );
+			$path_parts = explode('/', $template_name);
+			$path_parts = array_map('sanitize_file_name', $path_parts);
+			$template_name = implode('/', $path_parts);
 		}
 
 		//check in current theme dir
-		$template = sprintf( $template_name, STYLESHEETPATH );
+		$template = sprintf($template_name, STYLESHEETPATH);
 
-		if ( ! file_exists( $template ) ) {
+		if (!file_exists($template)) {
 			$template = '';		//free up the var
 		}
 
-		if ( empty( $template ) ) {
+		if (empty($template)) {
 			//check in parent theme dir
-			$template = sprintf( $template_name, TEMPLATEPATH );
+			$template = sprintf($template_name, TEMPLATEPATH);
 
-			if ( ! file_exists( $template ) ) {
+			if (!file_exists($template)) {
 				$template = '';		//free up the var
 			}
 		}
 
-		if ( ! empty( $template ) ) {
+		if (!empty($template)) {
 			//template found, return the path
 			return $template;
 		}
@@ -2057,8 +2110,9 @@ class PMC {
 	 *
 	 * @since 2014-06-23 Amit Gupta
 	 */
-	public static function unleadingslashit( $string ) {
-		return ltrim( $string, '/' );
+	public static function unleadingslashit($string)
+	{
+		return ltrim($string, '/');
 	}
 
 	/**
@@ -2069,8 +2123,9 @@ class PMC {
 	 *
 	 * @since 2014-06-23 Amit Gupta
 	 */
-	public static function leadingslashit( $string ) {
-		return '/' . static::unleadingslashit( $string );
+	public static function leadingslashit($string)
+	{
+		return '/' . static::unleadingslashit($string);
 	}
 
 	/**
@@ -2084,47 +2139,48 @@ class PMC {
 	 * @param string $url The url to be process
 	 * @return string The processed value
 	 */
-	public static function ssl_friendly_url( $url  ) {
+	public static function ssl_friendly_url($url)
+	{
 
-		$url = apply_filters( 'pmc_pre_ssl_friendly_url', $url );
+		$url = apply_filters('pmc_pre_ssl_friendly_url', $url);
 
-		if ( empty( $url ) || ! preg_match( '/^https?:\/\//', $url ) ) {
+		if (empty($url) || !preg_match('/^https?:\/\//', $url)) {
 			return $url;
 		}
 
 		$original_url = $url;
 
-		if ( PMC::is_https() ) {
-			$url_parts = parse_url( $original_url );
-			$url_parts = array_merge( array( 'path' => '/', 'query' => '', 'fragment' => '' ), $url_parts );
+		if (PMC::is_https()) {
+			$url_parts = parse_url($original_url);
+			$url_parts = array_merge(array('path' => '/', 'query' => '', 'fragment' => ''), $url_parts);
 			$url = '';
 
 			// if url scheme is http, we need to do http to https translation
-			if ( 'http' === $url_parts['scheme'] ) {
-				$host = strtolower( $url_parts['host'] );
+			if ('http' === $url_parts['scheme']) {
+				$host = strtolower($url_parts['host']);
 				$mapping = array(
-						'b.scorecardresearch.com' => 'sb.scorecardresearch.com',
-						'static.chartbeat.com'    => 'a248.e.akamai.net/chartbeat.download.akamai.com/102508',
-						'objects.tremormedia.com' => 'a248.e.akamai.net/f/1761/2685/4d/objects.tremormedia.com',
-						'edge.quantserve.com'     => 'secure.quantserve.com',
-						'heartbeat.pmc.com'       => 's3.amazonaws.com/heartbeat.pmc.com',
-						'www.vimg.net'            => 's3.amazonaws.com/www.vimg.net',
-						'media-vimg-net.vimg.net' => 's3.amazonaws.com/media-vimg-net.vimg.net',
-						'cdn.variety.com'         => 'pmcvariety.files.wordpress.com',
-						'cdn.varietylatino.com'   => 'pmcvarietylatino.files.wordpress.com',
-						'cdn.hollywoodlife.com'   => 'pmchollywoodlife.files.wordpress.com',
-						'cdn.tvline.com'          => 'pmctvline2.files.wordpress.com',
-						'cdn.deadline.com'        => 'pmcdeadline2.files.wordpress.com',
-						'cdn.bgr.com'             => 'boygeniusreport.files.wordpress.com',
-						'tap-cdn.rubiconproject.com' => 'tap.rubiconproject.com',
-					);
+					'b.scorecardresearch.com' => 'sb.scorecardresearch.com',
+					'static.chartbeat.com' => 'a248.e.akamai.net/chartbeat.download.akamai.com/102508',
+					'objects.tremormedia.com' => 'a248.e.akamai.net/f/1761/2685/4d/objects.tremormedia.com',
+					'edge.quantserve.com' => 'secure.quantserve.com',
+					'heartbeat.pmc.com' => 's3.amazonaws.com/heartbeat.pmc.com',
+					'www.vimg.net' => 's3.amazonaws.com/www.vimg.net',
+					'media-vimg-net.vimg.net' => 's3.amazonaws.com/media-vimg-net.vimg.net',
+					'cdn.variety.com' => 'pmcvariety.files.wordpress.com',
+					'cdn.varietylatino.com' => 'pmcvarietylatino.files.wordpress.com',
+					'cdn.hollywoodlife.com' => 'pmchollywoodlife.files.wordpress.com',
+					'cdn.tvline.com' => 'pmctvline2.files.wordpress.com',
+					'cdn.deadline.com' => 'pmcdeadline2.files.wordpress.com',
+					'cdn.bgr.com' => 'boygeniusreport.files.wordpress.com',
+					'tap-cdn.rubiconproject.com' => 'tap.rubiconproject.com',
+				);
 
-				if ( !empty( $mapping[ $host ] ) ) {
-					$url_parts['host'] = $mapping[ $host ];
+				if (!empty($mapping[$host])) {
+					$url_parts['host'] = $mapping[$host];
 					$url = 'https:';
 				}
 
-				unset( $host, $mapping );
+				unset($host, $mapping);
 
 			} else {
 				// retain https
@@ -2133,24 +2189,24 @@ class PMC {
 
 			$url .= '//' . $url_parts['host'];
 
-			if ( !empty( $url_parts['path'] ) ) {
+			if (!empty($url_parts['path'])) {
 				$url .= $url_parts['path'];
 			}
 
-			if ( !empty( $url_parts['query'] ) ) {
+			if (!empty($url_parts['query'])) {
 				$url .= '?' . $url_parts['query'];
 			}
 
-			if ( !empty( $url_parts['fragment'] ) ) {
+			if (!empty($url_parts['fragment'])) {
 				$url .= '#' . $url_parts['fragment'];
 			}
 
 		} else {
 			// only strip http:, leave https: untouch
-			$url = preg_replace( '/^http:\/\//i','//', $url );
+			$url = preg_replace('/^http:\/\//i', '//', $url);
 		} // http traffic
 
-		return apply_filters( 'pmc_ssl_friendly_url', $url, $original_url );
+		return apply_filters('pmc_ssl_friendly_url', $url, $original_url);
 	} // function ssl_friendly_url
 
 	/**
@@ -2159,8 +2215,9 @@ class PMC {
 	 * @param string $url The url to be sanitized
 	 * @return string The sanitized value
 	 */
-	public static function esc_url_ssl_friendly( $url ) {
-		return esc_url( PMC::ssl_friendly_url( $url ) );
+	public static function esc_url_ssl_friendly($url)
+	{
+		return esc_url(PMC::ssl_friendly_url($url));
 	}
 
 	/**
@@ -2170,8 +2227,9 @@ class PMC {
 	 * @param string $url The url to be sanitized
 	 * @return string The sanitized value
 	 */
-	public static function esc_url_raw_ssl_friendly( $url ) {
-		return esc_url_raw( PMC::ssl_friendly_url( $url ) );
+	public static function esc_url_raw_ssl_friendly($url)
+	{
+		return esc_url_raw(PMC::ssl_friendly_url($url));
 	}
 
 	/**
@@ -2181,28 +2239,29 @@ class PMC {
 	 * @param string $html the html content to be process
 	 * @return string The processed html content
 	 */
-	public static function html_ssl_friendly( $html ) {
-		if ( false !== mb_stripos( $html, '<img' ) ) {
+	public static function html_ssl_friendly($html)
+	{
+		if (false !== mb_stripos($html, '<img')) {
 			$html = preg_replace_callback('/<img([^>]+)\/?>/is',
-							function( $matches ) {
-								$attributes = $matches[1];
-								$attributes = preg_replace_callback('/(\w+)\s*=\s*(\'|")([^\'"]+)\2/is',
-														function( $matches ) {
-															$name = $matches[1];
-															$value = $matches[3];
-															if ( 'src' == strtolower( $name ) ) {
-																return sprintf('%s="%s"', tag_escape( $name ), PMC::esc_url_ssl_friendly( $value ) );
-															}
-															return sprintf('%s="%s"', tag_escape( $name ), esc_attr( $value ) );
-														},
-														$attributes
-													);
-								return '<img'. $attributes .'>';
-							}, // function
-							$html
-						);
+				function ($matches) {
+					$attributes = $matches[1];
+					$attributes = preg_replace_callback('/(\w+)\s*=\s*(\'|")([^\'"]+)\2/is',
+						function ($matches) {
+							$name = $matches[1];
+							$value = $matches[3];
+							if ('src' == strtolower($name)) {
+								return sprintf('%s="%s"', tag_escape($name), PMC::esc_url_ssl_friendly($value));
+							}
+							return sprintf('%s="%s"', tag_escape($name), esc_attr($value));
+						},
+						$attributes
+					);
+					return '<img' . $attributes . '>';
+				}, // function
+				$html
+			);
 		}
-		return apply_filters( 'pmc_html_ssl_friendly', $html );
+		return apply_filters('pmc_html_ssl_friendly', $html);
 	} // html_ssl_friendly
 
 
@@ -2214,8 +2273,9 @@ class PMC {
 	 *
 	 * @since 2014-09-15 Amit Gupta
 	 */
-	public static function is_vertical( $vertical = '' ) {
-		return is_tax( 'vertical', $vertical );
+	public static function is_vertical($vertical = '')
+	{
+		return is_tax('vertical', $vertical);
 	}
 
 
@@ -2228,8 +2288,9 @@ class PMC {
 	 *
 	 * @since 2014-09-15 Amit Gupta
 	 */
-	public static function in_vertical( $vertical, $post = null ) {
-		return has_term( $vertical, 'vertical', $post );
+	public static function in_vertical($vertical, $post = null)
+	{
+		return has_term($vertical, 'vertical', $post);
 	}
 
 
@@ -2245,19 +2306,20 @@ class PMC {
 	 * @param string $type Type of path needed. Only one of two values accepted, 'url' or 'dir'.
 	 * @return string Full path to the asset
 	 */
-	public static function get_asset_path( $asset = '', $type = 'url' ) {
-		if ( empty( $asset ) || ! is_string( $asset ) ) {
+	public static function get_asset_path($asset = '', $type = 'url')
+	{
+		if (empty($asset) || !is_string($asset)) {
 			return $asset;
 		}
 
-		$type = ( strtolower( $type ) !== 'url' ) ? 'dir' : 'url';
+		$type = (strtolower($type) !== 'url') ? 'dir' : 'url';
 
-		switch ( $type ) {
+		switch ($type) {
 			case 'dir':
-				$asset = sprintf( '%s/%s', untrailingslashit( apply_filters( 'pmc-site-assets-dir', get_stylesheet_directory() ) ), static::unleadingslashit( $asset ) );
+				$asset = sprintf('%s/%s', untrailingslashit(apply_filters('pmc-site-assets-dir', get_stylesheet_directory())), static::unleadingslashit($asset));
 				break;
 			case 'url':
-				$asset = sprintf( '%s/%s', untrailingslashit( apply_filters( 'pmc-site-assets-dir-uri', get_stylesheet_directory_uri() ) ), static::unleadingslashit( $asset ) );
+				$asset = sprintf('%s/%s', untrailingslashit(apply_filters('pmc-site-assets-dir-uri', get_stylesheet_directory_uri())), static::unleadingslashit($asset));
 				break;
 		}
 
@@ -2275,12 +2337,13 @@ class PMC {
 	 * @param string $asset Relative path to the asset
 	 * @return boolean TRUE if asset file exists else FALSE
 	 */
-	public static function asset_exists( $asset = '' ) {
-		if ( empty( $asset ) ) {
+	public static function asset_exists($asset = '')
+	{
+		if (empty($asset)) {
 			return false;
 		}
 
-		return (bool) file_exists( static::get_asset_path( $asset, 'dir' ) );
+		return (bool) file_exists(static::get_asset_path($asset, 'dir'));
 	}
 
 
@@ -2296,17 +2359,18 @@ class PMC {
 	 *
 	 * @since 2014-11-26 Amit Gupta - ported over from AwardsLine 2.0
 	 */
-	public static function maybe_throw_exception( $message = '', $exception = 'ErrorException', $return_on_production = false ) {
+	public static function maybe_throw_exception($message = '', $exception = 'ErrorException', $return_on_production = false)
+	{
 		return $return_on_production;
-		if ( static::is_production() ) {
+		if (static::is_production()) {
 			return $return_on_production;
 		}
 
-		if ( strpos( $exception, '\\' ) === false ) {
+		if (strpos($exception, '\\') === false) {
 			$exception = '\\' . $exception;
 		}
 
-		throw new $exception( $message );
+		throw new $exception($message);
 	}
 
 
@@ -2318,46 +2382,47 @@ class PMC {
 	 *
 	 * @since 2014-11-26 Amit Gupta - ported over from AwardsLine 2.0
 	 */
-	public static function get_linked_gallery( $post_id = 0, $include_gallery_items = false ) {
-		$post_id = intval( $post_id );
+	public static function get_linked_gallery($post_id = 0, $include_gallery_items = false)
+	{
+		$post_id = intval($post_id);
 
-		if ( empty( $post_id ) ) {
+		if (empty($post_id)) {
 			//no post ID, bail out
 			return false;
 		}
 
-		if ( ! class_exists( 'PMC_Gallery_Common' ) ) {
+		if (!class_exists('PMC_Gallery_Common')) {
 			/*
 			 * Unable to find PMC_Gallery_Common class, pmc-gallery plugin hasn't been activated.
 			 * If current environment is not production then throw an exception to alert developer
 			 * else fail silently
 			 */
-			return self::maybe_throw_exception( 'PMC_Gallery_Common class not found' );
+			return self::maybe_throw_exception('PMC_Gallery_Common class not found');
 		}
 
-		$linked_gallery = get_post_meta( $post_id, PMC_Gallery_Common::KEY . '-linked-gallery', true );
+		$linked_gallery = get_post_meta($post_id, PMC_Gallery_Common::KEY . '-linked-gallery', true);
 
-		if ( empty( $linked_gallery ) ) {
+		if (empty($linked_gallery)) {
 			//no gallery linked to post, bail out
 			return false;
 		}
 
-		$linked_gallery = json_decode( $linked_gallery );
+		$linked_gallery = json_decode($linked_gallery);
 
-		if ( empty( $linked_gallery ) ) {
+		if (empty($linked_gallery)) {
 			//invalid json, bail out
 			return false;
 		}
 
-		if ( $include_gallery_items ) {
-			$gallery_items = self::get_linked_gallery_items( $post_id );
+		if ($include_gallery_items) {
+			$gallery_items = self::get_linked_gallery_items($post_id);
 
-			if ( ! empty( $gallery_items ) && is_array( $gallery_items ) ) {
+			if (!empty($gallery_items) && is_array($gallery_items)) {
 				$linked_gallery->items = $gallery_items;
 			}
 		}
 
-		return apply_filters( 'pmc_linked_gallery', $linked_gallery );
+		return apply_filters('pmc_linked_gallery', $linked_gallery);
 	}
 
 	/**
@@ -2367,17 +2432,18 @@ class PMC {
 	 *
 	 * @return bool|array False on failure. Array of attachment post ID's on success.
 	 */
-	public static function get_linked_gallery_items( $post_id = 0 ) {
-		$post_id = intval( $post_id );
+	public static function get_linked_gallery_items($post_id = 0)
+	{
+		$post_id = intval($post_id);
 
-		if ( empty( $post_id ) ) {
+		if (empty($post_id)) {
 			return false;
 		}
 
-		$linked_gallery = self::get_linked_gallery( $post_id );
+		$linked_gallery = self::get_linked_gallery($post_id);
 
-		if ( ! empty( $linked_gallery->id ) ) {
-			return self::get_gallery_items( $linked_gallery->id );
+		if (!empty($linked_gallery->id)) {
+			return self::get_gallery_items($linked_gallery->id);
 		}
 
 		return false;
@@ -2391,8 +2457,9 @@ class PMC {
 	 *
 	 * @since 2014-11-26 Amit Gupta - ported over from AwardsLine 2.0
 	 */
-	public static function has_linked_gallery( $post_id = 0 ) {
-		if ( self::get_linked_gallery( $post_id ) !== false ) {
+	public static function has_linked_gallery($post_id = 0)
+	{
+		if (self::get_linked_gallery($post_id) !== false) {
 			return true;
 		}
 
@@ -2406,10 +2473,11 @@ class PMC {
 	 *
 	 * @return bool|array False on failure, an array of attachment ids on success.
 	 */
-	public static function get_gallery_items( $gallery_id = 0 ) {
-		$gallery_items = get_post_meta( $gallery_id, PMC_Gallery_Common::KEY, true );
+	public static function get_gallery_items($gallery_id = 0)
+	{
+		$gallery_items = get_post_meta($gallery_id, PMC_Gallery_Common::KEY, true);
 
-		if ( ! empty( $gallery_items ) && is_array( $gallery_items ) ) {
+		if (!empty($gallery_items) && is_array($gallery_items)) {
 			return $gallery_items;
 		}
 
@@ -2426,42 +2494,43 @@ class PMC {
 	 *
 	 * @since 2014-11-26 Amit Gupta - ported over from AwardsLine 2.0
 	 */
-	public static function get_hero_gallery_meta( $post_id = 0 ) {
-		$post_id = intval( $post_id );
+	public static function get_hero_gallery_meta($post_id = 0)
+	{
+		$post_id = intval($post_id);
 
-		if ( empty( $post_id ) ) {
+		if (empty($post_id)) {
 			//no post ID, bail out
 			return false;
 		}
 
-		if ( ! static::has_linked_gallery( $post_id ) ) {
+		if (!static::has_linked_gallery($post_id)) {
 			//no linked gallery, bail out
 			return false;
 		}
 
-		$linked_gallery = static::get_linked_gallery( $post_id );
+		$linked_gallery = static::get_linked_gallery($post_id);
 
-		if ( ! class_exists( 'PMC_Gallery_Thefrontend' ) ) {
+		if (!class_exists('PMC_Gallery_Thefrontend')) {
 			/*
 			 * Unable to find PMC_Gallery_Thefrontend class, either this function is being called
 			 * in wp-admin or pmc-gallery plugin hasn't been activated.
 			 * If current environment is not production then throw an exception to alert developer
 			 * else fail silently
 			 */
-			return static::maybe_throw_exception( 'PMC_Gallery_Thefrontend class not found' );
+			return static::maybe_throw_exception('PMC_Gallery_Thefrontend class not found');
 		}
 
-		$gallery = PMC_Gallery_Thefrontend::load_gallery( $linked_gallery->id, 0 );
+		$gallery = PMC_Gallery_Thefrontend::load_gallery($linked_gallery->id, 0);
 
 		$gallery_url = $linked_gallery->url;
 
-		if ( empty( $gallery_url ) ) {
-			$gallery_url = get_permalink( $linked_gallery->id );
+		if (empty($gallery_url)) {
+			$gallery_url = get_permalink($linked_gallery->id);
 		}
 
 		return array(
-			'url'   => sprintf( '%s/#!&ref=%spos=', untrailingslashit( $gallery_url ), parse_url( get_permalink( $post_id ), PHP_URL_PATH ) ),
-			'count' => intval( strip_tags( $gallery->get_the_count( 'total' ) ) ),
+			'url' => sprintf('%s/#!&ref=%spos=', untrailingslashit($gallery_url), parse_url(get_permalink($post_id), PHP_URL_PATH)),
+			'count' => intval(strip_tags($gallery->get_the_count('total'))),
 		);
 	}
 
@@ -2473,10 +2542,11 @@ class PMC {
 	 * @return bool
 	 * @since 2015-01-15 Amit Sannad for PPT-4033
 	 */
-	public static function get_image_size_name_for_mobile( $image_size = "thumbnail" ) {
+	public static function get_image_size_name_for_mobile($image_size = "thumbnail")
+	{
 
-		if ( PMC::is_mobile() ) {
-			if ( has_image_size( $image_size . '-mobile' ) ) {
+		if (PMC::is_mobile()) {
+			if (has_image_size($image_size . '-mobile')) {
 				return $image_size . '-mobile';
 			}
 		}
@@ -2488,10 +2558,11 @@ class PMC {
 	 * Expose pmc_strip_shortcode filter to allow strip short code override
 	 * @see strip_shortcodes
 	 */
-	public static function strip_shortcodes( $content, $shortcodes = array() ) {
+	public static function strip_shortcodes($content, $shortcodes = array())
+	{
 		global $shortcode_tags;
 
-		if ( false === strpos( $content, '[' ) ) {
+		if (false === strpos($content, '[')) {
 			return $content;
 		}
 
@@ -2500,20 +2571,20 @@ class PMC {
 		}
 
 		$pattern = get_shortcode_regex();
-		$content = preg_replace_callback( "/$pattern/s", function( $m ) use( $shortcodes ) {
-				// allow [[foo]] syntax for escaping a tag
-				if ( $m[1] == '[' && $m[6] == ']' ) {
-					return substr($m[0], 1, -1);
-				}
+		$content = preg_replace_callback("/$pattern/s", function ($m) use ($shortcodes) {
+			// allow [[foo]] syntax for escaping a tag
+			if ($m[1] == '[' && $m[6] == ']') {
+				return substr($m[0], 1, -1);
+			}
 
-				// if $shortcodes list is provided, any shortcode not on list will not be strip
-				if ( !empty( $shortcodes ) && ! in_array( $m[2], $shortcodes ) ) {
-					return $m[0];
-				}
+			// if $shortcodes list is provided, any shortcode not on list will not be strip
+			if (!empty($shortcodes) && !in_array($m[2], $shortcodes)) {
+				return $m[0];
+			}
 
-				// strip shortcode
-				return apply_filters( 'pmc_strip_shortcode', $m[1] . $m[6], $m[2], $m[0] );
-			}, $content );
+			// strip shortcode
+			return apply_filters('pmc_strip_shortcode', $m[1] . $m[6], $m[2], $m[0]);
+		}, $content);
 
 		return $content;
 	}
@@ -2529,16 +2600,17 @@ class PMC {
 	 * @param string $content
 	 * @return string
 	 */
-	public static function strip_disallowed_urls( $content ) {
+	public static function strip_disallowed_urls($content)
+	{
 
 		global $post;
 		$allowed_hosts = array();
 
 		// Whitelist all hosts we consider internal for this site
 		$hosts = array(
-			parse_url( wpcom_vip_noncdn_uri( dirname( __FILE__ ) ), PHP_URL_HOST ),
-			parse_url( site_url(), PHP_URL_HOST ),
-			parse_url( home_url(), PHP_URL_HOST ),
+			parse_url(wpcom_vip_noncdn_uri(dirname(__FILE__)), PHP_URL_HOST),
+			parse_url(site_url(), PHP_URL_HOST),
+			parse_url(home_url(), PHP_URL_HOST),
 			'i0.wp.com',
 			'i1.wp.com',
 			'i2.wp.com',
@@ -2571,7 +2643,7 @@ class PMC {
 			'external_url_whitelist' => array(),
 			'bypass_url_whitelist' => false,
 		);
-		$settings = apply_filters( 'pmc_strip_disallowed_urls', $args, $post->ID );
+		$settings = apply_filters('pmc_strip_disallowed_urls', $args, $post->ID);
 
 		/**
 		 * external_url_link_source_boolean - If TRUE replaces any external, non-whitelisted URLs with a link back to the source post.
@@ -2598,11 +2670,11 @@ class PMC {
 		$external_strip_all = $settings['external_strip_all_boolean'];
 
 		// If all of these are false, just return content. It means no manipulation was instructed.
-		if( !$external_link_source && !$external_whitelist && !$external_strip_all ) {
+		if (!$external_link_source && !$external_whitelist && !$external_strip_all) {
 			return $content;
 		}
 
-		if( empty( $content ) ) {
+		if (empty($content)) {
 			return $content;
 		}
 
@@ -2612,13 +2684,13 @@ class PMC {
 		 * @since 2015-08-12 - Mike Auteri - PPT-5181
 		 * @version 2015-08-12
 		 */
-		if( $settings['bypass_url_whitelist'] ) {
+		if ($settings['bypass_url_whitelist']) {
 			return $content;
 		}
 
 		// Handle whitelist for feeds and non-feeds here.
-		if( $external_whitelist ) {
-			if( is_feed() ) {
+		if ($external_whitelist) {
+			if (is_feed()) {
 
 				/**
 				 * feeds_external_url_whitelist - Array of external domains to whitelist in a feed.
@@ -2648,22 +2720,22 @@ class PMC {
 		$site_hosts = $settings['site_hosts'];
 
 		// Remove any www. if there are any
-		foreach( $site_hosts as $key => $value ) {
-			$site_hosts[$key] = preg_replace( '/^www\./', '', $value );
+		foreach ($site_hosts as $key => $value) {
+			$site_hosts[$key] = preg_replace('/^www\./', '', $value);
 		}
 
-		$allowed_hosts = array_merge( $site_hosts, $allowed_hosts );
+		$allowed_hosts = array_merge($site_hosts, $allowed_hosts);
 
 		// Strip all external links, so set to $site_hosts, which is just the interal link array.
 		// This likely needs to be the last condition before process starts.
-		if( $external_strip_all ) {
+		if ($external_strip_all) {
 			$allowed_hosts = $site_hosts;
 		}
 
 		try {
 			$doc = new DOMDocument();
 
-			libxml_use_internal_errors( true );
+			libxml_use_internal_errors(true);
 			$doc->loadHTML('<?xml encoding="UTF-8">' . $content); // @change Corey Gilmore 2012-12-14 hack -- http://php.net/manual/en/domdocument.loadhtml.php#95251
 			libxml_clear_errors();
 
@@ -2675,70 +2747,70 @@ class PMC {
 			$anchor_replace = array();
 
 			// loop backwards, otherwise removing whitelisted elements screws up enumeration
-			for( $x = $num_anchors - 1; $x >= 0; $x-- ) {
+			for ($x = $num_anchors - 1; $x >= 0; $x--) {
 				$allowed_host = false;
 				$anchor = $anchors->item($x);
 				$href = $anchor->getAttribute('href');
-				$anchor_host = parse_url( $href, PHP_URL_HOST );
-				$anchor_host = preg_replace( '/^www\./', '', $anchor_host );
+				$anchor_host = parse_url($href, PHP_URL_HOST);
+				$anchor_host = preg_replace('/^www\./', '', $anchor_host);
 
-				if( !empty( $anchor_host ) ) {
-					$anchor_host = strtolower( $anchor_host );
-					foreach( $allowed_hosts as $_host ) {
-						$_host = trim( strtolower( $_host ) );
-						if( 0 == strcasecmp( $anchor_host, $_host ) ) {
+				if (!empty($anchor_host)) {
+					$anchor_host = strtolower($anchor_host);
+					foreach ($allowed_hosts as $_host) {
+						$_host = trim(strtolower($_host));
+						if (0 == strcasecmp($anchor_host, $_host)) {
 							$allowed_host = true;
 							break;
 						}
 					}
 
-					if( $allowed_host ) {
+					if ($allowed_host) {
 						continue;
 					}
 				}
 
 				// get the HTML for the non-whitelisted anchor
-				$bad_anchor_html = $doc->saveXML( $anchor );
+				$bad_anchor_html = $doc->saveXML($anchor);
 
 				// @change Mike Auteri 2015-07-22: Clean up decoded html entites. Example: $bad_anchor_html converts HTML entity &rsquo; to ’. This will cause matches to fail.
 
 				// strip tags (except anchor) to match $anchor->textContent to $bad_anchor_html.
 				// $anchor_inner_html will repopulate any nested HTML tags that were stripped.
 				// This is literally just for apples to apples matching.
-				$bad_anchor_html_tag_strip = strip_tags( $bad_anchor_html, '<a>' );
+				$bad_anchor_html_tag_strip = strip_tags($bad_anchor_html, '<a>');
 
 				// Attempt to preserve HTML inside the anchor (eg: <a href="#">this <em>example</em></a>)
-				$anchor_inner_html = PMC_DOM::domnode_get_innerhtml( $anchor );
+				$anchor_inner_html = PMC_DOM::domnode_get_innerhtml($anchor);
 
 				// fall back to plain text if there is any issue retrieving the contents of the anchor
-				if( empty( $anchor_inner_html ) || $anchor_inner_html == $anchor ) {
-					$anchor_inner_html = htmlentities( $anchor->textContent );
+				if (empty($anchor_inner_html) || $anchor_inner_html == $anchor) {
+					$anchor_inner_html = htmlentities($anchor->textContent);
 				}
 
 				// $anchor->textContent will match $bad_anchor_html_tag_strip.
 				// $anchor_inner_html will replace and include entities and markup that was stripped earlier.
-				$bad_anchor_html = str_replace( $anchor->textContent, $anchor_inner_html, $bad_anchor_html_tag_strip );
+				$bad_anchor_html = str_replace($anchor->textContent, $anchor_inner_html, $bad_anchor_html_tag_strip);
 
-				if( $external_link_source && !$external_strip_all ) {
+				if ($external_link_source && !$external_strip_all) {
 					// Replaces external URL with URL of the post
 					$href = $anchor->getAttribute('href');
-					$post_url = get_permalink( $post->ID );
+					$post_url = get_permalink($post->ID);
 
 					$anchor_search[] = $bad_anchor_html;
-					$anchor_replace[] = str_replace( $href, $post_url, $bad_anchor_html );
+					$anchor_replace[] = str_replace($href, $post_url, $bad_anchor_html);
 				} else {
 					// one final safety check - don't accidentally remove any elements
-					if( !empty( $anchor_inner_html ) && !empty( $bad_anchor_html ) ) {
+					if (!empty($anchor_inner_html) && !empty($bad_anchor_html)) {
 						$anchor_search[] = $bad_anchor_html;
 						$anchor_replace[] = $anchor_inner_html;
 					}
 				}
 			}
 
-			if ( !empty( $anchor_search ) ) {
+			if (!empty($anchor_search)) {
 				// need contents text to match up since we're using saveXML
-				$content = PMC_DOM::domnode_get_innerhtml( $body );
-				$content = str_replace( $anchor_search, $anchor_replace, $content );
+				$content = PMC_DOM::domnode_get_innerhtml($body);
+				$content = str_replace($anchor_search, $anchor_replace, $content);
 			}
 
 		} catch (Exception $e) {
@@ -2758,8 +2830,9 @@ class PMC {
 	 *
 	 * @since 2015-10-21 Amit Gupta
 	 */
-	public static function is_associative_array( array $array_to_check ) {
-		return ! (bool) count( array_filter( array_keys( $array_to_check ), 'is_numeric' ) );
+	public static function is_associative_array(array $array_to_check)
+	{
+		return !(bool) count(array_filter(array_keys($array_to_check), 'is_numeric'));
 	}
 
 	/**
@@ -2772,15 +2845,16 @@ class PMC {
 	 * @version 2016-10-12 Brandon Camenisch <bcamenisch@pmc.com> - feature/PMCVIP-2213:
 	 * - Adding support for GD theme
 	 */
-	public static function get_current_site_name() {
+	public static function get_current_site_name()
+	{
 
-		$current_theme = explode( '/' , get_stylesheet_directory() );
+		$current_theme = explode('/', get_stylesheet_directory());
 
-		if ( ! is_array( $current_theme ) || count( $current_theme ) < 2 ) {
+		if (!is_array($current_theme) || count($current_theme) < 2) {
 			return false;
 		}
 
-		switch ( array_pop( $current_theme ) ) {
+		switch (array_pop($current_theme)) {
 
 			case 'bgr':
 				return 'bgr';
@@ -2836,9 +2910,10 @@ class PMC {
 	 *
 	 * @since 2015-11-02 Amit Gupta
 	 */
-	public static function is_current_site_name( $site_name = '' ) {
+	public static function is_current_site_name($site_name = '')
+	{
 
-		if ( ! empty( $site_name ) && is_string( $site_name ) && strtolower( $site_name ) == static::get_current_site_name() ) {
+		if (!empty($site_name) && is_string($site_name) && strtolower($site_name) == static::get_current_site_name()) {
 			return true;
 		}
 
@@ -2856,27 +2931,29 @@ class PMC {
 	 * @return string
 	 * method to do data escaping for xml node and allow filter to modify content
 	 */
-	public static function esc_xml( $content ) {
-		$content = apply_filters( 'pmc_custom_feed_data', $content );
+	public static function esc_xml($content)
+	{
+		$content = apply_filters('pmc_custom_feed_data', $content);
 
 		// we need to decode html entities first
-		$content = html_entity_decode( $content, ENT_QUOTES );
+		$content = html_entity_decode($content, ENT_QUOTES);
 
-		$content = strtr( $content, array(
+		$content = strtr($content, array(
 			'&' => '&amp;',
 			'<' => '&lt;',
 			'>' => '&gt;',
 			'"' => '&quot;',
-		) );
+		));
 
-		return self::encode_numericentity( $content );
+		return self::encode_numericentity($content);
 
 	}
 
-	public static function encode_numericentity( $content ) {
-		$convmap = array( 0x80, 0xffff, 0, 0xffff );
-		$content = ent2ncr( $content );
-		$content = mb_encode_numericentity( $content, $convmap, 'UTF-8' );
+	public static function encode_numericentity($content)
+	{
+		$convmap = array(0x80, 0xffff, 0, 0xffff);
+		$content = ent2ncr($content);
+		$content = mb_encode_numericentity($content, $convmap, 'UTF-8');
 
 		return $content;
 	}
@@ -2891,17 +2968,18 @@ class PMC {
 	 * @param string $post_type Post types to check. Multiple post types can be passed as comma separated values.
 	 * @return boolean Returns TRUE if current page is archive of post type(s) passed as parameter, else FALSE
 	 */
-	public static function is_post_type_archive( $post_type ) {
+	public static function is_post_type_archive($post_type)
+	{
 
-		if ( empty( $post_type ) || ! is_string( $post_type ) ) {
+		if (empty($post_type) || !is_string($post_type)) {
 			//invalid data, bail out
 			return false;
 		}
 
-		$post_types = explode( ',', $post_type );
-		$post_types = array_map( 'trim', $post_types );
+		$post_types = explode(',', $post_type);
+		$post_types = array_map('trim', $post_types);
 
-		return is_post_type_archive( $post_types );
+		return is_post_type_archive($post_types);
 
 	}
 
@@ -2917,19 +2995,21 @@ class PMC {
 	 * @param mixed $options filter to apply
 	 * @return mixed Value of the requested variable on success, FALSE if the filter fails, or NULL if the variable_name variable is not set.
 	 */
-	public static function filter_input( $type, $variable_name, $filter = FILTER_DEFAULT, $options = null ) {
+	public static function filter_input($type, $variable_name, $filter = FILTER_DEFAULT, $options = null)
+	{
 
-		if ( php_sapi_name() !== 'cli' ) {
+		if (php_sapi_name() !== 'cli') {
 			/*
 			 * Code is not running on PHP Cli and we are in clear.
 			 * Use the PHP method and bail out.
 			 */
-			switch ( $filter ) {
+			$options = isset($options) ? $options : '';
+			switch ($filter) {
 				case FILTER_UNSAFE_RAW:
-					$sanitized_variable = sanitize_text_field( filter_input( $type, $variable_name, $filter ) );
+					$sanitized_variable = sanitize_text_field(filter_input($type, $variable_name, $filter));
 					break;
 				default:
-					$sanitized_variable = filter_input( $type, $variable_name, $filter, $options );
+					$sanitized_variable = filter_input($type, $variable_name, $filter, $options);
 					break;
 			}
 			return $sanitized_variable;
@@ -2946,7 +3026,7 @@ class PMC {
 
 		$input = '';
 
-		$allowed_html_tags = wp_kses_allowed_html( 'post' );
+		$allowed_html_tags = wp_kses_allowed_html('post');
 
 		/*
 		 * Marking the switch() block below to be ignored by PHPCS
@@ -2957,46 +3037,46 @@ class PMC {
 
 		// @codingStandardsIgnoreStart
 
-		switch( $type ) {
+		switch ($type) {
 
 			case INPUT_GET:
-				if ( ! isset( $_GET[ $variable_name ] ) ) {
+				if (!isset($_GET[$variable_name])) {
 					return null;
 				}
 
-				$input = wp_kses( $_GET[ $variable_name ], $allowed_html_tags );
+				$input = wp_kses($_GET[$variable_name], $allowed_html_tags);
 				break;
 
 			case INPUT_POST:
-				if ( ! isset( $_POST[ $variable_name ] ) ) {
+				if (!isset($_POST[$variable_name])) {
 					return null;
 				}
 
-				$input = wp_kses( $_POST[ $variable_name ], $allowed_html_tags );
+				$input = wp_kses($_POST[$variable_name], $allowed_html_tags);
 				break;
 
 			case INPUT_COOKIE:
-				if ( ! isset( $_COOKIE[ $variable_name ] ) ) {
+				if (!isset($_COOKIE[$variable_name])) {
 					return null;
 				}
 
-				$input = wp_kses( $_COOKIE[ $variable_name ], $allowed_html_tags );
+				$input = wp_kses($_COOKIE[$variable_name], $allowed_html_tags);
 				break;
 
 			case INPUT_SERVER:
-				if ( ! isset( $_SERVER[ $variable_name ] ) ) {
+				if (!isset($_SERVER[$variable_name])) {
 					return null;
 				}
 
-				$input = wp_kses( $_SERVER[ $variable_name ], $allowed_html_tags );
+				$input = wp_kses($_SERVER[$variable_name], $allowed_html_tags);
 				break;
 
 			case INPUT_ENV:
-				if ( ! isset( $_ENV[ $variable_name ] ) ) {
+				if (!isset($_ENV[$variable_name])) {
 					return null;
 				}
 
-				$input = wp_kses( $_ENV[ $variable_name ], $allowed_html_tags );
+				$input = wp_kses($_ENV[$variable_name], $allowed_html_tags);
 				break;
 
 			default:
@@ -3007,7 +3087,7 @@ class PMC {
 
 		// @codingStandardsIgnoreEnd
 
-		return filter_var( $input, $filter );
+		return filter_var($input, $filter);
 
 	}	//end filter_input()
 
@@ -3032,10 +3112,11 @@ class PMC {
 	 * @note Ignoring this from code coverage since we do not have a reliable way to test this at present
 	 * @codeCoverageIgnore
 	 */
-	public static function setcookie( string $name, string $value = '', int $expires = 0, string $path = '', string $domain = '', bool $secure = false, bool $httponly = false ) : bool {
-		_deprecated_function( __METHOD__, 'pmc-global-functions-1.2', 'PMC\Global_Functions\Classes\PMC_Cookie' );
+	public static function setcookie(string $name, string $value = '', int $expires = 0, string $path = '', string $domain = '', bool $secure = false, bool $httponly = false): bool
+	{
+		_deprecated_function(__METHOD__, 'pmc-global-functions-1.2', 'PMC\Global_Functions\Classes\PMC_Cookie');
 
-		if ( php_sapi_name() !== 'cli' ) {
+		if (php_sapi_name() !== 'cli') {
 			/*
 			 * Code is not running on PHP Cli and we are in clear.
 			 * Use the PHP method and bail out.
@@ -3044,7 +3125,7 @@ class PMC {
 			 * compatible with Batcache. This however is needed to work with CDN_Cache class
 			 * which will work with Fastly and replace Batcache.
 			 */
-			return (bool) setcookie( $name, $value, $expires, $path, $domain, $secure, $httponly );    // phpcs:ignore WordPress.VIP.RestrictedFunctions.cookies_setcookie
+			return (bool) setcookie($name, $value, $expires, $path, $domain, $secure, $httponly);    // phpcs:ignore WordPress.VIP.RestrictedFunctions.cookies_setcookie
 		}
 
 		/*
@@ -3054,7 +3135,7 @@ class PMC {
 		 * Ignore the below line in PHPCS because this code will run only in CLI mode to
 		 * allow for unit tests to test cookie data
 		 */
-		$_COOKIE[ $name ] = $value;    // phpcs:ignore WordPress.VIP.RestrictedVariables.cache_constraints___COOKIE
+		$_COOKIE[$name] = $value;    // phpcs:ignore WordPress.VIP.RestrictedVariables.cache_constraints___COOKIE
 
 		return true;
 
@@ -3066,16 +3147,17 @@ class PMC {
 	 * @param string $text
 	 * @return int
 	 */
-	public static function get_word_count( string $text ) : int {
+	public static function get_word_count(string $text): int
+	{
 
-		if ( empty( $text ) ) {
+		if (empty($text)) {
 			return 0;
 		}
 
 		return intval(
 			str_word_count(
 				trim(
-					wp_strip_all_tags( strip_shortcodes( $text ), true )
+					wp_strip_all_tags(strip_shortcodes($text), true)
 				)
 			)
 		);
@@ -3089,9 +3171,10 @@ class PMC {
 	 *
 	 * @return bool Returns TRUE if file path is valid else FALSE
 	 */
-	public static function is_file_path_valid( string $file_path ) : bool {
+	public static function is_file_path_valid(string $file_path): bool
+	{
 
-		if ( ! empty( $file_path ) && file_exists( $file_path ) && validate_file( $file_path ) === 0 ) {
+		if (!empty($file_path) && file_exists($file_path) && validate_file($file_path) === 0) {
 			return true;
 		}
 
@@ -3106,13 +3189,14 @@ class PMC {
 	 *
 	 * @return int
 	 */
-	public static function get_negative_int( int $number = 0 ) : int {
+	public static function get_negative_int(int $number = 0): int
+	{
 
-		if ( 0 >= $number ) {
+		if (0 >= $number) {
 			return $number;
 		}
 
-		return ( -1 * $number );
+		return (-1 * $number);
 
 	}
 
@@ -3123,10 +3207,11 @@ class PMC {
 	 *
 	 * @return bool
 	 */
-	public static function is_current_domain( string $url ) : bool {
+	public static function is_current_domain(string $url): bool
+	{
 
-		if ( false !== filter_var( $url, FILTER_VALIDATE_URL ) ) {
-			return ( wp_parse_url( home_url() )['host'] === wp_parse_url( $url )['host'] ); // phpcs:ignore
+		if (false !== filter_var($url, FILTER_VALIDATE_URL)) {
+			return (wp_parse_url(home_url())['host'] === wp_parse_url($url)['host']); // phpcs:ignore
 		}
 
 		return false;
@@ -3150,28 +3235,29 @@ class PMC {
 	 *
 	 * @return array
 	 */
-	public static function allowed_html( $context = 'post', array $limit = [], array $expand = [], bool $force = false ) : array {
+	public static function allowed_html($context = 'post', array $limit = [], array $expand = [], bool $force = false): array
+	{
 
-		$allowed_html = wp_kses_allowed_html( $context );
-		$return       = [];
+		$allowed_html = wp_kses_allowed_html($context);
+		$return = [];
 
-		if ( ! empty( $limit ) ) {
-			foreach ( $limit as $key ) {
-				if ( isset( $allowed_html[ $key ] ) ) {
-					$return[ $key ] = $allowed_html[ $key ];
+		if (!empty($limit)) {
+			foreach ($limit as $key) {
+				if (isset($allowed_html[$key])) {
+					$return[$key] = $allowed_html[$key];
 				}
 			}
 		} else {
 			$return = $allowed_html;
 		}
 
-		if ( ! empty( $expand ) && static::is_associative_array( $expand ) ) {
-			if ( $force ) {
-				$return = array_merge( $return, $expand );
+		if (!empty($expand) && static::is_associative_array($expand)) {
+			if ($force) {
+				$return = array_merge($return, $expand);
 			} else {
-				foreach ( $expand as $key => $value ) {
-					$return[ $key ] = ( ! isset( $return[ $key ] ) ) ? [] : $return[ $key ];
-					$return[ $key ] = array_merge( $return[ $key ], $value );
+				foreach ($expand as $key => $value) {
+					$return[$key] = (!isset($return[$key])) ? [] : $return[$key];
+					$return[$key] = array_merge($return[$key], $value);
 				}
 			}
 		}
@@ -3186,20 +3272,22 @@ class PMC {
 	 * @codeCoverageIgnore
 	 * @return bool
 	 */
-	public static function is_cxsense_bot(): bool {
+	public static function is_cxsense_bot(): bool
+	{
 		// @codeCoverageIgnoreStart
 		// Variant determiner for caches.
-		if ( function_exists( 'vary_cache_on_function' ) ) {
-			vary_cache_on_function( self::is_cxense_bot_function_string() );
+		if (function_exists('vary_cache_on_function')) {
+			vary_cache_on_function(self::is_cxense_bot_function_string());
 		}
 
-		$function = @create_function( '', self::is_cxense_bot_function_string() ); // @codingStandardsIgnoreLine: Ignored as part of WI-544 VIP approved in ticket https://wordpressvip.zendesk.com/hc/en-us/requests/78347
+		$function = @create_function('', self::is_cxense_bot_function_string()); // @codingStandardsIgnoreLine: Ignored as part of WI-544 VIP approved in ticket https://wordpressvip.zendesk.com/hc/en-us/requests/78347
 
 		return $function(); //phpcs:ignore
 		// @codeCoverageIgnoreEnd
 	}
 
-	public static function is_cxense_bot_function_string() {
+	public static function is_cxense_bot_function_string()
+	{
 		return 'return isset( $_SERVER[\'HTTP_USER_AGENT\'] ) && preg_match( \'/cxensebot/i\', $_SERVER[\'HTTP_USER_AGENT\'] );';
 	}
 
@@ -3208,16 +3296,16 @@ class PMC {
 // Mandate the saving of menu_order
 add_action('pre_post_update', 'PMC::gallery_menu_order_fix');
 
-add_action( 'wp_headers', 'PMC::set_ie_standard_compatibility' );
+add_action('wp_headers', 'PMC::set_ie_standard_compatibility');
 
 /**
  * Enable custom CDNs
  *
  * @version 2014-12-12 Corey Gilmore PPT-3846: Move from init::1 to parse_query::10 to allow more granular control (eg, use is_* functions)
  */
-add_action( 'parse_query', 'PMC::load_custom_cdn' );
+add_action('parse_query', 'PMC::load_custom_cdn');
 
 // Required for PMC::get_the_sanitized_excerpt()
-add_filter( 'wp_kses_allowed_html', array( 'PMC', '_kses_excerpt_allowed_html' ), 10, 2 );
+add_filter('wp_kses_allowed_html', array('PMC', '_kses_excerpt_allowed_html'), 10, 2);
 
 //EOF
