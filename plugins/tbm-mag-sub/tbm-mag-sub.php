@@ -2540,8 +2540,8 @@
             if (isset($data['email']) && is_email($data['email'])) {
                 require __DIR__ . '/vendor/autoload.php';
 
-                $dotenv = Dotenv\Dotenv::createImmutable(ABSPATH);
-                $dotenv->load();
+                // $dotenv = Dotenv\Dotenv::createImmutable(ABSPATH);
+                // $dotenv->load();
 
                 try {
                     $auth0 = new Auth0\SDK\Auth0([
