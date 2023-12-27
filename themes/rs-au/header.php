@@ -1,25 +1,25 @@
 <?php
 
-/**
- * The template for displaying the header.
- *
- * @package rs-au-2019
- * @since 2019-11-20
- */
+    /**
+     * The template for displaying the header.
+     *
+     * @package rs-au-2019
+     * @since 2019-11-20
+     */
 
-use PMC\Lists\List_Post;
+    use PMC\Lists\List_Post;
 
 ?>
 
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> class="no-js">
+<html      <?php language_attributes();?> class="no-js">
 
 <head>
 	<meta charset="<?php echo esc_attr(get_bloginfo('charset')); ?>" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<link rel="manifest" href="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/manifest.json'); // WPCS: XSS okay. 
-								?>">
+	<link rel="manifest" href="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/manifest.json'); // WPCS: XSS okay.
+                               ?>">
 
 	<!-- Responsiveness -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,10 +34,10 @@ use PMC\Lists\List_Post;
 	<link rel="apple-touch-icon" href="https://www.rollingstone.com/wp-content/uploads/2022/08/cropped-Rolling-Stone-Favicon.png?w=180" />
 
 	<!-- Tile icons for Windows -->
-	<meta name="msapplication-config" content="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/browserconfig.xml'); // WPCS: XSS okay. 
-												?>">
-	<meta name="msapplication-TileImage" content="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/icons/mstile-144x144.png'); // WPCS: XSS okay. 
-													?>">
+	<meta name="msapplication-config" content="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/browserconfig.xml'); // WPCS: XSS okay.
+                                               ?>">
+	<meta name="msapplication-TileImage" content="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/icons/mstile-144x144.png'); // WPCS: XSS okay.
+                                                  ?>">
 	<meta name="msapplication-TileColor" content="#eff4ff">
 
 	<!-- Favicons -->
@@ -45,8 +45,8 @@ use PMC\Lists\List_Post;
 	<link rel="icon" href="https://www.rollingstone.com/wp-content/uploads/2022/08/cropped-Rolling-Stone-Favicon.png?w=192" sizes="192x192" />
 
 	<!-- Safari pin icon -->
-	<link rel="mask-icon" href="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/icons/safari-pinned-tab.svg'); // WPCS: XSS okay. 
-								?>" color="#000000">
+	<link rel="mask-icon" href="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/icons/safari-pinned-tab.svg'); // WPCS: XSS okay.
+                                ?>" color="#000000">
 
 	<!-- Titles -->
 	<meta name="apple-mobile-web-app-title" content="<?php echo esc_attr(get_bloginfo('name')); ?>">
@@ -60,30 +60,30 @@ use PMC\Lists\List_Post;
 
 	<?php if (is_single()) {
 
-	?>
+        ?>
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:site" content="@rollingstoneaus">
-		<meta name="twitter:title" content="<?php the_title(); ?>">
+		<meta name="twitter:title" content="<?php the_title();?>">
 		<meta name="twitter:image" content="<?php
-											if (has_post_thumbnail()) {
-												$src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
-												$type = exif_imagetype($src[0]);
+                                                if (has_post_thumbnail()) {
+                                                        $src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
+                                                        $type = exif_imagetype($src[0]);
 
-												if ($type != false && ($type == (IMAGETYPE_PNG || IMAGETYPE_JPEG))) {
-													echo ("https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/{$src[0]}");
-												} else {
-													echo $src[0];
-												}
-											}
-											?>">
-	<?php } // If single 
-	?>
+                                                        if ($type != false && ($type == (IMAGETYPE_PNG || IMAGETYPE_JPEG))) {
+                                                            echo ("https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/{$src[0]}");
+                                                        } else {
+                                                            echo $src[0];
+                                                        }
+                                                }
+                                                ?>">
+	<?php } // If single
+    ?>
 
-	<?php do_action('pmc_tags_head'); ?>
+	<?php do_action('pmc_tags_head');?>
 
-	<?php wp_head(); ?>
+	<?php wp_head();?>
 
-	<?php if (is_front_page()) : ?>
+	<?php if (is_front_page()): ?>
 		<script>
 			function PMC_RS_isSectionOpen(name) {
 				var storage = localStorage.getItem('PMC_RS_homeState');
@@ -115,10 +115,10 @@ use PMC\Lists\List_Post;
 				}
 			}
 		</script>
-	<?php endif; ?>
+	<?php endif;?>
 
-	<?php // get_template_part( 'template-parts/header/ads-direct-js' ); 
-	?>
+	<?php // get_template_part( 'template-parts/header/ads-direct-js' );
+    ?>
 
 	<!-- Admiral -->
 	<script type="text/javascript">
@@ -159,11 +159,11 @@ use PMC\Lists\List_Post;
 
 	<style>
 		<?php
-		if (get_field('page_background_colour')) : ?>body {
-			background-color: <?php echo get_field('page_background_colour'); ?> !important;
+        if (get_field('page_background_colour')): ?>body {
+			background-color:			                  <?php echo get_field('page_background_colour'); ?> !important;
 		}
 
-		<?php endif; ?>div.admz,
+		<?php endif;?>div.admz,
 		div.admz-sp {
 			margin-left: auto;
 			margin-right: auto;
@@ -191,18 +191,18 @@ use PMC\Lists\List_Post;
 
 </head>
 
-<?php if (rollingstone_is_list() && 'none' !== List_Post::get_instance()->get_order()) : ?>
+<?php if (rollingstone_is_list() && 'none' !== List_Post::get_instance()->get_order()): ?>
 
-	<body data-list-page data-list-total="<?php echo esc_attr(List_Post::get_instance()->get_list_items_count()); ?>" <?php body_class(); ?>>
+	<body data-list-page data-list-total="<?php echo esc_attr(List_Post::get_instance()->get_list_items_count()); ?>"<?php body_class();?>>
 
-	<?php else : ?>
+	<?php else: ?>
 
-		<body <?php body_class(); ?>>
+		<body		      <?php body_class();?>>
 
-		<?php endif; ?>
+		<?php endif;?>
 
-		<?php do_action('pmc-tags-top'); // phpcs:ignore 
-		?>
+		<?php do_action('pmc-tags-top'); // phpcs:ignore
+        ?>
 
 		<!-- Facebook Pixel Code -->
 
@@ -247,15 +247,15 @@ use PMC\Lists\List_Post;
 
 		<!-- End Facebook Pixel Code -->
 
-		<?php if (!is_singular('pmc-gallery')) : ?>
+		<?php if (!is_singular('pmc-gallery')): ?>
 			<div id="skin-ad-section">
 				<div id="skin-ad-container">
 					<!-- <a href="https://thebrag.media" target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/_tmp-bg.jpg"></a> -->
-					<?php ThemeSetup::render_ads('skin'); ?>
+					<?php ThemeSetup::render_ads('skin');?>
 				</div>
 			</div>
 
 
 			<div class="l-page" id="site_wrap">
-				<?php get_template_part('template-parts/header/header'); ?>
-			<?php endif; ?>
+				<?php get_template_part('template-parts/header/header');?>
+<?php endif;?>

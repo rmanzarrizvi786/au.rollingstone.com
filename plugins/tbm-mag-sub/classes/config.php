@@ -15,10 +15,10 @@ $magazine['shipping_cost'] = 0.00;
 
 if ($is_sandbox) {
     // Stripe
-    $stripe['publishable_key'] = 'pk_test_51LavybCtuVZtvaO71VCyCi5zpEgutjPe1I2rSn5MJixsb5HVWLpne4gjXPXh2bJQYaIiAY9Z1T8KqvwUHU4homC100eGKCRsQ9';
-    $stripe['secret_key'] = 'sk_test_51LavybCtuVZtvaO7nhSgDojwrfoPuQgrc90ec9tl6XLFHB3wSe4r7FSESUCKMauLOPiaNMcAFzcYxkkeNruJrS2m00tOkyKc4x';
+    $stripe['publishable_key'] = 'pk_test_bX98JZECbYwuCDuHqqRUTktS00uuBIZnlO';
+    $stripe['secret_key'] = 'sk_test_vgPAGgiC8CzE5PCeMfNXhMbB002o1zu6Q7';
     $stripe['plan_id'] = 'plan_GyHm8Pt4LHcID0';
-    $stripe['default_tax_rates'] = 'txr_1NFWHTCtuVZtvaO7VomYnjDP';
+    $stripe['default_tax_rates'] = 'txr_1GiDj6Gdx829KD99UdrsUpVE';
     // $stripe['current_coupon_code'] = '93YgiA4h';
 
     // Salesforce
@@ -34,7 +34,10 @@ if ($is_sandbox) {
     $digital['digital'] = 'rolling_stone_aunz_digital_forward_1';
     $digital['catalogue'] = 'rolling_stone_aunz_digital_back';
 
-    $api_brag_user['api_url'] = 'https://thebrag.com/wp-json/tbm_users/v1/';
+    $api_brag_user['api_url'] = 'https://thebrag.localhost:4432/wp-json/tbm_users/v1/';
+
+    $adops['access_token'] = '';
+    $adops['api_url'] = 'http://host.docker.internal:8085/v2/magazines';
 } else {
     // Stripe
     $stripe['publishable_key'] = 'pk_live_bwH5gFYGDrxdtEMOR4v0Gfhq00pQVjdvar';
@@ -57,6 +60,9 @@ if ($is_sandbox) {
     $digital['print'] = 'rolling_stone_aunz_print_only_instant_start_';
     $digital['digital'] = 'rolling_stone_aunz_digital_forward_1';
     $digital['catalogue'] = 'rolling_stone_aunz_digital_back';
+
+    $adops['access_token'] = '';
+    $adops['api_url'] = 'https://adops-api.thebrag.media/v2/magazines';
 }
 
 $api_brag_user['rest_api_key'] = '1fc08f46-3537-43f6-b5c1-c68704acf3fa';
@@ -68,4 +74,5 @@ return [
     'api_brag_user' => $api_brag_user,
     'digital' => $digital,
     'is_sandbox' => $is_sandbox,
+    'adops' => $adops,
 ];

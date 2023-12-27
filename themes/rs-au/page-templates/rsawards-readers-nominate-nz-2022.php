@@ -4,7 +4,7 @@
  * Template Name: RS Awards Readers Nomimate NZ (2022)
  */
 
-$is_sandbox = isset($_ENV) && isset($_ENV['ENVIRONMENT']) && 'sandbox' == $_ENV['ENVIRONMENT'];
+$is_sandbox = isset($_ENV) && isset($_ENV['ENVIRONMENT']) && 'development' == $_ENV['ENVIRONMENT'];
 
 // $remote_url = 'https://app.thebrag.com/user-country.php';
 // $remote_url = 'http://ip-api.com/json';
