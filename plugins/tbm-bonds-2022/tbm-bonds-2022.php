@@ -1128,14 +1128,11 @@ class Bonds2022
     if (isset($data['email']) && is_email($data['email'])) {
       require __DIR__ . '/vendor/autoload.php';
 
-      $dotenv = \Dotenv\Dotenv::createImmutable(ABSPATH);
-      $dotenv->load();
-
       try {
         $auth0 = new \Auth0\SDK\Auth0([
-          'domain' => $_ENV['AUTH0_DOMAIN'],
-          'clientId' => $_ENV['AUTH0_CLIENT_ID'],
-          'clientSecret' => $_ENV['AUTH0_CLIENT_SECRET'],
+          'domain' => 'AUTH0_DOMAIN',
+          'clientId' => 'AUTH0_CLIENT_ID',
+          'clientSecret' => 'AUTH0_CLIENT_SECRET',
         ]);
 
         $management = $auth0->management();
