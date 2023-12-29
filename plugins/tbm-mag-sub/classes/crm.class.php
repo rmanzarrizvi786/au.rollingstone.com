@@ -774,9 +774,14 @@
                         ],
                         [
                             'column' => 'TBM_Coupon_code__c',
-                            'operator' => 'contains',
+                            'operator' => 'notContains',
                             'value' => 'Comp',
                         ],
+                        [
+                            'column' => 'Last_Issue_Processed_Date__c',
+                            'operator' => 'greaterThanEqual',
+                            'value' => '2023-12-01',
+                        ]
                     ],
                     'limit' => $limit,
                 ],
