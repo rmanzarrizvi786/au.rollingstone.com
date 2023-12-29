@@ -274,6 +274,8 @@ class Renewals
                         $sub->stripe_customer_id
                     );
 
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal', 'User: ' . $crm_sub->Name . ' | ' . $crm_sub->Email__c . ' | ' . $crm_sub->Id);
+
                     // Insert in to Renewals database
                     $insert_values = [
                         'subscription_id' => $sub->id,
