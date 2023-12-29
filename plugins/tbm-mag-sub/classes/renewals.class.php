@@ -140,6 +140,7 @@ class Renewals
             global $wpdb;
 
             foreach ($crm_subs as $crm_sub) {
+                error_log($crm_sub->Id);
 
                 $message = '';
 
@@ -170,7 +171,7 @@ class Renewals
                     $sub->observer_user = $sub->observer_user_decoded->data;
                 }
 
-                error_log($sub, 0);
+                error_log($sub->Id);
 
                 $payment = new Payment();
 
