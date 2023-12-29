@@ -120,7 +120,6 @@ class Renewals
 
     public function process()
     {
-        error_log('Running');
         require_once __DIR__ . '/crm.class.php';
         require_once __DIR__ . '/helper.class.php';
         require_once __DIR__ . '/payment.class.php';
@@ -142,8 +141,6 @@ class Renewals
             global $wpdb;
 
             foreach ($crm_subs as $crm_sub) {
-                error_log($crm_sub->Id);
-
                 $message = '';
 
                 $query_sub = "SELECT
@@ -171,8 +168,6 @@ class Renewals
                     $sub->observer_user_decoded = json_decode($sub->observer_user_json);
                     $sub->observer_user = $sub->observer_user_decoded->data;
                 }
-
-                error_log($sub->Id);
 
                 $payment = new Payment();
 
