@@ -725,6 +725,11 @@
                             'operator' => 'lessThanEqual',
                             'value' => $last,
                         ],
+                        [
+                            'column' => 'Last_Issue_Processed_Date__c',
+                            'operator' => 'greaterThanEqual',
+                            'value' => '2023-10-31',
+                        ]
                     ],
                 ],
             ]);
