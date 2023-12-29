@@ -225,10 +225,10 @@
             $config = include __DIR__ . '/config.php';
 
             // $access_token = $this->salesforce_login();
-            // $url = $this->salesforce['login_uri'] . '/services/data/v47.0/sobjects/Magazine_Subscription__c/' . $crm_sub['Id'];
+            // $url = $this->salesforce['login_uri'] . '/services/data/v47.0/sobjects/Magazine_Subscription__c/' . $crm_sub->Id;
 
             $access_token = $this->adops['access_token'];
-            $url = $this->adops['api_url'] . '/subscriptions/' . $crm_sub['Id'];
+            $url = $this->adops['api_url'] . '/subscriptions/' . $crm_sub->Id;
 
             $content = [
                 'Remaining_Issues__c' => $config['magazine']['number_of_issues'],
@@ -278,10 +278,10 @@
             $config = include __DIR__ . '/config.php';
 
             // $access_token = $this->salesforce_login();
-            // $url = $this->salesforce['login_uri'] . '/services/data/v47.0/sobjects/Magazine_Subscription__c/' . $crm_sub['Id'];
+            // $url = $this->salesforce['login_uri'] . '/services/data/v47.0/sobjects/Magazine_Subscription__c/' . $crm_sub->Id;
 
             $access_token = $this->adops['access_token'];
-            $url = $this->adops['api_url'] . '/subscriptions/' . $crm_sub['Id'];
+            $url = $this->adops['api_url'] . '/subscriptions/' . $crm_sub->Id;
 
             $content = [
                 'Digital_Issues_Remaining__c' => $config['magazine']['number_of_issues'],
@@ -329,17 +329,17 @@
         public function updatePaymentAttempts($crm_sub)
         {
             // $access_token = $this->salesforce_login();
-            // $url = $this->salesforce['login_uri'] . '/services/data/v47.0/sobjects/Magazine_Subscription__c/' . $crm_sub['Id'];
+            // $url = $this->salesforce['login_uri'] . '/services/data/v47.0/sobjects/Magazine_Subscription__c/' . $crm_sub->Id;
 
             $access_token = $this->adops['access_token'];
-            $url = $this->adops['api_url'] . '/subscriptions/' . $crm_sub['Id'];
+            $url = $this->adops['api_url'] . '/subscriptions/' . $crm_sub->Id;
 
             $Last_payment_attempt__c = date('Y-m-d\Th:i:s');
 
-            if ($crm_sub['Number_of_payment_attempts__c'] == '') {
+            if ($crm_sub->Number_of_payment_attempts__c == '') {
                 $Number_of_payment_attempts__c = 0;
             } else {
-                $Number_of_payment_attempts__c = $crm_sub['Number_of_payment_attempts__c'];
+                $Number_of_payment_attempts__c = $crm_sub->Number_of_payment_attempts__c;
             }
 
             $content = [
@@ -676,15 +676,54 @@
 
             $client = new Client();
 
+            $today = date_create();
+            date_sub( $today, date_interval_create_from_date_string('23 days') );
+            
+            $last = date_format( $today, 'Y-m-d' );
+
             $response = $client->request('POST', $url, [
                 'json' => [
-                    'limit' => $limit,
                     'model' => 'subscriptions',
                     'filters' => [
                         [
                             'column' => 'Active__c',
                             'operator' => 'equals',
                             'value' => true,
+                        ],
+                        [
+                            'column' => 'Remaining_Issues__c',
+                            'operator' => 'equals',
+                            'value' => 0,
+                        ],
+                        [
+                            'column' => 'TBM_Coupon_code__c',
+                            'operator' => 'notContains',
+                            'value' => 'Comp',
+                        ],
+                        [
+                            'column' => 'Email__c',
+                            'operator' => 'notEquals',
+                            'value' => null,
+                        ],
+                        [
+                            'column' => 'facilitatorAccessToken__c',
+                            'operator' => 'equals',
+                            'value' => null,
+                        ],
+                        [
+                            'column' => 'Number_of_payment_attempts__c',
+                            'operator' => 'equals',
+                            'value' => 0,
+                        ],
+                        [
+                            'column' => 'Digital_Issues_Remaining__c',
+                            'operator' => 'equals',
+                            'value' => 0,
+                        ],
+                        [
+                            'column' => 'Last_Issue_Processed_Date__c',
+                            'operator' => 'lessThanEqual',
+                            'value' => $last,
                         ],
                     ],
                 ],
@@ -759,11 +798,6 @@
 
             $client = new Client();
 
-            $today = date_create();
-            date_sub( $today, date_interval_create_from_date_string('23 days') );
-            
-            $last = date_format( $today, 'Y-m-d' );
-
             $response = $client->request('POST', $url, [
                 'json' => [
                     'model' => 'subscriptions',
@@ -772,42 +806,7 @@
                             'column' => 'Active__c',
                             'operator' => 'equals',
                             'value' => true,
-                        ],
-                        [
-                            'column' => 'Remaining_Issues__c',
-                            'operator' => 'equals',
-                            'value' => 0,
-                        ],
-                        [
-                            'column' => 'TBM_Coupon_code__c',
-                            'operator' => 'notContains',
-                            'value' => 'Comp',
-                        ],
-                        [
-                            'column' => 'Email__c',
-                            'operator' => 'notEquals',
-                            'value' => null,
-                        ],
-                        [
-                            'column' => 'facilitatorAccessToken__c',
-                            'operator' => 'equals',
-                            'value' => null,
-                        ],
-                        [
-                            'column' => 'Number_of_payment_attempts__c',
-                            'operator' => 'equals',
-                            'value' => 0,
-                        ],
-                        [
-                            'column' => 'Digital_Issues_Remaining__c',
-                            'operator' => 'equals',
-                            'value' => 0,
-                        ],
-                        [
-                            'column' => 'Last_Issue_Processed_Date__c',
-                            'operator' => 'lessThanEqual',
-                            'value' => $last,
-                        ],
+                        ]
                     ],
                 ],
             ]);

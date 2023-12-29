@@ -58,17 +58,17 @@ class Renewals
             $query_sub = "SELECT
                 *
                 FROM {$wpdb->prefix}mag_subscriptions
-                WHERE `salesforce_id` = '{$crm_sub['Id']}' LIMIT 1";
+                WHERE `salesforce_id` = '{$crm_sub->Id}' LIMIT 1";
             $sub = $wpdb->get_row($query_sub);
 
             if (!$sub) {
-                wp_send_json_error([$crm_sub['Email__c'] . ' => Record not found for Salesforce ID; ' . $crm_sub['Id'] . '.']);
-                wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub['Id']);
+                wp_send_json_error([$crm_sub->Email__c . ' => Record not found for Salesforce ID; ' . $crm_sub->Id . '.']);
+                wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub->Id);
                 wp_die();
             }
 
             // Get Observer User
-            $data_api_observer['email'] = $crm_sub['Email__c'];
+            $data_api_observer['email'] = $crm_sub->Email__c;
             $data_api_observer['key'] = $this->config['api_brag_user']['rest_api_key'];
             $data_api_observer['source'] = 'rs-mag';
             $sub->observer_user_json = Helper::callAPI(
@@ -86,8 +86,8 @@ class Renewals
                 $price = $this->setPrice($sub->buy_option);
 
                 if ($price == 0) {
-                    wp_send_json_error([$crm_sub['Email__c'] . ' => Price is $0; ' . $crm_sub['Id'] . '.']);
-                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Price is $0; ' . $crm_sub['Id']);
+                    wp_send_json_error([$crm_sub->Email__c . ' => Price is $0; ' . $crm_sub->Id . '.']);
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Price is $0; ' . $crm_sub->Id);
                     wp_die();
                 }
 
@@ -109,8 +109,8 @@ class Renewals
                     $braze_event_properties
                 );
             } else {
-                wp_send_json_error([$crm_sub['Email__c'] . ' => No buy option; ' . $crm_sub['Id'] . '.']);
-                wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'No buy option; ' . $crm_sub['Id']);
+                wp_send_json_error([$crm_sub->Email__c . ' => No buy option; ' . $crm_sub->Id . '.']);
+                wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'No buy option; ' . $crm_sub->Id);
                 wp_die();
             }
 
@@ -146,17 +146,17 @@ class Renewals
                 $query_sub = "SELECT
                     *
                     FROM {$wpdb->prefix}mag_subscriptions
-                    WHERE `salesforce_id` = '{$crm_sub['Id']}' LIMIT 1";
+                    WHERE `salesforce_id` = '{$crm_sub->Id}' LIMIT 1";
                 $sub = $wpdb->get_row($query_sub);
 
                 if (!$sub) {
-                    wp_send_json_error([$crm_sub['Email__c'] . ' => Record not found for Salesforce ID; ' . $crm_sub['Id'] . '.']);
-                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub['Id']);
+                    wp_send_json_error([$crm_sub->Email__c . ' => Record not found for Salesforce ID; ' . $crm_sub->Id . '.']);
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub->Id);
                     wp_die();
                 }
 
                 // Get Observer User
-                $data_api_observer['email'] = $crm_sub['Email__c'];
+                $data_api_observer['email'] = $crm_sub->Email__c;
                 $data_api_observer['key'] = $this->config['api_brag_user']['rest_api_key'];
                 $data_api_observer['source'] = 'rs-mag';
                 $sub->observer_user_json = Helper::callAPI(
@@ -189,13 +189,13 @@ class Renewals
                     }
 
                     if ($price == 0) {
-                        wp_send_json_error([$crm_sub['Email__c'] . ' => Price is $0; ' . $crm_sub['Id'] . '.']);
-                        wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Price is $0; ' . $crm_sub['Id']);
+                        wp_send_json_error([$crm_sub->Email__c . ' => Price is $0; ' . $crm_sub->Id . '.']);
+                        wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Price is $0; ' . $crm_sub->Id);
                         wp_die();
                     }
                 } else {
-                    wp_send_json_error([$crm_sub['Email__c'] . ' => No buy option; ' . $crm_sub['Id'] . '.']);
-                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'No buy option; ' . $crm_sub['Id']);
+                    wp_send_json_error([$crm_sub->Email__c . ' => No buy option; ' . $crm_sub->Id . '.']);
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'No buy option; ' . $crm_sub->Id);
                     wp_die();
                 }
 
@@ -259,7 +259,7 @@ class Renewals
                 } else { // No unpaid invoice, create new one and finalise payment
                     // Create Stripe Invoice and Process payment
                     $invoice = $payment->createInvoice(
-                        $post['buy_option'],
+                        $sub->buy_option,
                         $product_description,
                         (int) ($price * 100),
                         (int) ($this->shipping_cost * 100),
@@ -314,8 +314,8 @@ class Renewals
                         ['id' => $invoice_id]
                     );
 
-                    wp_send_json_error([$crm_sub['Email__c'] . ' => ' . $crm_response['error'] . ' | ' . $invoice_id]);
-                    wp_mail('dev@thebrag.media', 'RS Mag Renewal CRM Error', $crm_sub['Email__c'] . ' => ' . $crm_response['error'] . ' | ' . $invoice_id);
+                    wp_send_json_error([$crm_sub->Email__c . ' => ' . $crm_response['error'] . ' | ' . $invoice_id]);
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal CRM Error', $crm_sub->Email__c . ' => ' . $crm_response['error'] . ' | ' . $invoice_id);
                     wp_die();
                 } else {
                     $message .= ' + ' . $crm_response;
@@ -325,7 +325,7 @@ class Renewals
                  * Set up for Braze Event
                  */
                 $braze_event_properties = [
-                    'buyer_name' => isset($sub) && !is_null($sub) && isset($crm_sub['Buyer__c']) ? $crm_sub['Buyer__c'] : 'Subscriber',
+                    'buyer_name' => isset($sub) && !is_null($sub) && isset($crm_sub->Buyer__c) ? $crm_sub->Buyer__c : 'Subscriber',
                 ];
                 require __DIR__ . '/braze.class.php';
                 $braze = new Braze();
@@ -391,8 +391,8 @@ class Renewals
                             ['id' => $invoice_id]
                         );
 
-                        wp_send_json_error([$crm_sub['Email__c'] . ' => ' . $crm_response['error']]);
-                        wp_mail('dev@thebrag.media', 'RS Mag CRM Update Error', $crm_sub['Email__c'] . ' => ' . $crm_response['error']);
+                        wp_send_json_error([$crm_sub->Email__c . ' => ' . $crm_response['error']]);
+                        wp_mail('dev@thebrag.media', 'RS Mag CRM Update Error', $crm_sub->Email__c . ' => ' . $crm_response['error']);
                         wp_die();
                     } else {
                         $message .= ' + ' . $crm_response;
@@ -402,15 +402,14 @@ class Renewals
                     $crm_response = $crm->resetRemainingIssues($crm_sub);
 
                     if (isset($crm_response['error'])) {
-
                         $wpdb->update(
                             $wpdb->prefix . 'mag_renewals',
                             ['crm_error' => $crm_response['error'], 'updated_at' => current_time('mysql')],
                             ['id' => $invoice_id]
                         );
 
-                        wp_send_json_error([$crm_sub['Email__c'] . ' => ' . $crm_response['error']]);
-                        wp_mail('dev@thebrag.media', 'RS Mag CRM Update Error', $crm_sub['Email__c'] . ' => ' . $crm_response['error']);
+                        wp_send_json_error([$crm_sub->Email__c . ' => ' . $crm_response['error']]);
+                        wp_mail('dev@thebrag.media', 'RS Mag CRM Update Error', $crm_sub->Email__c . ' => ' . $crm_response['error']);
                         wp_die();
                     } else {
                         $message .= ' + ' . $crm_response;
@@ -507,11 +506,11 @@ class Renewals
                 $query_sub = "SELECT
                     *
                     FROM {$wpdb->prefix}mag_subscriptions
-                    WHERE `salesforce_id` = '{$crm_sub['Id']}' LIMIT 1";
+                    WHERE `salesforce_id` = '{$crm_sub->Id}' LIMIT 1";
                 $sub = $wpdb->get_row($query_sub);
 
                 if (!$sub) {
-                    wp_send_json_error([$crm_sub['Email__c'] . ' => Record not found for Salesforce ID; ' . $crm_sub['Id'] . '.']);
+                    wp_send_json_error([$crm_sub->Email__c . ' => Record not found for Salesforce ID; ' . $crm_sub->Id . '.']);
                     wp_die();
                 }
 

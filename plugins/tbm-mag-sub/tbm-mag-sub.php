@@ -2470,7 +2470,7 @@
                 if ($subscription) {
                     require_once __DIR__ . '/classes/crm.class.php';
                     $crm = new CRM();
-                    $crm_sub = (array) $crm->getSubscription($subscription->salesforce_id);
+                    $crm_sub = $crm->getSubscription($subscription->salesforce_id);
 
                     if ($crm_sub) {
                         $crm_response = $crm->updatePaymentAttempts($crm_sub);
@@ -2481,7 +2481,7 @@
                                 ['stripe_invoice_id' => $stripe_invoice_id]
                             );
 
-                            wp_mail('dev@thebrag.media', 'Stripe Webhook: CRM updatePaymentAttempts', $crm_sub['Email__c'] . ' => ' . $crm_response['error']);
+                            wp_mail('dev@thebrag.media', 'Stripe Webhook: CRM updatePaymentAttempts', $crm_sub->Email__c . ' => ' . $crm_response['error']);
                             wp_die();
                         }
 
@@ -2494,7 +2494,7 @@
                                 ['stripe_invoice_id' => $stripe_invoice_id]
                             );
 
-                            wp_mail('dev@thebrag.media', 'Stripe Webhook: CRM resetRemainingIssues', $crm_sub['Email__c'] . ' => ' . $crm_response['error']);
+                            wp_mail('dev@thebrag.media', 'Stripe Webhook: CRM resetRemainingIssues', $crm_sub->Email__c . ' => ' . $crm_response['error']);
                             wp_die();
                         }
                     } else {

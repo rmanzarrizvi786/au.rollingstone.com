@@ -19,12 +19,12 @@
 
         public function send($type = null, $crm_sub = null, $sub = null)
         {
-            if (is_null($type) || is_null($crm_sub) || !isset($crm_sub['Email__c'])) {
+            if (is_null($type) || is_null($crm_sub) || !isset($crm_sub->Email__c)) {
                 return;
             }
 
             $headers[] = 'Content-Type: text/html; charset=UTF-8';
-            $sub_name = isset($sub) && !is_null($sub) && isset($crm_sub['Buyer__c']) ? $crm_sub['Buyer__c'] : 'subscriber';
+            $sub_name = isset($sub) && !is_null($sub) && isset($crm_sub->Buyer__c) ? $crm_sub->Buyer__c : 'subscriber';
 
             switch ($type):
         case 'renewal-failed':
@@ -133,7 +133,7 @@
             endswitch;
 
             if (isset($email_html) && isset($subject)) {
-                wp_mail($crm_sub['Email__c'], $subject, $email_html, $headers);
+                wp_mail($crm_sub->Email__c, $subject, $email_html, $headers);
             }
         }
 
@@ -155,9 +155,9 @@
         </tr>';
             foreach ($crm_subs as $crm_sub) {
                 $body .= '<tr>';
-                $body .= '<td><a href="https://sales.thebrag.media/app/v1-subscription#id=' . $crm_sub['Id'] . '/view" target="_blank">' . $crm_sub['Name'] . '</a></td>';
-                $body .= '<td>' . $crm_sub['Buyer__c'] . '</td>';
-                $body .= '<td><a href="mailto:' . $crm_sub['Email__c'] . '">' . $crm_sub['Email__c'] . '</a></td>';
+                $body .= '<td><a href="https://sales.thebrag.media/app/v1-subscription#id=' . $crm_sub->Id . '/view" target="_blank">' . $crm_sub->Name . '</a></td>';
+                $body .= '<td>' . $crm_sub->Buyer__c . '</td>';
+                $body .= '<td><a href="mailto:' . $crm_sub->Email__c . '">' . $crm_sub->Email__c . '</a></td>';
                 $body .= '</tr>';
             }
             $body .= '</table>';
