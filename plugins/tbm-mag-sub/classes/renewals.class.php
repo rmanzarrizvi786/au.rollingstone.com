@@ -119,6 +119,7 @@ class Renewals
 
     public function process()
     {
+        error_log('Running');
         require_once __DIR__ . '/crm.class.php';
         require_once __DIR__ . '/helper.class.php';
         require_once __DIR__ . '/payment.class.php';
