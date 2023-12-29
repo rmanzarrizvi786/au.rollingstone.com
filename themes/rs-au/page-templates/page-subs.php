@@ -2,18 +2,23 @@
 
 /**
  * Template Name: Subs Cron
- *
- * @package pmc-rollingstone-2018
- * @since 2018-06-28
  */
 
 use Monolog\Logger;
 use Logtail\Monolog\LogtailHandler;
 
-$logger = new Logger("example-app");
+$logger = new Logger('subs-cron');
 $logger->pushHandler(new LogtailHandler(LOGTAIL_SOURCE_TOKEN));
 
-$logger->info("Log message with structured logging.", [
-    "item" => "Orange Soda",
-    "price" => 100,
-]);
+try {    
+    // $logger->info("Log message with structured logging.", [
+    //     "item" => "Orange Soda",
+    //     "price" => 100,
+    // ]);
+
+    throw new Exception('Division by zero.');
+} catch (Exception $e) {
+    $logger->error("Something bad happened.", [
+        "exception" => $e
+    ]);
+}
