@@ -759,6 +759,11 @@
 
             $client = new Client();
 
+            $today = date_create();
+            date_sub( $today, date_interval_create_from_date_string('23 days') );
+            
+            $last = date_format( $today, 'Y-m-d' );
+
             $response = $client->request('POST', $url, [
                 'json' => [
                     'model' => 'subscriptions',
@@ -801,7 +806,7 @@
                         [
                             'column' => 'Last_Issue_Processed_Date__c',
                             'operator' => 'lessThanEqual',
-                            'value' => '2023-11-27',
+                            'value' => $last,
                         ],
                     ],
                 ],
