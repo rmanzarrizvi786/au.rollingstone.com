@@ -62,8 +62,8 @@ class Renewals
             $sub = $wpdb->get_row($query_sub);
 
             if (!$sub) {
-                wp_send_json_error([$crm_sub->Email__c . ' => Record not found for Salesforce ID; ' . $crm_sub->Id . '.']);
                 wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub->Id);
+                wp_send_json_error([$crm_sub->Email__c . ' => Record not found for Salesforce ID; ' . $crm_sub->Id . '.']);
                 wp_die();
             }
 
@@ -86,8 +86,8 @@ class Renewals
                 $price = $this->setPrice($sub->buy_option);
 
                 if ($price == 0) {
-                    wp_send_json_error([$crm_sub->Email__c . ' => Price is $0; ' . $crm_sub->Id . '.']);
                     wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Price is $0; ' . $crm_sub->Id);
+                    wp_send_json_error([$crm_sub->Email__c . ' => Price is $0; ' . $crm_sub->Id . '.']);
                     wp_die();
                 }
 
@@ -152,8 +152,8 @@ class Renewals
                 $sub = $wpdb->get_row($query_sub);
 
                 if (!$sub) {
-                    wp_send_json_error([$crm_sub->Email__c . ' => Record not found for Salesforce ID; ' . $crm_sub->Id . '.']);
                     wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub->Id);
+                    wp_send_json_error([$crm_sub->Email__c . ' => Record not found for Salesforce ID; ' . $crm_sub->Id . '.']);
                     wp_die();
                 }
 
