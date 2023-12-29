@@ -11,14 +11,13 @@ $logger = new Logger('subs-cron');
 $logger->pushHandler(new LogtailHandler(LOGTAIL_SOURCE_TOKEN));
 
 try {    
-    // $logger->info("Log message with structured logging.", [
-    //     "item" => "Orange Soda",
-    //     "price" => 100,
-    // ]);
+   $tbm = new TBMMagSub();
 
-    throw new Exception('Division by zero.');
+    $subs = $tbm->tbm_mag_sub_renewals();
+
+    $logger->info('Subs cron ran successfully.');
 } catch (Exception $e) {
-    $logger->error("Something bad happened.", [
-        "exception" => $e
+    $logger->error('Something bad happened.', [
+        'e' => $e
     ]);
 }
