@@ -945,7 +945,7 @@
 
                 // Track event in Braze
                 if ($user_id !== false) {
-                    require __DIR__ . '/classes/braze.class.php';
+                    require_once __DIR__ . '/classes/braze.class.php';
 
                     $braze = new Braze();
                     $braze->setMethod('POST');
@@ -1288,7 +1288,7 @@
 
                 // Track event in Braze
                 if ($user_id !== false) {
-                    require __DIR__ . '/classes/braze.class.php';
+                    require_once __DIR__ . '/classes/braze.class.php';
 
                     $braze = new Braze();
                     $braze->setMethod('POST');
@@ -2538,7 +2538,7 @@
             $data = !is_null($data) ? stripslashes_deep($data) : [];
 
             if (isset($data['email']) && is_email($data['email'])) {
-                require __DIR__ . '/vendor/autoload.php';
+                require_once __DIR__ . '/vendor/autoload.php';
 
                 try {
                     $auth0 = new Auth0\SDK\Auth0([

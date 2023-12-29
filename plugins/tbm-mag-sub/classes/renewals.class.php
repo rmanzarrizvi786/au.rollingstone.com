@@ -89,7 +89,7 @@ class Renewals
                     continue;
                 }
 
-                require __DIR__ . '/braze.class.php';
+                require_once __DIR__ . '/braze.class.php';
                 $braze = new Braze();
 
                 /**
@@ -318,7 +318,7 @@ class Renewals
                 $braze_event_properties = [
                     'buyer_name' => isset($sub) && !is_null($sub) && isset($crm_sub->Buyer__c) ? $crm_sub->Buyer__c : 'Subscriber',
                 ];
-                require __DIR__ . '/braze.class.php';
+                require_once __DIR__ . '/braze.class.php';
                 $braze = new Braze();
                 $braze->setMethod('POST');
 

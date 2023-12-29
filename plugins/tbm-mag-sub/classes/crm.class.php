@@ -434,7 +434,7 @@
             } else {
                 $body = json_decode($response2->getBody()->getContents());
 
-                require __DIR__ . '/braze.class.php';
+                require_once __DIR__ . '/braze.class.php';
                 $braze = new Braze();
                 $braze->setMethod('POST');
                 $braze->triggerEventByEmail(
@@ -528,7 +528,7 @@
             } else {
                 $body = json_decode($response2->getBody()->getContents());
 
-                require __DIR__ . '/braze.class.php';
+                require_once __DIR__ . '/braze.class.php';
                 $braze = new Braze();
                 $braze->setMethod('POST');
                 $braze->triggerEventByEmail(
