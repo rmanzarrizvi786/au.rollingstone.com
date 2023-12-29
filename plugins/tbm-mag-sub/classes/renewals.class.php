@@ -137,8 +137,6 @@ class Renewals
             global $wpdb;
 
             foreach ($crm_subs as $crm_sub) {
-                echo $crm_sub->Last_Issue_Processed_Date__c . '<br>';
-                continue;
                 $message = '';
 
                 $query_sub = "SELECT
