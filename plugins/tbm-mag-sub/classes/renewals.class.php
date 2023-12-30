@@ -31,7 +31,7 @@ class Renewals
     {
         global $wpdb;
 
-        $query_sub = "SELECT * FROM {$wpdb->prefix}mag_renewals LIMIT {$limit} offset ${offset}";
+        $query_sub = "SELECT * FROM {$wpdb->prefix}mag_renewals LIMIT {$limit} offset ${offset} ORDER BY created_at DESC";
         $sub = $wpdb->get_results($query_sub);
 
         return wp_send_json_success($sub);
