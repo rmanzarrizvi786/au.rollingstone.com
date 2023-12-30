@@ -1666,6 +1666,12 @@
                     'callback' => [$this, 'rest_get_buy_options'],
                     'permission_callback' => '__return_true',
                 ]);
+
+                register_rest_route($this->plugin_name . '/v1', '/get_renewals', [
+                    'methods' => 'GET',
+                    'callback' => [$this, 'get_renewals'],
+                    'permission_callback' => '__return_true',
+                ]);
             }
 
             public function rest_next_issue_details()
@@ -2397,12 +2403,23 @@
             </tr>
         </table>
 <?php
-    if (isset($_GET['manual'])) {
+        if (isset($_GET['manual'])) {
                 require_once __DIR__ . '/classes/renewals.class.php';
                 $renewals = new Renewals();
                 $renewals->index();
             }
         }
+
+        public function get_renewals(WP_REST_Request $request)
+        {
+            $limit = $request['limit'] ? $request['limit'] : 20;
+            $offset = $request['offset'] ? $request['offset'] : 0;
+
+            require_once __DIR__ . '/classes/renewals.class.php';
+            $renewals = new Renewals();
+            return $renewals->get_renewals($limit, $offset);
+        }
+
 
         public function ajax_process_renewals()
         {

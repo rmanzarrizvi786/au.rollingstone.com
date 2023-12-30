@@ -27,6 +27,16 @@ class Renewals
         include_once plugin_dir_path(__FILE__) . '/../partials/renewals/index.php';
     }
 
+    public function get_renewals($limit, $offset)
+    {
+        global $wpdb;
+
+        $query_sub = "SELECT * FROM {$wpdb->prefix}mag_renewals LIMIT {$limit} offset ${offset}";
+        $sub = $wpdb->get_results($query_sub);
+
+        return wp_send_json_success([$sub]);
+    }
+
     public function ajax_process_renewals()
     {
         return $this->process();
