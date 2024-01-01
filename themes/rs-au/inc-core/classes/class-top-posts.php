@@ -103,7 +103,7 @@ class Top_Posts {
 		global $post;
 
 		$args = [
-			'post_type' => [ 'post', 'list', 'page' ],
+			'post_type' => [ 'post', 'pmc_list', 'page' ],
 			'post__in' => $trending_post_ids,
 			'post_status' => 'publish',
 			'posts_per_page' => $limit
