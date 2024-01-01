@@ -27,7 +27,7 @@ if (!is_null($most_viewed)) :
 		// 'post__not_in' => $exclude_posts,
 		'posts_per_page' => 1,
 		'has_password'   => FALSE,
-		'post_type' => ['post', 'page', 'list'],
+		// 'post_type' => ['post', 'page', 'list'],
 		'p' => $most_viewed, //get_option('most_viewed_yesterday'),
 	);
 	$trending_story = new WP_Query($trending_story_args);

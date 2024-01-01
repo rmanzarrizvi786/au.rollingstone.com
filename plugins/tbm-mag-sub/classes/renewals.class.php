@@ -508,7 +508,7 @@ class Renewals
                 $sub = $wpdb->get_row($query_sub);
 
                 if (!$sub) {
-                    wp_send_json_error([$crm_sub->Email__c . ' => Record not found for Salesforce ID; ' . $crm_sub->Id . '.']);
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub->Id);
                     continue;
                 }
 
