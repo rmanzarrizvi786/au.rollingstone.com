@@ -86,7 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 function tbm_hide_admin_bar()
 {
-	if ($post->ID == 44288) {
+	//---------- Get current post ID ----
+	$currentPostID = get_the_ID();
+	$postID = isset($post->ID) ? $post->ID : $currentPostID;
+	if ($postID == 44288) {
 		return false;
 	}
 }
