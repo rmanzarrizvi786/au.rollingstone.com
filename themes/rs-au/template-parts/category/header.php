@@ -21,7 +21,7 @@
 				$menu_id  = $menu_obj ? $menu_obj->term_id : 0;
 
 				$socialNav = wp_get_nav_menu_items($menu_id);
-				foreach ($socialNav as $navItem) {
+				foreach ((array) $socialNav as $navItem) {
 
 				?>
 					<li class="c-page-nav__item is-active" data-ripple="">

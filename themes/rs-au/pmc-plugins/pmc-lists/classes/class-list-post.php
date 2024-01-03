@@ -640,11 +640,11 @@ class List_Post
 				$array_keys = array_keys((array) $list_items);
 
 				$keys = reset($array_keys);
-
+				$keys = isset($keys) ? $keys : '';
 				$first_item = $list_items[$keys];
 
 				$reset_array_keys = reset($array_keys);
-
+				$reset_array_keys = isset($reset_array_keys) ? $reset_array_keys : '';
 				$first_item = $list_items[$reset_array_keys];
 
 				if (!empty($first_item)) {
@@ -777,7 +777,8 @@ class List_Post
 					}
 				}
 
-				$slot = str_replace('/list/',
+				$slot = str_replace(
+					'/list/',
 					sprintf('/%s/list/', $category_slug),
 					$slot
 				);
