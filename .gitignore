@@ -3,6 +3,7 @@
 wflogs/
 
 plugins/*
+!plugins/auth0
 !plugins/brag-observer
 !plugins/brag-observer-feed
 !plugins/download-pmc-lists
