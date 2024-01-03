@@ -465,7 +465,7 @@ function ssm_top_stories_json_func() {
 
     $posts = new WP_Query(
         [
-            'post_type' => [ 'post', 'list', 'page' ],
+            'post_type' => [ 'post', 'pmc_list', 'page' ],
             'post__in' => $trending_post_ids,
             'post_status' => 'publish',
             'posts_per_page' => $posts_per_page,

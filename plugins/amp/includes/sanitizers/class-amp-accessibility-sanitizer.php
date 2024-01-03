@@ -77,7 +77,6 @@ class AMP_Accessibility_Sanitizer extends AMP_Base_Sanitizer {
 	 * `AMP_Theme_Support::add_hooks()` to prevent validation errors from being raised.
 	 *
 	 * @see AMP_Theme_Support::add_hooks()
-	 * @see the_block_template_skip_link()
 	 * @return void
 	 */
 	public function add_skip_link() {

@@ -1,5 +1,6 @@
 <?php
-class Renewals {
+class Renewals
+{
     protected $config;
 
     protected $base_price_printonly;
@@ -9,7 +10,8 @@ class Renewals {
     protected $shipping_cost;
     protected $number_of_issues;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->config = include __DIR__ . '/config.php';
 
         $this->base_price_printonly = $this->config['magazine']['base_price_printonly'];
@@ -20,19 +22,33 @@ class Renewals {
         $this->number_of_issues = $this->config['magazine']['number_of_issues'];
     }
 
-    public function index() {
-        include_once(plugin_dir_path(__FILE__) . '/../partials/renewals/index.php');
+    public function index()
+    {
+        include_once plugin_dir_path(__FILE__) . '/../partials/renewals/index.php';
     }
 
-    public function ajax_process_renewals() {
+    public function get_renewals($limit, $offset)
+    {
+        global $wpdb;
+
+        $query_sub = "SELECT * FROM {$wpdb->prefix}mag_renewals ORDER BY created_at DESC LIMIT {$limit} OFFSET ${offset}";
+        $sub = $wpdb->get_results($query_sub);
+
+        return wp_send_json_success($sub);
+    }
+
+    public function ajax_process_renewals()
+    {
         return $this->process();
     }
 
-    public function ajax_process_upcoming_renewals() {
+    public function ajax_process_upcoming_renewals()
+    {
         return $this->process_upcoming();
     }
 
-    public function process_upcoming() {
+    public function process_upcoming()
+    {
         require_once __DIR__ . '/crm.class.php';
         require_once __DIR__ . '/helper.class.php';
         require_once __DIR__ . '/payment.class.php';
@@ -52,17 +68,16 @@ class Renewals {
             $query_sub = "SELECT
                 *
                 FROM {$wpdb->prefix}mag_subscriptions
-                WHERE `salesforce_id` = '{$crm_sub['Id']}' LIMIT 1";
+                WHERE `salesforce_id` = '{$crm_sub->Id}' LIMIT 1";
             $sub = $wpdb->get_row($query_sub);
 
             if (!$sub) {
-                wp_send_json_error([$crm_sub['Email__c'] . ' => Record not found for Salesforce ID; ' . $crm_sub['Id'] . '.']);
-                wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub['Id']);
-                wp_die();
+                wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub->Id);
+                continue;
             }
 
             // Get Observer User
-            $data_api_observer['email'] = $crm_sub['Email__c'];
+            $data_api_observer['email'] = $crm_sub->Email__c;
             $data_api_observer['key'] = $this->config['api_brag_user']['rest_api_key'];
             $data_api_observer['source'] = 'rs-mag';
             $sub->observer_user_json = Helper::callAPI(
@@ -78,14 +93,13 @@ class Renewals {
 
             if (isset($sub->buy_option)) {
                 $price = $this->setPrice($sub->buy_option);
-                
-                if($price == 0) {
-                    wp_send_json_error([$crm_sub['Email__c'] . ' => Price is $0; ' . $crm_sub['Id'] . '.']);
-                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Price is $0; ' . $crm_sub['Id']);
-                    wp_die();
+
+                if ($price == 0) {
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Price is $0; ' . $crm_sub->Id);
+                    continue;
                 }
 
-                require __DIR__ . '/braze.class.php';
+                require_once __DIR__ . '/braze.class.php';
                 $braze = new Braze();
 
                 /**
@@ -103,16 +117,15 @@ class Renewals {
                     $braze_event_properties
                 );
             } else {
-                wp_send_json_error([$crm_sub['Email__c'] . ' => No buy option; ' . $crm_sub['Id'] . '.']);
-                wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'No buy option; ' . $crm_sub['Id']);
-                wp_die();
+                wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'No buy option; ' . $crm_sub->Id);
+                continue;
             }
-
 
         }
     }
 
-    public function process() {
+    public function process()
+    {
         require_once __DIR__ . '/crm.class.php';
         require_once __DIR__ . '/helper.class.php';
         require_once __DIR__ . '/payment.class.php';
@@ -134,23 +147,21 @@ class Renewals {
             global $wpdb;
 
             foreach ($crm_subs as $crm_sub) {
-
                 $message = '';
 
                 $query_sub = "SELECT
                     *
                     FROM {$wpdb->prefix}mag_subscriptions
-                    WHERE `salesforce_id` = '{$crm_sub['Id']}' LIMIT 1";
+                    WHERE `salesforce_id` = '{$crm_sub->Id}' LIMIT 1";
                 $sub = $wpdb->get_row($query_sub);
 
                 if (!$sub) {
-                    wp_send_json_error([$crm_sub['Email__c'] . ' => Record not found for Salesforce ID; ' . $crm_sub['Id'] . '.']);
-                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub['Id']);
-                    wp_die();
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub->Id);
+                    continue;
                 }
 
                 // Get Observer User
-                $data_api_observer['email'] = $crm_sub['Email__c'];
+                $data_api_observer['email'] = $crm_sub->Email__c;
                 $data_api_observer['key'] = $this->config['api_brag_user']['rest_api_key'];
                 $data_api_observer['source'] = 'rs-mag';
                 $sub->observer_user_json = Helper::callAPI(
@@ -173,38 +184,35 @@ class Renewals {
 
                 if (isset($sub->buy_option)) {
                     $price = $this->setPrice($sub->buy_option);
-                    
-                    if( $sub->buy_option == 'printonly' ) {
+
+                    if ($sub->buy_option == 'printonly') {
                         $product_description = 'Rolling Stone Australia Magazine Subscription (4 issues)';
-                    } elseif( $sub->buy_option == 'printdigital' ) {
+                    } elseif ($sub->buy_option == 'printdigital') {
                         $product_description = 'Rolling Stone Australia Magazine Subscription (4 issues) + Digital Access';
-                    } elseif( $sub->buy_option == 'digitalonly' ) {
+                    } elseif ($sub->buy_option == 'digitalonly') {
                         $product_description = 'Rolling Stone Australia Magazine Digital Access';
                     }
-        
-                    if($price == 0) {
-                        wp_send_json_error([$crm_sub['Email__c'] . ' => Price is $0; ' . $crm_sub['Id'] . '.']);
-                        wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Price is $0; ' . $crm_sub['Id']);
-                        wp_die();
+
+                    if ($price == 0) {
+                        wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Price is $0; ' . $crm_sub->Id);
+                        continue;
                     }
                 } else {
-                    wp_send_json_error([$crm_sub['Email__c'] . ' => No buy option; ' . $crm_sub['Id'] . '.']);
-                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'No buy option; ' . $crm_sub['Id']);
-                    wp_die();
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'No buy option; ' . $crm_sub->Id);
+                    continue;
                 }
 
                 // Cancel subscription in Stripe if stripe_subscription_id is NOT NULL
                 if (!is_null($sub->stripe_subscription_id)) {
                     $stripe_sub = $payment->cancelSubscription($sub->stripe_subscription_id);
                     if ($stripe_sub['error']) {
-                        wp_send_json_error([$sub->email . ' => ' . $stripe_sub['stripe_error']]);
                         wp_mail('dev@thebrag.media', 'RS Mag Renewal Stripe Error', $sub->email . ' => ' . $stripe_sub['stripe_error']);
-                        wp_die();
+                        continue;
                     } else {
                         $wpdb->update(
                             $wpdb->prefix . 'mag_subscriptions',
                             [
-                                'stripe_subscription_id' => NULL,
+                                'stripe_subscription_id' => null,
                             ],
                             [
                                 'id' => $sub->id,
@@ -237,7 +245,7 @@ class Renewals {
                         $success = false;
                     } else { // Payment was successful i.e. there was no error
                         $update_values['payment_status'] = 'paid';
-                        $update_values['payment_error'] = NULL;
+                        $update_values['payment_error'] = null;
                         $message = $sub->email . ' => Payment successful';
                         $success = true;
                     }
@@ -247,20 +255,20 @@ class Renewals {
                         $wpdb->prefix . 'mag_renewals',
                         $update_values,
                         [
-                            'id' => $unpaid_invoice->id
+                            'id' => $unpaid_invoice->id,
                         ]
                     );
                 } else { // No unpaid invoice, create new one and finalise payment
                     // Create Stripe Invoice and Process payment
                     $invoice = $payment->createInvoice(
-                        $post['buy_option'],
+                        $sub->buy_option,
                         $product_description,
                         (int) ($price * 100),
                         (int) ($this->shipping_cost * 100),
                         $this->number_of_issues,
                         '',
                         0,
-                        NULL,
+                        null,
                         $sub->email,
                         $sub->sub_full_name,
                         [],
@@ -275,11 +283,11 @@ class Renewals {
                         'amount' => (int) ($price * 100) + (int) ($this->shipping_cost * 100),
                         'stripe_invoice_id' => $invoice['invoice']->id,
                         'payment_status' => 'unpaid',
-                        'payment_error' => isset($invoice['stripe_error']) ? $invoice['stripe_error'] : NULL,
+                        'payment_error' => isset($invoice['stripe_error']) ? $invoice['stripe_error'] : null,
                         'last_payment_attempt' => current_time('mysql'),
                     ];
                     if (isset($invoice['error'])) {
-                        $insert_values['amount'] = (int) ($price * 100) +  (int) ($this->shipping_cost * 100);
+                        $insert_values['amount'] = (int) ($price * 100) + (int) ($this->shipping_cost * 100);
                         $insert_values['payment_status'] = 'unpaid';
                         $error = $sub->email . ' => ' . $invoice['stripe_error'];
                         $success = false;
@@ -304,13 +312,12 @@ class Renewals {
                 if (isset($crm_response['error'])) {
                     $wpdb->update(
                         $wpdb->prefix . 'mag_renewals',
-                        ['crm_error'  => $crm_response['error'], 'updated_at' => current_time('mysql'),],
+                        ['crm_error' => $crm_response['error'], 'updated_at' => current_time('mysql')],
                         ['id' => $invoice_id]
                     );
 
-                    wp_send_json_error([$crm_sub['Email__c'] . ' => ' . $crm_response['error'] . ' | ' . $invoice_id]);
-                    wp_mail('dev@thebrag.media', 'RS Mag Renewal CRM Error', $crm_sub['Email__c'] . ' => ' . $crm_response['error'] . ' | ' . $invoice_id);
-                    wp_die();
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal CRM Error', $crm_sub->Email__c . ' => ' . $crm_response['error'] . ' | ' . $invoice_id);
+                    continue;
                 } else {
                     $message .= ' + ' . $crm_response;
                 }
@@ -319,9 +326,9 @@ class Renewals {
                  * Set up for Braze Event
                  */
                 $braze_event_properties = [
-                    'buyer_name' => isset($sub) && !is_null($sub) && isset($crm_sub['Buyer__c']) ? $crm_sub['Buyer__c'] : 'Subscriber',
+                    'buyer_name' => isset($sub) && !is_null($sub) && isset($crm_sub->Buyer__c) ? $crm_sub->Buyer__c : 'Subscriber',
                 ];
-                require __DIR__ . '/braze.class.php';
+                require_once __DIR__ . '/braze.class.php';
                 $braze = new Braze();
                 $braze->setMethod('POST');
 
@@ -344,9 +351,8 @@ class Renewals {
                         $braze_event_properties
                     );
 
-                    wp_send_json_error([$error]);
                     wp_mail('dev@thebrag.media', 'RS Mag Renewal Failed', $error);
-                    wp_die();
+                    continue;
                 } else {
                     // $email->send('renewal-success', $crm_sub, $sub);
 
@@ -381,13 +387,12 @@ class Renewals {
 
                         $wpdb->update(
                             $wpdb->prefix . 'mag_renewals',
-                            ['crm_error'  =>  $crm_response['error'], 'updated_at' => current_time('mysql'),],
+                            ['crm_error' => $crm_response['error'], 'updated_at' => current_time('mysql')],
                             ['id' => $invoice_id]
                         );
 
-                        wp_send_json_error([$crm_sub['Email__c'] . ' => ' . $crm_response['error']]);
-                        wp_mail('dev@thebrag.media', 'RS Mag CRM Update Error', $crm_sub['Email__c'] . ' => ' . $crm_response['error']);
-                        wp_die();
+                        wp_mail('dev@thebrag.media', 'RS Mag CRM Update Error', $crm_sub->Email__c . ' => ' . $crm_response['error']);
+                        continue;
                     } else {
                         $message .= ' + ' . $crm_response;
                     }
@@ -396,16 +401,14 @@ class Renewals {
                     $crm_response = $crm->resetRemainingIssues($crm_sub);
 
                     if (isset($crm_response['error'])) {
-
                         $wpdb->update(
                             $wpdb->prefix . 'mag_renewals',
-                            ['crm_error'  =>  $crm_response['error'], 'updated_at' => current_time('mysql'),],
+                            ['crm_error' => $crm_response['error'], 'updated_at' => current_time('mysql')],
                             ['id' => $invoice_id]
                         );
 
-                        wp_send_json_error([$crm_sub['Email__c'] . ' => ' . $crm_response['error']]);
-                        wp_mail('dev@thebrag.media', 'RS Mag CRM Update Error', $crm_sub['Email__c'] . ' => ' . $crm_response['error']);
-                        wp_die();
+                        wp_mail('dev@thebrag.media', 'RS Mag CRM Update Error', $crm_sub->Email__c . ' => ' . $crm_response['error']);
+                        continue;
                     } else {
                         $message .= ' + ' . $crm_response;
                     }
@@ -447,15 +450,16 @@ class Renewals {
         }
     } // send_comps_renewals()
 
-    public function setPrice($option) {
+    public function setPrice($option)
+    {
         $buy_options = [
             'printonly',
             'digitalonly',
             'printdigital',
         ];
 
-        if(in_array($option, $buy_options)) {
-            switch($option) {
+        if (in_array($option, $buy_options)) {
+            switch ($option) {
                 case 'printonly':
                     return $this->base_price_printonly;
                 case 'digitalonly':
@@ -500,17 +504,17 @@ class Renewals {
                 $query_sub = "SELECT
                     *
                     FROM {$wpdb->prefix}mag_subscriptions
-                    WHERE `salesforce_id` = '{$crm_sub['Id']}' LIMIT 1";
+                    WHERE `salesforce_id` = '{$crm_sub->Id}' LIMIT 1";
                 $sub = $wpdb->get_row($query_sub);
 
                 if (!$sub) {
-                    wp_send_json_error([$crm_sub['Email__c'] . ' => Record not found for Salesforce ID; ' . $crm_sub['Id'] . '.']);
-                    wp_die();
+                    wp_mail('dev@thebrag.media', 'RS Mag Renewal Error', 'Record not found for Salesforce ID; ' . $crm_sub->Id);
+                    continue;
                 }
 
                 $unpaid_invoice = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}mag_renewals WHERE `subscription_id` = '{$sub->id}' AND payment_status = 'unpaid' LIMIT 1");
 
-                if($sub->id < 2383) {
+                if ($sub->id < 2383) {
                     $base_price = $this->config['magazine']['base_price_legacy'];
                 }
 
@@ -523,7 +527,7 @@ class Renewals {
                             'updated_at' => current_time('mysql'),
                         ],
                         [
-                            'id' => $unpaid_invoice->id
+                            'id' => $unpaid_invoice->id,
                         ]
                     );
                 }
@@ -535,7 +539,7 @@ class Renewals {
                     $this->config['magazine']['number_of_issues'],
                     '',
                     0,
-                    NULL,
+                    null,
                     $sub->email,
                     $sub->sub_full_name,
                     [],
@@ -546,7 +550,7 @@ class Renewals {
                 );
                 if (isset($invoice['error'])) {
                     wp_send_json_error([$sub->email . ' => ' . $invoice['stripe_error']]);
-                    wp_die();
+                    continue;
                 }
 
                 $message = $sub->email . ' => Final Invoice has been sent';
@@ -554,11 +558,11 @@ class Renewals {
                 // Insert in to Renewals database
                 $insert_values = [
                     'subscription_id' => $sub->id,
-                    'amount' => (int) ($base_price * 100) +  (int) ($this->shipping_cost * 100),
+                    'amount' => (int) ($base_price * 100) + (int) ($this->shipping_cost * 100),
                     'stripe_invoice_id' => $invoice['invoice']->id,
                     'payment_status' => 'unpaid',
-                    'payment_error' => isset($invoice['stripe_error']) ? $invoice['stripe_error'] : NULL,
-                    'last_payment_attempt' => NULL,
+                    'payment_error' => isset($invoice['stripe_error']) ? $invoice['stripe_error'] : null,
+                    'last_payment_attempt' => null,
                 ];
                 $wpdb->insert(
                     $wpdb->prefix . 'mag_renewals',
@@ -575,5 +579,5 @@ class Renewals {
                 wp_die();
             }
         }
-    } // send_overdue_invoices()
+    }
 }

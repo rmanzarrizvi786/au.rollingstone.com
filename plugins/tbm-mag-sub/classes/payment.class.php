@@ -1,31 +1,35 @@
 <?php
 
-class Payment {
+class Payment
+{
     protected $is_sandbox;
     protected $stripe;
     protected $config;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->config = include __DIR__ . '/config.php';
 
         // Include Stripe SDK
-        require_once(plugin_dir_path(__FILE__) . '../vendor/autoload.php');
+        //require_once(plugin_dir_path(__FILE__) . '../vendor/autoload.php');
 
         $this->stripe = new \Stripe\StripeClient($this->config['stripe']['secret_key']);
     }
 
-    public function createIntent($amount, $currency) {
+    public function createIntent($amount, $currency)
+    {
         $payment_intent = $this->stripe->paymentIntents->create([
             'setup_future_usage' => 'off_session',
             'amount' => $amount,
             'currency' => $currency,
-            'automatic_payment_methods' => ['enabled' => true]
+            'automatic_payment_methods' => ['enabled' => true],
         ]);
 
         return $payment_intent;
     }
 
-    public function createCustomer($payment_method, $sub_email, $sub_full_name, $buy_option, $buyer = [], $shipping = []) {
+    public function createCustomer($payment_method, $sub_email, $sub_full_name, $buy_option, $buyer = [], $shipping = [])
+    {
         try {
             $customer = $this->stripe->customers->create([
                 'payment_method' => $payment_method,
@@ -48,15 +52,15 @@ class Payment {
                         'postal_code' => $shipping['postcode'],
                         'state' => $shipping['state'],
                     ],
-                    'name' => $sub_full_name
+                    'name' => $sub_full_name,
                 ],
                 'invoice_settings' => [
-                    'default_payment_method' => $payment_method
+                    'default_payment_method' => $payment_method,
                 ],
                 'metadata' => [
                     'buy_option' => $buy_option,
-                    'email_reciever' => $shipping['sub_email_reciever']
-                ]
+                    'email_reciever' => $shipping['sub_email_reciever'],
+                ],
             ]);
 
             return $customer;
@@ -84,7 +88,7 @@ class Payment {
             error_log('--Stripe Error | Customer | ApiConnectionException: ' . $e->getError()->message);
             wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe Create Cus', $e->getError()->message);
             return ['error' => 'Whoops, it seems we had a bit of trouble getting in contact with the payment service. Feel free to refresh your browser and give it another shot!'];
-            wp_die();;
+            wp_die();
         } catch (\Stripe\Exception\ApiErrorException $e) {
             error_log('--Stripe Error | Customer | ApiErrorException: ' . $e->getError()->message);
             wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe Create Cus', $e->getError()->message);
@@ -98,7 +102,8 @@ class Payment {
         }
     }
 
-    public function payInvoice($invoice_id) {
+    public function payInvoice($invoice_id)
+    {
         try {
             $invoice = $this->stripe->invoices->retrieve($invoice_id);
             if ($invoice->paid) {
@@ -112,7 +117,7 @@ class Payment {
             return [
                 'error' => 'It looks like your card has been declined. Make sure all your details are correct, your card is valid, and give it another shot.',
                 'invoice' => $invoice,
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (\Stripe\Exception\RateLimitException $e) {
@@ -121,7 +126,7 @@ class Payment {
             return [
                 'error' => 'Whoops, it looks like something unexpected happened on our of things. Feel free to refresh your browser and give it another shot.',
                 'invoice' => $invoice,
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (\Stripe\Exception\InvalidRequestException $e) {
@@ -130,7 +135,7 @@ class Payment {
             return [
                 'error' => 'Whoops, like something unexpected happened on our of things. Feel free to refresh your browser and give it another shot.',
                 'invoice' => $invoice,
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (\Stripe\Exception\AuthenticationException $e) {
@@ -139,7 +144,7 @@ class Payment {
             return [
                 'error' => 'Whoops, like something unexpected happened on our of things. Feel free to refresh your browser and give it another shot.',
                 'invoice' => $invoice,
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (\Stripe\Exception\ApiConnectionException $e) {
@@ -148,16 +153,16 @@ class Payment {
             return [
                 'error' => 'Whoops, it seems we had a bit of trouble getting in contact with the payment service. Feel free to refresh your browser and give it another shot!',
                 'invoice' => $invoice,
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
-            wp_die();;
+            wp_die();
         } catch (\Stripe\Exception\ApiErrorException $e) {
             error_log('--Stripe Error | Invoice | ApiErrorException: ' . $e->getError()->message);
             wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe Pay Invoice: ApiErrorException', $e->getError()->message);
             return [
                 'error' => 'Whoops, like something unexpected happened on our side of things. Please contact subscribe@thebrag.media with the details you submitted.',
                 'invoice' => $invoice,
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (Exception $e) {
@@ -166,13 +171,14 @@ class Payment {
             return [
                 'error' => 'Whoops, like something unexpected happened on our side of things. Please contact subscribe@thebrag.media with the details you submitted.',
                 'invoice' => $invoice,
-                'stripe_error' =>$e->getMessage()
+                'stripe_error' => $e->getMessage(),
             ];
             wp_die();
         }
     }
 
-    public function cancelSubscription($sub_id) {
+    public function cancelSubscription($sub_id)
+    {
         try {
             $stripe_sub = $this->stripe->subscriptions->retrieve(
                 $sub_id,
@@ -190,7 +196,7 @@ class Payment {
             wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe CancelSubscription: CardException', $e->getError()->message);
             return [
                 'error' => 'It looks like your card has been declined. Make sure all your details are correct, your card is valid, and give it another shot.',
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (\Stripe\Exception\RateLimitException $e) {
@@ -198,7 +204,7 @@ class Payment {
             wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe CancelSubscription: RateLimitException', $e->getError()->message);
             return [
                 'error' => 'Whoops, it looks like something unexpected happened on our of things. Feel free to refresh your browser and give it another shot.',
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (\Stripe\Exception\InvalidRequestException $e) {
@@ -206,7 +212,7 @@ class Payment {
             wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe CancelSubscription: InvalidRequestException', $e->getError()->message);
             return [
                 'error' => 'Whoops, like something unexpected happened on our of things. Feel free to refresh your browser and give it another shot.',
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (\Stripe\Exception\AuthenticationException $e) {
@@ -214,7 +220,7 @@ class Payment {
             wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe CancelSubscription: AuthenticationException', $e->getError()->message);
             return [
                 'error' => 'Whoops, like something unexpected happened on our of things. Feel free to refresh your browser and give it another shot.',
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (\Stripe\Exception\ApiConnectionException $e) {
@@ -222,15 +228,15 @@ class Payment {
             wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe CancelSubscription: ApiConnectionException', $e->getError()->message);
             return [
                 'error' => 'Whoops, it seems we had a bit of trouble getting in contact with the payment service. Feel free to refresh your browser and give it another shot!',
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
-            wp_die();;
+            wp_die();
         } catch (\Stripe\Exception\ApiErrorException $e) {
             error_log('--Stripe Error | CancelSubscription | ApiErrorException: ' . $e->getError()->message);
             wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe CancelSubscription: ApiErrorException', $e->getError()->message);
             return [
                 'error' => 'Whoops, like something unexpected happened on our side of things. Please contact subscribe@thebrag.media with the details you submitted.',
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (Exception $e) {
@@ -238,13 +244,14 @@ class Payment {
             wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe CancelSubscription: Exception', $e->getMessage());
             return [
                 'error' => 'Whoops, like something unexpected happened on our side of things. Please contact subscribe@thebrag.media with the details you submitted.',
-                'stripe_error' => $e->getMessage()
+                'stripe_error' => $e->getMessage(),
             ];
             wp_die();
         }
     }
 
-    public function createInvoice($buy_option, $product_description, $subtotal, $shipping_cost, $number_of_issues, $coupon_code, $amount_off, $payment_method, $sub_email, $sub_full_name, $buyer = [], $shipping = [], $customer_id = NULL, $collection_method = 'charge_automatically', $description = '') {
+    public function createInvoice($buy_option, $product_description, $subtotal, $shipping_cost, $number_of_issues, $coupon_code, $amount_off, $payment_method, $sub_email, $sub_full_name, $buyer = [], $shipping = [], $customer_id = null, $collection_method = 'charge_automatically', $description = '')
+    {
         try {
             $customer = null;
             if (is_null($customer_id)) {
@@ -258,34 +265,10 @@ class Payment {
                 $customer_id = $customer->id;
             }
 
-            $this->stripe->invoiceItems->create([
-                'customer' => $customer_id,
-                'amount' => $subtotal,
-                'currency' => 'aud',
-                'description' => $product_description || 'Rolling Stone Magazine Subscription',
-            ]);
-
-            $this->stripe->invoiceItems->create([
-                'customer' => $customer_id,
-                'unit_amount' => $shipping_cost,
-                'currency' => 'aud',
-                'quantity' => $number_of_issues,
-                'description' => 'Shipping'
-            ]);
-
-            if ('' != $coupon_code && $amount_off < 0) :
-                $this->stripe->invoiceItems->create([
-                    'customer' => $customer_id,
-                    'amount' => $amount_off,
-                    'currency' => 'aud',
-                    'description' => 'Coupon code: ' . $coupon_code
-                ]);
-            endif;
-
             $stripe_data = [
                 'customer' => $customer_id,
                 'default_tax_rates' => [
-                    $this->config['stripe']['default_tax_rates']
+                    $this->config['stripe']['default_tax_rates'],
                 ],
                 'collection_method' => $collection_method,
             ];
@@ -301,6 +284,33 @@ class Payment {
 
             $invoice = $this->stripe->invoices->create($stripe_data);
 
+            $this->stripe->invoiceItems->create([
+                'customer' => $customer_id,
+                'invoice' => $invoice->id,
+                'amount' => $subtotal,
+                'currency' => 'aud',
+                'description' => $product_description,
+            ]);
+
+            $this->stripe->invoiceItems->create([
+                'customer' => $customer_id,
+                'invoice' => $invoice->id,
+                'unit_amount' => $shipping_cost,
+                'currency' => 'aud',
+                'quantity' => $number_of_issues,
+                'description' => 'Shipping',
+            ]);
+
+            if ('' != $coupon_code && $amount_off < 0):
+                $this->stripe->invoiceItems->create([
+                    'customer' => $customer_id,
+                    'invoice' => $invoice->id,
+                    'amount' => $amount_off,
+                    'currency' => 'aud',
+                    'description' => 'Coupon code: ' . $coupon_code,
+                ]);
+            endif;
+
             if ('charge_automatically' == $collection_method) {
                 $this->stripe->invoices->pay($invoice->id);
             } else {
@@ -311,7 +321,7 @@ class Payment {
 
             return [
                 'customer' => $customer,
-                'invoice' => $invoice
+                'invoice' => $invoice,
             ];
         } catch (\Stripe\Exception\CardException $e) {
             error_log('--Stripe Error | Invoice | CardException : ' . $e->getError()->message);
@@ -320,7 +330,7 @@ class Payment {
                 'error' => 'It looks like your card has been declined. Make sure all your details are correct, your card is valid, and give it another shot.',
                 'customer' => $customer,
                 'invoice' => $invoice,
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (\Stripe\Exception\RateLimitException $e) {
@@ -330,7 +340,7 @@ class Payment {
                 'error' => 'Whoops, it looks like something unexpected happened on our of things. Feel free to refresh your browser and give it another shot.',
                 'customer' => $customer,
                 'invoice' => $invoice,
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (\Stripe\Exception\InvalidRequestException $e) {
@@ -340,7 +350,7 @@ class Payment {
                 'error' => 'Whoops, like something unexpected happened on our of things. Feel free to refresh your browser and give it another shot.',
                 'customer' => $customer,
                 'invoice' => $invoice,
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (\Stripe\Exception\AuthenticationException $e) {
@@ -350,7 +360,7 @@ class Payment {
                 'error' => 'Whoops, like something unexpected happened on our of things. Feel free to refresh your browser and give it another shot.',
                 'customer' => $customer,
                 'invoice' => $invoice,
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (\Stripe\Exception\ApiConnectionException $e) {
@@ -360,9 +370,9 @@ class Payment {
                 'error' => 'Whoops, it seems we had a bit of trouble getting in contact with the payment service. Feel free to refresh your browser and give it another shot!',
                 'customer' => $customer,
                 'invoice' => $invoice,
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
-            wp_die();;
+            wp_die();
         } catch (\Stripe\Exception\ApiErrorException $e) {
             error_log('--Stripe Error | Invoice | ApiErrorException: ' . $e->getError()->message);
             // wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe Create Invoice: ApiErrorException', $e->getError()->message);
@@ -370,7 +380,7 @@ class Payment {
                 'error' => 'Whoops, like something unexpected happened on our side of things. Please contact subscribe@thebrag.media with the details you submitted.',
                 'customer' => $customer,
                 'invoice' => $invoice,
-                'stripe_error' => $e->getError()->message
+                'stripe_error' => $e->getError()->message,
             ];
             wp_die();
         } catch (Exception $e) {
@@ -380,13 +390,14 @@ class Payment {
                 'error' => 'Whoops, like something unexpected happened on our side of things. Please contact subscribe@thebrag.media with the details you submitted.',
                 'customer' => $customer,
                 'invoice' => $invoice,
-                'stripe_error' => $e->getMessage()  
+                'stripe_error' => $e->getMessage(),
             ];
             wp_die();
         }
     }
 
-    public function updateCustomer($subscriber) {
+    public function updateCustomer($subscriber)
+    {
         try {
             $customer = $this->stripe->customers->update(
                 $subscriber->stripe_customer_id,
@@ -439,7 +450,7 @@ class Payment {
             error_log('--Stripe Error | Customer | ApiConnectionException: ' . $e->getError()->message);
             wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe Update Cus', $e->getError()->message);
             return ['error' => 'Whoops, it seems we had a bit of trouble getting in contact with the payment service. Feel free to refresh your browser and give it another shot!'];
-            wp_die();;
+            wp_die();
         } catch (\Stripe\Exception\ApiErrorException $e) {
             error_log('--Stripe Error | Customer | ApiErrorException: ' . $e->getError()->message);
             wp_mail('dev@thebrag.media', 'RS Mag Error: Stripe Update Cus', $e->getError()->message);
@@ -453,7 +464,8 @@ class Payment {
         }
     }
 
-    public function webhook() {
+    public function webhook()
+    {
         $payload = @file_get_contents('php://input');
         $event = null;
 
@@ -477,15 +489,14 @@ class Payment {
                 // error_log( '-- Stripe Webhook -- Received unknown event type ' . $event->type );
         }
 
-
-
         // http_response_code(200);
     }
 
     /*
-    * Get Countries
-    */
-    public static function getCountries() {
+     * Get Countries
+     */
+    public static function getCountries()
+    {
         require_once __DIR__ . '/helper.class.php';
         return Helper::getCountries();
     }
