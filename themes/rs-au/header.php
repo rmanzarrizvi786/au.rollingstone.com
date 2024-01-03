@@ -18,8 +18,8 @@
 	<meta charset="<?php echo esc_attr(get_bloginfo('charset')); ?>" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<link rel="manifest" href="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/manifest.json'); // WPCS: XSS okay.
-                               ?>">
+	<link rel="manifest" href="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/manifest.json'); // WPCS: XSS okay. 
+	?>">
 
 	<!-- Responsiveness -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,18 +31,23 @@
 	<meta name="apple-mobile-web-app-title" content="<?php echo esc_attr(get_bloginfo('name')); ?>">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="apple-touch-icon" href="https://www.rollingstone.com/wp-content/uploads/2022/08/cropped-Rolling-Stone-Favicon.png?w=180" />
+	<link rel="apple-touch-icon"
+		href="https://www.rollingstone.com/wp-content/uploads/2022/08/cropped-Rolling-Stone-Favicon.png?w=180" />
 
 	<!-- Tile icons for Windows -->
-	<meta name="msapplication-config" content="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/browserconfig.xml'); // WPCS: XSS okay.
-                                               ?>">
-	<meta name="msapplication-TileImage" content="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/icons/mstile-144x144.png'); // WPCS: XSS okay.
-                                                  ?>">
+	<meta name="msapplication-config" content="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/browserconfig.xml'); // WPCS: XSS okay. 
+	?>">
+	<meta name="msapplication-TileImage" content="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/icons/mstile-144x144.png'); // WPCS: XSS okay. 
+	?>">
 	<meta name="msapplication-TileColor" content="#eff4ff">
 
 	<!-- Favicons -->
-	<link rel="icon" href="https://www.rollingstone.com/wp-content/uploads/2022/08/cropped-Rolling-Stone-Favicon.png?w=32" sizes="32x32" />
-	<link rel="icon" href="https://www.rollingstone.com/wp-content/uploads/2022/08/cropped-Rolling-Stone-Favicon.png?w=192" sizes="192x192" />
+	<link rel="icon"
+		href="https://www.rollingstone.com/wp-content/uploads/2022/08/cropped-Rolling-Stone-Favicon.png?w=32"
+		sizes="32x32" />
+	<link rel="icon"
+		href="https://www.rollingstone.com/wp-content/uploads/2022/08/cropped-Rolling-Stone-Favicon.png?w=192"
+		sizes="192x192" />
 
 	<!-- Safari pin icon -->
 	<link rel="mask-icon" href="<?php echo PMC::esc_url_ssl_friendly(RS_THEME_URL . '/assets/app/icons/safari-pinned-tab.svg'); // WPCS: XSS okay.
@@ -54,30 +59,29 @@
 	<meta name="description" content="<?php echo esc_attr(get_bloginfo('description')); ?>">
 	<!-- Titles:end -->
 
-    <meta name='impact-site-verification' value='1335992589'>
+	<meta name='impact-site-verification' value='1335992589'>
 
 	<meta property="fb:pages" content="203538151294" />
 
 	<?php if (is_single()) {
-
-        ?>
+		?>
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:site" content="@rollingstoneaus">
 		<meta name="twitter:title" content="<?php the_title();?>">
 		<meta name="twitter:image" content="<?php
-                                                if (has_post_thumbnail()) {
-                                                        $src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
-                                                        $type = exif_imagetype($src[0]);
+		if (has_post_thumbnail()) {
+			$src = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
+			$type = exif_imagetype($src[0]);
 
-                                                        if ($type != false && ($type == (IMAGETYPE_PNG || IMAGETYPE_JPEG))) {
-                                                            echo ("https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/{$src[0]}");
-                                                        } else {
-                                                            echo $src[0];
-                                                        }
-                                                }
-                                                ?>">
-	<?php } // If single
-    ?>
+			if ($type != false && ($type == (IMAGETYPE_PNG || IMAGETYPE_JPEG))) {
+				echo ("https://images.thebrag.com/cdn-cgi/image/fit=crop,width=1200,height=628/{$src[0]}");
+			} else {
+				echo $src[0];
+			}
+		}
+		?>">
+	<?php } // If single 
+	?>
 
 	<?php do_action('pmc_tags_head');?>
 
@@ -122,32 +126,32 @@
 
 	<!-- Admiral -->
 	<script type="text/javascript">
-		!(function(o, n, t) {
+		!(function (o, n, t) {
 			t = o.createElement(n), o = o.getElementsByTagName(n)[0], t.async = 1, t.src = "https://bravecalculator.com/v2/0/jmfAe_cRj0ZB4StQ-uahRpOs6jYGaVFa9WTlyW2bPfNf4vnVKw2BPI", o.parentNode.insertBefore(t, o)
-		})(document, "script"), (function(o, n) {
-			o[n] = o[n] || function() {
+		})(document, "script"), (function (o, n) {
+			o[n] = o[n] || function () {
 				(o[n].q = o[n].q || []).push(arguments)
 			}
 		})(window, "admiral");
-		!(function(n, e, r, t) {
+		!(function (n, e, r, t) {
 			function o() {
 				if ((function o(t) {
-						try {
-							return (t = localStorage.getItem("v4ac1eiZr0")) && 0 < t.split(",")[4]
-						} catch (n) {}
-						return !1
-					})()) {
+					try {
+						return (t = localStorage.getItem("v4ac1eiZr0")) && 0 < t.split(",")[4]
+					} catch (n) { }
+					return !1
+				})()) {
 					var t = n[e].pubads();
 					typeof t.setTargeting === r && t.setTargeting("admiral-engaged", "true")
 				}
-			}(t = n[e] = n[e] || {}).cmd = t.cmd || [], typeof t.pubads === r ? o() : typeof t.cmd.unshift === r ? t.cmd.unshift(o) : t.cmd.push(o)
+			} (t = n[e] = n[e] || {}).cmd = t.cmd || [], typeof t.pubads === r ? o() : typeof t.cmd.unshift === r ? t.cmd.unshift(o) : t.cmd.push(o)
 		})(window, "googletag", "function");
 	</script>
 
 
 	<!-- TikTok -->
 	<script>
-		(function() {
+		(function () {
 			var ta = document.createElement('script');
 			ta.type = 'text/javascript';
 			ta.async = true;
@@ -159,11 +163,15 @@
 
 	<style>
 		<?php
-        if (get_field('page_background_colour')): ?>body {
-			background-color:			                  <?php echo get_field('page_background_colour'); ?> !important;
-		}
+		if (get_field('page_background_colour')): ?>
+			body {
+				background-color:
+					<?php echo get_field('page_background_colour'); ?>
+					!important;
+			}
 
-		<?php endif;?>div.admz,
+		<?php endif; ?>
+		div.admz,
 		div.admz-sp {
 			margin-left: auto;
 			margin-right: auto;
@@ -207,11 +215,9 @@
 		<!-- Facebook Pixel Code -->
 
 		<script>
-			! function(f, b, e, v, n, t, s)
-
-			{
+			! function (f, b, e, v, n, t, s) {
 				if (f.fbq) return;
-				n = f.fbq = function() {
+				n = f.fbq = function () {
 					n.callMethod ?
 
 						n.callMethod.apply(n, arguments) : n.queue.push(arguments)
@@ -257,5 +263,5 @@
 
 
 			<div class="l-page" id="site_wrap">
-				<?php get_template_part('template-parts/header/header');?>
-<?php endif;?>
+				<?php get_template_part('template-parts/header/header'); ?>
+			<?php endif; ?>
