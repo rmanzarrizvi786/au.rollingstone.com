@@ -411,7 +411,7 @@ class ThemeSetup
 			return;
 		}
 		$action = 'thumbnail_ext_url_' . $pid . get_current_blog_id();
-		$nonce = filter_input(INPUT_POST,  'thumbnail_ext_url_nonce', FILTER_SANITIZE_STRING);
+		$nonce = filter_input(INPUT_POST,  'thumbnail_ext_url_nonce', FILTER_UNSAFE_RAW);
 		$url = filter_input(INPUT_POST,  'thumbnail_ext_url', FILTER_VALIDATE_URL);
 		if (
 			empty($nonce)

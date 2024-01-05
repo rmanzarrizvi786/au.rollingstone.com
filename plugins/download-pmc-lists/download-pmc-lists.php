@@ -161,14 +161,14 @@ class TBMDownloadPMCLists
           }
         }
 
-        $title_elements = $dom_xpath->query("//*[contains(concat(' ', @class, ' '),'l-article-header__row')]");
+        $title_elements = $dom_xpath->query("//h1[contains(concat(' ', @class, ' '),'article-title')]");
         foreach ($title_elements as $element) {
           $list_title = $this->get_inner_html($element);
           break;
         }
 
         // $lead_elements = $dom_xpath->query("//*[contains(concat(' ', @class, ' '),'c-list__lead')]");
-        $lead_elements = $dom_xpath->query("//*[contains(concat(' ', @class, ' '),'c-content t-copy')]");
+        $lead_elements = $dom_xpath->query("//div[contains(concat(' ', @class, ' '),'a-content')]");
         foreach ($lead_elements as $element) {
           $list_content = $this->get_inner_html($element);
           break;

@@ -3003,7 +3003,7 @@ class PMC
 			 * Code is not running on PHP Cli and we are in clear.
 			 * Use the PHP method and bail out.
 			 */
-			$options = isset($options) ? $options : '';
+			$options = isset($options) ? $options : array();
 			switch ($filter) {
 				case FILTER_UNSAFE_RAW:
 					$sanitized_variable = sanitize_text_field(filter_input($type, $variable_name, $filter));
