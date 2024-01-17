@@ -10,7 +10,9 @@
 ?>
 <div class="l-section-top">
 	<h1 class="l-section-top__heading">
-		<span class="t-super"><?php echo single_term_title('', false); ?></span>
+		<span class="t-super">
+			<?php echo single_term_title('', false); ?>
+		</span>
 	</h1><!-- .l-section-top__heading -->
 
 	<nav class="l-section-top__menu">
@@ -18,17 +20,20 @@
 			<ul id="category-header-menu" class="c-page-nav__list ">
 				<?php
 				$menu_obj = wp_get_nav_menu_object('Category Menu - ' . single_term_title('', false));
-				$menu_id  = $menu_obj ? $menu_obj->term_id : 0;
+				$menu_id = $menu_obj ? $menu_obj->term_id : 0;
 
 				$socialNav = wp_get_nav_menu_items($menu_id);
 				foreach ((array) $socialNav as $navItem) {
+					if (isset($navItem->url)) {
+						?>
+						<li class="c-page-nav__item is-active" data-ripple="">
+							<a href="<?php echo $navItem->url; ?>" class="c-page-nav__link" data-line-menu-left="">
+								<?php echo $navItem->title; ?>
+							</a>
+						</li>
 
-				?>
-					<li class="c-page-nav__item is-active" data-ripple="">
-						<a href="<?php echo $navItem->url; ?>" class="c-page-nav__link" data-line-menu-left=""><?php echo $navItem->title; ?></a>
-					</li>
-
-				<?php
+						<?php
+					}
 				}
 				?>
 
@@ -40,4 +45,3 @@
 		</div><!-- .c-page-nav--header -->
 	</nav><!-- .l-section-top__menu -->
 </div>
-

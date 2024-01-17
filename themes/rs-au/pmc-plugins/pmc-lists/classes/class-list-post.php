@@ -641,7 +641,12 @@ class List_Post
 
 				$keys = reset($array_keys);
 				$keys = isset($keys) ? $keys : '';
-				$first_item = $list_items[$keys];
+				if (isset($list_items[$keys])) {
+					$first_item = $list_items[$keys];
+				} else {
+					$first_item = '';
+				}
+
 
 				$reset_array_keys = reset($array_keys);
 				$reset_array_keys = isset($reset_array_keys) ? $reset_array_keys : '';
